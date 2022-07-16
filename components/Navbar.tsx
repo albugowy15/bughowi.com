@@ -20,6 +20,7 @@ const Navbar = () => {
   return (
     <div className="w-screen">
       <div className="container px-3 mx-auto">
+        {/* Navbar on large screen */}
         <div className="flex justify-between items-center py-2">
           <div className="flex items-center justify-start gap-1 cursor-pointer">
             <Link href="/">
@@ -65,16 +66,20 @@ const Navbar = () => {
             />
           </div>
         </div>
+        {/* End here */}
+
+
+        {/* Navbar small screnn using icon bar */}
         <div
           className={
             nav
-              ? "fixed flex w-screen h-screen top-0 bg-black bg-opacity-60"
+              ? "fixed flex w-screen h-screen left-0 top-0 bg-black bg-opacity-60 z-40"
               : "hidden"
           }
         >
-          <div className="bg-darkPrimary w-[70%] p-5">
+          <div className="bg-darkPrimary w-[70%] p-5 z-50">
             <div className="flex justify-between items-center mb-5">
-              <p className="text-xl font-bold">bughowi.dev</p>
+              <p className="text-xl font-bold text-slate-300">bughowi.dev</p>
               <button
                 className="bg-darkSecondary p-3 rounded-full hover:scale-105 duration-300"
                 onClick={() => setNav(!nav)}
@@ -82,7 +87,7 @@ const Navbar = () => {
                 <MdOutlineClose size={20} />
               </button>
             </div>
-            <div>
+            <div className="text-slate-300">
               <div className="flex items-center gap-4 py-2 cursor-pointer">
                 <AiOutlineHome size={20} />
                 <Link href="/">
@@ -120,14 +125,15 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <button className="bg-blueAccent py-3 px-10 rounded-lg my-4 w-full tracking-wide font-bold">
+            <a href="#subscribe" className="text-center block bg-blueAccent py-3 px-10 rounded-lg my-4 w-full tracking-widest font-bold hover:bg-blue-800 transition-colors duration-500">
               FOLLOW
-            </button>
+            </a>
             <div className="flex items-center justify-start gap-4 my-4">
               <a
                 href="https://facebook.com/muhammad.bugowy/"
                 target="_blank"
                 rel="noreferrer"
+                className="text-slate-300 hover:text-blue-600 transition-colors ease-linear"
               >
                 <AiFillFacebook size={25} />
               </a>
@@ -135,6 +141,7 @@ const Navbar = () => {
                 href="https://twitter.com/bughowy"
                 target="_blank"
                 rel="noreferrer"
+                className="text-slate-300 hover:text-sky-400 transition-colors ease-linear"
               >
                 <AiFillTwitterSquare size={25} />
               </a>
@@ -142,6 +149,7 @@ const Navbar = () => {
                 href="https://instagram.com/muhammad_bughowy"
                 target="_blank"
                 rel="noreferrer"
+                className="text-slate-300 hover:text-pink-600 transition-colors ease-linear"
               >
                 <FaInstagram size={25} />
               </a>
@@ -149,6 +157,7 @@ const Navbar = () => {
                 href="https://github.com/albugowy15"
                 target="_blank"
                 rel="noreferrer"
+                className="text-slate-300 hover:text-slate-700 transition-colors ease-linear"
               >
                 <AiFillGithub size={25} />
               </a>
@@ -156,12 +165,15 @@ const Navbar = () => {
                 href="https://www.linkedin.com/in/bughowi"
                 target="_blank"
                 rel="noreferrer"
+                className="text-slate-300 hover:text-blue-800 transition-colors ease-linear"
               >
                 <AiFillLinkedin size={25} />
               </a>
             </div>
           </div>
         </div>
+        {/* End Here */}
+
       </div>
     </div>
   );
