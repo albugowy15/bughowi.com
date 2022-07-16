@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
 import Link from "next/link";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
@@ -19,11 +18,11 @@ const Header = () => {
           new things and improve another skills in tech
         </p>
 
-        <div className="flex items-center justify-center gap-20 my-20">
+        <div className="flex items-center justify-center sm:gap-16 gap-2 my-20">
           <Link href="/blog">
             <button className="group relative inline-flex items-center justify-center overflow-hidden rounded-md p-0.5 font-bold">
               <span className="absolute h-full w-full bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="duration-400 relative rounded-md bg-darkPrimary px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+              <span className="duration-400 relative rounded-md bg-darkPrimary px-4 py-3 transition-all ease-out group-hover:bg-opacity-0">
                 <span className="relative text-white">Read My Posts</span>
               </span>
             </button>
@@ -31,7 +30,7 @@ const Header = () => {
           <Link href="/about">
             <button className="group relative inline-flex items-center justify-center overflow-hidden rounded-md p-0.5 font-bold">
               <span className="absolute h-full w-full bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05]"></span>
-              <span className="duration-400 relative rounded-md bg-darkPrimary px-6 py-3 transition-all ease-out group-hover:bg-opacity-0">
+              <span className="duration-400 relative rounded-md bg-darkPrimary px-4 py-3 transition-all ease-out group-hover:bg-opacity-0">
                 <span className="relative text-white">About Me</span>
               </span>
             </button>
@@ -42,7 +41,9 @@ const Header = () => {
       <div>
         <p className="font-bold mb-2">Scroll Down!</p>
         <button className="animate-bounce z-0">
-          <MdOutlineKeyboardArrowDown size={30} />
+          <a href="#recent-posts">
+            <MdOutlineKeyboardArrowDown size={30} />
+          </a>
         </button>
       </div>
     </div>

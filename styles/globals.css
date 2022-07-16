@@ -6,3 +6,7 @@
 body {
   @apply bg-darkPrimary text-white font-primary;
 }
+
+html {
+  @apply scroll-smooth;
+}

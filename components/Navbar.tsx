@@ -18,8 +18,8 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [theme, setTheme] = useState(false);
   return (
-    <div className="w-screen">
-      <div className="container px-3 mx-auto">
+    <div className="w-screen fixed bg-darkPrimary z-50">
+      <div className="container px-4 mx-auto">
         {/* Navbar on large screen */}
         <div className="flex justify-between items-center py-2">
           <div className="flex items-center justify-start gap-1 cursor-pointer">
@@ -67,7 +67,6 @@ const Navbar = () => {
           </div>
         </div>
         {/* End here */}
-
 
         {/* Navbar small screnn using icon bar */}
         <div
@@ -125,7 +124,10 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <a href="#subscribe" className="text-center block bg-blueAccent py-3 px-10 rounded-lg my-4 w-full tracking-widest font-bold hover:bg-blue-800 transition-colors duration-500">
+            <a
+              href="#subscribe"
+              className="text-center block bg-blueAccent py-3 px-10 rounded-lg my-4 w-full tracking-widest font-bold hover:bg-blue-800 transition-colors duration-500"
+            >
               FOLLOW
             </a>
             <div className="flex items-center justify-start gap-4 my-4">
@@ -173,7 +175,6 @@ const Navbar = () => {
           </div>
         </div>
         {/* End Here */}
-
       </div>
     </div>
   );
