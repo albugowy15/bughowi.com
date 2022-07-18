@@ -14,6 +14,7 @@ import {
 import { MdOutlineAccountCircle, MdOutlineClose } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa";
 import { BsBook, BsSun, BsMoon } from "react-icons/bs";
+
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [theme, setTheme] = useState(false);
@@ -56,7 +57,6 @@ const Navbar = () => {
             >
               {theme ? <BsMoon /> : <BsSun />}
             </div>
-            <div></div>
           </div>
           <div className="sm:hidden block">
             <AiOutlineMenu
