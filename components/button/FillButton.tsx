@@ -1,7 +1,4 @@
-interface Button {
-  url: string;
-  title: string;
-}
+import { Button } from "types/types";
 
 function FillButton({ url, title }: Button) {
   return (

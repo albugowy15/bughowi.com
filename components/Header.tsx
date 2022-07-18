@@ -20,8 +20,8 @@ const Header = () => {
         </p>
 
         <div className="flex items-center justify-center sm:gap-16 gap-2 my-20">
-          <OutlineGradientButton url="/blog" />
-          <OutlineGradientButton url="/about" />
+          <OutlineGradientButton url="/blog" title="Read My Posts" />
+          <OutlineGradientButton url="/about" title="About Me" />
         </div>
       </div>
 
