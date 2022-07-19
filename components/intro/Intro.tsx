@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import OutlineGradientButton from "./button/OutlineGradientButton";
+import OutlineGradientButton from "../button/OutlineGradientButton";
 
-const Header = () => {
+const Intro = () => {
   return (
     <div className="text-center py-20 flex items-center flex-col justify-between h-screen">
       <div className="py-10" />
@@ -37,4 +37,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Intro;

@@ -1,12 +1,5 @@
 import React from "react";
 import { AiOutlineCopyright } from "react-icons/ai";
-import {
-  FaFacebookF,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-} from "react-icons/fa";
 import SocialMedia from "./SocialMedia";
 
 const Subscribe = () => {

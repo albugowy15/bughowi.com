@@ -1,14 +1,10 @@
 import { Project } from "types/types";
 interface Props {
   project: Project;
-  key: string;
 }
-function HomeProjectCard({ key, project }: Props) {
+function HomeProjectCard({ project }: Props) {
   return (
-    <div
-      key={key}
-      className="bg-darkSecondary p-4 border-2 rounded-lg border-slate-300 border-opacity-40 cursor-pointer hover:scale-[1.02] transition-transform ease-in-out"
-    >
+    <div className="bg-darkSecondary p-4 border-2 rounded-lg border-slate-300 border-opacity-40 cursor-pointer hover:scale-[1.02] transition-transform ease-in-out">
       <p className="font-bold text-xl">{project.title}</p>
       <p className="text-sm text-slate-300 mt-2">{project.description}</p>
       <div className="flex gap-2 mt-5">

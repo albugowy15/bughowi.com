@@ -5,52 +5,86 @@ import {
   AiOutlineMenu,
   AiOutlineHome,
   AiOutlineProject,
-  AiFillFacebook,
-  AiFillGithub,
-  AiFillLinkedin,
-  AiFillTwitterSquare,
   AiOutlineSwitcher,
 } from "react-icons/ai";
 import { MdOutlineAccountCircle, MdOutlineClose } from "react-icons/md";
-import { FaInstagram } from "react-icons/fa";
 import { BsBook, BsSun, BsMoon } from "react-icons/bs";
-import FillButton from "./button/FillButton";
-import NavbarSocialMedia from "./social-media/NavbarSocialMedia";
+import FillButton from "../button/FillButton";
+import NavbarSocialMedia from "../social-media/NavbarSocialMedia";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [theme, setTheme] = useState(false);
+
+  const router = useRouter();
+  console.log(router.pathname);
   return (
-    <div className="w-screen fixed bg-darkPrimary z-50">
+    <nav className="w-screen fixed bg-darkPrimary drop-shadow-md z-50">
       <div className="container px-4 mx-auto">
         {/* Navbar on large screen */}
         <div className="flex justify-between items-center py-2">
-          <div className="flex items-center justify-start gap-1 cursor-pointer">
-            <Link href="/">
+          <Link href="/">
+            <div className="flex items-center justify-start gap-1 cursor-pointer">
               <TbBrandNextjs size={35} />
-            </Link>
-            <Link href="/">
+
               <p className="font-bold text-xl">bughowi.dev</p>
-            </Link>
-          </div>
+            </div>
+          </Link>
 
           <div className="hidden sm:flex sm:justify-end sm:items-center">
             <ul className="flex justify-around gap-3">
-              <li className="">
+              <li>
                 <Link href="/">
-                  <p className="hover:bg-clip-text hover:bg-gradient-to-r hover:from-redAccent hover:via-yellowAccent hover:to-blueAccent hover:text-transparent hover:cursor-pointer">
+                  <p
+                    className={
+                      router.pathname === "/"
+                        ? "font-bold cursor-pointer text-blueAccent"
+                        : "font-bold cursor-pointer hover:text-blueAccent transition-colors duration-300"
+                    }
+                  >
                     Home
                   </p>
                 </Link>
               </li>
               <li>
-                <Link href="/blog">Blog</Link>
+                <Link href="/blog">
+                  <p
+                    className={
+                      router.pathname === "/blog"
+                        ? "font-bold cursor-pointer text-blueAccent"
+                        : "font-bold cursor-pointer hover:text-blueAccent transition-colors duration-300"
+                    }
+                  >
+                    Blog
+                  </p>
+                </Link>
               </li>
               <li>
-                <Link href="/projects">Projects</Link>
+                <Link href="/projects">
+                  <p
+                    className={
+                      router.pathname === "/projects"
+                        ? "font-bold cursor-pointer text-blueAccent"
+                        : "font-bold cursor-pointer hover:text-blueAccent transition-colors duration-300"
+                    }
+                  >
+                    Projects
+                  </p>
+                </Link>
               </li>
               <li>
-                <Link href="/about">About</Link>
+                <Link href="/about">
+                  <p
+                    className={
+                      router.pathname === "/about"
+                        ? "font-bold cursor-pointer text-blueAccent"
+                        : "font-bold cursor-pointer hover:text-blueAccent transition-colors duration-300"
+                    }
+                  >
+                    About
+                  </p>
+                </Link>
               </li>
             </ul>
             <div
@@ -132,7 +166,7 @@ const Navbar = () => {
         </div>
         {/* End Here */}
       </div>
-    </div>
+    </nav>
   );
 };
 

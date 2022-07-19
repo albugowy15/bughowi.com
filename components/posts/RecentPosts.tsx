@@ -61,14 +61,14 @@ const DUMMY_POSTS = [
 
 const RecentPosts = () => {
   return (
-    <div id="recent-posts">
+    <section id="recent-posts">
       <h1 className="text-2xl font-bold">Recent Posts</h1>
       <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {DUMMY_POSTS.map((post, key) => (
           <HomePostCard key={key} post={post} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
