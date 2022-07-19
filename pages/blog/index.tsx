@@ -12,7 +12,10 @@ const Blog: NextPage = () => {
           content="Some of article of Front End Development topics"
         />
       </Head>
-      <FeaturedPost />
+      <div className="py-10" />
+      <main>
+        <FeaturedPost />
+      </main>
     </>
   );
 };
