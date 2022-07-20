@@ -19,7 +19,7 @@ const Blog: NextPage = () => {
       <FeaturedPost />
       <div className="flex flex-col lg:flex-row items-start justify-between gap-3 my-6">
         <BlogPosts />
-        <aside>
+        <aside className="flex-1">
           <TopPicks />
           <Categories />
         </aside>
