@@ -18,7 +18,6 @@ const Home: NextPage = () => {
       <Intro />
       <RecentPosts />
       <PersonalProjects />
-      <Subscribe />
     </>
   );
 };
