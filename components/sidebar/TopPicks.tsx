@@ -31,7 +31,7 @@ const DUMMY_TOPPICKS = [
 
 function TopPicks() {
   return (
-    <div className="mt-8 md:mt-0 lg:ml-3">
+    <div className="mt-8 md:mt-0">
       <h2 className="font-bold text-xl">Top Picks</h2>
       <div className="flex flex-col justify-center gap-3 mt-3">
         {DUMMY_TOPPICKS.map((pick, key) => (
