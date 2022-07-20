@@ -13,7 +13,7 @@ interface Post {
 
 const HomePostCard = ({ post }: Post) => {
   return (
-    <Link href="/post/3434">
+    <Link href="/blog/3434">
       <div className="bg-darkSecondary rounded-md overflow-hidden cursor-pointer border-2 border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out">
         <div className="w-full h-48 relative">
           <Image layout="fill" src={post.image} alt={post.title} />

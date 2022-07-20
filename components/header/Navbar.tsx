@@ -125,25 +125,45 @@ const Navbar = () => {
             <div className="flex items-center gap-4 py-2 cursor-pointer">
               <AiOutlineHome size={20} />
               <Link href="/">
-                <p className="text-lg hover:border-b">Home</p>
+                <p
+                  onClick={() => setNav(!nav)}
+                  className="text-lg hover:border-b"
+                >
+                  Home
+                </p>
               </Link>
             </div>
             <div className="flex items-center gap-4 py-2 cursor-pointer">
               <BsBook size={20} />
               <Link href="/blog">
-                <p className="text-lg hover:border-b">Blog</p>
+                <p
+                  onClick={() => setNav(!nav)}
+                  className="text-lg hover:border-b"
+                >
+                  Blog
+                </p>
               </Link>
             </div>
             <div className="flex items-center gap-4 py-2 cursor-pointer">
               <AiOutlineProject size={20} />
               <Link href="/projects">
-                <p className="text-lg hover:border-b">Projects</p>
+                <p
+                  onClick={() => setNav(!nav)}
+                  className="text-lg hover:border-b"
+                >
+                  Projects
+                </p>
               </Link>
             </div>
             <div className="flex items-center gap-4 py-2 cursor-pointer">
               <MdOutlineAccountCircle size={20} />
               <Link href="/about">
-                <p className="text-lg hover:border-b">About</p>
+                <p
+                  onClick={() => setNav(!nav)}
+                  className="text-lg hover:border-b"
+                >
+                  About
+                </p>
               </Link>
             </div>
             <div className="flex items-center justify-between py-2">
