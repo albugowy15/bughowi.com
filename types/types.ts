@@ -9,3 +9,20 @@ export interface Project {
   description: string;
   techStack: string[];
 }
+
+export interface Post {
+  category: string;
+  image: string;
+  title: string;
+  author: string;
+  date: string;
+  timeToRead: string;
+  description: string
+
+}
+
+export interface Pick {
+  title: string;
+  image: string;
+  category: string;
+}

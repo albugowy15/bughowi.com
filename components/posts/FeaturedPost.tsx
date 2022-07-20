@@ -3,7 +3,7 @@ import { AiOutlineClockCircle, AiOutlineEye } from "react-icons/ai";
 
 function FeaturedPost() {
   return (
-    <div className="flex flex-col md:flex-row md:h-[20rem] lg:h-[22rem] bg-darkSecondary w-full  overflow-hidden">
+    <section className="flex flex-col md:flex-row md:h-[20rem] lg:h-[22rem] bg-darkSecondary w-full  overflow-hidden">
       <div className="w-full h-72 lg:w-[40%] md:w-[45%] md:h-full relative object-cover">
         <Image
           src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit"
@@ -41,7 +41,7 @@ function FeaturedPost() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
