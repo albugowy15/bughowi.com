@@ -3,10 +3,10 @@ import Intro from "components/intro/Intro";
 import RecentPosts from "components/posts/RecentPosts";
 import PersonalProjects from "components/projects/PersonalProjects";
 import Head from "next/head";
-import { allPosts } from "contentlayer/generated";
+import { allPosts, Post } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 
-const Home: NextPage = () => {
+const Home = ({ posts }: { posts: Post[] }) => {
   return (
     <>
       <Head>
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
         />
       </Head>
       <Intro />
-      <RecentPosts />
+      <RecentPosts posts={posts} />
       <PersonalProjects />
     </>
   );
