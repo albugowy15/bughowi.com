@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "contentlayer": "^0.2.6",
+    "date-fns": "^2.29.1",
     "next": "12.2.2",
+    "next-contentlayer": "^0.2.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "reading-time": "^1.5.0"
   },
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "@types/node": "18.0.5",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
