@@ -7,8 +7,13 @@ const HomePostCard = (post: Post) => {
   return (
     <Link href="/blog/3434">
       <div className="bg-darkSecondary rounded-md overflow-hidden cursor-pointer border-2 border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out">
-        <div className="w-full h-48 relative">
-          <Image layout="fill" src={post.thumbnail} alt={post.title} />
+        <div className="w-full h-48 relative overflow-hidden">
+          <Image
+            layout="fill"
+            objectFit="cover"
+            src={post.thumbnail}
+            alt={post.title}
+          />
         </div>
         <div className="p-3 flex flex-col items-stretch justify-between">
           <div>
