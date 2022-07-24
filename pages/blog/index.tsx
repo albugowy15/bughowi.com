@@ -28,7 +28,7 @@ const Blog = ({ posts }: { posts: Post[] }) => {
         <BlogPosts posts={posts} />
         <aside className="flex-1 lg:ml-3">
           <TopPicks posts={getTopPicks()} />
-          <Categories />
+          {/* <Categories /> */}
         </aside>
       </div>
     </>
