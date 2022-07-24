@@ -17,9 +17,13 @@ const HomePostCard = (post: Post) => {
         </div>
         <div className="p-3 flex flex-col items-stretch justify-between">
           <div>
-            <p className="uppercase tracking-widest">
-              {post.categories?.at(0)?.toLocaleString()}
-            </p>
+            <div className="flex gap-2 flex-wrap">
+              {post.categories?.map((category, key) => (
+                <p key={key} className="bg-blueAccent p-1 text-sm rounded-md">
+                  {category.toLocaleString()}
+                </p>
+              ))}
+            </div>
             <h2 className="font-bold text-xl py-2">{post.title}</h2>
           </div>
           <div className="p-4" />

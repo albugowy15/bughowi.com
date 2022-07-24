@@ -32,9 +32,13 @@ function FeaturedPost({ posts }: { posts: Post[] }) {
         </div>
         <div className="p-4 flex flex-col justify-between flex-1">
           <div>
-            <p className="tracking-widest text-sm text-slate-300 uppercase">
-              {featuredPost?.categories?.at(0)?.toLocaleString()}
-            </p>
+            <div className="flex gap-2 flex-wrap">
+              {featuredPost?.categories?.map((category, key) => (
+                <p key={key} className="bg-blueAccent p-1 rounded-md">
+                  {category.toLocaleString()}
+                </p>
+              ))}
+            </div>
             <p className="font-bold text-2xl mt-4 lg:text-4xl lg:mt-6">
               {featuredPost?.title}
             </p>
