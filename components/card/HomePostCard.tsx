@@ -24,10 +24,9 @@ const HomePostCard = (post: Post) => {
           </div>
           <div className="p-4" />
           <div className="flex items-center justify-between text-sm">
-            <p className="text-white text-opacity-60">{`On ${format(
-              parseISO(post.date),
-              "LLLL d, yyyy"
-            )}`}</p>
+            <p className="text-white text-opacity-60">
+              {format(parseISO(post.date), "LLLL d, yyyy")}
+            </p>
             <p className="text-white text-opacity-60">
               {post.readingTime.text}
             </p>

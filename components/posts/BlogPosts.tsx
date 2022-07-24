@@ -1,4 +1,5 @@
 import BlogPostCard from "components/card/BlogPostCard";
+import { Post } from "contentlayer/generated";
 const DUMMY_POSTS = [
   {
     category: "next.js",
@@ -70,11 +71,11 @@ const DUMMY_POSTS = [
   },
 ];
 
-function BlogPosts() {
+function BlogPosts({ posts }: { posts: Post[] }) {
   return (
     <section className="w-full lg:w-[65%] grid grid-cols-1 md:grid-cols-2 gap-4">
-      {DUMMY_POSTS.map((post, key) => (
-        <BlogPostCard key={key} post={post} />
+      {posts.map((post, key) => (
+        <BlogPostCard key={key} {...post} />
       ))}
     </section>
   );

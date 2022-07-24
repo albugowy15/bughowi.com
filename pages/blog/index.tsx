@@ -2,10 +2,12 @@ import BlogPosts from "components/posts/BlogPosts";
 import FeaturedPost from "components/posts/FeaturedPost";
 import Categories from "components/sidebar/Categories";
 import TopPicks from "components/sidebar/TopPicks";
+import { Post } from "contentlayer/generated";
 import { NextPage } from "next";
 import Head from "next/head";
+import getAllPosts from "utils/getAllPosts";
 
-const Blog: NextPage = () => {
+const Blog = ({ posts }: { posts: Post[] }) => {
   return (
     <>
       <Head>
@@ -18,7 +20,7 @@ const Blog: NextPage = () => {
       <div className="py-10" />
       <FeaturedPost />
       <div className="flex flex-col lg:flex-row items-start justify-between gap-3 my-6">
-        <BlogPosts />
+        <BlogPosts posts={posts} />
         <aside className="flex-1 lg:ml-3">
           <TopPicks />
           <Categories />
@@ -29,3 +31,10 @@ const Blog: NextPage = () => {
 };
 
 export default Blog;
+
+export async function getStaticProps() {
+  const posts = getAllPosts();
+  return {
+    props: { posts },
+  };
+}
