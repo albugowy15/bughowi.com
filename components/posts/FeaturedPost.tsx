@@ -18,7 +18,11 @@ function FeaturedPost({ posts }: { posts: Post[] }) {
     <section className="flex flex-col md:flex-row md:h-[20rem] lg:h-[22rem] bg-darkSecondary w-full  overflow-hidden">
       <div className="w-full h-72 lg:w-[40%] md:w-[45%] md:h-full relative object-cover overflow-hidden">
         <Image
-          src={featuredPost!.thumbnail}
+          src={
+            featuredPost
+              ? featuredPost.thumbnail
+              : "https://images.unsplash.com/photo-1591280063444-d3c514eb6e13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1Nzk5NjcwNA&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
+          }
           alt={featuredPost?.title}
           layout="fill"
           objectFit={"cover"}
@@ -41,7 +45,7 @@ function FeaturedPost({ posts }: { posts: Post[] }) {
             <div className="flex items-center gap-2">
               <AiOutlineClockCircle className="text-white text-opacity-60" />
               <p className="text-white text-sm text-opacity-60">
-                {formatDate(featuredPost!)}
+                {featuredPost ? formatDate(featuredPost) : "date"}
               </p>
             </div>
             <div className="flex items-center gap-2">

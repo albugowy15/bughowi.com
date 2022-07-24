@@ -8,6 +8,11 @@ import Head from "next/head";
 import getAllPosts from "utils/getAllPosts";
 
 const Blog = ({ posts }: { posts: Post[] }) => {
+  function getTopPicks() {
+    const random = [...posts].sort(() => 0.5 - Math.random());
+
+    return random.slice(0, 3);
+  }
   return (
     <>
       <Head>
@@ -22,7 +27,7 @@ const Blog = ({ posts }: { posts: Post[] }) => {
       <div className="flex flex-col lg:flex-row items-start justify-between gap-3 my-6">
         <BlogPosts posts={posts} />
         <aside className="flex-1 lg:ml-3">
-          <TopPicks />
+          <TopPicks posts={getTopPicks()} />
           <Categories />
         </aside>
       </div>

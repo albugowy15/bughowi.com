@@ -1,4 +1,5 @@
 import TopPickCard from "components/card/TopPickCard";
+import { Post } from "contentlayer/generated";
 import React from "react";
 
 const DUMMY_TOPPICKS = [
@@ -29,13 +30,13 @@ const DUMMY_TOPPICKS = [
   },
 ];
 
-function TopPicks() {
+function TopPicks({ posts }: { posts: Post[] }) {
   return (
     <div className="mt-8 md:mt-0">
       <h2 className="font-bold text-xl">Top Picks</h2>
       <div className="flex flex-col justify-center gap-3 mt-3">
-        {DUMMY_TOPPICKS.map((pick, key) => (
-          <TopPickCard key={key} pick={pick} />
+        {posts.map((pick, key) => (
+          <TopPickCard key={key} {...pick} />
         ))}
       </div>
     </div>

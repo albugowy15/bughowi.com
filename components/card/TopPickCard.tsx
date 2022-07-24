@@ -1,15 +1,13 @@
+import { Post } from "contentlayer/generated";
 import Image from "next/image";
 import { Pick } from "types/types";
 
-interface Props {
-  pick: Pick;
-}
-function TopPickCard({ pick }: Props) {
+function TopPickCard(pick: Post) {
   return (
-    <div className="flex items-stretch justify-start gap-3 w-full overflow-hidden">
+    <div className="flex items-stretch justify-start gap-3 w-full overflow-hidden h-16">
       <div className="w-[20%] relative object-cover rounded-lg overflow-hidden">
         <Image
-          src={pick.image}
+          src={pick.thumbnail}
           layout="fill"
           alt={pick.title}
           objectFit="cover"
@@ -17,7 +15,7 @@ function TopPickCard({ pick }: Props) {
       </div>
       <div className="flex-1">
         <p className="text-white text-opacity-40 text-xs tracking-widest">
-          {pick.category}
+          {pick.categories?.at(0)?.toLocaleString()}
         </p>
         <h3 className="font-bold">{pick.title}</h3>
       </div>
