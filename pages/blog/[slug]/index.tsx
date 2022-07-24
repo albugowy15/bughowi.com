@@ -2,7 +2,9 @@ import { allPosts } from ".contentlayer/generated";
 import { Post } from "contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import React from "react";
+import formatDate from "utils/formatDate";
 
 function PostDetail({ post }: { post: Post }) {
   return (
@@ -12,11 +14,35 @@ function PostDetail({ post }: { post: Post }) {
         <meta name="description" content="Ini adalah title untuk post" />
       </Head>
       <div className="py-10" />
-      <h1>{post?.title}</h1>
-      <section>
-        <article></article>
-      </section>
-      <aside></aside>
+      <h1 className="text-3xl font-bold">{post.title}</h1>
+      <div className="mt-4 flex justify-start gap-3 items-center text-xs">
+        <p>By M. K. Bughowi</p>
+        <span>&#8226;</span>
+        <p>{formatDate(post)}</p>
+        <span>&#8226;</span>
+        <p className="text-yellowAccent">{post.readingTime.text}</p>
+      </div>
+      <main className="flex flex-col lg:flex-row gap-2">
+        <section className="w-full lg:w-[70%]">
+          <article className="mt-5 w-full bg-darkSecondary">
+            <div className="w-full h-64 overflow-hidden object-cover relative">
+              <Image
+                src={post.thumbnail}
+                alt={post.title}
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div className="p-4">
+              <div
+                className=""
+                dangerouslySetInnerHTML={{ __html: post.body.raw }}
+              />
+            </div>
+          </article>
+        </section>
+        <aside className="lg:after:flex-1"></aside>
+      </main>
     </>
   );
 }
