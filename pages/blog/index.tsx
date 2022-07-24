@@ -39,6 +39,7 @@ export default Blog;
 
 export async function getStaticProps() {
   const posts = getAllPosts();
+  console.log(posts);
   return {
     props: { posts },
   };

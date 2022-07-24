@@ -14,7 +14,7 @@ const Category = defineNestedType(() => ({
 
 const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `posts/*.mdx`,
+  filePathPattern: `blog/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
@@ -49,9 +49,9 @@ const Post = defineDocumentType(() => ({
       type: "json",
       resolve: (doc) => readingTime(doc.body.raw),
     },
-    slug: {
+    url: {
       type: "string",
-      resolve: (doc) => doc._raw.sourceFileName.replace(/\/mdx$/, ""),
+      resolve: (post) => `/${post._raw.flattenedPath}`,
     },
   },
 }));
