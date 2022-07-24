@@ -5,7 +5,7 @@ import formatDate from "utils/formatDate";
 
 const HomePostCard = (post: Post) => {
   return (
-    <Link href="/blog/3434">
+    <Link href={post.url}>
       <div className="bg-darkSecondary rounded-md overflow-hidden cursor-pointer border-2 border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out">
         <div className="w-full h-48 relative overflow-hidden">
           <Image

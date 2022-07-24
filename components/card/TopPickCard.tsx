@@ -1,5 +1,6 @@
 import { Post } from "contentlayer/generated";
 import Image from "next/image";
+import Link from "next/link";
 import { Pick } from "types/types";
 
 function TopPickCard(pick: Post) {
@@ -17,7 +18,9 @@ function TopPickCard(pick: Post) {
         <p className="text-white text-opacity-40 text-xs tracking-widest">
           {pick.categories?.at(0)?.toLocaleString()}
         </p>
-        <h3 className="font-bold">{pick.title}</h3>
+        <Link href={pick.url}>
+          <h3 className="font-bold hover:cursor-pointer">{pick.title}</h3>
+        </Link>
       </div>
     </div>
   );
