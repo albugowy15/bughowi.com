@@ -2,6 +2,7 @@ import { Post } from "contentlayer/generated";
 import { parseISO } from "date-fns";
 import Image from "next/image";
 import { format } from "date-fns";
+import formatDate from "utils/formatDate";
 
 function BlogPostCard(post: Post) {
   return (
@@ -24,9 +25,7 @@ function BlogPostCard(post: Post) {
           <Link href="/blog/slug-title">Read More...</Link>
         </p> */}
         <div className="flex justify-between mt-8">
-          <p className="text-xs">
-            {format(parseISO(post.date), "LLLL d, yyyy")}
-          </p>
+          <p className="text-xs">{formatDate(post)}</p>
           <p className="text-xs">{post.readingTime.text}</p>
         </div>
       </div>

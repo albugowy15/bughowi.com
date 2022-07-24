@@ -39,6 +39,10 @@ const Post = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
+    isFeatured: {
+      type: "boolean",
+      required: true,
+    },
   },
   computedFields: {
     readingTime: {

@@ -18,7 +18,7 @@ const Blog = ({ posts }: { posts: Post[] }) => {
         />
       </Head>
       <div className="py-10" />
-      <FeaturedPost />
+      <FeaturedPost posts={posts} />
       <div className="flex flex-col lg:flex-row items-start justify-between gap-3 my-6">
         <BlogPosts posts={posts} />
         <aside className="flex-1 lg:ml-3">
