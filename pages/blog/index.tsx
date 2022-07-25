@@ -26,7 +26,7 @@ const Blog = ({ posts }: { posts: Post[] }) => {
       <FeaturedPost posts={posts} />
       <div className="flex flex-col lg:flex-row items-start justify-between gap-3 my-6">
         <BlogPosts posts={posts} />
-        <aside className="flex-1 lg:ml-3">
+        <aside className="w-full lg:flex-1 lg:ml-3">
           <TopPicks posts={getTopPicks()} />
           {/* <Categories /> */}
         </aside>

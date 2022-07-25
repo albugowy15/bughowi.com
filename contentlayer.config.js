@@ -108,18 +108,7 @@ const contentLayerConfig = makeSource({
       rehypeCodeTitles,
       rehypePrism,
       rehypeAutolinkHeadings,
-      {
-        properties: {
-          className: ["anchor"],
-        },
-      },
       rehypeExternalLinks,
-      {
-        properties: {
-          target: "_blank",
-          rel: ["nofollow", "noopener"],
-        },
-      },
     ],
   },
 });
