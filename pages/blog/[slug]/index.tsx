@@ -17,6 +17,7 @@ function PostDetail({
   recentPosts: Post[];
 }) {
   const MDXContent = useMDXComponent(post.body.code);
+
   return (
     <>
       <Head>

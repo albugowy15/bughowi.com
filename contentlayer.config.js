@@ -4,7 +4,6 @@ import {
   makeSource,
 } from "contentlayer/source-files";
 import readingTime from "reading-time";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypePrism from "rehype-prism-plus";
@@ -107,8 +106,13 @@ const contentLayerConfig = makeSource({
     rehypePlugins: [
       rehypeCodeTitles,
       rehypePrism,
-      rehypeAutolinkHeadings,
-      rehypeExternalLinks,
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+          rel: "noreferrer",
+        },
+      ],
     ],
   },
 });

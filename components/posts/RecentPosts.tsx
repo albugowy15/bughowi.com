@@ -1,5 +1,6 @@
 import HomePostCard from "components/card/HomePostCard";
 import { Post } from "contentlayer/generated";
+import Link from "next/link";
 
 // const DUMMY_POSTS = [
 //   {
@@ -63,7 +64,11 @@ import { Post } from "contentlayer/generated";
 const RecentPosts = ({ posts }: { posts: Post[] }) => {
   return (
     <section id="recent-posts">
-      <h1 className="text-2xl font-bold">Recent Posts</h1>
+      <Link href="/blog">
+        <h1 className="text-2xl font-bold hover:cursor-pointer hover:text-blueAccent transition-colors w-fit">
+          Recent Posts
+        </h1>
+      </Link>
       <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {posts.map((post, key) => (
           <HomePostCard key={key} {...post} />
