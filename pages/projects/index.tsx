@@ -11,11 +11,11 @@ function ProjectsPage({ projects }: { projects: Project[] }) {
         <meta name="description" content="Some of my personal projects" />
       </Head>
       <div className="py-10" />
-      <section className="mx-auto w-full">
-        <h1 className="text-center font-bold text-3xl">Projects</h1>
-        <p className="text-center py-3">Some of my personal projects</p>
-        <Projects projects={projects} />
-      </section>
+      <h1 className="text-center font-bold text-3xl">Projects</h1>
+      <p className="text-center py-3">
+        Showcase of the projects I&apos;ve work on
+      </p>
+      <Projects projects={projects} />
     </>
   );
 }
