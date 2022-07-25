@@ -15,11 +15,18 @@ function TopPickCard(pick: Post) {
         />
       </div>
       <div className="flex-1">
-        <p className="text-white text-opacity-40 text-xs tracking-widest">
-          {pick.categories?.at(0)?.toLocaleString()}
-        </p>
+        <div className="flex gap-1">
+          {pick.categories?.map((category, key) => (
+            <p key={key} className="text-yellowAccent text-xs">
+              {category.toLocaleString()}
+            </p>
+          ))}
+        </div>
+
         <Link href={pick.url}>
-          <h3 className="font-bold hover:cursor-pointer">{pick.title}</h3>
+          <h3 className="font-bold hover:cursor-pointer hover:text-blueAccent transition-colors">
+            {pick.title}
+          </h3>
         </Link>
       </div>
     </div>

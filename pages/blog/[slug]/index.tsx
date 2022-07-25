@@ -32,10 +32,10 @@ function PostDetail({
         <span>&#8226;</span>
         <p className="text-yellowAccent">{post.readingTime.text}</p>
       </div>
-      <main className="flex flex-col lg:flex-row gap-3 relative">
+      <main className="flex flex-col lg:flex-row gap-3 lg:gap-5">
         <section className="w-full lg:w-[60%]">
           <article className="mt-5 w-full">
-            <div className="w-full h-72 md:h-96 overflow-hidden object-cover relative">
+            <div className="w-full h-72 md:h-96 rounded-lg overflow-hidden object-cover relative">
               <Image
                 src={post.thumbnail}
                 alt={post.title}
@@ -48,7 +48,7 @@ function PostDetail({
             </div>
           </article>
         </section>
-        <aside className="lg:flex-1 sticky">
+        <aside className="lg:flex-1 sticky h-full top-14">
           <TopPicks posts={recentPosts} />
         </aside>
       </main>
@@ -72,7 +72,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     (post) => post.url === `/blog/${context.params?.slug}`
   );
 
-  const recentPosts = getAllPosts();
+  const recentPosts = getAllPosts().slice(0, 4);
   return {
     props: {
       post: post,
