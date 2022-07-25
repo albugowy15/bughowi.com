@@ -5,8 +5,10 @@ import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import formatDate from "utils/formatDate";
+import { useMDXComponent } from "next-contentlayer/hooks";
 
 function PostDetail({ post }: { post: Post }) {
+  const MDXContent = useMDXComponent(post.body.code);
   return (
     <>
       <Head>
@@ -34,10 +36,7 @@ function PostDetail({ post }: { post: Post }) {
               />
             </div>
             <div className="p-4">
-              <div
-                className=""
-                dangerouslySetInnerHTML={{ __html: post.body.raw }}
-              />
+              <MDXContent />
             </div>
           </article>
         </section>
