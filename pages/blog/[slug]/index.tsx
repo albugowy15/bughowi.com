@@ -26,8 +26,8 @@ function PostDetail({ post }: { post: Post }) {
       </div>
       <main className="flex flex-col lg:flex-row gap-2">
         <section className="w-full lg:w-[70%]">
-          <article className="mt-5 w-full bg-darkSecondary">
-            <div className="w-full h-64 overflow-hidden object-cover relative">
+          <article className="mt-5 w-full">
+            <div className="w-full h-72 md:h-96 overflow-hidden object-cover relative">
               <Image
                 src={post.thumbnail}
                 alt={post.title}
@@ -35,7 +35,7 @@ function PostDetail({ post }: { post: Post }) {
                 objectFit="cover"
               />
             </div>
-            <div id="content-space" className="p-4">
+            <div id="content-space" className="py-3">
               <MDXContent />
             </div>
           </article>
