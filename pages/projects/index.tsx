@@ -1,7 +1,9 @@
 import Projects from "components/projects/Projects";
+import { Project } from "contentlayer/generated";
 import Head from "next/head";
+import { getAllProjects } from "utils/contents";
 
-function index() {
+function ProjectsPage({ projects }: { projects: Project[] }) {
   return (
     <>
       <Head>
@@ -12,10 +14,19 @@ function index() {
       <section className="mx-auto w-full">
         <h1 className="text-center font-bold text-3xl">Projects</h1>
         <p className="text-center py-3">Some of my personal projects</p>
-        <Projects />
+        <Projects projects={projects} />
       </section>
     </>
   );
 }
 
-export default index;
+export default ProjectsPage;
+
+export async function getStaticProps() {
+  const projects = getAllProjects();
+  return {
+    props: {
+      projects,
+    },
+  };
+}

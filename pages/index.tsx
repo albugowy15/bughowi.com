@@ -3,7 +3,7 @@ import RecentPosts from "components/posts/RecentPosts";
 import PersonalProjects from "components/projects/PersonalProjects";
 import Head from "next/head";
 import { Post } from "contentlayer/generated";
-import getAllPosts from "utils/getAllPosts";
+import { getAllPosts } from "utils/contents";
 
 const Home = ({ posts }: { posts: Post[] }) => {
   return (

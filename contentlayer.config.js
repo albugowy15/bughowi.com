@@ -12,6 +12,13 @@ const Category = defineNestedType(() => ({
   },
 }));
 
+const TechList = defineNestedType(() => ({
+  name: "TechList",
+  fields: {
+    name: { type: "string", required: true },
+  },
+}));
+
 const Post = defineDocumentType(() => ({
   name: "Post",
   filePathPattern: `blog/*.mdx`,
@@ -56,9 +63,40 @@ const Post = defineDocumentType(() => ({
   },
 }));
 
+const Project = defineDocumentType(() => ({
+  name: "Project",
+  filePathPattern: `projects/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: "true",
+    },
+    description: {
+      type: "string",
+      required: true,
+    },
+    date: {
+      type: "date",
+      required: true,
+    },
+    techStack: {
+      type: "list",
+      of: TechList,
+      required: true,
+    },
+  },
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (project) => `/${project._raw.flattenedPath}`,
+    },
+  },
+}));
+
 const contentLayerConfig = makeSource({
   contentDirPath: "contents",
-  documentTypes: [Post],
+  documentTypes: [Post, Project],
 });
 
 export default contentLayerConfig;
