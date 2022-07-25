@@ -4,6 +4,11 @@ import {
   makeSource,
 } from "contentlayer/source-files";
 import readingTime from "reading-time";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeCodeTitles from "rehype-code-titles";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypePrism from "rehype-prism-plus";
+import remarkGfm from "remark-gfm";
 
 const Category = defineNestedType(() => ({
   name: "Category",
@@ -97,6 +102,26 @@ const Project = defineDocumentType(() => ({
 const contentLayerConfig = makeSource({
   contentDirPath: "contents",
   documentTypes: [Post, Project],
+  mdx: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeCodeTitles,
+      rehypePrism,
+      rehypeAutolinkHeadings,
+      {
+        properties: {
+          className: ["anchor"],
+        },
+      },
+      rehypeExternalLinks,
+      {
+        properties: {
+          target: "_blank",
+          rel: ["nofollow", "noopener"],
+        },
+      },
+    ],
+  },
 });
 
 export default contentLayerConfig;
