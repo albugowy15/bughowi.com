@@ -1,3 +1,4 @@
+import { Project } from "contentlayer/generated";
 import HomeProjectCard from "../card/HomeProjectCard";
 
 const DUMMY_PROJECTS = [
@@ -28,13 +29,13 @@ const DUMMY_PROJECTS = [
   },
 ];
 
-function PersonalProjects() {
+function PersonalProjects({ projects }: { projects: Project[] }) {
   return (
     <section id="personal-projects" className="my-8">
       <h2 className="text-2xl font-bold">Personal Projects</h2>
       <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {DUMMY_PROJECTS.map((project) => (
-          <HomeProjectCard key={project.slug} project={project} />
+        {projects.map((project) => (
+          <HomeProjectCard key={project.url} {...project} />
         ))}
       </div>
     </section>

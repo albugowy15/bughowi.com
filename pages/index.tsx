@@ -2,10 +2,10 @@ import Intro from "components/intro/Intro";
 import RecentPosts from "components/posts/RecentPosts";
 import PersonalProjects from "components/projects/PersonalProjects";
 import Head from "next/head";
-import { Post } from "contentlayer/generated";
-import { getAllPosts } from "utils/contents";
+import { Post, Project } from "contentlayer/generated";
+import { getAllPosts, getAllProjects } from "utils/contents";
 
-const Home = ({ posts }: { posts: Post[] }) => {
+const Home = ({ posts, projects }: { posts: Post[]; projects: Project[] }) => {
   return (
     <>
       <Head>
@@ -17,7 +17,7 @@ const Home = ({ posts }: { posts: Post[] }) => {
       </Head>
       <Intro />
       <RecentPosts posts={posts} />
-      <PersonalProjects />
+      <PersonalProjects projects={projects} />
     </>
   );
 };
@@ -26,10 +26,11 @@ export default Home;
 
 export async function getStaticProps() {
   const posts = getAllPosts();
-
+  const projects = getAllProjects();
   return {
     props: {
       posts,
+      projects,
     },
   };
 }

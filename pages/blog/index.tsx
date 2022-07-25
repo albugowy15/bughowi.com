@@ -5,7 +5,7 @@ import TopPicks from "components/sidebar/TopPicks";
 import { Post } from "contentlayer/generated";
 import { NextPage } from "next";
 import Head from "next/head";
-import getAllPosts from "utils/getAllPosts";
+import { getAllPosts } from "utils/contents";
 
 const Blog = ({ posts }: { posts: Post[] }) => {
   function getTopPicks() {

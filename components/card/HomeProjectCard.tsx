@@ -1,8 +1,6 @@
-import { Project } from "types/types";
-interface Props {
-  project: Project;
-}
-function HomeProjectCard({ project }: Props) {
+import { Project } from "contentlayer/generated";
+
+function HomeProjectCard(project: Project) {
   return (
     <div className="bg-darkSecondary p-4 border-2 rounded-lg border-slate-300 border-opacity-40 cursor-pointer hover:scale-[1.02] transition-transform ease-in-out">
       <p className="font-bold text-xl">{project.title}</p>
@@ -13,7 +11,7 @@ function HomeProjectCard({ project }: Props) {
             key={key}
             className="px-1 py-[0.10rem] text-xs bg-blueAccent rounded"
           >
-            {tech}
+            {tech.toLocaleString()}
           </div>
         ))}
       </div>

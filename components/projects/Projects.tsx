@@ -13,16 +13,13 @@ function Projects({ projects }: { projects: Project[] }) {
           <p className="text-sm text-white text-opacity-80">
             {project.description}
           </p>
-          {/* <div className="relative w-full h-48 object-cover rounded-md overflow-hidden">
-            <Image src={project.image} alt={project.title} layout="fill" />
-          </div> */}
           <div className="flex flex-wrap gap-3">
             {project.techStack.map((tech, key) => (
               <p
                 key={key}
                 className="px-1 py-[0.20rem] bg-blueAccent text-sm w-fit rounded-md"
               >
-                {tech.name}
+                {tech.toLocaleString()}
               </p>
             ))}
           </div>
