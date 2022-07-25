@@ -27,11 +27,9 @@ const Subscribe = () => {
       <p className="mt-8">Find Me!</p>
       <SocialMedia />
       <footer>
-        <p className="text-sm mt-8 opacity-60">
-          <span>
-            <AiOutlineCopyright className="inline" />
-          </span>{" "}
-          2022 bughowi.dev - Built with Next.js, Tailwind, GraphCMS, Vercel
+        <p className="text-xs mt-8 opacity-60">
+          &copy; 2022 bughowi.dev - Built with Next.js, Tailwind, Contentlayer,
+          Vercel
         </p>
       </footer>
     </div>
