@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-darkPrimary text-white font-primary;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+#content-space {
+  @apply space-y-2;
+}
+
+#content-space {
+  h1 {
+    @apply font-bold text-2xl;
+  }
+  h2 {
+    @apply font-bold text-xl;
+  }
+  h3 {
+    @apply font-bold text-lg;
+  }
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+}
