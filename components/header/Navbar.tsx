@@ -65,7 +65,8 @@ const Navbar = () => {
                 <Link href="/projects">
                   <p
                     className={
-                      router.pathname === "/projects"
+                      router.pathname === "/projects" ||
+                      router.pathname === "/projects/[slug]"
                         ? "font-bold cursor-pointer text-blueAccent"
                         : "font-bold cursor-pointer hover:text-blueAccent transition-colors duration-300"
                     }
