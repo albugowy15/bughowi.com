@@ -35,7 +35,7 @@ function PostDetail({ post }: { post: Post }) {
                 objectFit="cover"
               />
             </div>
-            <div className="p-4">
+            <div id="content-space" className="p-4">
               <MDXContent />
             </div>
           </article>
