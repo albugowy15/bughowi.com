@@ -6,8 +6,16 @@ import Image from "next/image";
 import React from "react";
 import formatDate from "utils/formatDate";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import { getAllPosts } from "utils/contents";
+import TopPicks from "components/sidebar/TopPicks";
 
-function PostDetail({ post }: { post: Post }) {
+function PostDetail({
+  post,
+  recentPosts,
+}: {
+  post: Post;
+  recentPosts: Post[];
+}) {
   const MDXContent = useMDXComponent(post.body.code);
   return (
     <>
@@ -24,8 +32,8 @@ function PostDetail({ post }: { post: Post }) {
         <span>&#8226;</span>
         <p className="text-yellowAccent">{post.readingTime.text}</p>
       </div>
-      <main className="flex flex-col lg:flex-row gap-2">
-        <section className="w-full lg:w-[70%]">
+      <main className="flex flex-col lg:flex-row gap-3 relative">
+        <section className="w-full lg:w-[60%]">
           <article className="mt-5 w-full">
             <div className="w-full h-72 md:h-96 overflow-hidden object-cover relative">
               <Image
@@ -40,7 +48,9 @@ function PostDetail({ post }: { post: Post }) {
             </div>
           </article>
         </section>
-        <aside className="lg:after:flex-1"></aside>
+        <aside className="lg:flex-1 sticky">
+          <TopPicks posts={recentPosts} />
+        </aside>
       </main>
     </>
   );
@@ -61,9 +71,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const post = allPosts.find(
     (post) => post.url === `/blog/${context.params?.slug}`
   );
+
+  const recentPosts = getAllPosts();
   return {
     props: {
       post: post,
+      recentPosts: recentPosts,
     },
   };
 };

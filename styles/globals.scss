@@ -12,27 +12,30 @@ html {
 }
 
 #content-space {
-  @apply space-y-2;
+  @apply space-y-3;
 }
 
 #content-space {
   h1 {
-    @apply font-bold text-2xl;
+    @apply text-2xl;
   }
   h2 {
-    @apply font-bold text-xl;
+    @apply text-xl;
   }
   h3 {
-    @apply font-bold text-lg;
+    @apply text-lg;
   }
+  h1,
+  h2,
+  h3,
   h4,
   h5,
   h6 {
-    @apply font-bold;
+    @apply font-bold pt-3;
   }
 
   blockquote {
-    @apply bg-darkPrimary px-3 py-2 border-l-4 border-blueAccent text-slate-400 w-fit italic;
+    @apply bg-darkSecondary px-3 py-2 border-l-4 border-blueAccent text-slate-200 font-bold italic;
   }
 
   ol {
