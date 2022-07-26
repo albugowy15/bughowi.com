@@ -10,7 +10,7 @@ function index() {
       <h1 className="font-bold text-3xl">About Me</h1>
       <div className="space-y-4 py-3">
         <p>
-          Hello! I&apos;m{" "}
+          Hello! &#128075; I&apos;m{" "}
           <span className="font-bold text-yellowAccent">Owi</span>. I&apos;m a
           Computer Science student - Web & Android Developer from Jepara,
           Indonesia.

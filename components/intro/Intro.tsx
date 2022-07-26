@@ -8,7 +8,7 @@ const Intro = () => {
       <div className="py-10" />
       <div>
         <p className="text-3xl sm:text-5xl font-black my-3">
-          Hi, I'm{" "}
+          Hi <span className="animate-wave">&#128075;</span> I'm{" "}
           <span className="text-blueAccent">Mohamad Kholid Bughowi</span>
         </p>
         <p className="text-3xl sm:text-5xl font-black">

@@ -4,17 +4,19 @@ import Link from "next/link";
 function HomeProjectCard(project: Project) {
   return (
     <Link href={project.url}>
-      <div className="bg-darkSecondary p-4 border-2 rounded-lg border-slate-300 border-opacity-40 cursor-pointer hover:scale-[1.02] transition-transform ease-in-out">
+      <div className="flex flex-col gap-3 bg-darkSecondary p-4 border border-white border-opacity-40 rounded-md hover:scale-[1.015] duration-500 ease-in-out cursor-pointer">
         <p className="font-bold text-xl">{project.title}</p>
-        <p className="text-sm text-slate-300 mt-2">{project.description}</p>
-        <div className="flex gap-2 mt-5">
+        <p className="text-sm text-white text-opacity-80">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-3">
           {project.techStack.map((tech, key) => (
-            <div
+            <p
               key={key}
-              className="px-1 py-[0.10rem] text-xs bg-blueAccent rounded"
+              className="px-1 py-[0.20rem] bg-blueAccent text-sm w-fit rounded-md"
             >
               {tech.toLocaleString()}
-            </div>
+            </p>
           ))}
         </div>
       </div>

@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  @apply bg-darkPrimary text-white font-primary;
+  @apply bg-darkPrimary text-slate-200 font-primary;
 }
 
 html {
@@ -48,7 +48,7 @@ html {
 
   p {
     a {
-      @apply text-blueAccent hover:text-blue-600 focus:text-yellowAccent active:text-yellowAccent;
+      @apply text-yellowAccent font-bold underline underline-offset-2 hover:text-blue-600 transition-colors focus:text-yellowAccent active:text-yellowAccent;
     }
   }
 

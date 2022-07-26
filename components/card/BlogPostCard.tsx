@@ -7,7 +7,7 @@ function BlogPostCard(post: Post) {
   return (
     <>
       <Link href={post.url}>
-        <div className="bg-darkSecondary border border-slate-500 rounded-lg hover:scale-[1.01] ease-in-out duration-500 overflow-hidden">
+        <div className="bg-darkSecondary border border-slate-500 rounded-lg hover:scale-[1.01] hover:cursor-pointer ease-in-out duration-500 overflow-hidden">
           <div className="w-full h-60 relative overflow-hidden">
             <Image
               src={post.thumbnail}
