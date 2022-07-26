@@ -35,7 +35,7 @@ html {
   }
 
   blockquote {
-    @apply bg-darkSecondary px-3 py-2 border-l-4 border-blueAccent text-slate-200 font-bold italic;
+    @apply bg-slate-200 dark:bg-darkSecondary px-3 py-2 border-l-4 border-blueAccent text-slate-700 dark:text-slate-200 font-bold italic;
   }
 
   ol {
