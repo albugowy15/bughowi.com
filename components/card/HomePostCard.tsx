@@ -6,7 +6,7 @@ import formatDate from "utils/formatDate";
 const HomePostCard = (post: Post) => {
   return (
     <Link href={post.url}>
-      <div className="bg-darkSecondary rounded-md overflow-hidden cursor-pointer border-2 border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out">
+      <div className="bg-slate-200 dark:bg-darkSecondary rounded-md overflow-hidden cursor-pointer border-2 border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out">
         <div className="w-full h-48 relative overflow-hidden">
           <Image
             layout="fill"
@@ -19,7 +19,10 @@ const HomePostCard = (post: Post) => {
           <div>
             <div className="flex gap-2 flex-wrap">
               {post.categories?.map((category, key) => (
-                <p key={key} className="bg-blueAccent p-1 text-sm rounded-md">
+                <p
+                  key={key}
+                  className="bg-blueAccent text-slate-100  p-1 text-sm rounded-md"
+                >
                   {category.toLocaleString()}
                 </p>
               ))}
@@ -28,8 +31,10 @@ const HomePostCard = (post: Post) => {
           </div>
           <div className="p-4" />
           <div className="flex items-center justify-between text-sm">
-            <p className="text-white text-opacity-60">{formatDate(post)}</p>
-            <p className="text-white text-opacity-60">
+            <p className="text-slate-800 dark:text-slate-300">
+              {formatDate(post)}
+            </p>
+            <p className="text-slate-800 dark:text-slate-300">
               {post.readingTime.text}
             </p>
           </div>

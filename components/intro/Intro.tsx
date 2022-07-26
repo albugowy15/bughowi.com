@@ -12,7 +12,8 @@ const Intro = () => {
           <span className="text-blueAccent">Mohamad Kholid Bughowi</span>
         </p>
         <p className="text-3xl sm:text-5xl font-black">
-          You can call me <span className="bg-blueAccent px-2">Owi</span>
+          You can call me{" "}
+          <span className="bg-blueAccent px-2 text-white">Owi</span>
         </p>
         <p className="my-8 text-xl max-w-xl mx-auto">
           Passionate in Front End and Android Development. Happy to learn some

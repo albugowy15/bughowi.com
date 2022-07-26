@@ -17,10 +17,19 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [theme, setTheme] = useState(false);
 
+  function switchTheme() {
+    setTheme(!theme);
+    if (theme === false) {
+      document.querySelector("html")?.classList.add("dark");
+    } else {
+      document.querySelector("html")?.classList.remove("dark");
+    }
+  }
+
   const router = useRouter();
-  console.log(router.pathname);
+
   return (
-    <nav className="w-screen fixed bg-darkPrimary drop-shadow-md z-50">
+    <nav className="w-screen fixed bg-slate-100 dark:bg-darkPrimary drop-shadow-md z-50">
       <div className="container px-4 mx-auto">
         {/* Navbar on large screen */}
         <div className="flex justify-between items-center py-2">
@@ -91,7 +100,7 @@ const Navbar = () => {
             </ul>
             <div
               className="rounded-md border border-white p-2 ml-4 cursor-pointer"
-              onClick={() => setTheme(!theme)}
+              onClick={switchTheme}
             >
               {theme ? <BsMoon /> : <BsSun />}
             </div>

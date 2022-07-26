@@ -20,7 +20,7 @@ const Subscribe = () => {
           placeholder="Your email address"
           className="flex-auto h-full pl-3 text-darkPrimary outline-none"
         />
-        <button className="bg-red-500 flex-none py-2 px-4 font-bold">
+        <button className="bg-red-500 text-slate-100 flex-none py-2 px-4 font-bold">
           Sign Up
         </button>
       </form>

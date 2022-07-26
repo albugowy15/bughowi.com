@@ -15,7 +15,7 @@ function SocialMedia() {
         rel="noreferrer"
         className="bg-blue-700 rounded-full p-3 hover:bg-blue-900 transition-colors duration-500"
       >
-        <FaFacebookF size={15} />
+        <FaFacebookF size={15} className="text-slate-100" />
       </a>
       <a
         href="https://twitter.com/bughowy/"
@@ -23,7 +23,7 @@ function SocialMedia() {
         rel="noreferrer"
         className="bg-sky-500 rounded-full p-3 hover:bg-sky-700 transition-colors duration-500"
       >
-        <FaTwitter size={15} />
+        <FaTwitter size={15} className="text-slate-100" />
       </a>
       <a
         href="https://instagram.com/muhammad_bughowy/"
@@ -31,7 +31,7 @@ function SocialMedia() {
         rel="noreferrer"
         className="bg-pink-600 rounded-full p-3 hover:bg-pink-800 transition-colors duration-500"
       >
-        <FaInstagram size={15} />
+        <FaInstagram size={15} className="text-slate-100" />
       </a>
       <a
         href="https://github.com/albugowy15/"
@@ -39,7 +39,7 @@ function SocialMedia() {
         rel="noreferrer"
         className="bg-slate-800 rounded-full p-3 hover:bg-slate-900 transition-colors duration-500"
       >
-        <FaGithub size={15} />
+        <FaGithub size={15} className="text-slate-100" />
       </a>
       <a
         href="https://linkedin.com/in/bughowi/"
@@ -47,7 +47,7 @@ function SocialMedia() {
         rel="noreferrer"
         className="bg-blue-800 rounded-full p-3 hover:bg-blue-900 transition-colors duration-500"
       >
-        <FaLinkedinIn size={15} />
+        <FaLinkedinIn size={15} className="text-slate-100" />
       </a>
     </div>
   );

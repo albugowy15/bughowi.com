@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-darkPrimary text-slate-200 font-primary;
+  @apply bg-slate-100 dark:bg-darkPrimary text-gray-900 dark:text-slate-200 font-primary;
 }
 
 html {
