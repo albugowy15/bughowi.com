@@ -19,7 +19,7 @@ const Navbar = () => {
 
   function switchTheme() {
     setTheme(!theme);
-    if (theme === false) {
+    if (theme) {
       document.querySelector("html")?.classList.add("dark");
     } else {
       document.querySelector("html")?.classList.remove("dark");
@@ -102,7 +102,7 @@ const Navbar = () => {
               className="rounded-md border border-gray-900 dark:border-white p-2 ml-4 cursor-pointer"
               onClick={switchTheme}
             >
-              {theme ? <BsSun /> : <BsMoon />}
+              {theme ? <BsMoon /> : <BsSun />}
             </div>
           </div>
           <div className="sm:hidden block">
@@ -190,7 +190,7 @@ const Navbar = () => {
                 className="rounded-md border border-gray-800 dark:border-white p-1 cursor-pointer"
                 onClick={switchTheme}
               >
-                {theme ? <BsSun /> : <BsMoon />}
+                {theme ? <BsMoon /> : <BsSun />}
               </div>
             </div>
           </div>
