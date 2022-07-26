@@ -24,7 +24,7 @@ export default ProjectsPage;
 
 export async function getStaticProps() {
   const projects = getAllProjects();
-  console.log(projects);
+
   return {
     props: {
       projects,
