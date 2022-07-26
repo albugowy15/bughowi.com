@@ -99,10 +99,10 @@ const Navbar = () => {
               </li>
             </ul>
             <div
-              className="rounded-md border border-white p-2 ml-4 cursor-pointer"
+              className="rounded-md border border-gray-900 dark:border-white p-2 ml-4 cursor-pointer"
               onClick={switchTheme}
             >
-              {theme ? <BsMoon /> : <BsSun />}
+              {theme ? <BsSun /> : <BsMoon />}
             </div>
           </div>
           <div className="sm:hidden block">
@@ -119,26 +119,28 @@ const Navbar = () => {
         <div
           className={
             nav
-              ? "fixed w-screen h-screen left-0 top-0 bg-darkPrimary z-50 p-10"
+              ? "fixed w-screen h-screen left-0 top-0 bg-slate-200 dark:bg-darkPrimary z-50 p-10"
               : "hidden"
           }
         >
           <div className="flex justify-between items-center mb-5">
-            <p className="text-xl font-bold text-slate-300">bughowi.dev</p>
+            <p className="text-2xl font-bold text-slate-800 dark:text-slate-300">
+              bughowi.com
+            </p>
             <button
-              className="bg-darkSecondary p-3 rounded-full hover:scale-105 duration-300"
+              className="bg-slate-100 dark:bg-darkSecondary p-3 rounded-full hover:scale-105 duration-300"
               onClick={() => setNav(!nav)}
             >
               <MdOutlineClose size={20} />
             </button>
           </div>
-          <div className="text-slate-300">
+          <div className="text-slate-800 dark:text-slate-300 font-bold">
             <div className="flex items-center gap-4 py-2 cursor-pointer">
               <AiOutlineHome size={20} />
               <Link href="/">
                 <p
                   onClick={() => setNav(!nav)}
-                  className="text-lg hover:border-b"
+                  className="text-lg hover:text-yellowAccent transition-colors"
                 >
                   Home
                 </p>
@@ -149,7 +151,7 @@ const Navbar = () => {
               <Link href="/blog">
                 <p
                   onClick={() => setNav(!nav)}
-                  className="text-lg hover:border-b"
+                  className="text-lg hover:text-yellowAccent transition-colors"
                 >
                   Blog
                 </p>
@@ -160,7 +162,7 @@ const Navbar = () => {
               <Link href="/projects">
                 <p
                   onClick={() => setNav(!nav)}
-                  className="text-lg hover:border-b"
+                  className="text-lg hover:text-yellowAccent transition-colors"
                 >
                   Projects
                 </p>
@@ -171,7 +173,7 @@ const Navbar = () => {
               <Link href="/about">
                 <p
                   onClick={() => setNav(!nav)}
-                  className="text-lg hover:border-b"
+                  className="text-lg hover:text-yellowAccent transition-colors"
                 >
                   About
                 </p>
@@ -180,18 +182,20 @@ const Navbar = () => {
             <div className="flex items-center justify-between py-2">
               <div className="flex gap-4 items-center justify-start cursor-pointer">
                 <AiOutlineSwitcher size={20} />
-                <p className="text-lg hover:border-b">Theme</p>
+                <p className="text-lg hover:text-yellowAccent transition-colors">
+                  Theme
+                </p>
               </div>
               <div
-                className="rounded-md border border-white p-1 cursor-pointer"
-                onClick={() => setTheme(!theme)}
+                className="rounded-md border border-gray-800 dark:border-white p-1 cursor-pointer"
+                onClick={switchTheme}
               >
-                {theme ? <BsMoon /> : <BsSun />}
+                {theme ? <BsSun /> : <BsMoon />}
               </div>
             </div>
           </div>
           <FillButton url="#subscribe" title="FOLLOW" />
-          <div className="flex items-center justify-start gap-4 my-4">
+          <div className="flex items-center justify-start gap-4 my-8">
             <NavbarSocialMedia />
           </div>
         </div>
