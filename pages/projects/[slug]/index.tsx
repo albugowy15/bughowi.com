@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const project = allProjects.find(
     (project) => project.url === `/projects/${context.params?.slug}`
   );
-  console.log(project);
+
   return {
     props: {
       project,
