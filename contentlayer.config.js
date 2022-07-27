@@ -7,6 +7,7 @@ import readingTime from "reading-time";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypePrism from "rehype-prism-plus";
+import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
 const Category = defineNestedType(() => ({
@@ -106,6 +107,7 @@ const contentLayerConfig = makeSource({
     rehypePlugins: [
       rehypeCodeTitles,
       rehypePrism,
+      rehypeSlug,
       [
         rehypeExternalLinks,
         {
