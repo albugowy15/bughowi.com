@@ -12,6 +12,8 @@ import { BsBook, BsSun, BsMoon } from "react-icons/bs";
 import FillButton from "../button/FillButton";
 import NavbarSocialMedia from "../social-media/NavbarSocialMedia";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import pp from "public/profile-picture.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -34,10 +36,12 @@ const Navbar = () => {
         {/* Navbar on large screen */}
         <div className="flex justify-between items-center py-2">
           <Link href="/">
-            <div className="flex items-center justify-start gap-1 cursor-pointer">
-              <TbBrandNextjs size={35} />
+            <div className="flex items-center justify-start gap-2 cursor-pointer">
+              <div className="relative overflow-hidden rounded-full p-4 border-[3px] border-blueAccent object-cover">
+                <Image src={pp.src} alt="Bughowi.com" layout="fill" />
+              </div>
 
-              <p className="font-bold text-xl">bughowi.dev</p>
+              <p className="hidden sm:block font-bold text-2xl">bughowi.com</p>
             </div>
           </Link>
 
