@@ -8,7 +8,27 @@ body {
 }
 
 html {
-  @apply scroll-smooth;
+  @apply scroll-smooth relative min-h-full;
+}
+
+#table-of-contents {
+  @apply bg-darkSecondary p-3 rounded-md w-fit my-3;
+}
+
+#table-of-contents {
+  summary {
+    @apply font-bold text-xl mb-3 hover:cursor-pointer w-fit;
+  }
+}
+
+.toc-items {
+  @apply space-y-1;
+}
+
+.toc-items {
+  li {
+    @apply text-yellowAccent hover:text-blueAccent transition-colors w-fit;
+  }
 }
 
 #content-space {
