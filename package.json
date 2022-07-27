@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@microflash/rehype-toc": "^1.0.2",
     "contentlayer": "^0.2.6",
     "date-fns": "^2.29.1",
     "mdx-prism": "^0.3.4",
@@ -25,6 +26,7 @@
     "rehype-prism-plus": "^1.4.2",
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
+    "remark-toc": "^8.0.1",
     "sass": "^1.54.0",
     "swr": "^1.3.0"
   },
