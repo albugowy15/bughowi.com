@@ -7,9 +7,10 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div>
+    <div className="w-full min-h-screen flex flex-col">
       <Navbar />
-      <div className="container px-4 mx-auto">{children}</div>
+      <div className="container px-4 mx-auto flex-1">{children}</div>
+      <div className="py-8" />
       <Subscribe />
     </div>
   );
