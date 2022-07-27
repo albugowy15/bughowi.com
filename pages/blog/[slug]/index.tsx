@@ -9,7 +9,6 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import { getAllPosts } from "utils/contents";
 import TopPicks from "components/sidebar/TopPicks";
 import Link from "next/link";
-import TOC from "components/content/TOC";
 
 function PostDetail({
   post,
@@ -18,7 +17,6 @@ function PostDetail({
   post: Post;
   recentPosts: Post[];
 }) {
-  const srcComponents = { TOC };
   const MDXContent = useMDXComponent(post.body.code);
 
   return (
@@ -52,7 +50,7 @@ function PostDetail({
             />
           </div>
           <div id="content-space" className="py-3">
-            <MDXContent components={srcComponents} />
+            <MDXContent />
           </div>
           <div className="border-y-2 mt-3">
             <p className="py-4">
