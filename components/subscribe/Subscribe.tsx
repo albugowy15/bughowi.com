@@ -9,7 +9,7 @@ const Subscribe = () => {
       </p>
       <form
         action=""
-        className="mt-8 flex w-[80%] max-w-screen-sm mx-auto rounded-3xl items-center justify-between bg-white overflow-clip"
+        className="mt-8 flex w-[80%] max-w-[500px] mx-auto rounded-3xl items-center justify-between bg-white overflow-clip"
       >
         <input
           type="email"
