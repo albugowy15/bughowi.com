@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useState } from "react";
-import { TbBrandNextjs } from "react-icons/tb";
 import {
   AiOutlineMenu,
   AiOutlineHome,
@@ -9,19 +8,22 @@ import {
 } from "react-icons/ai";
 import { MdOutlineAccountCircle, MdOutlineClose } from "react-icons/md";
 import { BsBook, BsSun, BsMoon } from "react-icons/bs";
-import FillButton from "../button/FillButton";
 import NavbarSocialMedia from "../social-media/NavbarSocialMedia";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import pp from "public/profile-picture.png";
+import { useThemeStore } from "store/store";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [theme, setTheme] = useState(false);
-
+  // const [theme, setTheme] = useState(false);
+  const themes = useThemeStore((state) => state.themes);
+  //const changeThemes = useThemeStore((state) => state.changeTheme())
   function switchTheme() {
-    setTheme(!theme);
-    if (theme) {
+    //setTheme(!theme);
+    // const changeThemes = useThemeStore((state) => state.changeTheme)
+    useThemeStore.setState({ themes: !themes });
+    if (themes) {
       document.querySelector("html")?.classList.add("dark");
     } else {
       document.querySelector("html")?.classList.remove("dark");
@@ -38,7 +40,12 @@ const Navbar = () => {
           <Link href="/">
             <div className="flex items-center justify-start gap-2 cursor-pointer">
               <div className="relative overflow-hidden rounded-full p-4 border-[3px] border-blueAccent object-cover">
-                <Image src={pp.src} alt="Bughowi.com" layout="fill" />
+                <Image
+                  src={pp.src}
+                  alt="Bughowi.com"
+                  layout="fill"
+                  priority={true}
+                />
               </div>
 
               <p className="hidden sm:block font-bold text-2xl">bughowi.com</p>
@@ -106,7 +113,7 @@ const Navbar = () => {
               className="rounded-md border border-gray-900 dark:border-white p-2 ml-4 cursor-pointer"
               onClick={switchTheme}
             >
-              {theme ? <BsMoon /> : <BsSun />}
+              {themes ? <BsMoon /> : <BsSun />}
             </div>
           </div>
           <div className="sm:hidden block">
@@ -194,11 +201,21 @@ const Navbar = () => {
                 className="rounded-md border border-gray-800 dark:border-white p-1 cursor-pointer"
                 onClick={switchTheme}
               >
-                {theme ? <BsMoon /> : <BsSun />}
+                {themes ? <BsMoon /> : <BsSun />}
               </div>
             </div>
           </div>
-          <FillButton url="#subscribe" title="FOLLOW" />
+          {/* <FillButton url="#subscribe" title="FOLLOW" /> */}
+          <a
+            href="#subscribe"
+            onClick={() => {
+              document.getElementById("subscribe")?.scrollIntoView();
+              setNav(!nav);
+            }}
+            className="text-slate-100 text-center block bg-blueAccent py-3 px-10 rounded-lg my-4 w-full tracking-widest font-bold hover:bg-blue-800 transition-colors duration-500"
+          >
+            FOLLOW
+          </a>
           <div className="flex items-center justify-start gap-4 my-8">
             <NavbarSocialMedia />
           </div>

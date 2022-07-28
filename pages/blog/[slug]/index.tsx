@@ -3,12 +3,14 @@ import { Post } from "contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import formatDate from "utils/formatDate";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { getAllPosts } from "utils/contents";
 import TopPicks from "components/sidebar/TopPicks";
 import Link from "next/link";
+import Giscus from "@giscus/react";
+import { useThemeStore } from "store/store";
 
 function PostDetail({
   post,
@@ -17,12 +19,23 @@ function PostDetail({
   post: Post;
   recentPosts: Post[];
 }) {
+  const [giscusTheme, setGiscusTheme] = useState("dark");
+  const themes = useThemeStore((state) => state.themes);
+
+  useEffect(() => {
+    if (document.querySelector("html")!.classList.contains("dark")) {
+      setGiscusTheme("dark");
+    } else {
+      setGiscusTheme("light");
+    }
+  }, [giscusTheme, themes]);
+
   const MDXContent = useMDXComponent(post.body.code);
 
   return (
     <>
       <Head>
-        <title>{`Blog - ${post.title}`}</title>
+        <title>{`${post.title} - Blog`}</title>
         <meta name="description" content={post.description} />
       </Head>
       <div className="py-10" />
@@ -64,6 +77,22 @@ function PostDetail({
           </div>
           <TopPicks posts={recentPosts} />
         </article>
+        <div className="py-4" />
+        <Giscus
+          id="comments"
+          repo="albugowy15/bughowi.com"
+          repoId="R_kgDOHqneBQ"
+          category="Announcements"
+          categoryId="DIC_kwDOHqneBc4CQdnP"
+          mapping="url"
+          strict="0"
+          reactionsEnabled="0"
+          emitMetadata="0"
+          inputPosition="bottom"
+          theme={giscusTheme}
+          lang="en"
+          loading="lazy"
+        />
       </main>
     </>
   );
