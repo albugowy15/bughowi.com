@@ -9,10 +9,10 @@ const Home = ({ posts, projects }: { posts: Post[]; projects: Project[] }) => {
   return (
     <>
       <Head>
-        <title>bughowi.com - Home</title>
+        <title>Home - bughowi.com</title>
         <meta
           name="description"
-          content="A personal blog to showcase my projects and some articles in Front End Development fields"
+          content="A personal blog to showcase projects and some articles in Wed Development fields"
         />
       </Head>
       <Intro />

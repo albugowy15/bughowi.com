@@ -35,7 +35,7 @@ function PostDetail({
   return (
     <>
       <Head>
-        <title>{`${post.title} - Blog`}</title>
+        <title>{`${post.title} - Blog | bughowi.com`}</title>
         <meta name="description" content={post.description} />
       </Head>
       <div className="py-10" />

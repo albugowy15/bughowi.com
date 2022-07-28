@@ -23,7 +23,7 @@ function ProjectDetailPage({ project }: { project: Project }) {
   return (
     <>
       <Head>
-        <title>{`${project.title} - Projects`}</title>
+        <title>{`${project.title} - Projects | bughowi.com`}</title>
         <meta name="description" content={project.description} />
       </Head>
       <div className="py-10" />

@@ -14,14 +14,15 @@ const Blog = ({
   return (
     <>
       <Head>
-        <title>bughowi.com - Blog</title>
+        <title>Blog - bughowi.com</title>
         <meta
           name="description"
-          content="Some of article of Front End Development topics"
+          content="Here I share my thoughts related to front end
+          development topics and programming in general."
         />
       </Head>
       <div className="py-10" />
-      <h1 className="text-center font-bold text-3xl">Blog</h1>
+      <h2 className="text-center font-bold text-3xl">Blog</h2>
       <p className="text-center py-3 mb-4">
         Welcome to my Blog. Here I share my thoughts related to front end
         development topics and programming in general. I&apos;ve always been a

@@ -48,7 +48,9 @@ const Navbar = () => {
                 />
               </div>
 
-              <p className="hidden sm:block font-bold text-2xl">bughowi.com</p>
+              <h1 className="hidden sm:block font-bold text-2xl">
+                bughowi.com
+              </h1>
             </div>
           </Link>
 
@@ -135,9 +137,9 @@ const Navbar = () => {
           }
         >
           <div className="flex justify-between items-center mb-5">
-            <p className="text-2xl font-bold text-slate-800 dark:text-slate-300">
+            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-300">
               bughowi.com
-            </p>
+            </h1>
             <button
               className="bg-slate-100 dark:bg-darkSecondary p-3 rounded-full hover:scale-105 duration-300"
               onClick={() => setNav(!nav)}
@@ -205,17 +207,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          {/* <FillButton url="#subscribe" title="FOLLOW" /> */}
-          <a
-            href="#subscribe"
-            onClick={() => {
-              document.getElementById("subscribe")?.scrollIntoView();
-              setNav(!nav);
-            }}
-            className="text-slate-100 text-center block bg-blueAccent py-3 px-10 rounded-lg my-4 w-full tracking-widest font-bold hover:bg-blue-800 transition-colors duration-500"
-          >
-            FOLLOW
-          </a>
+
           <div className="flex items-center justify-start gap-4 my-8">
             <NavbarSocialMedia />
           </div>

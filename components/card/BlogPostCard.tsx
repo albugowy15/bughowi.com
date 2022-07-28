@@ -27,7 +27,7 @@ function BlogPostCard(post: Post) {
                 </p>
               ))}
             </div>
-            <p className="font-bold text-xl mt-4">{post.title}</p>
+            <h3 className="font-bold text-xl mt-4">{post.title}</h3>
             {/* <p className="text-white text-opacity-60 mt-2">{post.description}</p> */}
             {/* <p className="font-bold text-blueAccent mt-3 cursor-pointer hover:text-blue-700">
           <Link href="/blog/slug-title">Read More...</Link>

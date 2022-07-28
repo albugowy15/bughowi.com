@@ -3,8 +3,8 @@ function index() {
   return (
     <>
       <Head>
-        <title>bughowi.com - About</title>
-        <meta name="description" content="Find more about me" />
+        <title>About - bughowi.com</title>
+        <meta name="description" content="Know more about me" />
       </Head>
       <div className="py-10" />
       <h1 className="font-bold text-3xl">About Me</h1>

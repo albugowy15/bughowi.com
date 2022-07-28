@@ -32,9 +32,9 @@ function FeaturedPost({ post }: { post: Post }) {
                 </p>
               ))}
             </div>
-            <p className="font-bold text-2xl mt-4 lg:text-4xl lg:mt-6">
+            <h3 className="font-bold text-2xl mt-4 lg:text-4xl lg:mt-6">
               {post?.title}
-            </p>
+            </h3>
             <p className="mt-2 text-xl lg:mt-4 text-opacity-80">
               {post?.description}
             </p>
