@@ -1,4 +1,4 @@
-import React, { EventHandler, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Form, FormState } from "types/types";
 
 export function useSubscribeToNewsletter() {
@@ -9,7 +9,7 @@ export function useSubscribeToNewsletter() {
       e.preventDefault();
       setForm({ state: Form.Loading });
 
-      const res = await fetch(`/api/subscribe`, {
+      const res = await fetch(`/api/newsletter`, {
         body: JSON.stringify({
           email: inputEl.current!.value,
         }),
