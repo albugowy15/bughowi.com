@@ -1,7 +1,6 @@
 import { Post } from "contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
-import { Pick } from "types/types";
 
 function TopPickCard(pick: Post) {
   return (
@@ -23,7 +22,7 @@ function TopPickCard(pick: Post) {
           ))}
         </div>
 
-        <Link href={pick.url}>
+        <Link href={pick.url} prefetch={false}>
           <h3 className="font-bold hover:cursor-pointer hover:text-blueAccent transition-colors">
             {pick.title}
           </h3>

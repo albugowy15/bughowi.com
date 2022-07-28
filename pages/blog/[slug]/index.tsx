@@ -4,13 +4,13 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import formatDate from "utils/formatDate";
+import { formatDate } from "utils/contents";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { getAllPosts } from "utils/contents";
-import TopPicks from "components/sidebar/TopPicks";
 import Link from "next/link";
 import Giscus from "@giscus/react";
 import { useThemeStore } from "store/store";
+import TopPickCard from "components/card/TopPickCard";
 
 function PostDetail({
   post,
@@ -65,18 +65,28 @@ function PostDetail({
           <div id="content-space" className="py-3">
             <MDXContent />
           </div>
-          <div className="border-y-2 mt-3">
+          <div className="border-y-2 border-slate-700 dark:border-slate-400 mt-3">
             <p className="py-4">
               Categories :{" "}
               {post.categories?.map((category, idx) => (
-                <span className="p-1 bg-blueAccent rounded-lg mr-3" key={idx}>
+                <span
+                  className="p-1 bg-blueAccent text-slate-100 rounded-lg mr-3"
+                  key={idx}
+                >
                   {category.toLocaleString()}
                 </span>
               ))}
             </p>
           </div>
-          <TopPicks posts={recentPosts} />
         </article>
+        <div className="mt-4">
+          <h2 className="font-bold text-xl">Recent Posts</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 flex-col justify-center gap-3 mt-3">
+            {recentPosts.map((post, key) => (
+              <TopPickCard key={key} {...post} />
+            ))}
+          </div>
+        </div>
         <div className="py-4" />
         <Giscus
           id="comments"

@@ -1,4 +1,4 @@
-import Projects from "components/projects/Projects";
+import ProjectCard from "components/card/ProjectCard";
 import { Project } from "contentlayer/generated";
 import Head from "next/head";
 import { getAllProjects } from "utils/contents";
@@ -18,7 +18,11 @@ function ProjectsPage({ projects }: { projects: Project[] }) {
       <p className="text-center py-3">
         Showcase of the projects I&apos;ve work on
       </p>
-      <Projects projects={projects} />
+      <div className="w-full grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project, key) => (
+          <ProjectCard key={key} {...project} />
+        ))}
+      </div>
     </>
   );
 }

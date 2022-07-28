@@ -1,10 +1,10 @@
-import BlogPosts from "components/posts/BlogPosts";
+import PostCard from "components/card/PostCard";
 import FeaturedPost from "components/posts/FeaturedPost";
 import { Post } from "contentlayer/generated";
 import Head from "next/head";
 import { getAllPosts } from "utils/contents";
 
-const Blog = ({
+const BlogPage = ({
   posts,
   featuredPost,
 }: {
@@ -32,12 +32,16 @@ const Blog = ({
       <FeaturedPost post={featuredPost} />
       {/* <div className="flex flex-col lg:flex-row items-start justify-between gap-3 my-6"> */}
       <div className="py-5" />
-      <BlogPosts posts={posts} />
+      <section className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {posts.map((post, key) => (
+          <PostCard key={key} {...post} />
+        ))}
+      </section>
     </>
   );
 };
 
-export default Blog;
+export default BlogPage;
 
 export async function getStaticProps() {
   const posts = getAllPosts();

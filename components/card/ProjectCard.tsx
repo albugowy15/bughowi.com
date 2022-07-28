@@ -1,10 +1,10 @@
 import { Project } from "contentlayer/generated";
 import Link from "next/link";
 
-function HomeProjectCard(project: Project) {
+function ProjectCard(project: Project) {
   return (
     <Link href={project.url}>
-      <div className="flex flex-col gap-3 bg-slate-200 dark:bg-darkSecondary p-4 border border-slate-300 border-opacity-40 rounded-md hover:scale-[1.015] duration-500 ease-in-out cursor-pointer">
+      <div className="flex flex-col gap-3 bg-slate-200 dark:bg-darkSecondary p-4 border border-slate-300 border-opacity-40 rounded-md hover:scale-[1.02] transition-transform ease-in-out cursor-pointer">
         <p className="font-bold text-xl">{project.title}</p>
         <p className="text-sm text-opacity-80">{project.description}</p>
         <div className="flex flex-wrap gap-3">
@@ -22,4 +22,4 @@ function HomeProjectCard(project: Project) {
   );
 }
 
-export default HomeProjectCard;
+export default ProjectCard;

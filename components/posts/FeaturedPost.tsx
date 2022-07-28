@@ -2,7 +2,7 @@ import { Post } from "contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClockCircle, AiOutlineEye } from "react-icons/ai";
-import formatDate from "utils/formatDate";
+import { formatDate } from "utils/contents";
 
 function FeaturedPost({ post }: { post: Post }) {
   return (

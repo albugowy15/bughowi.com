@@ -12,7 +12,7 @@ html {
 }
 
 #table-of-contents {
-  @apply bg-darkSecondary p-3 rounded-md w-fit my-3;
+  @apply bg-slate-200 dark:bg-darkSecondary p-3 rounded-md w-fit my-3;
 }
 
 #table-of-contents {
@@ -27,7 +27,7 @@ html {
 
 .toc-items {
   li {
-    @apply text-yellowAccent hover:text-blueAccent transition-colors w-fit;
+    @apply list-none text-slate-700 hover:text-blueAccent transition-colors w-fit;
   }
 }
 

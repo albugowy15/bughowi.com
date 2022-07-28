@@ -1,9 +1,9 @@
 import { Post } from "contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
-import formatDate from "utils/formatDate";
+import { formatDate } from "utils/contents";
 
-const HomePostCard = (post: Post) => {
+const PostCard = (post: Post) => {
   return (
     <Link href={post.url}>
       <div className="bg-slate-200 dark:bg-darkSecondary rounded-md overflow-hidden cursor-pointer border-2 border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out">
@@ -44,4 +44,4 @@ const HomePostCard = (post: Post) => {
   );
 };
 
-export default HomePostCard;
+export default PostCard;

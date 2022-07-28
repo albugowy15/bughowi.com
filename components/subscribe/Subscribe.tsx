@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import { Form, FormState } from "types/types";
+import { Form } from "types/types";
 import { useSubscribeToNewsletter } from "utils/form";
 import SocialMedia from "./SocialMedia";
 
@@ -48,7 +47,7 @@ const Subscribe = () => {
       <SocialMedia />
       <div>
         <p className="text-center text-xs mt-8 opacity-60">
-          &copy; 2022 bughowi.dev - Built with Next.js, Tailwind, Contentlayer,
+          &copy; 2022 bughowi.com - Built with Next.js, Tailwind, Contentlayer,
           Vercel
         </p>
       </div>

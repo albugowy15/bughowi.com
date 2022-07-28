@@ -16,12 +16,8 @@ import { useThemeStore } from "store/store";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  // const [theme, setTheme] = useState(false);
   const themes = useThemeStore((state) => state.themes);
-  //const changeThemes = useThemeStore((state) => state.changeTheme())
   function switchTheme() {
-    //setTheme(!theme);
-    // const changeThemes = useThemeStore((state) => state.changeTheme)
     useThemeStore.setState({ themes: !themes });
     if (themes) {
       document.querySelector("html")?.classList.add("dark");
