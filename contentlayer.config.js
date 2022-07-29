@@ -7,9 +7,30 @@ import {
 import readingTime from "reading-time";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypeExternalLinks from "rehype-external-links";
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+
+const options = {
+  // Use one of Shiki's packaged themes
+  theme: "one-dark-pro",
+  // Or your own JSON theme
+  onVisitLine(node) {
+    // Prevent lines from collapsing in `display: grid` mode, and
+    // allow empty lines to be copy/pasted
+    if (node.children.length === 0) {
+      node.children = [{ type: "text", value: " " }];
+    }
+  },
+  // Feel free to add classNames that suit your docs
+  onVisitHighlightedLine(node) {
+    node.properties.className.push("highlighted");
+  },
+  onVisitHighlightedWord(node) {
+    node.properties.className = ["word"];
+  },
+};
 
 const Category = defineNestedType(() => ({
   name: "Category",
@@ -107,16 +128,10 @@ const contentLayerConfig = makeSource({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeCodeTitles,
-      rehypePrism,
       rehypeSlug,
       rehypeToc,
-      [
-        rehypeExternalLinks,
-        {
-          target: "_blank",
-          rel: "noreferrer",
-        },
-      ],
+      [rehypeExternalLinks, { target: "_blank", rel: "noreferrer" }],
+      [rehypePrettyCode, options],
     ],
   },
 });

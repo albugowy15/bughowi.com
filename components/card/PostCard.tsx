@@ -27,7 +27,7 @@ const PostCard = (post: Post) => {
                 </p>
               ))}
             </div>
-            <h2 className="font-bold text-xl py-2">{post.title}</h2>
+            <h3 className="font-bold text-2xl py-2">{post.title}</h3>
           </div>
           <div className="p-4" />
           <div className="flex items-center justify-between text-sm">

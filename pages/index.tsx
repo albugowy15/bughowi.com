@@ -17,6 +17,7 @@ const Home = ({ posts, projects }: { posts: Post[]; projects: Project[] }) => {
       </Head>
       <Intro />
       <RecentPosts posts={posts} />
+      <div className="py-4" />
       <PersonalProjects projects={projects} />
     </>
   );

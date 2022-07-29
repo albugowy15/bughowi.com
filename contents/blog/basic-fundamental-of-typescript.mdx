@@ -1,0 +1,89 @@
+---
+title: Typescript Fundamentals
+date: 2022-06-30
+description: Learn why Typescript is so awesome and the basic concepts required to be successful using it
+categories: ["typescript"]
+thumbnail: https://images.unsplash.com/photo-1644982648774-83312909bbef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY0NTA5MTg3Mw&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080
+isFeatured: true
+---
+
+I can pretty easily say that the one that's had the biggest impact on my productivity as a web developer is Typescript. And that's pretty amazing considering a few years ago I had no interest in learning it and it was only exposed to it because I had a client that required an angular app. In this article I'm gonna show you all the basic concepts needed to be successfull with typescript and I'll throw in a few pro tips that I find esecially useful.
+
+So originally I was resistant to even learn typescript because I wasn't super comfortable with strong typed languages and I really tried to avoid writing any more code that I have to. But this is the situation where writing a little more code upfront will pay big dividends as your poject grows. The biggest benefit is actually just tooling what you get in your IDE like vs code. When you use type annotation or work with library that are strong typed, your code will be documented in the IDE so you really have to refer back to online documentation for the libraries that you use. In addition the compiler that can catch bugs in advance which is a far more efficient way to refactor code.
+
+Another cool benefit of typescript is that there's virtually no learning curve if you know JavaScript. That's because it's a superset of JavaScript so any valid JS code is also valid in TypeScript. So you can learn it incrementally as you go. And it also allows us to write our code with future JavaScript features without having to worry about whether or not this code will be supported in our environment because we can transpile it to multiple JavaScript flavors.
+
+Now that you know TypeScript is awesome, let's go ahead and started. The first you want to do is install TypeScript globally with NPM. Doing this will give you access to the `TSC{:js}` command which will run the typescript compiler.
+
+```bash
+npm i -g typescript
+```
+
+So the first we'll do is create an `index.ts{:ts}` file and TypeScript on it's own can't run anywhere. I won't work in the browser or Node.js or anything like that. What we do is use the TypeScript compiler to convert that TypeScript code to vanilla JavaScript.
+
+Let's start by writing some plain JavaScript in our TypeScript file and then compile it.
+
+```ts
+// index.ts
+
+console.log("hello world");
+```
+
+So we'll just say `console.log('hello world'){:js}` then we'll go down to the command line and run `tsc index.ts{:shell}`. You'll notice that creates an index.js file that's our actual JavaScript code that we can run in the browser or node. And beacause we just wrote plain JavaScript, the code is identical to what's in the `index.ts{:ts}` file.
+
+By default, TypeScript will compile to ES3 which dosn't support for async await. So let's see what's happen when we write an async function in our `.ts{:ts}` file and the compile it.
+
+You'll notice here that our code gets transpiled to this creazy looking JavaScript just so we can use async await in our main TypeScript code. The compiler is basically very sophisticated there's a ton of different options that you can pass to it to customize it's behavior.
+
+You could pass the options from the command line but the standart to do it is to create a `tsconfig.json{:json}` which will automatically get picked up when you run `tsc{:shell}` command.
+
+The `tsconfig.json{:json}` can be be pretty overwhelming at first but there is usually only options that you have to think about for the most part.
+
+### `target{:js}`
+
+The first one target and this is the flavor of JavaScript that your code will compiled to. So if we set out target to `esnext{:js}` and then run tsc, you'll see that it comiples our code with async await natively it's targeting the latest verison of JavaScript which supports that syntax.
+
+### `watch{:js}`
+
+Another option that we want to set right away is `"watch": true{:js}` which will just recompile our code every time we save the file. That will just save us from rerunning the `tsc{:shell}` command after every change.
+
+### `lib{:js}`
+
+The next option we will look at is lib which allows us to automatically include typings for certain environtments such as the **DOM** or **ES 2017**.
+
+```json
+//tsconfig.json
+{
+  "compilerOptions": {
+    "target": "es3",
+    "watch": true,
+    "lib": ["dom", "es2017"]
+  }
+}
+```
+
+So if you're building a web application you'd want to include that **DOM** library which allows TypeScript to compile your code with all the native DOM classes without any compilation error.
+
+For example if we go back to our code, we can use URL class which is part of the DOM and we'll got autocomplete and intellisense on this class. So this is where the incredible tooling of TypeScript starts to come in.
+
+If we hover over the class we have intergrated documentation as well as an error message telling us exactly why this code won't run.
+
+The next thing we'll look at is the use of third-party libraries let's go ahead and install lodash with NPM you'll see that creates a node modules folder with the source code for lodash a lot of mainstream libraries like firebase for example ship with type declarations automatically, but lodash is not one of them. So if we go into index.ts and import lodash, we'll get warning from TypeScript saying that there are no declarations found which measn we're not going to get any autocomplete or intellisense in the IDE. But the good news is there's a giant mono repo out there with community maintain types. If we go ahead and install the types in our development environment will have autocomplete and intellisense for every lodash function.
+
+So now we that we know how the TypeScript compiler works, let's go ahead and write some code that uses type annotations. There are two ways you can strong type your code implicitly or explicitly. So let's say we hava a variable that shoud be a number. If we assign the value to this variable when it's declared. it's type will automatically be inferred as you can see here it's a primitive number type. Then if we try to assing a string value to this variable it's going to give us an error because a string is not assignable to number. If this code were vanilla JavaScript we wouldn't catch this bug until we actually run this code somewhere. But with TypeScript we know about it right away.
+
+Unlike languages like C# or Java, we can actually opt out the type system annotating our variable with any. This just means that this variable can be assigned any value and the compiler won't type check it. Ideally you want to avoid doing things like this when possible but it does give TypeScript a ton of flexibilty.
+
+In the last example we gave our variable an impicit number type, but what if we don't have a value to assigned to it upfront. If we don't add any type annotations to it it's going to be infered as an any type. So we can assign both a string and a number to it. If we want to annotate it with a type. we can just do colon followed by `number` which is one of the built-in primitive types in JavaScript. When we do that we get an error under the string value because we can't assign it as that type. One tip that I'll give you here is that if you have an implicit type don't bother explicitly strong type in it. For example here we're assigning a value that's a number. So adding the number annotation is really just redundant.
+
+## Create Custom Types
+
+So we've looked at some f the built-in types in JavaScript. But you can aslo create your own types from scratch. First you'll give the type a name which is typically in Pascal case. For right now, we'll just go ahead and arbitrarily assign our `Style` type to a `string`. Then we can declare a variable that's annotated with this style type and then we'll get feedback for this custom type instead of just regular string. Right now this is super redundant but let' say our style type can be only be bold or italic. We can create a union type by separating theme with a pipe. And now we can only assign this variable to this two specific values. And we're not limited to just string, we could even extend this custom type with a number.
+
+So that's pretty cool but more often than not you'll be strong typing object that have multiple property with different multiple types. Let's imagine we have two objects. and we want to enforce that this object shape has a first and last name with string types. Composing objects or class instances that don't have the correct shape is an easy way to create bugs in your program. But with TypeScript we can enforce the shape of an object with an interface. If we know that the shape of the person object would be the same, then we can define an interface that defines the type of each property. Now we can use this interface to strong type this object directly or we could us it as the return value from a function, argument, or anywhere else in our code.
+
+Now sometimes an interface like this can be little to restrictive you can actually maintain the reuired properties and then add any additional properties to be added by creating a key with a type of `string` with a value type of any. So now a first and last name will be required, but you also can add any additional property that you want to this object.
+
+## Function
+
+Now let's go ahead and switch to function
