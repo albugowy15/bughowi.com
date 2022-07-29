@@ -8,7 +8,7 @@ const Subscribe = () => {
   return (
     <footer className="mx-auto p-5 w-full">
       <div className="bg-slate-200 dark:bg-darkSecondary w-full max-w-xl rounded border border-gray-700 p-5 mx-auto">
-        <h2 className="font-bold text-lg">Subscribe to the newsletter</h2>
+        <p className="font-bold text-lg">Subscribe to the newsletter</p>
 
         <p className="py-1">
           Get emails from me about web development, android, tech, and early

@@ -6,7 +6,7 @@ function PersonalProjects({ projects }: { projects: Project[] }) {
   return (
     <section id="personal-projects" className="my-8">
       <Link href="/projects">
-        <h2 className="text-2xl font-bold hover:cursor-pointer hover:text-blueAccent w-fit transition-colors">
+        <h2 className="text-3xl font-bold hover:cursor-pointer hover:text-blueAccent w-fit transition-colors">
           Personal Projects
         </h2>
       </Link>

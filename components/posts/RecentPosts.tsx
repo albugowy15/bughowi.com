@@ -6,7 +6,7 @@ const RecentPosts = ({ posts }: { posts: Post[] }) => {
   return (
     <section id="recent-posts">
       <Link href="/blog">
-        <h2 className="text-2xl font-bold hover:cursor-pointer hover:text-blueAccent transition-colors w-fit">
+        <h2 className="text-3xl font-bold hover:cursor-pointer hover:text-blueAccent transition-colors w-fit">
           Recent Posts
         </h2>
       </Link>

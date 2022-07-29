@@ -9,9 +9,9 @@ function AboutPage() {
         <meta name="description" content="Know more about me" />
       </Head>
       <div className="py-10" />
-      <h1 className="font-bold text-3xl text-center">About Me</h1>
-      <div className="space-y-2 py-3 w-full lg:w-[65%] mx-auto">
-        <h2 className="font-bold text-2xl underline">Introduction</h2>
+      <h1 className="font-bold text-4xl text-center">About Me</h1>
+      <div className="space-y-2 py-3 w-full lg:w-[65%] mx-auto text-gray-900 dark:text-slate-300 text-lg dark:text-lg">
+        <h2 className="font-bold text-3xl underline">Introduction</h2>
         <p>
           Hello! &#128075; I&apos;m{" "}
           <span className="font-bold text-yellowAccent">Owi</span>. I&apos;m a
