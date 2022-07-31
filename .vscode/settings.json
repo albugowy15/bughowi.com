@@ -1,0 +1,8 @@
+{
+  "frontMatter.content.autoUpdateDate": false,
+  "frontMatter.content.fmHighlight": false,
+  "frontMatter.taxonomy.categories": [
+    "nextjs",
+    "typescript"
+  ]
+}
