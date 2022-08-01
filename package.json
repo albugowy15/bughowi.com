@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@giscus/react": "^2.1.1",
+    "@giscus/react": "^2.2.0",
     "@microflash/rehype-toc": "^1.0.2",
     "contentlayer": "^0.2.6",
     "date-fns": "^2.29.1",
