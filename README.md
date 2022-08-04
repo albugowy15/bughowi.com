@@ -1,34 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![bughowi.com homepage preview](https://user-images.githubusercontent.com/49820990/182026390-ef94974c-63a1-4614-821a-1c0ef6016c60.png)
 
-## Getting Started
+## Description
 
-First, run the development server:
+My personal blog that contains article about Web Development and programming in general. In this blog I try to implement some of my skills in Web Development likes Next.js, TypeScript, Tailwind, MDX, and Contentlayer.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Repository
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+View it's repo here : [https://github.com/albugowy15/bughowi.com](https://github.com/albugowy15/bughowi.com)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### TypeScript
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+A strong typed language that make the way you write JavaScript safely. This is my first poject that I build with TypeScript. And it's really save me from getting bugs when try to get posts and project data. I have create a post about TypeScript basic concepts if you want to learn more about TypeScript basic.
 
-## Learn More
+### Next.js
 
-To learn more about Next.js, take a look at the following resources:
+The file system routing and SSG features is really helpful for me to create a static blog.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Tailwind
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The tailwind docs are its real magic. It is actually better documented than CSS itself. It's such a pleasure to use.
 
-## Deploy on Vercel
+### MDX
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+MDX allows me to use JSX in my markdown content. I can import components, such as interactive charts or alerts, and embed them within my content. This makes writing long-form content with components a blast.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Contentlayer
+
+Because my post and projects is written in **MDX** files, so Contentlayer gives me a nice abstraction between my MDX files and my application. I can define document type for post and project, then get all posts and projects using `getStaticProps()` and display it using `useMDXComponent` that `next-contentlayer` provided.
+
+## Deployment
+
+I deploy this project in Vercel. You can check it here : [https://bughowi-com.vercel.app](https://bughowi-com.vercel.app)
