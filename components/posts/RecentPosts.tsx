@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const RecentPosts = ({ posts }: { posts: Post[] }) => {
   return (
-    <section id="recent-posts">
+    <section id="recent-posts" className="scroll-my-16">
       <Link href="/blog">
         <h2 className="text-3xl font-bold hover:cursor-pointer hover:text-blueAccent transition-colors w-fit">
           Recent Posts

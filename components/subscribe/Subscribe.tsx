@@ -41,6 +41,16 @@ const Subscribe = () => {
               )}
             </button>
           </div>
+
+          {form.state === Form.Success ? (
+            <div className="mt-4">
+              <span className="font-bold text-green-600">
+                <span>&#128522;</span> Thank you for subscribing my newsletters
+              </span>
+            </div>
+          ) : (
+            <span></span>
+          )}
         </form>
       </div>
       <p className="text-center mt-8">Find Me!</p>
