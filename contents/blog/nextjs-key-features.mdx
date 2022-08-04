@@ -3,7 +3,7 @@ title: Next.js Core Concepts and Features
 date: 2022-08-03
 description: Learn all the key features that make up Next.js and why we shoud Next.js in our project
 categories: ["next.js", "javascript"]
-thumbnail: https://user-images.githubusercontent.com/49820990/181875756-693e8d6f-3625-4220-a9fa-3f924f8f0a6c.png
+thumbnail: https://user-images.githubusercontent.com/49820990/182567373-faa399fb-f45e-440a-ad02-d94fffde2e71.png
 isFeatured: false
 ---
 
@@ -283,3 +283,41 @@ export default nextConfig;
 ```
 
 ## Layout
+
+Mostly when we build web interface, there are some components that always appear on every page. For example navbar and footer components. Instead of we code this two components in every pages, we can make a layout then place this navbar and footer components inside this layout. Then we can use this layout to be applied on all pages that we want.
+
+First, let's create a Layout.jsx components. Place Navbar and Footer components inside it.
+
+```jsx
+import Navbar from "components/header/Navbar";
+import Footer from "components/footer/Footer";
+
+function Layout({ children }) {
+  return (
+    <div className="w-full min-h-screen flex flex-col">
+      <Navbar />
+      <div className="container 2xl:max-w-7xl px-4 mx-auto flex-1">
+        {children}
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
+export default Layout;
+```
+
+If you only have one layout for your entire application, you can create customize `_app.js{:js}` and wrap your application with the layout.
+
+```js
+// pages/_app.js
+import Layout from "../components/layout";
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
+}
+```
