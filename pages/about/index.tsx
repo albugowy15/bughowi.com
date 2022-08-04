@@ -8,9 +8,9 @@ function AboutPage() {
         <title>About - bughowi.com</title>
         <meta name="description" content="Know more about me" />
       </Head>
-      <div className="py-10" />
-      <h1 className="font-bold text-4xl text-center">About Me</h1>
-      <div className="space-y-2 py-3 w-full lg:w-[65%] mx-auto text-gray-900 dark:text-slate-300 text-lg dark:text-lg">
+      <div className="py-4" />
+      <h1 className="font-bold text-3xl sm:text-4xl text-center">About Me</h1>
+      <div id="content-space" className="py-3 w-full lg:w-[65%] mx-auto">
         <h2 className="font-bold text-3xl underline">Introduction</h2>
         <p>
           Hello! &#128075; I&apos;m{" "}
@@ -86,7 +86,7 @@ function AboutPage() {
           email and social media below. I&apos;ll be happy to receive your
           feedback.
         </p>
-        <div className="text-lg p-4 rounded border-gray-800 w-fit flex flex-wrap justify-center gap-5">
+        <div className="text-base sm:text-lg p-4 rounded border-gray-800 w-fit flex flex-wrap justify-center gap-2 sm:gap-5">
           <div className="flex items-center flex-start gap-1 border border-gray-800 p-2 rounded hover:scale-105 hover:cursor-pointer transition">
             <FaEnvelope />
             <p>

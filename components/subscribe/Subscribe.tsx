@@ -21,7 +21,7 @@ const Subscribe = () => {
           method="post"
           target="_blank"
         >
-          <div className="flex w-full items-center justify-center gap-2">
+          <div className="flex flex-wrap w-full items-center justify-center gap-2">
             <input
               type="email"
               ref={inputEl}
@@ -32,7 +32,7 @@ const Subscribe = () => {
             />
             <button
               type="submit"
-              className="flex-1 text-center text-slate-200 bg-blueAccent p-2 rounded font-bold hover:bg-blue-500 transition-colors"
+              className="flex-1 w-28 p-1.5 text-center text-slate-200 bg-blueAccent rounded font-bold hover:bg-blue-500 transition-colors"
             >
               {form.state === Form.Loading ? (
                 <span>Loading...</span>

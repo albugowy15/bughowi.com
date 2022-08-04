@@ -5,7 +5,7 @@ function ProjectCard(project: Project) {
   return (
     <Link href={project.url}>
       <div className="flex flex-col gap-3 bg-slate-200 dark:bg-darkSecondary p-4 border border-slate-300 border-opacity-40 rounded-md hover:scale-[1.02] transition-transform ease-in-out cursor-pointer">
-        <h3 className="font-bold text-2xl">{project.title}</h3>
+        <h3 className="font-bold text-xl sm:text-2xl">{project.title}</h3>
         <p className="text-opacity-80">{project.description}</p>
         <div className="flex flex-wrap gap-3">
           {project.techStack.map((tech, key) => (

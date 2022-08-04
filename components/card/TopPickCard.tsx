@@ -14,7 +14,7 @@ function TopPickCard(pick: Post) {
         />
       </div>
       <div className="flex-1">
-        <div className="flex gap-1">
+        <div className="flex flex-wrap gap-1">
           {pick.categories?.map((category, key) => (
             <p key={key} className="text-yellowAccent text-sm">
               {category.toLocaleString()}

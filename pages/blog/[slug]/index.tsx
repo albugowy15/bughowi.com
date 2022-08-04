@@ -40,14 +40,14 @@ function PostDetail({
         <title>{`${post.title} - Blog | bughowi.com`}</title>
         <meta name="description" content={post.description} />
       </Head>
-      <div className="py-10" />
+      <div className="py-4" />
 
       <main className="w-full lg:w-[65%] mx-auto">
-        <h1 className="text-4xl font-bold">{post.title}</h1>
-        <div className="mt-2 flex justify-start gap-3 items-center text-base">
+        <h1 className="text-2xl sm:text-4xl font-bold">{post.title}</h1>
+        <div className="mt-2 flex justify-start gap-1 sm:gap-3 items-center text-xs sm:text-base">
           <Link href="/about">
             <p className="hover:text-blueAccent transition-colors">
-              By M. K. Bughowi
+              M. K. Bughowi
             </p>
           </Link>
           <span>&#8226;</span>
@@ -67,12 +67,12 @@ function PostDetail({
           <div id="content-space" className="py-3">
             <MDXContent />
           </div>
-          <div className="border-y-2 border-slate-700 dark:border-slate-400 mt-3 text-lg">
-            <p className="py-4">
+          <div className="border-y-2 border-slate-700 dark:border-slate-400 mt-3 text-base sm:text-lg">
+            <p className="py-4 flex flex-wrap items-center gap-2">
               Categories :{" "}
               {post.categories?.map((category, idx) => (
                 <span
-                  className="p-1 bg-blueAccent text-slate-100 rounded-lg mr-3"
+                  className="p-0.5 text-base sm:text-lg bg-blueAccent text-slate-100 rounded-lg"
                   key={idx}
                 >
                   {category.toLocaleString()}

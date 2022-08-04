@@ -21,7 +21,7 @@ const BlogPage = ({
           development topics and programming in general."
         />
       </Head>
-      <div className="py-10" />
+      <div className="py-4" />
       <h2 className="text-center font-bold text-3xl">Blog</h2>
       <p className="text-center py-3 mb-4">
         Welcome to my Blog. Here I share my thoughts related to front end

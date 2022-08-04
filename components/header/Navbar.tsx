@@ -59,6 +59,7 @@ const Navbar = () => {
                   alt="Bughowi.com"
                   layout="fill"
                   priority={true}
+                  objectFit="cover"
                 />
               </div>
 

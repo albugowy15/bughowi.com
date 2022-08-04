@@ -26,10 +26,10 @@ function ProjectDetailPage({ project }: { project: Project }) {
         <title>{`${project.title} - Projects | bughowi.com`}</title>
         <meta name="description" content={project.description} />
       </Head>
-      <div className="py-10" />
+      <div className="py-4" />
 
       <main className="w-full lg:w-[65%] mx-auto">
-        <h1 className="text-3xl font-bold">{project.title}</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold">{project.title}</h1>
         <p className="text-slate-600 dark:text-slate-400">
           {project.description}
         </p>
@@ -37,12 +37,12 @@ function ProjectDetailPage({ project }: { project: Project }) {
           <div id="content-space" className="py-3">
             <MDXContent />
           </div>
-          <div className="mt-3">
-            <p className="py-4">
+          <div className="border-y-2 border-slate-700 dark:border-slate-400 mt-3 text-base sm:text-lg">
+            <p className="py-4 flex flex-wrap items-center gap-2">
               Tech Stack :{" "}
               {project.techStack?.map((tech, idx) => (
                 <span
-                  className="p-1 bg-blueAccent text-slate-200 rounded-lg mr-3"
+                  className="p-0.5 text-base sm:text-lg bg-blueAccent text-slate-100 rounded-lg"
                   key={idx}
                 >
                   {tech.toLocaleString()}

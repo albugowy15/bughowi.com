@@ -13,7 +13,7 @@ function ProjectsPage({ projects }: { projects: Project[] }) {
           content="Showcase of the projects I've work on"
         />
       </Head>
-      <div className="py-10" />
+      <div className="py-4" />
       <h2 className="text-center font-bold text-3xl">Projects</h2>
       <p className="text-center py-3">
         Showcase of the projects I&apos;ve work on
