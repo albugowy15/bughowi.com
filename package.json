@@ -27,7 +27,7 @@
     "rehype-pretty-code": "^0.3.2",
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
-    "sass": "^1.54.0",
+    "sass": "^1.54.3",
     "shiki": "^0.10.1",
     "zustand": "^4.0.0"
   },
