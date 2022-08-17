@@ -1,6 +1,6 @@
 import PostCard from "components/card/PostCard";
 import FeaturedPost from "components/posts/FeaturedPost";
-import { Post } from "contentlayer/generated";
+import { Post } from "../../../.contentlayer/generated";
 import Head from "next/head";
 import { getAllPosts } from "utils/contents";
 
@@ -45,7 +45,7 @@ export default BlogPage;
 
 export async function getStaticProps() {
   const posts = getAllPosts();
-  const featuredPost = posts.find((post) => post.isFeatured === true);
+  const featuredPost = posts.find((post: Post) => post.isFeatured === true);
   return {
     props: { posts, featuredPost },
   };

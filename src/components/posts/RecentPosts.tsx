@@ -1,5 +1,5 @@
 import PostCard from "components/card/PostCard";
-import { Post } from "contentlayer/generated";
+import { Post } from "../../../.contentlayer/generated";
 import Link from "next/link";
 
 const RecentPosts = ({ posts }: { posts: Post[] }) => {

@@ -1,4 +1,4 @@
-import { Project } from "contentlayer/generated";
+import { Project } from "../../../.contentlayer/generated";
 import Link from "next/link";
 
 function ProjectCard(project: Project) {

@@ -121,7 +121,7 @@ const Project = defineDocumentType(() => ({
 }));
 
 const contentLayerConfig = makeSource({
-  contentDirPath: "contents",
+  contentDirPath: "src/contents",
   documentTypes: [Post, Project],
   mdx: {
     remarkPlugins: [remarkGfm],

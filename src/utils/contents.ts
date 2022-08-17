@@ -1,7 +1,6 @@
-import { allPosts, allProjects } from "contentlayer/generated";
-import { compareDesc } from "date-fns";
-import { Post } from "contentlayer/generated";
-import { format, parseISO } from "date-fns";
+import { allPosts, allProjects } from "../../.contentlayer/generated";
+import { compareDesc, format, parseISO } from "date-fns";
+import { Post } from "../../.contentlayer/generated";
 
 
 export function getAllPosts(){

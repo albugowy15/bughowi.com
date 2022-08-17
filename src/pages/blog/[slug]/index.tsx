@@ -1,5 +1,5 @@
-import { allPosts } from ".contentlayer/generated";
-import { Post } from "contentlayer/generated";
+import { allPosts } from "../../../../.contentlayer/generated";
+import { Post } from "../../../../.contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -11,7 +11,6 @@ import Link from "next/link";
 import Giscus from "@giscus/react";
 import { useThemeStore } from "store/store";
 import TopPickCard from "components/card/TopPickCard";
-import { Router, useRouter } from "next/router";
 
 function PostDetail({
   post,

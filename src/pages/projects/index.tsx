@@ -1,5 +1,5 @@
 import ProjectCard from "components/card/ProjectCard";
-import { Project } from "contentlayer/generated";
+import { Project } from "../../../.contentlayer/generated";
 import Head from "next/head";
 import { getAllProjects } from "utils/contents";
 

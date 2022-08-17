@@ -2,7 +2,7 @@ import Intro from "components/intro/Intro";
 import RecentPosts from "components/posts/RecentPosts";
 import PersonalProjects from "components/projects/PersonalProjects";
 import Head from "next/head";
-import { Post, Project } from "contentlayer/generated";
+import { Post, Project } from "../../.contentlayer/generated";
 import { getAllPosts, getAllProjects } from "utils/contents";
 
 const Home = ({ posts, projects }: { posts: Post[]; projects: Project[] }) => {
