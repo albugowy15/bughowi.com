@@ -1,7 +1,7 @@
 ---
 title: Next.js Core Concepts and Features
 date: 2022-08-03
-description: Learn all the key features that make up Next.js and why we shoud Next.js in our project
+description: Learn all the key features that make up Next.js and why we should use Next.js in our project
 categories: ["next.js", "javascript"]
 thumbnail: https://user-images.githubusercontent.com/49820990/182567373-faa399fb-f45e-440a-ad02-d94fffde2e71.png
 isFeatured: false
@@ -26,7 +26,7 @@ Let's now take a closer look at the actual features added by Next.js.
 
 ### 1. Server-side Rendering
 
-I would say the most important key feature Next.js adds is the built-in Server-side rendering support. Server-side rendering is all about preparing the content of a page on the server instead of on the client. if that page would be pre-rendered on the server and data fetching somehow could be done on the server too, when the request hits that server and then the finished page would be served to users and to the search engine crawlers. Then users would not have flickering loading state and search engines would see our page content.
+I would say the most important key feature Next.js adds is the built-in Server-side rendering support. Server-side rendering is all about preparing the content of a page on the server instead on the client. If that page would be pre-rendered on the server and data fetching somehow could be done on the server too, when the request hits that server and then the finished page would be served to users and to the search engine crawlers. Then users would not have flickering loading state and search engines would see our page content.
 
 React actually has built-in features that allow you to add server-side rendering, but it can be tricky to get that right and it requires extra setup. With Nextjs that becomes way easier.
 
@@ -36,7 +36,7 @@ Another very nice feature added by Next.js is file based routing. With Next.js, 
 
 ### 3. Built-in Backend API Routes
 
-Here is the feature which is most important for me labeling Next.js a full stack framework because Next.js also makes it easy for us as a developer to add back-end code to our React project. With Next.js, it's very easy to add our own backend api using Node.js code. We don't have to build a standalone rest api project but instead we can work on one project.
+Here is the feature which is most important for me labeling Next.js a full stack framework because Next.js also makes it easy to add back-end code to our React project. With Next.js, it's very easy to add our own backend api using Node.js code. We don't have to build a standalone rest api project but instead we can work on one project.
 
 ## Create Next.js Project
 
@@ -46,9 +46,9 @@ Let's get started and create a first Next.js project. For this we just need to r
 npx create-next-app project-name
 ```
 
-The three important folders here are pages, public, and styles. Pages is by far the most important one. Styles holds some css style files. And public simply holds public resources that our page might use something like images.
+The three important folders here are pages, public, and styles. Pages is the most important one. Styles holds some css style files. And public simply holds public resources that our page might use likes images.
 
-Pages folder will be the most important folder because that is where we will set up file based routing. This folder is important for us to define different pages that should make up our application.
+Pages folder will be the most important folder because that is where we set up file based routing. This folder is important for us to define different pages that should make up our application.
 
 ## File Routing
 
@@ -56,9 +56,9 @@ Open index.js file inside pages folder, you will see a standard react component.
 
 We can start the development server with `npm run dev{:shell}`. Then you can visit `localhost:3000{:js}` through browser.
 
-But how if we want to implement dynamic routes in Next.js?. For that, we change the file name to `[dynamicPath].js{:js}` if it's a folder, or `[dynamicPath]{:js}` if it's a folder. You can replace `dynamicPath{:js}` with any identifier that you want for your dynamin routing. This tells Next.js that this will be a dynamic page so that it should be loaded for different values in your path
+But how if we want to implement dynamic routes in Next.js?. For that, we change the file name to `[dynamicPath].js{:js}` if it's a file, or `[dynamicPath]{:js}` if it's a folder. You can replace `dynamicPath{:js}` with any identifier that you want for your dynamic routing. This tells Next.js that this will be a dynamic page so that should be loaded for different values in your path.
 
-When a user visits this page, to extract the concrete value entered in the url when this page is loaded, Next.js gives us a special hook. You can import `useRouter{:js}` from `next-router{:js}`. We can call this hook inside of the page simply like this
+When a user visits this page, to extract the concrete value entered in the url when this page is loaded, Next.js gives us a special hook. You can import `useRouter{:js}` from `next-router{:js}`. We can call this hook inside of the page simply like this.
 
 ```js
 // pages/[news].js
@@ -90,9 +90,9 @@ export default function NewsDetail() {
 
 ## Link Component
 
-So basically, Next.js gives us a Link component. This Link component allows us to route between pages. The link component is only used to navigate for client-side transitions.And when I say client side, I mean literally using the HTML5 push state browser, and it's navigating purely on the client side, there's no request to the server. So if you're trying to get that SPA-like fast navigation behavior, you use the Link component.
+So basically, Next.js gives us a Link component. This Link component allows us to route between pages. The Link component is only used to navigate for client-side transitions. And when I say client side, I mean literally using the HTML5 push state browser, and it's navigating purely on the client side, there's no request to the server. So if you're trying to get that SPA-like fast navigation behavior, you use the Link component.
 
-And let's just talk about it a little bit. So it's a little different than what you might have used before. So the first thing is that it has this `href{:js}` prop on it, which is very similar to an href on anchor tag, except it actually doesn't take an href. So you're not gonna put a full URL here. Remember, this is client-side routing, so everything's gonna be pretty much relative here. It's relative to the pages directory.
+And let's just talk about it a little bit. So it's a little different than what you might have used before. So the first thing is that it has `href{:js}` prop, which is very similar to an href on anchor tag, except it actually doesn't take an href. So you're not gonna put a full URL here. Remember, this is client-side routing, so everything's gonna be pretty much relative here. It's relative to the pages directory.
 
 For example I want to navigate to news page from home page. Then inside Home page, call Link component and pass "/news" to href props.
 
@@ -115,11 +115,9 @@ Next.js gives us two forms of pre-rendering which we can use for controlling how
 
 ### 1. Static Generation
 
-Now we're going to start with static generation because that is the approach which you typically should. When using static generation, page component is pre-rendered when you build your application. By default your page is not pre-rendered on the server when a request reaches the server, but instead it is pre-rendered when you build your site for production. That means after it was deployed, the pre-rendered page does not change, at least not by default. If you then updated the data you know that the pre-rendered page needs to change, you need to start build process again and redeploy.
+When using static generation, page component is pre-rendered when you build your application. By default your page is not pre-rendered on the server when a request reaches the server, but instead it is pre-rendered when you build your site for production. That means after it was deployed, the pre-rendered page does not change, at least not by default. If you then updated the data you know that the pre-rendered page needs to change, you need to start build process again and redeploy.
 
-That might sound worse because for a lot of applications, pages content don't change all the time page. And if it should change frequently, there are alternatives
-
-If you need to add data fetching to a page component, you can do so by exporting a special function inside page component file. In there you can export a function a function called `getStaticProps(){:js}`. Itss job is to prepare props for this page. `getStaticProps(){:js}` is allowed to be asynchronous. In `getStaticProps(){:js}` you can execute any code that would executed during the build process. You can do whatever you want, for example fetch data from an api, or from a database. Whatever you did to get data, you need you need to return an object. In this object you can configure various things, but most importantly you typically set a `props{:js}` property here that holds another object which will be the props object you receive in your component function.
+If you need to add data fetching to a page component, you can do so by exporting a special function inside page component file. In there you can export a function a function called `getStaticProps(){:js}`. It's job is to prepare props for this page. `getStaticProps(){:js}` is allowed to be asynchronous. In `getStaticProps(){:js}` you can execute any code that would executed during the build process. You can do whatever you want, for example fetch data from an api, or from a database. Whatever you did to get data, you need to return an object. In this object you can configure various things, but most importantly you typically set a `props{:js}` property here that holds another object which will be the props object you receive in your component function.
 
 ```js
 export async function getStaticProps() {
@@ -148,7 +146,7 @@ export async function getStaticProps() {
 }
 ```
 
-If we want to fetch data inside dynamic page, then we also need to specify how many pages we want to fetch it's data. For that, we use the getStaticPaths function to fetch something that will be unique for each newly created page. For example, we are going to fetch slug from url.
+If we want to fetch data inside dynamic page, then we also need to specify how many pages we want to fetch it's data. For that, we use the `getStaticPaths(){:js}` function to fetch something that will be unique for each newly created page. For example, we are going to fetch slug from url.
 
 ```js
 export async function getStaticPaths() {
@@ -167,7 +165,7 @@ This function has to be return a prop called `paths{:js}`. We add the `fallback{
 
 ### 2. Server-side Rendering
 
-Sometimes you really want to regenerate this page for every incoming request to server. Then there is `getServerSideProps(){:js}` function. This function will now run always on the server after deployment. You will still return an object here. An object with a props property because after all this function still getting the props for page component. You can still fetch data from an api here or from the file system, whatever you want to do. Any code you write in here will always run on the server.
+Sometimes you really want to regenerate page for every incoming request to server. Then there is `getServerSideProps(){:js}` function. This function will now run always on the server after deployment. You will still return an object here. An object with a props property because after all this function still getting the props for page component. You can still fetch data from an api here or from the file system, whatever you want to do. Any code you write in here will always run on the server.
 
 ```js
 export async function getServerSideProps() {
@@ -199,9 +197,9 @@ export async function getServerSideProps(context) {
 
 ## API Routes
 
-Next.js makes it easy for us to build a backend api together with our front-end in the same project. For this we can use api routes. API routes are special routes pages which don't return html code, but accepting incoming http requests, post, patch, put, delete, or whatever you need with json data attached to them. Then it might do whatever you need to do. For example, store data in a database and then return json data. So you could say api routes allow you to build your own api endpoints as part of this Next.js project and they will be served by the same server.
+API routes are special routes pages which don't return html code, but accepting incoming http requests, post, patch, put, delete, or whatever you need with json data attached to them. Then it might do whatever you need to do. For example, store data in a database and then return json data. So you could say api routes allow you to build your own api endpoints as part of this Next.js project and they will be served by the same server.
 
-To add api routes, you add a special folder in your `pages{:js}` named `api{:js}`. Next js will pick up any javascript files stored in there and turn those files into endpoints that can be targeted by requests. And that should receive json and return json.
+To add api routes, you add a special folder in your `pages{:js}` named `api{:js}`. Next.js will pick up any javascript files stored in there and turn those files into endpoints that can be targeted by requests. And that should receive json and return json.
 
 In this api folder you can add javascript files where the file names will act as path segments in the url. For example, you add `news.js{:js}` file inside `pages/api{:js}`. It will look like `pages/api/news.js{:js}`. Whenever a request is sent to `/api/news{:js}`. It will trigger the function which we have to define in `news.js{:js}`.
 
@@ -217,7 +215,7 @@ export default function handler(req, res) {
 
 ## Head Element
 
-Adding head elements to our Next.js pages is very simple. To do that we can import a special component offered by Next.js that is `Head{:html}` compoenent from `next/head{:js}`. this component allows you to add head elements to the head section of your page. For example, I want to add title and description for my NewsDetail page.
+Adding head elements to our Next.js pages is very simple. To do that we can import a special component offered by Next.js that is `Head{:html}` compoenent from `next/head{:js}`. This component allows you to add head elements to the head section of your page. For example, I want to add title and description for my NewsDetail page.
 
 ```js
 import Head from 'next/head'
@@ -303,7 +301,7 @@ function Layout({ children }) {
 export default Layout;
 ```
 
-If you only have one layout for your entire application, you can create customize `_app.js{:js}` and wrap your application with the layout.
+If you only have one layout for your entire application, you can customize `_app.js{:js}` and wrap your application with the layout.
 
 ```js
 // pages/_app.js
