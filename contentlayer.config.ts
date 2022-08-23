@@ -1,21 +1,61 @@
-import rehypeToc from "@microflash/rehype-toc";
+// import rehypeToc from "@microflash/rehype-toc";
 import {
   defineDocumentType,
   defineNestedType,
   makeSource,
 } from "contentlayer/source-files";
+import { MDXOptions } from "contentlayer/core";
 import readingTime from "reading-time";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import rehypeToc from "@jsdevtools/rehype-toc";
+
+interface RehypeElement {
+  type: string;
+  tagName?: string;
+  value?: string;
+  properties?: {
+    className?: string;
+
+  };
+  children?: Array<RehypeElement>
+}
+
+const customizeTOC = (toc: RehypeElement): RehypeElement | null => {
+  try {
+    const { children } = toc;
+    const childrenOfChildren = children?.[0]?.children;
+    if (!children?.length || !childrenOfChildren?.length) return null;
+  } catch (e) {}
+  return {
+    type: "element",
+    tagName: "div",
+    properties: { className: "toc" },
+    children: [
+      {
+        type: "element",
+        tagName: "p",
+        properties: { className: "title" },
+        children: [
+          {
+            type: "text",
+            value: "Table of Contents",
+          },
+        ],
+      },
+      ...(toc.children || []),
+    ],
+  };
+};
 
 const options = {
   // Use one of Shiki's packaged themes
   theme: "one-dark-pro",
   // Or your own JSON theme
-  onVisitLine(node) {
+  onVisitLine(node: any) {
     // Prevent lines from collapsing in `display: grid` mode, and
     // allow empty lines to be copy/pasted
     if (node.children.length === 0) {
@@ -23,10 +63,10 @@ const options = {
     }
   },
   // Feel free to add classNames that suit your docs
-  onVisitHighlightedLine(node) {
+  onVisitHighlightedLine(node: any) {
     node.properties.className.push("highlighted");
   },
-  onVisitHighlightedWord(node) {
+  onVisitHighlightedWord(node: any) {
     node.properties.className = ["word"];
   },
 };
@@ -96,7 +136,7 @@ const Project = defineDocumentType(() => ({
   fields: {
     title: {
       type: "string",
-      required: "true",
+      required: true,
     },
     description: {
       type: "string",
@@ -128,7 +168,12 @@ const contentLayerConfig = makeSource({
     rehypePlugins: [
       rehypeCodeTitles,
       rehypeSlug,
-      rehypeToc,
+      [
+        rehypeToc,
+        {
+          customizeTOC,
+        },
+      ],
       [rehypeExternalLinks, { target: "_blank", rel: "noreferrer" }],
       [rehypePrettyCode, options],
     ],
