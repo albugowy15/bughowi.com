@@ -11,23 +11,19 @@ html {
   @apply scroll-smooth relative min-h-full;
 }
 
-#table-of-contents {
-  @apply bg-slate-200 dark:bg-darkSecondary p-3 rounded-md w-fit my-3;
+.toc {
+  @apply my-4 ml-3;
 }
 
-#table-of-contents {
-  summary {
-    @apply font-bold text-xl mb-3 hover:cursor-pointer w-fit;
+.toc {
+  .title {
+    @apply font-bold text-white text-xl;
   }
-}
-
-.toc-items {
-  @apply space-y-1;
-}
-
-.toc-items {
-  li {
-    @apply list-none text-slate-700 dark:text-slate-400 hover:text-blueAccent dark:hover:text-blueAccent transition-colors w-fit;
+  .toc-item {
+    @apply text-[#91a9df];
+  }
+  .toc-link {
+    @apply hover:underline underline-offset-2 hover:text-[#9cafdc] transition-transform ease-linear;
   }
 }
 
