@@ -15,7 +15,7 @@ function ProjectsPage({ projects }: { projects: Project[] }) {
       </Head>
       <div className="py-4" />
       <h2 className="text-center font-bold text-3xl">Projects</h2>
-      <p className="text-center py-3">
+      <p className="text-center py-3 text-lg">
         Showcase of the projects I&apos;ve work on
       </p>
       <div className="w-full grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

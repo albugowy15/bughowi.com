@@ -99,7 +99,7 @@ The compiler is basically very sophisticated. There's a ton of different options
 
 The `tsconfig.json{:json}` can be be pretty overwhelming at first but there is usually only this options that you have to think about for the most part.
 
-### `target{:js}`
+### target
 
 The first one target and this is the flavor of JavaScript that your code will compiled to. So if we set target to `esnext{:js}` and then run tsc, you'll see that it compiles our code with async await natively. It's targeting the latest verison of JavaScript which supports that syntax.
 
@@ -112,7 +112,7 @@ The first one target and this is the flavor of JavaScript that your code will co
 }
 ```
 
-### `watch{:js}`
+### watch
 
 Another option that we want to set right away is `"watch": true{:js}` which will just recompile our code every time we save the file. It will just save us from rerunning the `tsc{:shell}` command after every change.
 
@@ -126,7 +126,7 @@ Another option that we want to set right away is `"watch": true{:js}` which will
 }
 ```
 
-### `lib{:js}`
+### lib
 
 The next option we will look at is lib which allows us to automatically include typings for certain environtments such as the `DOM{:js}` or `ES 2017{:js}`. So if you're building a web application you'd want to include that **DOM** library which allows TypeScript to compile your code with all the native DOM classes without any compilation error.
 

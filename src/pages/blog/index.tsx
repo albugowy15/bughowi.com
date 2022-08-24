@@ -23,7 +23,7 @@ const BlogPage = ({
       </Head>
       <div className="py-4" />
       <h2 className="text-center font-bold text-3xl">Blog</h2>
-      <p className="text-center py-3 mb-4">
+      <p className="text-center py-3 mb-4 text-lg">
         Welcome to my Blog. Here I share my thoughts related to front end
         development topics and programming in general. I&apos;ve always been a
         fan of writing, and I hope you can find something here that could help
@@ -45,7 +45,7 @@ export default BlogPage;
 
 export async function getStaticProps() {
   const posts = getAllPosts();
-  const featuredPost = posts.find((post: Post) => post.isFeatured === true);
+  const featuredPost = posts.find((post) => post.isFeatured === true);
   return {
     props: { posts, featuredPost },
   };

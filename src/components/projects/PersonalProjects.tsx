@@ -1,10 +1,18 @@
 import { Project } from "../../../.contentlayer/generated";
 import Link from "next/link";
 import ProjectCard from "../card/ProjectCard";
+import { motion } from "framer-motion";
 
 function PersonalProjects({ projects }: { projects: Project[] }) {
   return (
-    <section id="personal-projects" className="my-8">
+    <motion.section
+      initial={{ opacity: 0.1, scale: 0 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ type: "spring", duration: 1 }}
+      viewport={{ once: true }}
+      id="personal-projects"
+      className="my-8"
+    >
       <Link href="/projects">
         <h2 className="text-3xl font-bold hover:cursor-pointer hover:text-blueAccent w-fit transition-colors">
           Personal Projects
@@ -15,7 +23,7 @@ function PersonalProjects({ projects }: { projects: Project[] }) {
           <ProjectCard key={project.url} {...project} />
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
 

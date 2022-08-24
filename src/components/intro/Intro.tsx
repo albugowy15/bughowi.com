@@ -1,9 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 import OutlineGradientButton from "../button/OutlineGradientButton";
+import { motion } from "framer-motion";
 
 const Intro = () => {
   return (
-    <div className="h-screen text-center flex flex-col items-center justify-center">
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{
+        type: "spring",
+        duration: 1,
+        delay: 0.5,
+      }}
+      className="h-screen text-center flex flex-col items-center justify-center"
+    >
       <div>
         <p className="text-3xl sm:text-5xl font-black my-3">
           Hi <span>&#128075;</span> I'm{" "}
@@ -23,7 +33,7 @@ const Intro = () => {
           <OutlineGradientButton url="/about" title="About Me" />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

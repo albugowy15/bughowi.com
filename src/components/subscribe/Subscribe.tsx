@@ -7,7 +7,7 @@ const Subscribe = () => {
 
   return (
     <footer className="mx-auto p-5 w-full">
-      <div className="bg-slate-200 dark:bg-darkSecondary w-full max-w-xl rounded border border-gray-700 p-5 mx-auto">
+      <div className="bg-darkSecondary w-full max-w-xl rounded border border-gray-700 p-5 mx-auto">
         <p className="font-bold text-lg">Subscribe to the newsletter</p>
 
         <p className="py-1">
@@ -26,7 +26,7 @@ const Subscribe = () => {
               type="email"
               ref={inputEl}
               id="email"
-              className="flex-auto bg-slate-100 dark:bg-darkPrimary border border-slate-400 dark:border-darkSecondary text-slate-800 dark:text-slate-400 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2"
+              className="flex-auto bg-darkPrimary border border-darkSecondary text-slate-400 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2"
               placeholder="name@gmail.com"
               required
             />

@@ -6,7 +6,15 @@ import { Post } from "../../.contentlayer/generated";
 export function getAllPosts(){
     const posts = allPosts.sort((a, b) => {
         return compareDesc(new Date(a.date), new Date(b.date));
-    });
+    }).map((post) => ({
+      date: post.date,
+      readingTime: post.readingTime,
+      thumbnail: post.thumbnail,
+      title: post.title,
+      url: post.url,
+      categories: post.categories,
+      isFeatured: post.isFeatured,
+    }));
 
     return posts
 }
@@ -14,7 +22,13 @@ export function getAllPosts(){
 export function getAllProjects() {
     const projects = allProjects.sort((a,b) => {
         return compareDesc(new Date(a.date), new Date(b.date))
-    })
+    }).map((project) => ({
+      date: project.date,
+      title: project.title,
+      description: project.description,
+      url: project.url,
+      techStack: project.techStack,
+    }));
 
     return projects
 }

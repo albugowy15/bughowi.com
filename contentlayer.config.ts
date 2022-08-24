@@ -4,7 +4,6 @@ import {
   defineNestedType,
   makeSource,
 } from "contentlayer/source-files";
-import { MDXOptions } from "contentlayer/core";
 import readingTime from "reading-time";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypeExternalLinks from "rehype-external-links";
@@ -12,6 +11,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import rehypeToc from "@jsdevtools/rehype-toc";
+import {options} from "./src/utils/contents"
 
 interface RehypeElement {
   type: string;
@@ -49,26 +49,6 @@ const customizeTOC = (toc: RehypeElement): RehypeElement | null => {
       ...(toc.children || []),
     ],
   };
-};
-
-const options = {
-  // Use one of Shiki's packaged themes
-  theme: "one-dark-pro",
-  // Or your own JSON theme
-  onVisitLine(node: any) {
-    // Prevent lines from collapsing in `display: grid` mode, and
-    // allow empty lines to be copy/pasted
-    if (node.children.length === 0) {
-      node.children = [{ type: "text", value: " " }];
-    }
-  },
-  // Feel free to add classNames that suit your docs
-  onVisitHighlightedLine(node: any) {
-    node.properties.className.push("highlighted");
-  },
-  onVisitHighlightedWord(node: any) {
-    node.properties.className = ["word"];
-  },
 };
 
 const Category = defineNestedType(() => ({
@@ -141,6 +121,9 @@ const Project = defineDocumentType(() => ({
     description: {
       type: "string",
       required: true,
+    },
+    thumbnail: {
+      type: "string",
     },
     date: {
       type: "date",

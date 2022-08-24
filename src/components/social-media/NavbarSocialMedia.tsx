@@ -14,7 +14,7 @@ function NavbarSocialMedia() {
         aria-label="Author facebook"
         target="_blank"
         rel="noreferrer"
-        className="text-slate-800 dark:text-slate-300 dark:hover:text-blue-600 transition-colors ease-linear"
+        className="text-slate-300 hover:text-blue-600 transition-colors ease-linear"
       >
         <AiFillFacebook size={25} />
       </a>
@@ -23,7 +23,7 @@ function NavbarSocialMedia() {
         aria-label="Author Twitter"
         target="_blank"
         rel="noreferrer"
-        className="text-slate-800 dark:text-slate-300 dark:hover:text-sky-400 transition-colors ease-linear"
+        className="text-slate-300 hover:text-sky-400 transition-colors ease-linear"
       >
         <AiFillTwitterSquare size={25} />
       </a>
@@ -32,7 +32,7 @@ function NavbarSocialMedia() {
         aria-label="Author Instagram"
         target="_blank"
         rel="noreferrer"
-        className="text-slate-800 dark:text-slate-300 dark:hover:text-pink-600 transition-colors ease-linear"
+        className="text-slate-300 hover:text-pink-600 transition-colors ease-linear"
       >
         <FaInstagram size={25} />
       </a>
@@ -41,7 +41,7 @@ function NavbarSocialMedia() {
         aria-label="Author Github"
         target="_blank"
         rel="noreferrer"
-        className="text-slate-800 dark:text-slate-300 dark:hover:text-slate-700 transition-colors ease-linear"
+        className="text-slate-300 hover:text-slate-700 transition-colors ease-linear"
       >
         <AiFillGithub size={25} />
       </a>
@@ -50,7 +50,7 @@ function NavbarSocialMedia() {
         aria-label="Author Linkedin"
         target="_blank"
         rel="noreferrer"
-        className="text-slate-800 dark:text-slate-300 dark:hover:text-blue-800 transition-colors ease-linear"
+        className="text-slate-300 hover:text-blue-800 transition-colors ease-linear"
       >
         <AiFillLinkedin size={25} />
       </a>
