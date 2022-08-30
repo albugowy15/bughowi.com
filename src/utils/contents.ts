@@ -7,6 +7,7 @@ export function getAllPosts(){
     const posts = allPosts.sort((a, b) => {
         return compareDesc(new Date(a.date), new Date(b.date));
     }).map((post) => ({
+      description: post.description,
       date: post.date,
       readingTime: post.readingTime,
       thumbnail: post.thumbnail,
