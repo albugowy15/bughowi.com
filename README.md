@@ -1,4 +1,4 @@
-![bughowi.com homepage preview](https://user-images.githubusercontent.com/49820990/182026390-ef94974c-63a1-4614-821a-1c0ef6016c60.png)
+![bughowi.com homepage preview](https://user-images.githubusercontent.com/49820990/188320807-8d2143c9-5786-4f4b-bbed-2d4bb32069b9.png)
 
 ## Description
 
