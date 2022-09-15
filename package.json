@@ -13,7 +13,7 @@
 		"@giscus/react": "^2.2.0",
 		"@jsdevtools/rehype-toc": "^3.0.2",
 		"contentlayer": "0.2.6",
-		"date-fns": "^2.29.2",
+		"date-fns": "^2.29.3",
 		"framer-motion": "^7.3.5",
 		"next": "12.2.5",
 		"next-contentlayer": "0.2.6",
