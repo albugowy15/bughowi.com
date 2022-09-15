@@ -17,7 +17,7 @@
 		"framer-motion": "^7.2.1",
 		"next": "12.2.5",
 		"next-contentlayer": "0.2.6",
-		"next-sitemap": "^3.1.21",
+		"next-sitemap": "^3.1.22",
 		"nextjs-progressbar": "0.0.14",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
@@ -34,7 +34,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "18.7.13",
-		"@types/react": "18.0.17",
+		"@types/react": "18.0.20",
 		"@types/react-dom": "18.0.6",
 		"autoprefixer": "^10.4.8",
 		"eslint": "8.23.0",
