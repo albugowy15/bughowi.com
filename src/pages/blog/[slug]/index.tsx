@@ -8,15 +8,36 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import Link from "next/link";
 import Giscus from "@giscus/react";
 import { motion } from "framer-motion";
+import useOpenGraph from "hooks/useOpenGraph";
+import OpenGraph from "components/common/OpenGraph";
 
 function PostDetail({ post }: { post: Post }) {
   const MDXContent = useMDXComponent(post.body.code);
+
+  const ogProperties = useOpenGraph({
+    url: "https://www.bughowi.com" + post.url,
+    title: post.title,
+    image: {
+      type: "image/png",
+      url: post.thumbnail,
+      alt: post.description,
+    },
+    description: post.description,
+    type: "article",
+    author: "Mohamad Kholid Bughowi",
+    section: "Blog Posts",
+    modified_time: post.date,
+    published_time: post.date,
+    site_name: "Bughowi.com",
+  });
 
   return (
     <>
       <Head>
         <title>{`${post.title} - Blog | bughowi.com`}</title>
         <meta name="description" content={post.description} />
+
+        <OpenGraph properties={ogProperties} />
       </Head>
       <div className="py-4" />
 
