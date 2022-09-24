@@ -61,7 +61,7 @@ const Navbar = () => {
                   <p
                     className={`${
                       router.pathname === "/"
-                        ? "text-blueAccent bg-darkSecondary rounded"
+                        ? "text-blue-400 bg-darkSecondary rounded"
                         : ""
                     }
                     font-bold cursor-pointer hover:text-blueAccent hover:bg-darkSecondary hover:rounded transition-colors duration-300 px-1 py-0.5
@@ -77,7 +77,7 @@ const Navbar = () => {
                     className={`${
                       router.pathname === "/blog" ||
                       router.pathname === "/blog/[slug]"
-                        ? "text-blueAccent bg-darkSecondary rounded"
+                        ? "text-blue-400 bg-darkSecondary rounded"
                         : ""
                     }
                     font-bold cursor-pointer hover:text-blueAccent hover:bg-darkSecondary hover:rounded transition-colors duration-300 px-1 py-0.5
@@ -93,7 +93,7 @@ const Navbar = () => {
                     className={`${
                       router.pathname === "/projects" ||
                       router.pathname === "/projects/[slug]"
-                        ? "text-blueAccent bg-darkSecondary rounded"
+                        ? "text-blue-400 bg-darkSecondary rounded"
                         : ""
                     }
                     font-bold cursor-pointer hover:text-blueAccent hover:bg-darkSecondary hover:rounded transition-colors duration-300 px-1 py-0.5
@@ -108,7 +108,7 @@ const Navbar = () => {
                   <p
                     className={`${
                       router.pathname === "/about"
-                        ? "text-blueAccent bg-darkSecondary rounded"
+                        ? "text-blue-400 bg-darkSecondary rounded"
                         : ""
                     }
                     font-bold cursor-pointer hover:text-blueAccent hover:bg-darkSecondary hover:rounded transition-colors duration-300 px-1 py-0.5
