@@ -2,8 +2,24 @@ import ProjectCard from "components/card/ProjectCard";
 import { Project } from "../../../.contentlayer/generated";
 import Head from "next/head";
 import { getAllProjects } from "utils/contents";
+import useOpenGraph from "hooks/useOpenGraph";
+import OpenGraph from "components/common/OpenGraph";
 
 function ProjectsPage({ projects }: { projects: Project[] }) {
+  const ogProperties = useOpenGraph({
+    url: "https://www.bughowi.com/projects",
+    title: "Projects | bughowi.com",
+    image: {
+      type: "image/png",
+      url: "https://user-images.githubusercontent.com/49820990/188320807-8d2143c9-5786-4f4b-bbed-2d4bb32069b9.png",
+      alt: "Showcase of the projects I've work on",
+    },
+    description: "Showcase of the projects I've work on",
+    type: "website",
+    site_name: "Bughowi.com",
+    author: "Mohamad Kholid Bughowi",
+  });
+
   return (
     <>
       <Head>
@@ -12,6 +28,8 @@ function ProjectsPage({ projects }: { projects: Project[] }) {
           name="description"
           content="Showcase of the projects I've work on"
         />
+
+        <OpenGraph properties={ogProperties} />
       </Head>
       <div className="py-4" />
       <h2 className="text-center font-bold text-3xl">Projects</h2>

@@ -2,13 +2,31 @@ import Head from "next/head";
 import { SiTypescript, SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { FaEnvelope, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
+import useOpenGraph from "hooks/useOpenGraph";
+import OpenGraph from "components/common/OpenGraph";
 
 function AboutPage() {
+  const ogProperties = useOpenGraph({
+    url: "https://www.bughowi.com/about",
+    title: "About | bughowi.com",
+    image: {
+      type: "image/png",
+      url: "https://user-images.githubusercontent.com/49820990/188320807-8d2143c9-5786-4f4b-bbed-2d4bb32069b9.png",
+      alt: "Know more about me",
+    },
+    description: "Know more about me",
+    type: "website",
+    site_name: "Bughowi.com",
+    author: "Mohamad Kholid Bughowi",
+  });
+
   return (
     <>
       <Head>
         <title>About - bughowi.com</title>
         <meta name="description" content="Know more about me" />
+
+        <OpenGraph properties={ogProperties} />
       </Head>
       <div className="py-4" />
       <motion.div

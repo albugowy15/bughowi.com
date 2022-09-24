@@ -3,6 +3,8 @@ import FeaturedPost from "components/posts/FeaturedPost";
 import { Post } from "../../../.contentlayer/generated";
 import Head from "next/head";
 import { getAllPosts } from "utils/contents";
+import useOpenGraph from "hooks/useOpenGraph";
+import OpenGraph from "components/common/OpenGraph";
 
 const BlogPage = ({
   posts,
@@ -11,6 +13,21 @@ const BlogPage = ({
   posts: Post[];
   featuredPost: Post;
 }) => {
+  const ogProperties = useOpenGraph({
+    url: "https://www.bughowi.com/blog",
+    title: "Blog | bughowi.com",
+    image: {
+      type: "image/png",
+      url: "https://user-images.githubusercontent.com/49820990/188320807-8d2143c9-5786-4f4b-bbed-2d4bb32069b9.png",
+      alt: "Here I share my thoughts related to front end development topics and programming in general",
+    },
+    description:
+      "Here I share my thoughts related to front end development topics and programming in general",
+    type: "website",
+    site_name: "Bughowi.com",
+    author: "Mohamad Kholid Bughowi",
+  });
+
   return (
     <>
       <Head>
@@ -20,6 +37,7 @@ const BlogPage = ({
           content="Here I share my thoughts related to front end
           development topics and programming in general."
         />
+        <OpenGraph properties={ogProperties} />
       </Head>
       <div className="py-4" />
       <h2 className="text-center font-bold text-3xl">Blog</h2>
