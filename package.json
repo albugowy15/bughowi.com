@@ -14,7 +14,7 @@
 		"@jsdevtools/rehype-toc": "^3.0.2",
 		"contentlayer": "0.2.6",
 		"date-fns": "^2.29.3",
-		"framer-motion": "^7.3.5",
+		"framer-motion": "^7.5.1",
 		"next": "12.3.0",
 		"next-contentlayer": "0.2.6",
 		"next-seo": "^5.5.0",
