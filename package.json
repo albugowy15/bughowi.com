@@ -27,7 +27,7 @@
 		"rehype": "^12.0.1",
 		"rehype-code-titles": "^1.1.0",
 		"rehype-external-links": "^2.0.1",
-		"rehype-pretty-code": "^0.3.2",
+		"rehype-pretty-code": "^0.4.0",
 		"rehype-slug": "^5.0.1",
 		"remark-gfm": "^3.0.1",
 		"sass": "^1.54.9",
