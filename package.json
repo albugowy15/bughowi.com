@@ -28,7 +28,7 @@
 		"rehype-code-titles": "^1.1.0",
 		"rehype-external-links": "^2.0.1",
 		"rehype-pretty-code": "^0.4.0",
-		"rehype-slug": "^5.0.1",
+		"rehype-slug": "^5.1.0",
 		"remark-gfm": "^3.0.1",
 		"sass": "^1.56.0",
 		"shiki": "^0.11.1"
