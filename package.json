@@ -10,7 +10,7 @@
 		"postbuild": "next-sitemap"
 	},
 	"dependencies": {
-		"@giscus/react": "^2.2.3",
+		"@giscus/react": "^2.2.4",
 		"@jsdevtools/rehype-toc": "^3.0.2",
 		"contentlayer": "0.2.6",
 		"date-fns": "^2.29.3",
