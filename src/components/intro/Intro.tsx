@@ -5,12 +5,10 @@ import { motion } from "framer-motion";
 const Intro = () => {
 	return (
 		<motion.div
-			initial={{ scale: 0 }}
-			animate={{ scale: 1 }}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
 			transition={{
-				type: "spring",
 				duration: 1,
-				delay: 0.5,
 			}}
 			className="h-screen text-center flex flex-col items-center justify-center"
 		>
