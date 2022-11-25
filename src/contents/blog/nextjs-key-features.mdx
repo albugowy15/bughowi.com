@@ -2,7 +2,9 @@
 title: Next.js Core Concepts and Features
 date: 2022-08-03
 description: Learn all the key features that make up Next.js and why we should use Next.js in our project
-categories: ["next.js", "javascript"]
+categories:
+  - name: next.js
+  - name: javascript
 thumbnail: https://user-images.githubusercontent.com/49820990/182567373-faa399fb-f45e-440a-ad02-d94fffde2e71.png
 isFeatured: false
 ---
@@ -65,9 +67,9 @@ When a user visits this page, to extract the concrete value entered in the url w
 import useRouter from "next-router";
 
 export default function NewsDetail() {
-  const router = useRouter();
+	const router = useRouter();
 
-  return <div>Your react component</div>;
+	return <div>Your react component</div>;
 }
 ```
 
@@ -79,11 +81,11 @@ If we do that we get access to our router object. On that router object we get c
 import useRouter from "next-router";
 
 export default function NewsDetail() {
-  const router = useRouter();
-  const path = router.query.news; // get value for visited dynamic path
-  console.log(path);
+	const router = useRouter();
+	const path = router.query.news; // get value for visited dynamic path
+	console.log(path);
 
-  return <div>Your react component</div>;
+	return <div>Your react component</div>;
 }
 ```
 
@@ -99,12 +101,12 @@ For example I want to navigate to news page from home page. Then inside Home pag
 import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div>
-      <h1>This is HomePage</h1>
-      <Link href="/news">Go to news page</Link>
-    </div>
-  );
+	return (
+		<div>
+			<h1>This is HomePage</h1>
+			<Link href="/news">Go to news page</Link>
+		</div>
+	);
 }
 ```
 
@@ -120,12 +122,12 @@ If you need to add data fetching to a page component, you can do so by exporting
 
 ```js
 export async function getStaticProps() {
-  // fetch data from api
-  return {
-    props: {
-      news: res.result,
-    },
-  };
+	// fetch data from api
+	return {
+		props: {
+			news: res.result,
+		},
+	};
 }
 ```
 
@@ -135,13 +137,13 @@ When we add this property, we unlock a feature called Incremental Static Generat
 
 ```js
 export async function getStaticProps() {
-  // fetch data from api
-  return {
-    props: {
-      news: res.result,
-      revalidate: 10,
-    },
-  };
+	// fetch data from api
+	return {
+		props: {
+			news: res.result,
+			revalidate: 10,
+		},
+	};
 }
 ```
 
@@ -149,14 +151,14 @@ If we want to fetch data inside dynamic page, then we also need to specify how m
 
 ```js
 export async function getStaticPaths() {
-  const response = await fetch("/api/news"); // fetch data from api
-  const paths = response.map((slug) => ({
-    params: { slug },
-  }));
-  return {
-    paths: paths,
-    fallback: false,
-  };
+	const response = await fetch("/api/news"); // fetch data from api
+	const paths = response.map((slug) => ({
+		params: { slug },
+	}));
+	return {
+		paths: paths,
+		fallback: false,
+	};
 }
 ```
 
@@ -168,12 +170,12 @@ Sometimes you really want to regenerate page for every incoming request to serve
 
 ```js
 export async function getServerSideProps() {
-  // fetch data from api
-  return {
-    props: {
-      news: res.result,
-    },
-  };
+	// fetch data from api
+	return {
+		props: {
+			news: res.result,
+		},
+	};
 }
 ```
 
@@ -181,16 +183,16 @@ You can't set `revalidate{:js}` property, because this getServerSideProps() func
 
 ```js
 export async function getServerSideProps(context) {
-  // fetch data from api
+	// fetch data from api
 
-  const request = context.req;
-  const respose = context.res;
+	const request = context.req;
+	const respose = context.res;
 
-  return {
-    props: {
-      news: res.result,
-    },
-  };
+	return {
+		props: {
+			news: res.result,
+		},
+	};
 }
 ```
 
@@ -204,11 +206,11 @@ In this api folder you can add javascript files where the file names will act as
 
 ```js
 export default function handler(req, res) {
-  if (req.method === "POST") {
-    // Process a POST request
-  } else {
-    // Handle any other HTTP method
-  }
+	if (req.method === "POST") {
+		// Process a POST request
+	} else {
+		// Handle any other HTTP method
+	}
 }
 ```
 
@@ -252,12 +254,12 @@ import Image from "next/image";
 import logo from "../public/logo.svg";
 
 export default function PostImage() {
-  return (
-    <>
-      <Image src="/photo.svg" layout="fill" />
-      <Image src={logo} width="100px" height="200px" />
-    </>
-  );
+	return (
+		<>
+			<Image src="/photo.svg" fill />
+			<Image src={logo} width="100px" height="200px" />
+		</>
+	);
 }
 ```
 
@@ -267,9 +269,9 @@ If you use images url from other website such as unsplash, then you must add the
 
 ```js
 const nextConfig = {
-  images: {
-    domains: ["images.unsplash.com"],
-  },
+	images: {
+		domains: ["images.unsplash.com"],
+	},
 };
 
 export default nextConfig;
@@ -286,15 +288,13 @@ import Navbar from "components/header/Navbar";
 import Footer from "components/footer/Footer";
 
 function Layout({ children }) {
-  return (
-    <div className="w-full min-h-screen flex flex-col">
-      <Navbar />
-      <div className="container 2xl:max-w-7xl px-4 mx-auto flex-1">
-        {children}
-      </div>
-      <Footer />
-    </div>
-  );
+	return (
+		<div className="w-full min-h-screen flex flex-col">
+			<Navbar />
+			<div className="container 2xl:max-w-7xl px-4 mx-auto flex-1">{children}</div>
+			<Footer />
+		</div>
+	);
 }
 
 export default Layout;
@@ -307,10 +307,10 @@ If you only have one layout for your entire application, you can customize `_app
 import Layout from "../components/layout";
 
 export default function MyApp({ Component, pageProps }) {
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  );
+	return (
+		<Layout>
+			<Component {...pageProps} />
+		</Layout>
+	);
 }
 ```
