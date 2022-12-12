@@ -29,7 +29,7 @@
 		"rehype-pretty-code": "^0.5.1",
 		"rehype-slug": "^5.1.0",
 		"remark-gfm": "^3.0.1",
-		"sass": "^1.56.0",
+		"sass": "^1.56.2",
 		"shiki": "^0.11.1"
 	},
 	"devDependencies": {
