@@ -10,7 +10,11 @@ import Giscus from "@giscus/react";
 import { motion } from "framer-motion";
 import useOpenGraph from "hooks/useOpenGraph";
 import OpenGraph from "components/common/OpenGraph";
+import NextImage from "@components/common/NextImage";
 
+const components = {
+	img: NextImage,
+};
 function PostDetail({ post }: { post: Post }) {
 	const MDXContent = useMDXComponent(post.body.code);
 
@@ -65,7 +69,8 @@ function PostDetail({ post }: { post: Post }) {
 						<Image src={post.thumbnail} alt={post.title} fill className="object-cover" />
 					</div>
 					<div id="content-space" className="py-3">
-						<MDXContent />
+						{/* @ts-ignore */}
+						<MDXContent components={components} />
 					</div>
 					<div className="border-y-2 border-slate-400 mt-3 text-lg">
 						<p className="py-4 flex flex-wrap items-center gap-2">
