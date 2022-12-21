@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import OutlineGradientButton from "@components/button/OutlineGradientButton";
+import OutlineGradientButton from "modules/home/components/OutlineGradientButton";
 import { motion } from "framer-motion";
 
 const Intro = () => {

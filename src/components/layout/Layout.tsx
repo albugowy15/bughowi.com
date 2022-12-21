@@ -1,5 +1,5 @@
-import Navbar from "@components/header/Navbar";
-import Subscribe from "@components/subscribe/Subscribe";
+import Navbar from "@components/layout/partials/Navbar";
+import Subscribe from "@components/layout/partials/Subscribe";
 
 interface LayoutProps {
 	children: React.ReactNode;

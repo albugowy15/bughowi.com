@@ -1,12 +1,11 @@
-import { allProjects, Project } from "../../../../.contentlayer/generated";
-import { GetStaticPaths, GetStaticProps } from "next";
-import Head from "next/head";
 import Giscus from "@giscus/react";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import Head from "next/head";
 import Image from "next/image";
+import { Project } from "../../../../.contentlayer/generated";
 import { motion } from "framer-motion";
 
-function ProjectDetailPage({ project }: { project: Project }) {
+export default function ProjectDetail({ project }: { project: Project }) {
 	const MDXContent = useMDXComponent(project.body.code);
 
 	return (
@@ -69,23 +68,3 @@ function ProjectDetailPage({ project }: { project: Project }) {
 		</>
 	);
 }
-
-export default ProjectDetailPage;
-
-export const getStaticPaths: GetStaticPaths = async () => {
-	const paths = allProjects.map((project) => project.url);
-	return {
-		paths,
-		fallback: false,
-	};
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-	const project = allProjects.find((project) => project.url === `/projects/${context.params?.slug}`);
-
-	return {
-		props: {
-			project,
-		},
-	};
-};
