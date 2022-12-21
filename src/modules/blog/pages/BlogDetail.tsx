@@ -1,21 +1,19 @@
-import { allPosts } from "../../../../.contentlayer/generated";
-import { Post } from "../../../../.contentlayer/generated";
-import { GetStaticPaths, GetStaticProps } from "next";
+import NextImage from "@components/common/NextImage";
+import OpenGraph from "@components/common/OpenGraph";
+import Giscus from "@giscus/react";
+import useOpenGraph from "@utils/hooks/useOpenGraph";
+import { formatDate } from "@utils/contents";
+import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Image from "next/image";
-import { formatDate } from "utils/contents";
-import { useMDXComponent } from "next-contentlayer/hooks";
 import Link from "next/link";
-import Giscus from "@giscus/react";
+import { Post } from "../../../../.contentlayer/generated";
 import { motion } from "framer-motion";
-import useOpenGraph from "hooks/useOpenGraph";
-import OpenGraph from "components/common/OpenGraph";
-import NextImage from "@components/common/NextImage";
 
 const components = {
 	img: NextImage,
 };
-function PostDetail({ post }: { post: Post }) {
+export default function BlogDetail({ post }: { post: Post }) {
 	const MDXContent = useMDXComponent(post.body.code);
 
 	const ogProperties = useOpenGraph({
@@ -103,24 +101,3 @@ function PostDetail({ post }: { post: Post }) {
 		</>
 	);
 }
-
-export default PostDetail;
-
-export const getStaticPaths: GetStaticPaths = async () => {
-	const paths = allPosts.map((post) => post.url);
-
-	return {
-		paths,
-		fallback: false,
-	};
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-	const post = allPosts.find((post) => post.url === `/blog/${context.params?.slug}`);
-
-	return {
-		props: {
-			post: post,
-		},
-	};
-};
