@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@giscus/react": "^2.2.3",
 		"@jsdevtools/rehype-toc": "^3.0.2",
+		"@react-spring/web": "^9.6.1",
 		"contentlayer": "^0.2.9",
 		"date-fns": "^2.29.3",
 		"framer-motion": "^7.6.19",
