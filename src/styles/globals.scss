@@ -4,89 +4,87 @@
 @tailwind utilities;
 
 body {
-  @apply bg-darkPrimary text-slate-200 font-primary;
+	@apply bg-darkPrimary text-slate-200 font-primary;
 }
 
 html {
-  @apply scroll-smooth relative min-h-full;
+	@apply scroll-smooth relative min-h-full;
 }
 
 .toc {
-  @apply my-4;
+	@apply my-4;
 }
 
 .toc {
-  .title {
-    @apply font-bold text-white text-3xl py-3;
-  }
-  .toc-item {
-    @apply text-[#91a9df] ml-2;
-  }
-  .toc-link {
-    @apply hover:underline underline-offset-2 hover:text-[#9cafdc] transition-transform ease-linear;
-  }
+	.title {
+		@apply font-bold text-white text-3xl py-3;
+	}
+	.toc-item {
+		@apply text-[#6d90e2] ml-2;
+	}
+	.toc-link {
+		@apply hover:underline underline-offset-2 hover:text-[#9cafdc] transition-transform ease-linear;
+	}
 }
 
 #content-space {
-  @apply text-lg space-y-3 text-slate-300;
+	@apply text-lg space-y-3 text-slate-300;
 }
 
 #content-space {
-  h1 {
-    @apply text-4xl;
-  }
-  h2 {
-    @apply text-3xl pt-6;
-  }
-  h3 {
-    @apply text-2xl pt-3;
-  }
-  h4 {
-    @apply text-xl pt-1;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-bold scroll-my-16;
-  }
+	h1 {
+		@apply text-4xl;
+	}
+	h2 {
+		@apply text-3xl pt-6;
+	}
+	h3 {
+		@apply text-2xl pt-3;
+	}
+	h4 {
+		@apply text-xl pt-1;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-bold scroll-my-16;
+	}
 
-  blockquote {
-    @apply bg-darkSecondary px-3 py-2 border-l-4 border-blueAccent text-slate-200 font-bold italic;
-  }
+	blockquote {
+		@apply bg-darkSecondary px-3 py-2 border-l-4 border-blueAccent text-slate-200 font-bold italic;
+	}
 
-  ol {
-    @apply list-decimal ml-5;
-  }
+	ol {
+		@apply list-decimal ml-5;
+	}
 
-  ul {
-    @apply list-disc ml-5;
-  }
+	ul {
+		@apply list-disc ml-5;
+	}
 
-  p {
-    a {
-      @apply text-yellowAccent font-bold underline underline-offset-2 hover:text-blue-600 transition-colors focus:text-yellowAccent active:text-yellowAccent;
-    }
-  }
+	a {
+		@apply text-[#6d90e2] hover:underline underline-offset-2 hover:text-[#4276ee] transition-transform ease-linear;
+	}
 
-  .line {
-    @apply bg-darkSecondary px-1 py-0.5 rounded;
-    span {
-      @apply text-sm;
-    }
-  }
+	.line {
+		@apply bg-darkSecondary px-1 py-0.5 rounded;
+		span {
+			@apply text-sm;
+		}
+	}
 
-  pre {
-    @apply bg-darkSecondary p-3 w-full overflow-auto rounded-md;
+	pre {
+		@apply bg-darkSecondary p-3 w-full overflow-auto rounded-md;
 
-    code {
-      @apply text-sm;
+		code {
+			@apply text-sm;
 
-      .line {
-        @apply p-0 rounded-none;
-      }
-    }
-  }
+			.line {
+				@apply p-0 rounded-none;
+			}
+		}
+	}
 }

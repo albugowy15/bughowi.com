@@ -15,7 +15,6 @@
 		"@react-spring/web": "^9.6.1",
 		"contentlayer": "^0.2.9",
 		"date-fns": "^2.29.3",
-		"framer-motion": "^7.6.19",
 		"next": "^13.0.5",
 		"next-contentlayer": "^0.2.9",
 		"next-sitemap": "^3.1.22",

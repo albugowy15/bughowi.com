@@ -3,7 +3,6 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Image from "next/image";
 import { Project } from "../../../../.contentlayer/generated";
-import { motion } from "framer-motion";
 
 export default function ProjectDetail({ project }: { project: Project }) {
 	const MDXContent = useMDXComponent(project.body.code);
@@ -16,23 +15,11 @@ export default function ProjectDetail({ project }: { project: Project }) {
 			</Head>
 			<div className="py-4" />
 
-			<motion.main
-				initial={{ y: 2000, opacity: 0 }}
-				animate={{ y: 0, opacity: 1 }}
-				transition={{
-					type: "tween",
-					duration: 1,
-				}}
-				className="w-full lg:w-[65%] mx-auto"
-			>
+			<main className="w-full lg:w-[65%] mx-auto">
 				<h1 className="text-3xl sm:text-4xl font-bold">{project.title}</h1>
 				<p className="text-slate-400">{project.description}</p>
 				<article className="mt-5 w-full">
-					{project.thumbnail && (
-						<div className="w-full h-72 md:h-96 rounded-lg overflow-hidden object-cover relative">
-							<Image src={project.thumbnail} alt={project.title} fill className="object-cover" />
-						</div>
-					)}
+					{project.thumbnail && <Image src={project.thumbnail} alt={project.title} height={300} width={800} className="rounded-lg" />}
 
 					<div id="content-space" className="py-3">
 						<MDXContent />
@@ -64,7 +51,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
 					lang="en"
 					loading="lazy"
 				/>
-			</motion.main>
+			</main>
 		</>
 	);
 }
