@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { SiTypescript, SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { FaEnvelope, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { motion } from "framer-motion";
 import useOpenGraph from "@utils/hooks/useOpenGraph";
 import OpenGraph from "@components/common/OpenGraph";
 
@@ -29,14 +28,7 @@ function AboutPage() {
 				<OpenGraph properties={ogProperties} />
 			</Head>
 			<div className="py-4" />
-			<motion.div
-				initial={{ y: 2000, opacity: 0 }}
-				animate={{ y: 0, opacity: 1 }}
-				transition={{
-					type: "tween",
-					duration: 1,
-				}}
-			>
+			<div>
 				<h1 className="font-bold text-4xl text-center">About Me</h1>
 				<div id="content-space" className="py-3 w-full lg:w-[65%] mx-auto">
 					<h2 className="font-bold text-3xl">Introduction</h2>
@@ -84,9 +76,24 @@ function AboutPage() {
 						Tailwind
 					</h3>
 					<p>And for CSS framework, I will never switch to another CSS framework because Tailwind is really awesome. And I couldn&apos;t imagine how I build a website without Tailwind.</p>
+					<h2 className="font-bold text-3xl pt-3">Experience</h2>
+					<ul className="space-y-2">
+						<li>
+							<p className="font-bold">Front End Engineer - Torche Education</p>
+							<p className="text-sm text-gray-400">December 2022 - Present</p>
+							<p className="text-sm text-gray-400">Internship</p>
+							<p className="text-base mt-2">Create a new landing page and migrate to MERN (MongoDB, Express, React, Node.js) stack. Develope the landing page with Next.js, TypeScript, and Tailwind</p>
+						</li>
+						<li>
+							<p className="font-bold">Full Stack Developer - harisenin.com</p>
+							<p className="text-sm text-gray-400">September 2022 - December 2022</p>
+							<p className="text-sm text-gray-400">Internship</p>
+							<p className="text-base mt-2">Working for company internal dashboard to create or improve a feature using PHP, Laravel, TypeScript, Next.js, jQuery, MUI, and MySQL</p>
+						</li>
+					</ul>
 					<h2 className="font-bold text-3xl pt-3">Contact Me</h2>
 					<p>If you want to contact me, go ahead and send me a message through my email and social media below. I&apos;ll be happy to receive your feedback.</p>
-					<div className="text-base sm:text-lg p-4 rounded border-gray-800 w-fit flex flex-wrap justify-center gap-2 sm:gap-5">
+					<div className="text-base sm:text-lg p-4 rounded border-gray-800 w-fit flex flex-wrap justify-center gap-2 sm:gap-5 font-bold">
 						<div className="flex items-center flex-start gap-1 border border-gray-800 p-2 rounded hover:scale-105 hover:cursor-pointer transition">
 							<FaEnvelope />
 							<p>
@@ -121,7 +128,7 @@ function AboutPage() {
 						</div>
 					</div>
 				</div>
-			</motion.div>
+			</div>
 		</>
 	);
 }

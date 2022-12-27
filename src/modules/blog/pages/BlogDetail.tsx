@@ -8,7 +8,6 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { Post } from "../../../../.contentlayer/generated";
-import { motion } from "framer-motion";
 
 const components = {
 	img: NextImage,
@@ -43,15 +42,7 @@ export default function BlogDetail({ post }: { post: Post }) {
 			</Head>
 			<div className="py-4" />
 
-			<motion.main
-				initial={{ y: 2000, opacity: 0 }}
-				animate={{ y: 0, opacity: 1 }}
-				transition={{
-					type: "tween",
-					duration: 1,
-				}}
-				className="w-full lg:w-[65%] mx-auto"
-			>
+			<main className="w-full lg:w-[65%] mx-auto">
 				<h1 className="text-4xl font-bold">{post.title}</h1>
 				<div className="mt-2 flex justify-start gap-1 sm:gap-3 items-center text-base">
 					<Link href="/about">
@@ -63,9 +54,8 @@ export default function BlogDetail({ post }: { post: Post }) {
 					<p className="text-yellowAccent">{post.readingTime.text}</p>
 				</div>
 				<article className="mt-5 w-full">
-					<div className="w-full h-72 md:h-96 rounded-lg overflow-hidden relative">
-						<Image src={post.thumbnail} alt={post.title} fill className="object-cover" />
-					</div>
+					<Image src={post.thumbnail} alt={post.title} width={800} height={300} className="object-cover" />
+
 					<div id="content-space" className="py-3">
 						{/* @ts-ignore */}
 						<MDXContent components={components} />
@@ -97,7 +87,7 @@ export default function BlogDetail({ post }: { post: Post }) {
 					lang="en"
 					loading="lazy"
 				/>
-			</motion.main>
+			</main>
 		</>
 	);
 }
