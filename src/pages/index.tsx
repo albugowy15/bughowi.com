@@ -1,6 +1,6 @@
 import { Post, Project } from "../../.contentlayer/generated";
 import { getAllPosts, getAllProjects } from "@utils/contents";
-import HomePage from "modules/home/HomePage";
+import HomePage from "modules/home/pages/HomePage";
 
 export default function Home({ posts, projects }: { posts: Post[]; projects: Project[] }) {
 	return <HomePage posts={posts} projects={projects} />;
