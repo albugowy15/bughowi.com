@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700;800&display=swap");
 @tailwind base;
+@import "./syntax-highlighting.css";
 @tailwind components;
 @tailwind utilities;
 
@@ -28,21 +29,21 @@ html {
 }
 
 #content-space {
-	@apply text-lg space-y-3 text-slate-300;
+	@apply text-base space-y-3 text-slate-300;
 }
 
 #content-space {
 	h1 {
-		@apply text-4xl;
+		@apply text-3xl;
 	}
 	h2 {
-		@apply text-3xl pt-6;
+		@apply text-2xl pt-6;
 	}
 	h3 {
-		@apply text-2xl pt-3;
+		@apply text-xl pt-3;
 	}
 	h4 {
-		@apply text-xl pt-1;
+		@apply text-lg pt-1;
 	}
 	h1,
 	h2,
@@ -67,24 +68,5 @@ html {
 
 	a {
 		@apply text-[#6d90e2] hover:underline underline-offset-2 hover:text-[#4276ee] transition-transform ease-linear;
-	}
-
-	.line {
-		@apply bg-darkSecondary px-1 py-0.5 rounded;
-		span {
-			@apply text-sm;
-		}
-	}
-
-	pre {
-		@apply bg-darkSecondary p-3 w-full overflow-auto rounded-md;
-
-		code {
-			@apply text-sm;
-
-			.line {
-				@apply p-0 rounded-none;
-			}
-		}
 	}
 }

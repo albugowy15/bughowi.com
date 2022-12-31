@@ -104,7 +104,7 @@ export default function Home() {
 	return (
 		<div>
 			<h1>This is HomePage</h1>
-			<Link href="/news">Go to news page</Link>
+			<Link href='/news'>Go to news page</Link>
 		</div>
 	);
 }
@@ -249,15 +249,15 @@ To fix all those issues, Next.js provides an Image component(**next/image**) wit
 - Overall page performance is improved with images
 - Dynamic image resizes for local and remote CDN paths
 
-```js
+```js title="Image Component"
 import Image from "next/image";
 import logo from "../public/logo.svg";
 
 export default function PostImage() {
 	return (
 		<>
-			<Image src="/photo.svg" fill />
-			<Image src={logo} width="100px" height="200px" />
+			<Image src='/photo.svg' fill />
+			<Image src={logo} width='100px' height='200px' />
 		</>
 	);
 }
@@ -289,9 +289,9 @@ import Footer from "components/footer/Footer";
 
 function Layout({ children }) {
 	return (
-		<div className="w-full min-h-screen flex flex-col">
+		<div className='w-full min-h-screen flex flex-col'>
 			<Navbar />
-			<div className="container 2xl:max-w-7xl px-4 mx-auto flex-1">{children}</div>
+			<div className='container 2xl:max-w-7xl px-4 mx-auto flex-1'>{children}</div>
 			<Footer />
 		</div>
 	);

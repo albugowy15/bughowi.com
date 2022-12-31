@@ -6,7 +6,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import rehypeToc from "@jsdevtools/rehype-toc";
-import { options } from "./src/utils/contents";
+import { rehypePrettyCodeOptions } from "./src/utils/contents";
 
 interface RehypeElement {
 	type: string;
@@ -152,7 +152,7 @@ const contentLayerConfig = makeSource({
 				},
 			],
 			[rehypeExternalLinks, { target: "_blank", rel: "noreferrer" }],
-			[rehypePrettyCode, options],
+			[rehypePrettyCode, rehypePrettyCodeOptions],
 		],
 	},
 });
