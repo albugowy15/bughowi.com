@@ -5,8 +5,8 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-import rehypeToc from "@jsdevtools/rehype-toc";
 import { rehypePrettyCodeOptions } from "./src/utils/contents";
+import GithubSlugger from "github-slugger";
 
 interface RehypeElement {
 	type: string;
@@ -17,33 +17,6 @@ interface RehypeElement {
 	};
 	children?: Array<RehypeElement>;
 }
-
-const customizeTOC = (toc: RehypeElement): RehypeElement | null => {
-	try {
-		const { children } = toc;
-		const childrenOfChildren = children?.[0]?.children;
-		if (!children?.length || !childrenOfChildren?.length) return null;
-	} catch (e) {}
-	return {
-		type: "element",
-		tagName: "div",
-		properties: { className: "toc" },
-		children: [
-			{
-				type: "element",
-				tagName: "p",
-				properties: { className: "title" },
-				children: [
-					{
-						type: "text",
-						value: "Table of Contents",
-					},
-				],
-			},
-			...(toc.children || []),
-		],
-	};
-};
 
 const Category = defineNestedType(() => ({
 	name: "Category",
@@ -100,6 +73,26 @@ const Post = defineDocumentType(() => ({
 			type: "string",
 			resolve: (post) => `/${post._raw.flattenedPath}`,
 		},
+		headings: {
+			type: "json",
+			resolve: async (doc) => {
+				const slugger = new GithubSlugger();
+
+				const regXHeader = /\n\n(?<flag>#{2,6})\s+(?<content>.+)/g;
+
+				const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(({ groups }) => {
+					const flag = groups?.flag;
+					const content = groups?.content;
+					return {
+						heading: flag?.length,
+						text: content,
+						slug: content ? slugger.slug(content) : undefined,
+					};
+				});
+
+				return headings;
+			},
+		},
 	},
 }));
 
@@ -142,18 +135,7 @@ const contentLayerConfig = makeSource({
 	documentTypes: [Post, Project],
 	mdx: {
 		remarkPlugins: [remarkGfm],
-		rehypePlugins: [
-			rehypeCodeTitles,
-			rehypeSlug,
-			[
-				rehypeToc,
-				{
-					customizeTOC,
-				},
-			],
-			[rehypeExternalLinks, { target: "_blank", rel: "noreferrer" }],
-			[rehypePrettyCode, rehypePrettyCodeOptions],
-		],
+		rehypePlugins: [rehypeCodeTitles, rehypeSlug, [rehypeExternalLinks, { target: "_blank", rel: "noreferrer" }], [rehypePrettyCode, rehypePrettyCodeOptions]],
 	},
 });
 
