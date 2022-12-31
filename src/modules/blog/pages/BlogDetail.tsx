@@ -8,9 +8,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { Post } from "../../../../.contentlayer/generated";
+import React from "react";
+import Credit, { CreditProps } from "@components/card/Credit";
 
 const components = {
 	img: NextImage,
+	CreditBadge: ({ username, img, url }: CreditProps) => <Credit img={img} username={username} url={url} />,
 };
 export default function BlogDetail({ post }: { post: Post }) {
 	const MDXContent = useMDXComponent(post.body.code);

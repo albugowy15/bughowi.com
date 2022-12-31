@@ -1,8 +1,13 @@
+import Credit, { CreditProps } from "@components/card/Credit";
 import Giscus from "@giscus/react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Image from "next/image";
 import { Project } from "../../../../.contentlayer/generated";
+
+const components = {
+	CreditBadge: ({ username, img, url }: CreditProps) => <Credit img={img} username={username} url={url} />,
+};
 
 export default function ProjectDetail({ project }: { project: Project }) {
 	const MDXContent = useMDXComponent(project.body.code);
@@ -22,7 +27,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
 					{project.thumbnail && <Image src={project.thumbnail} alt={project.title} height={300} width={800} className='rounded-lg' />}
 
 					<div id='content-space' className='py-3'>
-						<MDXContent />
+						<MDXContent components={components} />
 					</div>
 					<div className='border-y-2 border-slate-400 mt-3'>
 						<p className='py-4 flex flex-wrap items-center gap-2'>
