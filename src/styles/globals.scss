@@ -12,22 +12,6 @@ html {
 	@apply scroll-smooth relative min-h-full;
 }
 
-.toc {
-	@apply my-4;
-}
-
-.toc {
-	.title {
-		@apply font-bold text-white text-3xl py-3;
-	}
-	.toc-item {
-		@apply text-[#6d90e2] ml-2;
-	}
-	.toc-link {
-		@apply hover:underline underline-offset-2 hover:text-[#9cafdc] transition-transform ease-linear;
-	}
-}
-
 #content-space {
 	@apply text-base space-y-3 text-slate-300;
 }
