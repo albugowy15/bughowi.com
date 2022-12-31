@@ -25,17 +25,17 @@ You still write React code, build react components, but it's a framework for pro
 
 Let's now take a closer look at the actual features added by Next.js.
 
-### 1. Server-side Rendering
+### Server-side Rendering
 
 I would say the most important key feature Next.js adds is the built-in Server-side rendering support. Server-side rendering is all about preparing the content of a page on the server instead on the client. If that page would be pre-rendered on the server and data fetching somehow could be done on the server too, when the request hits that server and then the finished page would be served to users and to the search engine crawlers. Then users would not have flickering loading state and search engines would see our page content.
 
 React actually has built-in features that allow you to add server-side rendering, but it can be tricky to get that right and it requires extra setup. With Nextjs that becomes way easier.
 
-### 2. File Based Routing
+### File Based Routing
 
 Another very nice feature added by Next.js is file based routing. With Next.js, you define pages and routes with files and folders. You have a special pages folder in Next.js, then your structure in that folder defines the routes and paths your page supports. Next.js still supports all the features we might want like nested routes or dynamic routes with dynamic parameters
 
-### 3. Built-in Backend API Routes
+### Built-in Backend API Routes
 
 Here is the feature which is most important for me labeling Next.js a full stack framework because Next.js also makes it easy to add back-end code to our React project. With Next.js, it's very easy to add our own backend api using Node.js code. We don't have to build a standalone rest api project but instead we can work on one project.
 
@@ -61,9 +61,7 @@ But how if we want to implement dynamic routes in Next.js?. For that, we change 
 
 When a user visits this page, to extract the concrete value entered in the url when this page is loaded, Next.js gives us a special hook. You can import `useRouter{:js}` from `next-router{:js}`. We can call this hook inside of the page simply like this.
 
-```js
-// pages/[news].js
-
+```js title="pages/[news].js"
 import useRouter from "next-router";
 
 export default function NewsDetail() {
@@ -75,9 +73,7 @@ export default function NewsDetail() {
 
 If we do that we get access to our router object. On that router object we get certain pieces of data and certain methods which we can call. For example we got `query{:js}` property which gives us access to a nested object. On that query object, we then have the identifier which we chose between the `[]{:js}` as a property name.
 
-```js
-// pages/[news].js
-
+```js title="pages/[news].js"
 import useRouter from "next-router";
 
 export default function NewsDetail() {
@@ -249,7 +245,7 @@ To fix all those issues, Next.js provides an Image component(**next/image**) wit
 - Overall page performance is improved with images
 - Dynamic image resizes for local and remote CDN paths
 
-```js title="Image Component"
+```js
 import Image from "next/image";
 import logo from "../public/logo.svg";
 
@@ -267,7 +263,7 @@ Image component must use either layout or width and height, Otherwise, It gives 
 
 If you use images url from other website such as unsplash, then you must add the unsplash image domain inside Next.js configuration file.
 
-```js
+```js title="next.config.js"
 const nextConfig = {
 	images: {
 		domains: ["images.unsplash.com"],
@@ -302,8 +298,7 @@ export default Layout;
 
 If you only have one layout for your entire application, you can customize `_app.js{:js}` and wrap your application with the layout.
 
-```js
-// pages/_app.js
+```js title="pages/_app.js"
 import Layout from "../components/layout";
 
 export default function MyApp({ Component, pageProps }) {

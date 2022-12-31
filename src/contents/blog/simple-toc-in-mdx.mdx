@@ -15,13 +15,13 @@ Table of Contents is a common feature that we usually seen in article. This feat
 
 The first step is to install `rehype-toc{:sh}` plugin created by [jsdevtools](https://www.npmjs.com/package/@jsdevtools/rehype-toc). You can install it with this command.
 
-```zsh
+```sh
 npm install @jsdevtools/rehype-toc
 ```
 
 You'll probably want to install `unified{:sh}`, `rehype-parse{:sh}`, `rehype-stringify{:sh}`, and `rehype-slug{:sh}` as well.
 
-```zsh
+```sh
 npm install unified rehype-parse rehype-stringify rehype-slug
 ```
 
@@ -29,8 +29,7 @@ npm install unified rehype-parse rehype-stringify rehype-slug
 
 Next, you need to add `rehype-toc{:sh}` inside your contentlayer configuration files. Here's the example.
 
-```ts
-// contentlayer.config.ts
+```ts title="contentlayer.config.ts"
 import rehypeToc from "@jsdevtools/rehype-toc";
 
 const contentLayerConfig = makeSource({

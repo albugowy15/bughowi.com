@@ -46,9 +46,9 @@ Then, converted to HTML, it will looks like this
 
 And that's MD all about. Basically, MDX is same as MD but it has more features. MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast.
 
-```md
-import {Chart} from './snowfall.js'
-export const year = 2018
+```mdx
+import { Chart } from "./snowfall.js";
+export const year = 2018;
 
 # Last year’s snowfall
 
@@ -56,7 +56,7 @@ In {year}, the snowfall was above average.
 It was followed by a warm spring which caused
 flood conditions in many of the nearby rivers.
 
-<Chart year={year} color="#fcb32c" />
+<Chart year={year} color='#fcb32c' />
 ```
 
 ## Contentlayer
@@ -73,7 +73,7 @@ npm install contentlayer next-contentlayer
 
 Next, we need to configure our `next.config.js{:js}` file to hook Contentlayer into the `next dev{:shell}` and `next build{:shell}` processes.
 
-```js
+```js title="next.config.js"
 const { withContentlayer } = require("next-contentlayer");
 
 module.exports = withContentlayer({
@@ -83,25 +83,25 @@ module.exports = withContentlayer({
 
 Then add the following code inside `tsconfig.json{:js}` (if using TypeScript) or `jsconfig.json{:js}` file.
 
-```js
+```json title="tsconfig.json"
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "contentlayer/generated": ["./.contentlayer/generated"]
-      // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.tsx", "**/*.ts", ".contentlayer/generated"]
-  //                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"contentlayer/generated": ["./.contentlayer/generated"]
+			// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		}
+	},
+	"include": ["next-env.d.ts", "**/*.tsx", "**/*.ts", ".contentlayer/generated"]
+	//                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 }
 ```
 
 ### Define Document Type
 
-Creat a schema for your MDX content. To do this, you need to create a new file called `contentlayer.config.js{:js}` in root folder of Next.js project. Here I create a schema for my blog post content.
+Creat a schema for your MDX content. To do this, you need to create a new file called `contentlayer.config.ts{:ts}` in root folder of Next.js project. Here I create a schema for my blog post content.
 
-```js
+```ts title="contentlayer.config.ts"
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 
 const Post = defineDocumentType(() => ({
@@ -135,7 +135,6 @@ const Post = defineDocumentType(() => ({
 		},
 	},
 }));
-s;
 export default makeSource({
 	documentTypes: [Post],
 });
@@ -204,7 +203,7 @@ const Home = ({ posts }: { posts: Post[] }) => {
 	return (
 		<div>
 			{posts.map((post, key) => (
-				<div>
+				<div key={key}>
 					<h1>{post.title}</h1>
 					<p>{post.description}</p>
 					<p>{format(parseISO(post.date), "LLLL d, yyy")}</p>

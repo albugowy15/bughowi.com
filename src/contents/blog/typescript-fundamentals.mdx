@@ -30,8 +30,7 @@ So the first we'll do is create an `index.ts{:ts}` file and TypeScript on it's o
 
 Let's start by writing some plain JavaScript in our TypeScript file and then compile it.
 
-```ts
-// index.ts
+```ts title="index.ts"
 console.log("hello world");
 ```
 
@@ -39,15 +38,13 @@ Go down to command line and run `tsc index.ts{:shell}`.
 
 You'll notice it creates an index.js file that's our actual JavaScript code which we can run in the browser or node. And because we just wrote plain JavaScript, the code is identical to what's in the `index.ts{:ts}` file.
 
-```js
-// index.js
+```js title="index.js"
 console.log("hello world");
 ```
 
 By default, TypeScript will compile to ES3 which dosn't support for async await. So let's see what's happen when we write an async function in our `.ts{:ts}` file and the compile it.
 
-```ts
-// index.ts
+```ts title="index.ts"
 async function hello() {
 	return "world";
 }
@@ -55,8 +52,7 @@ async function hello() {
 
 You'll notice here that our code gets transpiled to this creazy looking JavaScript so we can use async await in our main TypeScript code.
 
-```js
-// index.js
+```js title="index.js"
 var __awaiter =
 	(this && this.__awaiter) ||
 	function (thisArg, _arguments, P, generator) {
@@ -102,8 +98,7 @@ The `tsconfig.json{:json}` can be be pretty overwhelming at first but there is u
 
 The first one target and this is the flavor of JavaScript that your code will compiled to. So if we set target to `esnext{:js}` and then run tsc, you'll see that it compiles our code with async await natively. It's targeting the latest verison of JavaScript which supports that syntax.
 
-```json
-// tsconfig.json
+```json title="tsconfig.json"
 {
 	"compilerOptions": {
 		"target": "esnext"
@@ -115,8 +110,7 @@ The first one target and this is the flavor of JavaScript that your code will co
 
 Another option that we want to set right away is `"watch": true{:js}` which will just recompile our code every time we save the file. It will just save us from rerunning the `tsc{:shell}` command after every change.
 
-```json
-// tsconfig.json
+```json title="tsconfig.json"
 {
 	"compilerOptions": {
 		"target": "esnext",
@@ -129,8 +123,7 @@ Another option that we want to set right away is `"watch": true{:js}` which will
 
 The next option we will look at is lib which allows us to automatically include typings for certain environtments such as the `DOM{:js}` or `ES 2017{:js}`. So if you're building a web application you'd want to include that **DOM** library which allows TypeScript to compile your code with all the native DOM classes without any compilation error.
 
-```json
-//tsconfig.json
+```json title="tsconfig.json"
 {
 	"compilerOptions": {
 		"target": "es3",
@@ -152,23 +145,20 @@ Now we know how the TypeScript compiler works, let's go ahead and write some cod
 
 Let's say we have a variable that should be a number. If we assign the value to this variable when it's declared. it's type will automatically be inferred.
 
-```ts
-// index.ts
+```ts title="index.ts"
 let lucky = 23; // lucky will have number type
 ```
 
 Then if we try to assign a string value to this variable it's going to give us an error because a string is not assignable to number. If this code were vanilla JavaScript we wouldn't catch this bug until we actually run this code somewhere. But with TypeScript we know about it right away.
 
-```ts
-// index.ts
+```ts title="index.ts"
 let lucky = 23; // lucky will have number type
 lucky = "23"; // error because we can't assign string value to number variable
 ```
 
 Unlike languages like C# or Java, we can actually opt out the type system annotating our variable with `any{:js}`.
 
-```ts
-// index.ts
+```ts title="index.ts"
 let lucky: any = 23; // lucky will accept all types of value
 lucky = "23"; // including string
 ```
@@ -179,8 +169,7 @@ This just means that this variable can be assigned any value and the compiler wo
 
 In above example we gave our variable an impicit number type, but what if we don't have a value to assigned to it upfront. If we don't add any type annotations, it's going to be infered as an `any{:js}` type, so we can assign both a string and number to it. If we want to annotate it with a type, we can just write colon followed by `number{:js}` which is one of the built-in primitive types in JavaScript. When we do that, we get an error under the string value because we can't assign it as that type.
 
-```ts
-// index.ts
+```ts title="index.ts"
 let lucky: number; // lucky type will be number
 
 lucky = "23"; // error assign string value
