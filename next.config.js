@@ -6,6 +6,8 @@ module.exports = withContentlayer({
       "user-images.githubusercontent.com",
       "images.unsplash.com",
       "localhost:3000",
+      "avatars.githubusercontent.com",
+      "github.com"
     ],
   },
 });
