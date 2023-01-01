@@ -4,7 +4,7 @@ import RecentPosts from "modules/blog/components/RecentPosts";
 import PersonalProjects from "modules/project/components/PersonalProjects";
 import useOpenGraph from "@utils/hooks/useOpenGraph";
 import Head from "next/head";
-import { Post, Project } from "../../../.contentlayer/generated";
+import { Post, Project } from "../../../../.contentlayer/generated";
 
 const HomePage = ({ posts, projects }: { posts: Post[]; projects: Project[] }) => {
 	const ogProperties = useOpenGraph({
@@ -24,13 +24,13 @@ const HomePage = ({ posts, projects }: { posts: Post[]; projects: Project[] }) =
 		<>
 			<Head>
 				<title>Home - bughowi.com</title>
-				<meta name="description" content="A personal blog to showcase projects and some articles in Wed Development fields" />
+				<meta name='description' content='A personal blog to showcase projects and some articles in Wed Development fields' />
 
 				<OpenGraph properties={ogProperties} />
 			</Head>
 			<Intro />
 			<RecentPosts posts={posts} />
-			<div className="py-4" />
+			<div className='py-4' />
 			<PersonalProjects projects={projects} />
 		</>
 	);

@@ -8,16 +8,6 @@ import remarkGfm from "remark-gfm";
 import { rehypePrettyCodeOptions } from "./src/utils/contents";
 import GithubSlugger from "github-slugger";
 
-interface RehypeElement {
-	type: string;
-	tagName?: string;
-	value?: string;
-	properties?: {
-		className?: string;
-	};
-	children?: Array<RehypeElement>;
-}
-
 const Category = defineNestedType(() => ({
 	name: "Category",
 	fields: {

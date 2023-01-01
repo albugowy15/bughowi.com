@@ -57,7 +57,7 @@ export default function BlogDetail({ post }: { post: Post }) {
 				<p className='text-yellowAccent'>{post.readingTime.text}</p>
 			</div>
 			<main className='w-full mx-auto xl:flex xl:justify-between xl:gap-10 xl:items-start'>
-				<div className='xl:flex-1'>
+				<div className='xl:w-[70%]'>
 					<article className='w-full'>
 						<Image src={post.thumbnail} alt={post.title} width={900} height={350} className='object-cover rounded-md' />
 
@@ -93,7 +93,7 @@ export default function BlogDetail({ post }: { post: Post }) {
 						loading='lazy'
 					/>
 				</div>
-				<div className='hidden xl:block sticky w-[30%] top-20 z-40'>
+				<div className='hidden xl:block sticky flex-1 top-20 z-40'>
 					<h3 className='font-bold text-xl'>Table of Contents</h3>
 
 					{post.headings.map((heading: any) => {
