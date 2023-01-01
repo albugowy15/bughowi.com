@@ -1,0 +1,155 @@
+---
+title: Comparing React's useContext Hook with Redux for State Management
+date: 2023-01-01
+description: Learn the differences between using the useContext hook in React and the Redux library for state management in a React application. Includes examples and tips for choosing the best solution for your needs.
+categories:
+  - name: react
+  - name: redux
+  - name: javascript
+thumbnail: https://user-images.githubusercontent.com/49820990/182567373-faa399fb-f45e-440a-ad02-d94fffde2e71.png
+isFeatured: false
+---
+
+The `useContext{:js}` hook in React is a powerful way to share statebetween compoenents without having to pass props down the component tree manually. It was introuduced in React 16.3 as an alternative to the `context{:js}` API, which has been around since React 16.0.
+
+One advantage of using `useContext{:js}`over the other state management solutions like Redux is that it is build into React and does not require any additional libraries or dependencies. This can make it easier to set up and maintain in a project.
+
+### How To Use useContext
+
+To use `useContext{:js}`, you first neet to create a context object using `React.createContext(){:js}` and provide a devault value. This default value will be used if a component that consumes the context does not have a matching `Provider{:js}` higher up in the tree.
+
+#### Case 1: Share theme state
+
+Here is an example of how to create and use a context object to share the current theme of a user interface.
+
+```js
+import React, { createContext, useContext, useState } from "react";
+
+const ThemeContext = createContext("light");
+
+function App() {
+	const [theme, setTheme] = useState("light");
+
+	return (
+		<ThemeContext.Provider value={theme}>
+			<button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>Toggle theme</button>
+			<Content />
+		</ThemeContext.Provider>
+	);
+}
+
+function Content() {
+	const theme = useContext(ThemeContext);
+
+	return <div style={{ background: theme === "light" ? "white" : "black", color: theme === "light" ? "black" : "white" }}>Hello World</div>;
+}
+```
+
+In this example, the `App{:js}` component has a state called `theme{:js}` which can be either `light{:js}` or `dark{:js}`. The `App{:js}` component wraps the `Content{:js}` component with a `ThemeContext.Provider{:js}` element, which provides the current value of the `theme{:js}` state to the `Content{:js}` component.
+
+The `Content{:js}` component uses the `useContext{:js}` hook to get the current value of the `theme{:js}` state from the context object. The `Content{:js}` component then uses the value of the `theme{:js}` state to set background and text color of a `div{:html}` element.
+
+When the user clicks the `button{:html}` element, the `setTheme{:js}` function is called to toggle the value of the `theme{:js}` state between `light{:js}` and `dark{:js}`. This cause the `Content{:js}` component to re-render and update the background and text color of the `div{:html}` element to match the new value of the `theme{:js}` state.
+
+#### Case 2: Share an user object
+
+Using `useContext{:js}` is a great way to shate state between components that are not directly related in the component tree. For example, suppose you have a `Sidebar{:js}` component and a `MainContent{:js}` component that need to share a `user{:js}` object. Instead of passing the `user{:js}` object down the tree as props, you can create a `UserContext{:js}` and use it to provide the `user{:js}` object to both the `Sidebar{:js}` and `MainContent{:js}` components.
+
+```js
+import React, { createContext, useContext } from "react";
+
+const UserContext = createContext({});
+
+function App() {
+	const user = { name: "John", email: "john@example.com" };
+
+	return (
+		<UserContext.Provider value={user}>
+			<Sidebar />
+			<MainContent />
+		</UserContext.Provider>
+	);
+}
+
+function Sidebar() {
+	const user = useContext(UserContext);
+
+	return <div>Welcome, {user.name}!</div>;
+}
+
+function MainContent() {
+	const user = useContext(UserContext);
+
+	return <div>Your email is: {user.email}</div>;
+}
+```
+
+In this example, the `App{:js}` component has a `user{:js}` object with a `name{:js}` and `email{:js}` properties. The `App{:js}` component wraps the `Sidebar{:js}` and `MainContent{:js}` components with a `UserContext.Provider{:js}` element, which provides the current value of the `user{:js}` to both the `Sidebar{:js}` and `MainContent{:js}` components.
+
+The `Sidebar{:js}` and `MainContent{:js}` components use the `useContext{:js}` hook to get the current value of the `user{:js}` object from context object. `Sidebar{:js}` component displays user's name, and `MainContent{:js}` component displays user's email.
+
+### Limitation
+
+One limitation uf using `useContext{:js}` is that it only allows you to share state between components that are siblings or ancestors in the component tree. If you need to share state between components that are not related in the tree, you may want to consider using a solution like Redux, which allows you to manage global state in a centralized store.
+
+## Redux
+
+Redux is a popular library for managing state in React applications. It uses a single store to hold all of the application's state and provides a set of functions for updating state and subscribing to changes.
+
+### How To Use
+
+To use Redux in a React application, you need to install the `redux{:js}` and `react-redux{:js}` libraries and create a store using the `createStore{:js}` function from `redux{:js}` library. You can then use the `Provider{:js}` component from the `react-redux{:js}` library to wrap your application and provide the store to all of your components.
+
+Here is an example of how to use Redux to manage the terms of a user interface.
+
+```js
+import React from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+
+function reducer(state, action) {
+	switch (action.type) {
+		case "SET_THEME":
+			return { ...state, theme: action.theme };
+		default:
+			return state;
+	}
+}
+
+const store = createStore(reducer, { theme: "light" });
+
+function App() {
+	return (
+		<Provider store={store}>
+			<ThemeToggler />
+			<Content />
+		</Provider>
+	);
+}
+
+function ThemeToggler() {
+	const [state, dispatch] = useRedux(store);
+	const toggleTheme = () => dispatch({ type: "SET_THEME", theme: state.theme === "light" ? "dark" : "light" });
+
+	return <button onClick={toggleTheme}>Toggle theme</button>;
+}
+
+function Content() {
+	const [state] = useRedux(store);
+	const theme = state.theme;
+
+	return <div style={{ background: theme === "light" ? "white" : "black", color: theme === "light" ? "black" : "white" }}>Hello World</div>;
+}
+```
+
+In this example, `ThemeToggler{:js}` component uses `useRedux{:js}` hook from `react-redux{:js}` library to get current state of the store and the dispatch function, which is used to dispatch actions to the store. The `toggleTheme{:js}` function is called when user clicks the button element, and it dispatches an action with `SET_THEME{:js}` type and new value of the `theme{:js}` state.
+
+The `Content{:js}` component uses `useRedux{:js}` hook to get the current state of the store, and it uses the value of the `theme{:js}` state to set the background and text color of a `div{:html}` element.
+
+### Limitations
+
+Using Redux can be a good choice if you need to share state between unrelated components or if you have a large application with complex state management needs. However, it can add some additional complexity to your application, as you need to set up the store and manage actions and reducers.
+
+## Conclusion
+
+In conclusion, the `useContext{:js}` hook in React is a simple and convenient way to share state between components, and it can be a good alternative to solutions like Redux in some cases. However, it is important to choose the state management solution that is best suited to the needs of your application.
