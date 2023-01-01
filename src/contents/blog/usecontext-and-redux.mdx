@@ -10,11 +10,15 @@ thumbnail: https://user-images.githubusercontent.com/49820990/182567373-faa399fb
 isFeatured: false
 ---
 
-The `useContext{:js}` hook in React is a powerful way to share statebetween compoenents without having to pass props down the component tree manually. It was introuduced in React 16.3 as an alternative to the `context{:js}` API, which has been around since React 16.0.
+In this article, we compare the useContext hook in React with the Redux library for managing state in a React application. We discuss the pros and cons of each approach and provide examples of how to use them in a real-world scenario. We also explore the limitations of useContext and when it may be appropriate to use Redux instead.
+
+## useContext
+
+The useContext hook in React is a powerful way to share statebetween compoenents without having to pass props down the component tree manually. It was introuduced in React 16.3 as an alternative to the context API, which has been around since React 16.0.
 
 One advantage of using `useContext{:js}`over the other state management solutions like Redux is that it is build into React and does not require any additional libraries or dependencies. This can make it easier to set up and maintain in a project.
 
-### How To Use useContext
+### How To Use
 
 To use `useContext{:js}`, you first neet to create a context object using `React.createContext(){:js}` and provide a devault value. This default value will be used if a component that consumes the context does not have a matching `Provider{:js}` higher up in the tree.
 
