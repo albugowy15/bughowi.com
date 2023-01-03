@@ -7,13 +7,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		return res.status(400).json({ error: "Email is required" });
 	}
 
-	const result = await fetch("https://www.getrevue.co/api/v2/subscribers", {
+	const result = await fetch("https://api.sendinblue.com/v3/contacts", {
 		method: "POST",
 		headers: {
-			Authorization: `Token ${process.env.REVUE_API_KEY}`,
+			accept: "application/json",
+			// Authorization: `Token ${process.env.REVUE_API_KEY}`,
 			"Content-Type": "application/json",
+			"api-key": "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",
 		},
-		body: JSON.stringify({ email, double_opt_in: false }),
+		body: JSON.stringify({ updateEnabled: false, email: email }),
 	});
 
 	const data = await result.json();
