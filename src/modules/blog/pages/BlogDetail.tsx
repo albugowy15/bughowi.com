@@ -101,7 +101,7 @@ export default function BlogDetail({ post }: { post: Post }) {
 							<div key={heading.slug}>
 								<a
 									href={`#${heading.slug}`}
-									className={clsx("block text-slate-200/80 underline-offset-2 transition-all hover:text-slate-100 hover:underline hover:decoration-slate-100", {
+									className={clsx("block text-slate-200/80 underline-offset-2 transition-all hover:text-slate-100 hover:underline hover:decoration-slate-100 py-0.5", {
 										"pl-4": heading.heading === 3,
 										"pl-6": heading.heading === 4,
 									})}
