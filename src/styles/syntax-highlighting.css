@@ -2,7 +2,7 @@ div[data-rehype-pretty-code-fragment] {
 	overflow: hidden;
 
 	/* stylist preferences */
-	background-color: rgb(255 255 255 / 0.1);
+	background-color: #212121;
 	border-radius: 0.5rem;
 }
 
@@ -32,7 +32,7 @@ div[data-rehype-pretty-code-title] {
 	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 	font-size: 0.75rem;
 	line-height: 1.25rem;
-	color: rgb(255 228 230 / 0.7);
+	color: #edf6f9;
 }
 
 div[data-rehype-pretty-code-fragment] .line {
@@ -69,7 +69,7 @@ span[data-rehype-pretty-code-fragment] .line {
 	/* stylistic preferences */
 	font-size: 0.75rem;
 	line-height: 1rem;
-	background-color: rgb(255 255 255 / 0.1);
+	background-color: #212121;
 	border-radius: 0.3rem;
 	padding: 0.3em;
 }

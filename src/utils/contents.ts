@@ -45,7 +45,7 @@ export function formatDate(post: Post) {
 
 export const rehypePrettyCodeOptions: Partial<Options> = {
 	// use a prepackaged theme
-	theme: "one-dark-pro",
+	theme: "dracula",
 	onVisitHighlightedLine(node) {
 		node.properties.className.push("line--highlighted");
 	},
