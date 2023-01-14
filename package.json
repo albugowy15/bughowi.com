@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@giscus/react": "^2.2.6",
 		"@react-spring/web": "^9.6.1",
+		"@vercel/analytics": "^0.1.8",
 		"contentlayer": "^0.2.9",
 		"date-fns": "^2.29.3",
 		"github-slugger": "^2.0.0",
