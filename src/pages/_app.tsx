@@ -7,7 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
-      <NextNProgress />
+      <NextNProgress options={{ showSpinner: false }} />
       <Component {...pageProps} />
       <Analytics />
     </Layout>
