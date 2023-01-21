@@ -4,7 +4,7 @@ export type OGProperties = {
   title: string;
   type: "article" | "website";
   description: string;
-  site_name: "Bughowi.com";
+  site_name: "Mohamad Kholid Bughowi";
   image: {
     alt: string;
     type: string;
@@ -68,11 +68,11 @@ const OpenGraph = ({ properties }: { properties: OGProperties }) => {
 
           <meta name="twitter:card" content={card} />
           <meta name="twitter:url" content={url} />
-          <meta name="twitter:domain" content="codersteps.com" />
+          <meta name="twitter:domain" content="bughowi.com" />
           <meta name="twitter:title" content={title} />
           <meta name="twitter:description" content={description || ""} />
-          <meta name="twitter:site" content="@codersteps" />
-          <meta name="twitter:creator" content="@abdessamadely" />
+          <meta name="twitter:site" content="Mohamad Kholid Bughowi" />
+          <meta name="twitter:creator" content="@bughowy" />
         </>
       )}
     </>
