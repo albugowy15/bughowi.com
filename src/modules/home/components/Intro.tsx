@@ -1,30 +1,51 @@
 /* eslint-disable react/no-unescaped-entities */
 import OutlineGradientButton from "modules/home/components/OutlineGradientButton";
+import Image from "next/image";
+import profpic from "@assets/profile-picture.png";
+import Link from "next/link";
+import { HiOutlineNewspaper } from "react-icons/hi";
 
 const Intro = () => {
   return (
-    <div className="h-screen text-center flex flex-col items-center justify-center">
-      <div>
-        <p className="text-2xl sm:text-4xl font-black my-3">
-          Hi <span>&#128075;</span> I'm{" "}
-          <span className="text-blueAccent">Mohamad Kholid Bughowi</span>
+    <section className="flex items-center justify-between my-28">
+      <div className="flex-1 max-w-2xl text-center md:text-left">
+        <p className="text-4xl lg:text-5xl font-black mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-blue-600  to-blue-400">
+          Mohamad Kholid Bughowi
         </p>
-        <p className="text-2xl sm:text-4xl font-black">
-          You can call me{" "}
-          <span className="bg-blueAccent px-2 text-white">Owi</span>
-        </p>
-        <p className="my-8 sm:text-lg max-w-xl mx-auto">
+        <p className="text-2xl font-bold my-2">Fullstack Developer</p>
+        <p className="text-slate-300/80">
           Full Stack Developer with a passion for creating innovative web apps.
           Proficient in TypeScript and Go, dedicated to seamless user
           experiences. Follow my blog for dev insights and projects.
         </p>
-
-        <div className="flex items-center justify-center sm:gap-16 gap-2 my-20">
-          <OutlineGradientButton url="/blog" title="Read My Posts" />
-          <OutlineGradientButton url="/about" title="About Me" />
+        <div className="py-5" />
+        <div className="flex items-center gap-4 justify-center md:justify-start">
+          <Link
+            className="bg-darkSecondary px-4 py-1.5 rounded-lg border-2 border-slate-700 font-bold hover:text-blue-400 hover:bg-opacity-0 transition-all duration-300"
+            href="/about"
+          >
+            More About Me
+          </Link>
+          <a
+            className="flex items-center font-bold px-4 rounded-lg gap-1 border-2 py-1.5 border-slate-700 hover:text-blue-400 hover:bg-darkSecondary cursor-pointer transition-all duration-300"
+            href="https://drive.google.com/file/d/1B3x-UP3stouM3-y5odvkmr9LojD7u6nX/view?usp=sharing"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <HiOutlineNewspaper /> Resume
+          </a>
         </div>
       </div>
-    </div>
+
+      <div className="relative hidden md:block">
+        <div className="absolute -inset-2 bg-blue-800/20 rounded-full blur-3xl" />
+        <Image
+          src={profpic}
+          alt="Mohamad Kholid Bughowi"
+          className="object-cover rounded-full h-64 w-64 relative overflow-hidden flex-none"
+        />
+      </div>
+    </section>
   );
 };
 
