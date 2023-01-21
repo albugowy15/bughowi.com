@@ -9,8 +9,8 @@ module.exports = {
         primary: ["Karla", ...fontFamily.sans],
       },
       colors: {
-        darkPrimary: "#121212",
-        darkSecondary: "#212121",
+        darkPrimary: "#0F172A",
+        darkSecondary: "#1E293B",
         lightPrimary: "#EDF6F9",
         lightSecondary: "#FFFFFF",
         blueAccent: "#255FF5",
