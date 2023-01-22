@@ -5,70 +5,70 @@
 @tailwind utilities;
 
 ::-webkit-scrollbar {
-	height: 7px;
-	width: 7px;
+  height: 7px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #413c58;
-	border-radius: 10px;
+  background: #413c58;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-	background: #413c58;
-	border-radius: 10px;
+  background: #413c58;
+  border-radius: 10px;
 }
 
 body {
-	@apply bg-darkPrimary text-slate-200 font-primary;
+  @apply bg-darkPrimary text-slate-200 font-primary;
 }
 
 html {
-	@apply scroll-smooth relative min-h-full;
+  @apply scroll-smooth relative min-h-full;
 }
 
 #content-space {
-	@apply text-base space-y-3;
+  @apply text-base space-y-3;
 }
 
 #content-space {
-	h1 {
-		@apply text-3xl;
-	}
-	h2 {
-		@apply text-2xl pt-6;
-	}
-	h3 {
-		@apply text-xl pt-3;
-	}
-	h4 {
-		@apply text-lg pt-1;
-	}
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply font-bold scroll-my-16;
-	}
-	p {
-		@apply text-slate-200/90;
-	}
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl pt-6;
+  }
+  h3 {
+    @apply text-xl pt-3;
+  }
+  h4 {
+    @apply text-lg pt-1;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold scroll-my-16;
+  }
+  p {
+    @apply text-slate-200/90;
+  }
 
-	blockquote {
-		@apply bg-darkSecondary px-3 py-2 border-l-4 border-blueAccent text-slate-200 font-bold italic;
-	}
+  blockquote {
+    @apply bg-darkSecondary px-3 py-2 border-l-4 border-blueAccent text-slate-200 font-bold italic;
+  }
 
-	ol {
-		@apply list-decimal ml-5;
-	}
+  ol {
+    @apply list-decimal ml-5;
+  }
 
-	ul {
-		@apply list-disc ml-5;
-	}
+  ul {
+    @apply list-disc ml-5;
+  }
 
-	a {
-		@apply text-[#6d90e2] hover:underline underline-offset-2 hover:text-[#4276ee] transition-transform ease-linear;
-	}
+  a {
+    @apply text-[#6d90e2] hover:underline underline-offset-2 hover:text-[#4276ee] transition-transform ease-linear;
+  }
 }

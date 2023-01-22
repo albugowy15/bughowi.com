@@ -7,10 +7,16 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Credit, { CreditProps } from "@components/card/Credit";
 import clsx from "clsx";
 import { Post } from "../../../../.contentlayer/generated";
+import { useHeadingObserver } from "@utils/hooks/useHeadingObserver";
+import useScrollHeadings from "@utils/hooks/useScrollHeadings";
+import useScrollSpy from "react-use-scrollspy";
+import { useScrollspy } from "@utils/hooks/useScrollSpy";
+import { BsTwitter } from "react-icons/bs";
+import { FaRegEdit } from "react-icons/fa";
 
 const components = {
   img: NextImage,
@@ -37,6 +43,11 @@ export default function BlogDetail({ post }: { post: Post }) {
     published_time: post.date,
     site_name: "Mohamad Kholid Bughowi",
   });
+
+  // https://github.com/albugowy15/bughowi.com/blob/main/src/contents/blog/build-react-form-with-react-hook-form-and-yup.mdx
+
+  const editUrl = `https://github.com/albugowy15/bughowi.com/blob/main/src/contents${post.url}.mdx`;
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${post.title}&url=https://bughowi.com${post.url}&via=bughowy`;
 
   return (
     <>
@@ -75,18 +86,21 @@ export default function BlogDetail({ post }: { post: Post }) {
               {/* @ts-ignore */}
               <MDXContent components={components} />
             </div>
-            <div className="border-y-2 border-slate-400 mt-3">
-              <p className="py-4 flex flex-wrap items-center gap-2">
-                Categories :{" "}
-                {post.categories?.map((category, idx) => (
-                  <span
-                    className="px-1 py-0.5 bg-blueAccent text-slate-100 rounded-md"
-                    key={idx}
-                  >
-                    {category.name}
-                  </span>
-                ))}
-              </p>
+            <div className="flex justify-between mt-6">
+              <a
+                href={editUrl}
+                className="px-4 rounded hover:bg-darkSecondary transition-colors py-1 border border-slate-700 flex items-center gap-2 font-semibold"
+              >
+                <FaRegEdit color="#84DCCF" />
+                Edit this page
+              </a>
+              <a
+                href={tweetUrl}
+                className="px-4 rounded hover:bg-darkSecondary transition-colors py-1 border border-slate-700 flex items-center gap-2 font-semibold"
+              >
+                <BsTwitter color="#1DA1F2" />
+                Tweet this article
+              </a>
             </div>
           </article>
           <div className="py-4" />
@@ -106,27 +120,39 @@ export default function BlogDetail({ post }: { post: Post }) {
             loading="lazy"
           />
         </div>
-        <div className="hidden xl:block sticky flex-1 top-20 z-40">
-          <h3 className="font-bold text-xl">Table of Contents</h3>
-
-          {post.headings.map((heading: any) => {
-            return (
-              <div key={heading.slug}>
-                <a
-                  href={`#${heading.slug}`}
-                  className={clsx(
-                    "block text-slate-200/80 underline-offset-2 transition-all hover:text-slate-100 hover:underline hover:decoration-slate-100 py-0.5",
-                    {
-                      "pl-4": heading.heading === 3,
-                      "pl-6": heading.heading === 4,
-                    }
-                  )}
-                >
-                  {heading.text}
-                </a>
-              </div>
-            );
-          })}
+        <div className="hidden xl:flex flex-col divide-y divide-slate-600 bg-darkSecondary/50 rounded-lg sticky flex-1 top-20 z-40 border-2 border-slate-700">
+          <div className="flex justify-between px-3 py-2 items-center">
+            <h3 className="font-bold">Table of Contents</h3>
+            <p
+              className="text-sm text-blue-300 cursor-pointer"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+            >
+              Back to top
+            </p>
+          </div>
+          <div className="py-2" id="toc-container">
+            {post.headings.map((heading: any, index: number) => {
+              return (
+                <div key={heading.slug}>
+                  <a
+                    href={`#${heading.slug}`}
+                    className={clsx(
+                      "block text-slate-200/80 font-semibold text-sm py-1.5 px-3",
+                      {
+                        "pl-6": heading.heading === 3,
+                        "pl-9": heading.heading === 4,
+                      },
+                      "hover:bg-darkSecondary"
+                    )}
+                  >
+                    {heading.text}
+                  </a>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </main>
     </>
