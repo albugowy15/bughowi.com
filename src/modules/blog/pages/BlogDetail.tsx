@@ -7,10 +7,14 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Credit, { CreditProps } from "@components/card/Credit";
 import clsx from "clsx";
 import { Post } from "../../../../.contentlayer/generated";
+import { useHeadingObserver } from "@utils/hooks/useHeadingObserver";
+import useScrollHeadings from "@utils/hooks/useScrollHeadings";
+import useScrollSpy from "react-use-scrollspy";
+import { useScrollspy } from "@utils/hooks/useScrollSpy";
 
 const components = {
   img: NextImage,
@@ -106,27 +110,39 @@ export default function BlogDetail({ post }: { post: Post }) {
             loading="lazy"
           />
         </div>
-        <div className="hidden xl:block sticky flex-1 top-20 z-40">
-          <h3 className="font-bold text-xl">Table of Contents</h3>
-
-          {post.headings.map((heading: any) => {
-            return (
-              <div key={heading.slug}>
-                <a
-                  href={`#${heading.slug}`}
-                  className={clsx(
-                    "block text-slate-200/80 underline-offset-2 transition-all hover:text-slate-100 hover:underline hover:decoration-slate-100 py-0.5",
-                    {
-                      "pl-4": heading.heading === 3,
-                      "pl-6": heading.heading === 4,
-                    }
-                  )}
-                >
-                  {heading.text}
-                </a>
-              </div>
-            );
-          })}
+        <div className="hidden xl:flex flex-col divide-y divide-slate-600 bg-darkSecondary/50 rounded-lg sticky flex-1 top-20 z-40 border-2 border-slate-700">
+          <div className="flex justify-between px-3 py-2 items-center">
+            <h3 className="font-bold">Table of Contents</h3>
+            <p
+              className="text-sm text-blue-300 cursor-pointer"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+            >
+              Back to top
+            </p>
+          </div>
+          <div className="py-2" id="toc-container">
+            {post.headings.map((heading: any, index: number) => {
+              return (
+                <div key={heading.slug}>
+                  <a
+                    href={`#${heading.slug}`}
+                    className={clsx(
+                      "block text-slate-200/80 font-semibold text-sm py-1.5 px-3",
+                      {
+                        "pl-6": heading.heading === 3,
+                        "pl-9": heading.heading === 4,
+                      },
+                      "hover:bg-darkSecondary"
+                    )}
+                  >
+                    {heading.text}
+                  </a>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </main>
     </>
