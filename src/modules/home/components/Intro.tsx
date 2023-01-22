@@ -7,7 +7,7 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 
 const Intro = () => {
   return (
-    <section className="flex items-center justify-between my-28">
+    <section className="flex items-center justify-between min-h-screen md:min-h-fit md:my-28">
       <div className="flex-1 max-w-2xl text-center md:text-left">
         <p className="text-4xl lg:text-5xl font-black mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-blue-600  to-blue-400">
           Mohamad Kholid Bughowi
