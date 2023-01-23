@@ -1,5 +1,5 @@
 import { Form } from "@interfaces/component";
-import { useSubscribeToNewsletter } from "@utils/form";
+import useSubscribeToNewsletter from "@utils/hooks/useSubscribeToNewsletter";
 import SocialMedia from "./SocialMedia";
 
 const Subscribe = () => {
@@ -41,14 +41,12 @@ const Subscribe = () => {
             </button>
           </div>
 
-          {form.state === Form.Success ? (
+          {form.state === Form.Success && (
             <div className="mt-4">
               <span className="font-bold text-green-600">
                 <span>&#128522;</span> Thank you for subscribing my newsletters
               </span>
             </div>
-          ) : (
-            <span></span>
           )}
         </form>
       </div>

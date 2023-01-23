@@ -1,4 +1,4 @@
-import { Post, Project } from "../../.contentlayer/generated";
+import { Post, Project } from "@contentlayer/generated";
 import {
   getAllPosts,
   getAllProjects,

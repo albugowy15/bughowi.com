@@ -1,4 +1,4 @@
-import { Project } from "../../../../.contentlayer/generated";
+import { Project } from "@contentlayer/generated";
 import Link from "next/link";
 import ProjectCard from "@components/card/ProjectCard";
 
