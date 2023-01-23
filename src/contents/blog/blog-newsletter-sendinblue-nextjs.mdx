@@ -72,13 +72,17 @@ export default NewsletterForm;
 
 Now, our Newsletter Form will looks like this
 
-![image](https://user-images.githubusercontent.com/49820990/213977560-3891bdbf-46de-4a31-b066-9f339ffa039e.png)
+<CustomImage
+  src="https://user-images.githubusercontent.com/49820990/213977560-3891bdbf-46de-4a31-b066-9f339ffa039e.png"
+  alt="Subscribe Newsletter Component"
+  height={164}
+  width={490}
+/>
 
 ## Creating the custom hook
 
-We need to create a custom hook for handling the form. By abstracting it with a custom hook is a great way to keep your code organized and reusable. Here's an example of how you might create a custom hook for handling the newsletter form:
+We need to create a custom hook for handling the form. By abstracting it with a custom hook is a great way to keep your code organized and reusable. Here's an example of how you might create a custom hook for handling the newsletter form.
 
-Below is clear explanation for the `useNewsletter{:js}` hooks.
 The hook starts by importing the `useState{:js}` and `useRef{:js}` hooks from the React library. `useState{:js}` is used to manage the state of the form, and `useRef{:js}` is used to keep track of the input element in the form.
 
 Then, it declares a state variable called `form{:ts}` that is initialized with an object that has two properties, `state: Form.Initial{:ts}` and `message: undefined{:ts}`. The state property is used to keep track of the status of the form, it can be `Form.Initial{:ts}`, `Form.Loading{:ts}`, `Form.Success{:ts}` or `Form.Error{:ts}`. The `message{:js}` property is used to display the message depending of the status of the form.
@@ -328,9 +332,9 @@ To make Sendinblue API request, we have to include the Sendinblue API key in the
 
 Be sure to keep your API key secure and never share it with anyone or include it in your codebase. It's also important to note that you should use environment variables to store the api key and other sensitive information, instead of hardcoding them in your code.
 
-Create `.env{bash}` file in root folder of your project. In the .env file, add a new variable called `SENDINBLUE_API_KEY{:js}` and set it to your Sendinblue API key. For example:
+Create `.env{:sh}` file in root folder of your project. In the .env file, add a new variable called `SENDINBLUE_API_KEY{:js}` and set it to your Sendinblue API key. For example:
 
-```sh
+```sh title=".env"
 SENDINBLUE_API_KEY=your_api_key_here
 
 ```

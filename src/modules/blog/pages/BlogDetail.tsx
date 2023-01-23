@@ -7,22 +7,19 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
 import Credit, { CreditProps } from "@components/card/Credit";
 import clsx from "clsx";
-import { Post } from "../../../../.contentlayer/generated";
-import { useHeadingObserver } from "@utils/hooks/useHeadingObserver";
-import useScrollHeadings from "@utils/hooks/useScrollHeadings";
-import useScrollSpy from "react-use-scrollspy";
-import { useScrollspy } from "@utils/hooks/useScrollSpy";
+import { Post } from "@contentlayer/generated";
 import { BsTwitter } from "react-icons/bs";
 import { FaRegEdit } from "react-icons/fa";
+import CustomImage from "@components/common/CustomImage";
 
 const components = {
   img: NextImage,
   CreditBadge: ({ username, img, url }: CreditProps) => (
     <Credit img={img} username={username} url={url} />
   ),
+  CustomImage: CustomImage,
 };
 export default function BlogDetail({ post }: { post: Post }) {
   const MDXContent = useMDXComponent(post.body.code);
@@ -43,8 +40,6 @@ export default function BlogDetail({ post }: { post: Post }) {
     published_time: post.date,
     site_name: "Mohamad Kholid Bughowi",
   });
-
-  // https://github.com/albugowy15/bughowi.com/blob/main/src/contents/blog/build-react-form-with-react-hook-form-and-yup.mdx
 
   const editUrl = `https://github.com/albugowy15/bughowi.com/blob/main/src/contents${post.url}.mdx`;
   const tweetUrl = `https://twitter.com/intent/tweet?text=${post.title}&url=https://bughowi.com${post.url}&via=bughowy`;

@@ -2,7 +2,7 @@ import ProjectCard from "@components/card/ProjectCard";
 import OpenGraph from "@components/common/OpenGraph";
 import useOpenGraph from "@utils/hooks/useOpenGraph";
 import Head from "next/head";
-import { Project } from "../../../../.contentlayer/generated";
+import { Project } from "@contentlayer/generated";
 
 export default function Projects({ projects }: { projects: Project[] }) {
   const ogProperties = useOpenGraph({

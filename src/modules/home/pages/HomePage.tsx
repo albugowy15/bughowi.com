@@ -4,7 +4,7 @@ import RecentPosts from "modules/blog/components/RecentPosts";
 import PersonalProjects from "modules/project/components/PersonalProjects";
 import useOpenGraph from "@utils/hooks/useOpenGraph";
 import Head from "next/head";
-import { Post, Project } from "../../../../.contentlayer/generated";
+import { Post, Project } from "@contentlayer/generated";
 
 const HomePage = ({
   posts,

@@ -1,4 +1,4 @@
-import { Post } from "../../../.contentlayer/generated";
+import { Post } from "@contentlayer/generated";
 import { getAllPosts } from "@utils/contents";
 import Blog from "modules/blog/pages/Blog";
 
