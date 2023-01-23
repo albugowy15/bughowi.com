@@ -1,5 +1,5 @@
 import { Post } from "../../../.contentlayer/generated";
-import { getNPosts } from "@utils/contents";
+import { getAllPosts } from "@utils/contents";
 import Blog from "modules/blog/pages/Blog";
 
 export default function BlogPage({
@@ -13,7 +13,7 @@ export default function BlogPage({
 }
 
 export async function getStaticProps() {
-  const posts = getNPosts(6);
+  const posts = getAllPosts();
   const featuredPost = posts.find((post) => post.isFeatured === true);
   return {
     props: { posts, featuredPost },

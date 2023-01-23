@@ -1,4 +1,4 @@
-import { getAllProjects, getNProjects } from "@utils/contents";
+import { getAllProjects } from "@utils/contents";
 import Projects from "modules/project/pages/Projects";
 import { Project } from "../../../.contentlayer/generated";
 
@@ -7,7 +7,7 @@ export default function ProjectsPage({ projects }: { projects: Project[] }) {
 }
 
 export async function getStaticProps() {
-  const projects = getNProjects(6);
+  const projects = getAllProjects();
 
   return {
     props: {
