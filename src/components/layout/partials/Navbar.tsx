@@ -16,12 +16,10 @@ const Navbar = () => {
     if (onTop !== (window.scrollY === 0)) {
       setOnTop(window.scrollY == 0);
     }
-    console.log(onTop);
   }
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    console.log(onTop);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
