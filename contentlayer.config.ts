@@ -11,6 +11,10 @@ const contentLayerConfig = makeSource({
   contentDirPath: "src/contents",
   documentTypes: [Post, Project],
   mdx: {
+    // esbuildOptions(options) {
+    //   options.target = "exsnext";
+    //   return options;
+    // },
     rehypePlugins: [
       rehypeCodeTitles,
       rehypeSlug,
