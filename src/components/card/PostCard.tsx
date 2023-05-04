@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@utils/contents";
-import { Post } from "@contentlayer/generated";
+import { Post } from "../../../.contentlayer/generated";
 
 const PostCard = (post: Post) => {
   return (
