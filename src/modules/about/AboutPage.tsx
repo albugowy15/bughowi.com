@@ -137,11 +137,11 @@ function AboutPage() {
           <h3 className="font-bold text-xl">
             Front End Engineer - Torche Education
           </h3>
-          <p className="text-gray-400 mt-0">December 2022 - Present</p>
+          <p className="text-gray-400 mt-0">November 2022 - February 2023</p>
           <p className="mt-2">
             Create a new landing page and migrate to MERN (MongoDB, Express,
-            React, Node.js) stack. Develope the landing page with Next.js,
-            TypeScript, and Tailwind
+            React, Node.js) stack. Develop the landing page with Next.js,
+            TypeScript, and Tailwind.
           </p>
           <h3 className="font-bold text-xl">
             Full Stack Developer - Harisenin.com
