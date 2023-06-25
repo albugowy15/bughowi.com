@@ -1,5 +1,5 @@
-import { allPosts } from "@contentlayer/generated";
-import { Post } from "@contentlayer/generated";
+import { allPosts } from "../../../.contentlayer/generated";
+import { Post } from "../../../.contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
 import BlogDetail from "modules/blog/pages/BlogDetail";
 

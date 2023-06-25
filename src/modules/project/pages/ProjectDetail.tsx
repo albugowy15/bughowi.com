@@ -5,7 +5,7 @@ import useOpenGraph from "@utils/hooks/useOpenGraph";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Image from "next/image";
-import { Project } from "@contentlayer/generated";
+import { Project } from "../../../../.contentlayer/generated";
 
 const components = {
   CreditBadge: ({ username, img, url }: CreditProps) => (

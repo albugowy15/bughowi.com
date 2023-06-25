@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Credit, { CreditProps } from "@components/card/Credit";
 import clsx from "clsx";
-import { Post } from "@contentlayer/generated";
+import { Post } from "../../../../.contentlayer/generated";
 import { BsTwitter } from "react-icons/bs";
 import { FaRegEdit } from "react-icons/fa";
 import CustomImage from "@components/common/CustomImage";

@@ -1,6 +1,6 @@
-import { allPosts, allProjects } from "@contentlayer/generated";
+import { allPosts, allProjects } from "../../.contentlayer/generated";
 import { compareDesc, format, parseISO } from "date-fns";
-import { Post } from "@contentlayer/generated";
+import { Post } from "../../.contentlayer/generated";
 import { Options } from "rehype-pretty-code";
 
 export function getAllPosts() {

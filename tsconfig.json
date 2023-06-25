@@ -16,7 +16,7 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@contentlayer/generated": ["../.contentlayer/generated"],
+      "contentlayer/generated": ["./.contentlayer/generated"],
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
@@ -31,7 +31,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "./.contentlayer/generated"
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }

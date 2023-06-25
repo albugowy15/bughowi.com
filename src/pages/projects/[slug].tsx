@@ -1,4 +1,4 @@
-import { allProjects, Project } from "@contentlayer/generated";
+import { allProjects, Project } from "../../../.contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
 import ProjectDetail from "modules/project/pages/ProjectDetail";
 

@@ -3,7 +3,7 @@ import OpenGraph from "@components/common/OpenGraph";
 import FeaturedPost from "modules/blog/components/FeaturedPost";
 import useOpenGraph from "@utils/hooks/useOpenGraph";
 import Head from "next/head";
-import { Post } from "@contentlayer/generated";
+import { Post } from "../../../../.contentlayer/generated";
 
 export default function Blog({
   posts,
