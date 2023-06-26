@@ -83,10 +83,6 @@ Now, our Newsletter Form will looks like this
 
 We need to create a custom hook for handling the form. By abstracting it with a custom hook is a great way to keep your code organized and reusable. Here's an example of how you might create a custom hook for handling the newsletter form.
 
-The hook starts by importing the `useState{:js}` and `useRef{:js}` hooks from the React library. `useState{:js}` is used to manage the state of the form, and `useRef{:js}` is used to keep track of the input element in the form.
-
-Then, it declares a state variable called `form{:ts}` that is initialized with an object that has two properties, `state: Form.Initial{:ts}` and `message: undefined{:ts}`. The state property is used to keep track of the status of the form, it can be `Form.Initial{:ts}`, `Form.Loading{:ts}`, `Form.Success{:ts}` or `Form.Error{:ts}`. The `message{:js}` property is used to display the message depending of the status of the form.
-
 ```ts showLineNumbers title="./utils/hooks/useNewsletter.ts" {16}
 import { useRef, useState } from "react";
 
@@ -129,6 +125,10 @@ export function useNewsletter() {
   const inputEl = useRef<HTMLInputElement>(null);
 }
 ```
+
+The hook starts by importing the `useState{:js}` and `useRef{:js}` hooks from the React library. `useState{:js}` is used to manage the state of the form, and `useRef{:js}` is used to keep track of the input element in the form.
+
+Then, it declares a state variable called `form{:ts}` that is initialized with an object that has two properties, `state: Form.Initial{:ts}` and `message: undefined{:ts}`. The state property is used to keep track of the status of the form, it can be `Form.Initial{:ts}`, `Form.Loading{:ts}`, `Form.Success{:ts}` or `Form.Error{:ts}`. The `message{:js}` property is used to display the message depending of the status of the form.
 
 Next, the hook exports a function called `subscribe{:js}` that handles the form submission. This function takes one parameter e of type `React.FormEvent{:js}`, which is the event object that is passed to the function when the form is submitted.
 
