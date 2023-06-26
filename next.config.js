@@ -1,14 +1,28 @@
 const { withContentlayer } = require("next-contentlayer");
 
-module.exports = withContentlayer({
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
   images: {
-    domains: [
-      "user-images.githubusercontent.com",
-      "images.unsplash.com",
-      "localhost:3000",
-      "avatars.githubusercontent.com",
-      "github.com",
-      "blogger.googleusercontent.com",
+    remotePatterns: [
+      {
+        hostname: "user-images.githubusercontent.com",
+      },
+      {
+        hostname: "images.unsplash.com",
+      },
+      {
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        hostname: "github.com",
+      },
+      {
+        hostname: "blogger.googleusercontent.com",
+      },
     ],
   },
-});
+};
+
+module.exports = withContentlayer(nextConfig);

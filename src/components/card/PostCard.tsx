@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@utils/contents";
 import { Post } from "../../../.contentlayer/generated";
+import BlurImage from "@components/common/BlurImage";
 
 const PostCard = (post: Post) => {
   return (
     <div className="bg-darkSecondary rounded-md overflow-hidden border-2 border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out">
       <div className="w-full h-48 relative overflow-hidden">
-        <Image
+        <BlurImage
           fill
           src={post.thumbnail}
           className="object-cover"

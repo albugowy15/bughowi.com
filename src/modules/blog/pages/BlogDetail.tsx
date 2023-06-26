@@ -13,6 +13,7 @@ import { Post } from "../../../../.contentlayer/generated";
 import { BsTwitter } from "react-icons/bs";
 import { FaRegEdit } from "react-icons/fa";
 import CustomImage from "@components/common/CustomImage";
+import BlurImage from "@components/common/BlurImage";
 
 const components = {
   img: NextImage,
@@ -69,11 +70,11 @@ export default function BlogDetail({ post }: { post: Post }) {
       <main className="w-full mx-auto xl:flex xl:justify-between xl:gap-10 xl:items-start">
         <div className="xl:w-[70%]">
           <article className="w-full">
-            <Image
+            <CustomImage
               src={post.thumbnail}
               alt={post.title}
-              width={900}
-              height={350}
+              width={1080}
+              height={720}
               className="object-cover rounded-md"
             />
 

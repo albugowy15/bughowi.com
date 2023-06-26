@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClockCircle, AiOutlineEye } from "react-icons/ai";
 import { formatDate } from "@utils/contents";
+import BlurImage from "@components/common/BlurImage";
 
 function FeaturedPost({ post }: { post: Post }) {
   return (
     <section className="flex flex-col md:flex-row md:h-[20rem] lg:h-[22rem] bg-darkSecondary w-full  overflow-hidden">
       <div className="w-full h-72 lg:w-[40%] md:w-[45%] md:h-full relative overflow-hidden">
-        <Image
+        <BlurImage
           src={post.thumbnail}
           alt={post.title}
           fill

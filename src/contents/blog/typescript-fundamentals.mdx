@@ -46,7 +46,7 @@ By default, TypeScript will compile to ES3 which dosn't support for async await.
 
 ```ts title="index.ts"
 async function hello() {
-	return "world";
+  return "world";
 }
 ```
 
@@ -54,36 +54,38 @@ You'll notice here that our code gets transpiled to this creazy looking JavaScri
 
 ```js title="index.js"
 var __awaiter =
-	(this && this.__awaiter) ||
-	function (thisArg, _arguments, P, generator) {
-		function adopt(value) {
-			return value instanceof P
-				? value
-				: new P(function (resolve) {
-						resolve(value);
-				  });
-		}
-		return new (P || (P = Promise))(function (resolve, reject) {
-			function fulfilled(value) {
-				try {
-					step(generator.next(value));
-				} catch (e) {
-					reject(e);
-				}
-			}
-			function rejected(value) {
-				try {
-					step(generator["throw"](value));
-				} catch (e) {
-					reject(e);
-				}
-			}
-			function step(result) {
-				result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-			}
-			step((generator = generator.apply(thisArg, _arguments || [])).next());
-		});
-	};
+  (this && this.__awaiter) ||
+  function (thisArg, _arguments, P, generator) {
+    function adopt(value) {
+      return value instanceof P
+        ? value
+        : new P(function (resolve) {
+            resolve(value);
+          });
+    }
+    return new (P || (P = Promise))(function (resolve, reject) {
+      function fulfilled(value) {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      }
+      function rejected(value) {
+        try {
+          step(generator["throw"](value));
+        } catch (e) {
+          reject(e);
+        }
+      }
+      function step(result) {
+        result.done
+          ? resolve(result.value)
+          : adopt(result.value).then(fulfilled, rejected);
+      }
+      step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+  };
 
 // +33 lines
 ```
@@ -100,9 +102,9 @@ The first one target and this is the flavor of JavaScript that your code will co
 
 ```json title="tsconfig.json"
 {
-	"compilerOptions": {
-		"target": "esnext"
-	}
+  "compilerOptions": {
+    "target": "esnext"
+  }
 }
 ```
 
@@ -112,10 +114,10 @@ Another option that we want to set right away is `"watch": true{:js}` which will
 
 ```json title="tsconfig.json"
 {
-	"compilerOptions": {
-		"target": "esnext",
-		"watch": true
-	}
+  "compilerOptions": {
+    "target": "esnext",
+    "watch": true
+  }
 }
 ```
 
@@ -125,17 +127,22 @@ The next option we will look at is lib which allows us to automatically include 
 
 ```json title="tsconfig.json"
 {
-	"compilerOptions": {
-		"target": "es3",
-		"watch": true,
-		"lib": ["dom", "es2017"]
-	}
+  "compilerOptions": {
+    "target": "es3",
+    "watch": true,
+    "lib": ["dom", "es2017"]
+  }
 }
 ```
 
 For example if we go back to our code, we can use URL class which is part of the DOM and we'll got autocomplete and intellisense on this class. So this is where the incredible tooling of TypeScript starts to come in. If we hover over the class we have intergrated documentation as well as an error message telling us exactly why this code won't run.
 
-![autocomplete and intellisense in typescript](https://user-images.githubusercontent.com/49820990/181878992-0a10db8d-c981-40eb-9f87-6d7b12618321.png)
+<CustomImage
+  src="https://user-images.githubusercontent.com/49820990/181878992-0a10db8d-c981-40eb-9f87-6d7b12618321.png"
+  alt="autocomplete and intellisense in typescript"
+  height={247}
+  width={746}
+/>
 
 ## Type
 
@@ -204,14 +211,14 @@ So that's pretty cool but more often, you'll be strong typing object that have m
 
 ```ts
 const person1 = {
-	first: "Harry",
-	last: "Maguire",
+  first: "Harry",
+  last: "Maguire",
 };
 
 const person2 = {
-	first: "Usain",
-	last: "Bolt",
-	fast: true,
+  first: "Usain",
+  last: "Bolt",
+  fast: true,
 };
 ```
 
@@ -219,8 +226,8 @@ Composing objects or class instances that don't have the correct shape is an eas
 
 ```ts
 interface Person {
-	first: string;
-	last: string;
+  first: string;
+  last: string;
 }
 ```
 
@@ -228,19 +235,19 @@ Now we can use this interface to strong type this object directly or we could us
 
 ```ts
 interface Person {
-	first: string;
-	last: string;
+  first: string;
+  last: string;
 }
 
 const person1: Person = {
-	first: "Harry",
-	last: "Maguire",
+  first: "Harry",
+  last: "Maguire",
 };
 
 const person2 = {
-	first: "Usain",
-	last: "Bolt",
-	fast: true,
+  first: "Usain",
+  last: "Bolt",
+  fast: true,
 };
 ```
 
@@ -248,20 +255,20 @@ Now sometimes an interface like this can be too restrictive. You can maintain th
 
 ```ts
 interface Person {
-	first: string;
-	last: string;
-	[key: string]: any;
+  first: string;
+  last: string;
+  [key: string]: any;
 }
 
 const person1: Person = {
-	first: "Harry",
-	last: "Maguire",
+  first: "Harry",
+  last: "Maguire",
 };
 
 const person2 = {
-	first: "Usain",
-	last: "Bolt",
-	fast: true,
+  first: "Usain",
+  last: "Bolt",
+  fast: true,
 };
 ```
 
@@ -271,7 +278,7 @@ Now let's go ahead and switch to function. Strong typing in a function can be a 
 
 ```ts
 function pow(x, y) {
-	return Math.pow(x, y);
+  return Math.pow(x, y);
 }
 ```
 
@@ -279,7 +286,7 @@ Then we could add string values as the arguments and we wouldn't any error from 
 
 ```ts
 function pow(x, y) {
-	return Math.pow(x, y);
+  return Math.pow(x, y);
 }
 
 pow("23", "foo");
@@ -289,7 +296,7 @@ You can annotate arguments the same way we do with variables. That will sure onl
 
 ```ts
 function pow(x: number, y: number) {
-	return Math.pow(x, y);
+  return Math.pow(x, y);
 }
 
 pow(5, 10);
@@ -299,7 +306,7 @@ So the function implicitly has a number return value because we're using the nat
 
 ```ts
 function pow(x: number, y: number): string {
-	return Math.pow(x, y).toString();
+  return Math.pow(x, y).toString();
 }
 
 pow(5, 10);
@@ -353,7 +360,7 @@ The last thing is TypeScript generics. You may run into situation where you want
 
 ```ts
 class Observable<T> {
-	constructor(public value) {}
+  constructor(public value) {}
 }
 ```
 
@@ -361,7 +368,7 @@ The `T{:ts}` represents a variable type that we can pass in to strong type this 
 
 ```ts
 class Observable<T> {
-	constructor(public value: T) {}
+  constructor(public value: T) {}
 }
 
 let x: Observable<number>;

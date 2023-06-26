@@ -6,6 +6,8 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Image from "next/image";
 import { Project } from "../../../../.contentlayer/generated";
+import BlurImage from "@components/common/BlurImage";
+import CustomImage from "@components/common/CustomImage";
 
 const components = {
   CreditBadge: ({ username, img, url }: CreditProps) => (
@@ -43,11 +45,11 @@ export default function ProjectDetail({ project }: { project: Project }) {
         <p className="text-slate-400">{project.description}</p>
         <article className="mt-5 w-full">
           {project.thumbnail && (
-            <Image
+            <CustomImage
               src={project.thumbnail}
               alt={project.title}
-              height={300}
-              width={800}
+              height={466}
+              width={828}
               className="rounded-lg"
             />
           )}
