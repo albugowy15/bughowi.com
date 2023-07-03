@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ["Karla", ...fontFamily.sans],
+        primary: ["Roboto", ...fontFamily.sans],
       },
       colors: {
         darkPrimary: "#0F172A",

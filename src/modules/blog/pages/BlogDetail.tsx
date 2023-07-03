@@ -14,6 +14,7 @@ import { BsTwitter } from "react-icons/bs";
 import { FaRegEdit } from "react-icons/fa";
 import CustomImage from "@components/common/CustomImage";
 import BlurImage from "@components/common/BlurImage";
+import Typography from "@components/Typography";
 
 const components = {
   img: NextImage,
@@ -55,17 +56,15 @@ export default function BlogDetail({ post }: { post: Post }) {
       </Head>
       <div className="py-4" />
 
-      <h1 className="text-3xl font-bold">{post.title}</h1>
-      <div className="mt-2 text-sm flex justify-start gap-1 sm:gap-3 items-center mb-6">
-        <Link href="/about">
-          <p className="hover:text-blueAccent transition-colors">
-            M. K. Bughowi
-          </p>
-        </Link>
+      <Typography variant="h1">{post.title}</Typography>
+      <div className="py-2 flex justify-start gap-1 sm:gap-3 items-center">
+        <Typography variant="label1">M. K. Bughowi</Typography>
         <span>&#8226;</span>
-        <p>{formatDate(post)}</p>
+        <Typography variant="label1">{formatDate(post)}</Typography>
         <span>&#8226;</span>
-        <p className="text-yellowAccent">{post.readingTime.text}</p>
+        <Typography variant="label1" className="text-yellowAccent">
+          {post.readingTime.text}
+        </Typography>
       </div>
       <main className="w-full mx-auto xl:flex xl:justify-between xl:gap-10 xl:items-start">
         <div className="xl:w-[70%]">
@@ -118,7 +117,7 @@ export default function BlogDetail({ post }: { post: Post }) {
         </div>
         <div className="hidden xl:flex flex-col divide-y divide-slate-600 bg-darkSecondary/50 rounded-lg sticky flex-1 top-20 z-40 border-2 border-slate-700">
           <div className="flex justify-between px-3 py-2 items-center">
-            <h3 className="font-bold">Table of Contents</h3>
+            <Typography variant="h5">Table of Contents</Typography>
             <p
               className="text-sm text-blue-300 cursor-pointer"
               onClick={() => {

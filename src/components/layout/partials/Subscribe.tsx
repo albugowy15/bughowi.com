@@ -1,6 +1,7 @@
 import { Form } from "@interfaces/component";
 import useSubscribeToNewsletter from "@utils/hooks/useSubscribeToNewsletter";
 import SocialMedia from "./SocialMedia";
+import Typography from "@components/Typography";
 
 const Subscribe = () => {
   const { form, subscribe, inputEl } = useSubscribeToNewsletter();
@@ -8,12 +9,12 @@ const Subscribe = () => {
   return (
     <footer className="mx-auto p-5 w-full">
       <div className="bg-darkSecondary w-full max-w-xl rounded border border-gray-700 p-5 mx-auto">
-        <p className="font-bold text-lg">Subscribe to the newsletter</p>
+        <Typography variant="h4">Subscribe to the newsletter</Typography>
 
-        <p className="py-1">
+        <Typography variant="body1" className="py-1">
           Get emails from me about web development, programming, tech, and early
           access to new articles.
-        </p>
+        </Typography>
         <form
           onSubmit={subscribe}
           className="w-full mx-auto mt-1"
@@ -50,14 +51,15 @@ const Subscribe = () => {
           )}
         </form>
       </div>
-      <p className="text-center mt-8">Find Me!</p>
+      <Typography variant="body2" className="text-center mt-8">
+        Find Me!
+      </Typography>
       <SocialMedia />
-      <div>
-        <p className="text-center text-xs mt-8 opacity-60">
-          &copy; 2022 bughowi.com - Built with Next.js, Tailwind, Contentlayer,
-          Vercel
-        </p>
-      </div>
+      <div className="py-3" />
+      <Typography variant="label2" className="text-center  opacity-60">
+        &copy; 2022 bughowi.com - Built with Next.js, Tailwind, Contentlayer,
+        Vercel
+      </Typography>
     </footer>
   );
 };

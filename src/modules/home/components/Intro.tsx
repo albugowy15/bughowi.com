@@ -4,20 +4,23 @@ import Image from "next/image";
 import profpic from "@assets/profile-picture.png";
 import Link from "next/link";
 import { HiOutlineNewspaper } from "react-icons/hi";
+import Typography from "@components/Typography";
 
 const Intro = () => {
   return (
     <section className="flex items-center justify-between min-h-screen md:min-h-fit md:my-28">
       <div className="flex-1 max-w-2xl text-center md:text-left">
-        <p className="text-4xl lg:text-5xl font-black mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-blue-600  to-blue-400">
+        <p className="text-4xl lg:text-4xl font-black py-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-blue-600  to-blue-400">
           Mohamad Kholid Bughowi
         </p>
-        <p className="text-2xl font-bold my-2">Fullstack Developer</p>
-        <p className="text-slate-300/80">
+        <Typography variant="h3" className="py-2">
+          Fullstack Developer
+        </Typography>
+        <Typography variant="body1">
           Full Stack Developer with a passion for creating innovative web apps.
-          Proficient in TypeScript and Go, dedicated to seamless user
+          Proficient in TypeScript, Go, and Rust, dedicated to seamless user
           experiences. Follow my blog for dev insights and projects.
-        </p>
+        </Typography>
         <div className="py-5" />
         <div className="flex items-center gap-4 justify-center md:justify-start">
           <Link

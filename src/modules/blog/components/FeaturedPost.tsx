@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AiOutlineClockCircle, AiOutlineEye } from "react-icons/ai";
 import { formatDate } from "@utils/contents";
 import BlurImage from "@components/common/BlurImage";
+import Typography from "@components/Typography";
 
 function FeaturedPost({ post }: { post: Post }) {
   return (
@@ -20,30 +21,34 @@ function FeaturedPost({ post }: { post: Post }) {
         <div>
           <div className="flex gap-2 flex-wrap">
             {post.categories?.map((category, key) => (
-              <p
+              <Typography
+                variant="body1"
                 key={key}
-                className="bg-blueAccent p-1 text-slate-100 rounded-md"
+                className="bg-blueAccent p-1 rounded-md"
               >
                 {category.name}
-              </p>
+              </Typography>
             ))}
           </div>
-          <h3 className="font-bold text-xl mt-4 lg:text-3xl lg:mt-6 hover:text-blueAccent transition-colors w-fit">
+          <Typography
+            variant="h3"
+            className="mt-4 lg:mt-6 hover:text-blueAccent transition-colors"
+          >
             <Link href={post.url}>{post.title}</Link>
-          </h3>
-          <p className="mt-2 text-lg lg:mt-4 text-opacity-80">
+          </Typography>
+          <Typography variant="body1" className="mt-2 lg:mt-4">
             {post.description}
-          </p>
+          </Typography>
         </div>
         <div>
           <div className="flex items-center justify-between mt-6">
             <div className="flex items-center gap-2">
               <AiOutlineClockCircle className=" text-opacity-60" />
-              <p className=" text-sm text-opacity-60">{formatDate(post)}</p>
+              <Typography variant="label1">{formatDate(post)}</Typography>
             </div>
             <div className="flex items-center gap-2">
               <AiOutlineEye className=" text-opacity-60" />
-              <p className="text-sm text-opacity-60">{post.readingTime.text}</p>
+              <Typography variant="label1">{post.readingTime.text}</Typography>
             </div>
           </div>
         </div>

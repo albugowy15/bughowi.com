@@ -3,6 +3,7 @@ import Link from "next/link";
 import { formatDate } from "@utils/contents";
 import { Post } from "../../../.contentlayer/generated";
 import BlurImage from "@components/common/BlurImage";
+import Typography from "@components/Typography";
 
 const PostCard = (post: Post) => {
   return (
@@ -19,23 +20,27 @@ const PostCard = (post: Post) => {
         <div>
           <div className="flex gap-1 flex-wrap">
             {post.categories?.map((category, key) => (
-              <p
+              <Typography
+                variant="label1"
                 key={key}
-                className="bg-blueAccent text-slate-100  p-1 text-sm rounded-md"
+                className="bg-blueAccent p-1 rounded-md"
               >
                 {category.name}
-              </p>
+              </Typography>
             ))}
           </div>
           <div className="py-2" />
-          <h3 className="font-bold text-xl inline hover:text-blueAccent transition-colors">
+          <Typography
+            variant="h4"
+            className="hover:text-blueAccent transition-colors"
+          >
             <Link href={post.url}>{post.title}</Link>
-          </h3>
+          </Typography>
         </div>
         <div className="p-4" />
         <div className="flex items-center justify-between text-sm">
-          <p className="text-slate-300">{formatDate(post)}</p>
-          <p className="text-slate-300">{post.readingTime.text}</p>
+          <Typography variant="label1">{formatDate(post)}</Typography>
+          <Typography variant="label1">{post.readingTime.text}</Typography>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import FeaturedPost from "modules/blog/components/FeaturedPost";
 import useOpenGraph from "@utils/hooks/useOpenGraph";
 import Head from "next/head";
 import { Post } from "../../../../.contentlayer/generated";
+import Typography from "@components/Typography";
 
 export default function Blog({
   posts,
@@ -39,13 +40,15 @@ export default function Blog({
         <OpenGraph properties={ogProperties} />
       </Head>
       <div className="py-4" />
-      <h2 className="text-center font-bold text-3xl">Blog</h2>
-      <p className="text-center py-3 mb-4 text-lg">
+      <Typography variant="h2" className="text-center">
+        Blog
+      </Typography>
+      <Typography variant="body1" className="text-center py-3">
         Welcome to my Blog. Here I share my thoughts related to Fullstack
         development topics and programming in general. I&apos;ve always been a
         fan of writing, and I hope you can find something here that could help
         you in your developer career.
-      </p>
+      </Typography>
       <FeaturedPost post={featuredPost} />
       {/* <div className="flex flex-col lg:flex-row items-start justify-between gap-3 my-6"> */}
       <div className="py-5" />

@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700;800&display=swap");
 @tailwind base;
 @import "./syntax-highlighting.css";
 @tailwind components;
@@ -33,13 +32,13 @@ html {
 
 #content-space {
   h1 {
-    @apply text-3xl;
+    @apply text-2xl lg:text-3xl;
   }
   h2 {
-    @apply text-2xl pt-6;
+    @apply text-xl lg:text-2xl pt-6;
   }
   h3 {
-    @apply text-xl pt-3;
+    @apply text-lg lg:text-xl pt-3;
   }
   h4 {
     @apply text-lg pt-1;
@@ -51,9 +50,6 @@ html {
   h5,
   h6 {
     @apply font-bold scroll-my-16;
-  }
-  p {
-    @apply text-slate-200/90;
   }
 
   blockquote {
