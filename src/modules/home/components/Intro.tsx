@@ -31,7 +31,7 @@ const Intro = () => {
           </Link>
           <a
             className="flex items-center font-bold px-4 rounded-lg gap-1 border-2 py-1.5 border-slate-700 hover:text-blue-400 hover:bg-darkSecondary cursor-pointer transition-all duration-300"
-            href="https://drive.google.com/file/d/1EPMnzARWJv39T32GNm8Ktb-HL66kCBDw/view?usp=share_link"
+            href="https://drive.google.com/file/d/1yup8g5WcxH21nCAvFUI7Fw8mvoKEemT6/view?usp=sharing"
             rel="noreferrer"
             target="_blank"
           >

@@ -3,6 +3,7 @@ import { SiTypescript, SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { FaEnvelope, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import useOpenGraph from "@utils/hooks/useOpenGraph";
 import OpenGraph from "@components/common/OpenGraph";
+import Typography from "@components/Typography";
 
 function AboutPage() {
   const ogProperties = useOpenGraph({
@@ -33,23 +34,25 @@ function AboutPage() {
       </Head>
       <div className="py-4" />
       <div>
-        <h1 className="font-bold text-4xl text-center">About Me</h1>
+        <Typography variant="h1" className="text-center">
+          About Me
+        </Typography>
         <div id="content-space" className="py-3 w-full lg:w-[65%] mx-auto">
-          <h2 className="font-bold text-3xl">Introduction</h2>
-          <p>
+          <Typography variant="h2">Introduction</Typography>
+          <Typography variant="body1">
             Hello! &#128075; I&apos;m{" "}
             <span className="font-bold text-yellowAccent">Owi</span>. I&apos;m a
             Computer Science student - Fullstack Developer from Jepara,
             Indonesia.
-          </p>
-          <p>
+          </Typography>
+          <Typography variant="body1">
             I have been learning some basic of Web Programming since high school
             by creating a blog using CMS likes Wordpress and Blogger. But I
             didn&apos;t design it myself. Instead I was just download some free
             Wordpress or Blogger template on the internet then I modified it a
             little bit.
-          </p>
-          <p>
+          </Typography>
+          <Typography variant="body1">
             I started digging more about Web Development stuff during my
             college. Start by learn Javascript and PHP, then continue using some
             popular framework such as React.js, Next.js and Laravel. As I delved
@@ -62,8 +65,8 @@ function AboutPage() {
             I&apos;m excited to continue exploring the capabilities of
             TypeScript and using it to build even more powerful web
             applications.
-          </p>
-          <p>
+          </Typography>
+          <Typography variant="body1">
             I&apos;ve created this blog for two main reasons. First, as a
             developer, I am constantly learning new skills and technologies. I
             wanted a place to document and reflect on what I&apos;ve learned in
@@ -74,19 +77,19 @@ function AboutPage() {
             developer. I hope that my blog will be a useful resource for other
             developers, and that it will help me to continue growing as a
             developer.
-          </p>
-          <h2 className="font-bold text-3xl pt-3">Tech Stack</h2>
-          <p>
+          </Typography>
+          <Typography variant="h2">Tech Stack</Typography>
+          <Typography variant="body1">
             I&apos;m currently enjoy build website using TypeScript, Next.js,
             and Tailwind CSS.
-          </p>
-          <h3 className="font-bold text-xl pt-2">
+          </Typography>
+          <Typography variant="h3">
             <span className="mr-2">
               <SiTypescript className="inline" />
             </span>
             TypeScript
-          </h3>
-          <p>
+          </Typography>
+          <Typography variant="body1">
             I have found that using TypeScript as my current tech stack is the
             perfect choice for me. TypeScript is a superset of JavaScript that
             adds optional static typing, classes, and interfaces. It provides
@@ -97,14 +100,14 @@ function AboutPage() {
             provides, make my development process faster and more efficient.
             I&apos;m excited to continue working with TypeScript and using it to
             build more powerful and scalable applications.
-          </p>
-          <h3 className="font-bold text-xl pt-2">
+          </Typography>
+          <Typography variant="h3">
             <span className="mr-2">
               <SiNextdotjs className="inline" />
             </span>
             Next.js
-          </h3>
-          <p>
+          </Typography>
+          <Typography variant="body1">
             Next.js is a framework built on top of React that makes it easy to
             create server-rendered React applications. The framework provides a
             lot of out-of-the-box features that make development much faster and
@@ -114,14 +117,14 @@ function AboutPage() {
             applications that are optimized for both the user and the developer.
             I&apos;m excited to continue exploring the capabilities of Next.js
             and using it to build even more powerful web applications.
-          </p>
-          <h3 className="font-bold text-xl pt-2">
+          </Typography>
+          <Typography variant="h3">
             <span className="mr-2">
               <SiTailwindcss className="inline" />
             </span>
             Tailwind
-          </h3>
-          <p>
+          </Typography>
+          <Typography variant="body1">
             I have found that using a utility-first CSS framework like Tailwind
             CSS can help me to create fast, responsive, and beautiful web pages.
             Tailwind CSS provides a wide range of pre-defined CSS classes that
@@ -132,37 +135,39 @@ function AboutPage() {
             match the look and feel of any project. I&apos;m excited to continue
             working with Tailwind CSS and using it to create beautiful and
             functional web pages.
-          </p>
-          <h2 className="font-bold text-3xl pt-3">Experience</h2>
-          <h3 className="font-bold text-xl">
+          </Typography>
+          <Typography variant="h2">Experience</Typography>
+          <Typography variant="h3">
             Front End Engineer - Torche Education
-          </h3>
-          <p className="text-gray-400 mt-0">November 2022 - February 2023</p>
-          <p className="mt-2">
+          </Typography>
+          <Typography variant="body1">November 2022 - February 2023</Typography>
+          <Typography variant="body1">
             Create a new landing page and migrate to MERN (MongoDB, Express,
             React, Node.js) stack. Develop the landing page with Next.js,
             TypeScript, and Tailwind.
-          </p>
-          <h3 className="font-bold text-xl">
+          </Typography>
+          <Typography variant="h3">
             Full Stack Developer - Harisenin.com
-          </h3>
-          <p className="text-gray-400">September 2022 - December 2022</p>
-          <p className="mt-2">
+          </Typography>
+          <Typography variant="body1">
+            September 2022 - December 2022
+          </Typography>
+          <Typography variant="body1">
             Working for company internal dashboard to create or improve a
             feature using PHP, Laravel, TypeScript, Next.js, jQuery, MUI, and
             MySQL
-          </p>
+          </Typography>
 
-          <h2 className="font-bold text-3xl pt-3">Contact Me</h2>
-          <p>
+          <Typography variant="h2">Contact Me</Typography>
+          <Typography variant="body1">
             If you want to contact me, go ahead and send me a message through my
             email and social media below. I&apos;ll be happy to receive your
             feedback.
-          </p>
+          </Typography>
           <div className="text-base sm:text-lg p-4 rounded border-gray-800 w-fit flex flex-wrap justify-center gap-2 sm:gap-5 font-bold">
             <div className="flex items-center flex-start gap-1 border border-gray-800 p-2 rounded hover:scale-105 hover:cursor-pointer transition">
               <FaEnvelope />
-              <p>
+              <Typography variant="body1">
                 <a
                   href="mailto:kholidbughowi@gmail.com"
                   target="_blank"
@@ -170,11 +175,11 @@ function AboutPage() {
                 >
                   kholidbughowi@gmail.com
                 </a>
-              </p>
+              </Typography>
             </div>
             <div className="flex items-center flex-start gap-1 border border-gray-800 p-2 rounded hover:scale-105 hover:cursor-pointer transition">
               <FaLinkedin className="text-blue-600" />
-              <p>
+              <Typography variant="body1">
                 <a
                   href="https://linkedin.com/in/bughowi/"
                   target="_blank"
@@ -182,11 +187,11 @@ function AboutPage() {
                 >
                   Mohamad Kholid Bughowi
                 </a>
-              </p>
+              </Typography>
             </div>
             <div className="flex items-center flex-start gap-1 border border-gray-800 p-2 rounded hover:scale-105 hover:cursor-pointer transition">
               <FaTwitter className="text-sky-500" />
-              <p>
+              <Typography variant="body1">
                 <a
                   href="https://twitter.com/bughowy/"
                   target="_blank"
@@ -194,11 +199,11 @@ function AboutPage() {
                 >
                   bughowy
                 </a>
-              </p>
+              </Typography>
             </div>
             <div className="flex items-center flex-start gap-1 border border-gray-800 p-2 rounded hover:scale-105 hover:cursor-pointer transition">
               <FaInstagram className="text-pink-500" />
-              <p>
+              <Typography variant="body1">
                 <a
                   href="https://instagram.com/muhammad_bughowy/"
                   target="_blank"
@@ -206,7 +211,7 @@ function AboutPage() {
                 >
                   muhammad_bughowy
                 </a>
-              </p>
+              </Typography>
             </div>
           </div>
         </div>
