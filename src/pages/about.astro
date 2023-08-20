@@ -1,0 +1,17 @@
+---
+import { getEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const about = await getEntry("about", "about");
+const { Content } = await about.render();
+---
+
+<Layout
+  title="About Me"
+  description="Full Stack Developer with a passion for creating innovative web apps. Proficient in TypeScript and Go, dedicated to seamless user experiences"
+>
+  <div class="py-4"></div>
+  <div id="content-space" class="prose prose-invert mx-auto">
+    <Content />
+  </div>
+</Layout>

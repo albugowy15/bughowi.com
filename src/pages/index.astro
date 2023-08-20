@@ -1,0 +1,104 @@
+---
+import { getCollection } from "astro:content";
+import Heading3 from "../components/typography/Heading3.astro";
+import Text from "../components/typography/Text.astro";
+import Layout from "../layouts/Layout.astro";
+import PostCard from "../components/card/PostCard.astro";
+import ProjectCard from "../components/card/ProjectCard.astro";
+import { compareDesc } from "date-fns";
+
+const someBlogPosts = await getCollection("blog").then((res) =>
+  res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
+);
+const someProjectPosts = await getCollection("projects").then((res) =>
+  res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
+);
+---
+
+<Layout
+  title="Home"
+  description="Full Stack Developer with a passion for creating innovative web apps. Proficient in TypeScript and Go, dedicated to seamless user experiences."
+>
+  <section
+    class="flex items-center justify-between min-h-screen md:min-h-fit md:my-28"
+  >
+    <div class="flex-1 max-w-2xl text-center md:text-left">
+      <p
+        class="text-4xl lg:text-4xl font-black py-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-blue-600 to-blue-400"
+      >
+        Mohamad Kholid Bughowi
+      </p>
+      <Heading3 classNames="py-2">Fullstack Developer</Heading3>
+      <Text variant="body1">
+        Full Stack Developer with a passion for creating innovative web apps.
+        Proficient in TypeScript, Go, and Rust, dedicated to seamless user
+        experiences. Follow my blog for dev insights and projects.
+      </Text>
+      <div class="py-5"></div>
+      <div class="flex items-center gap-4 justify-center md:justify-start">
+        <a
+          href="/about"
+          class="bg-darkSecondary px-4 py-1.5 rounded-lg border-2 border-slate-700 font-bold hover:text-blue-400 hover:bg-opacity-0 transition-all duration-300"
+          >More About Me</a
+        >
+        <a
+          class="flex items-center font-bold px-4 rounded-lg gap-1 border-2 py-1.5 border-slate-700 hover:text-blue-400 hover:bg-darkSecondary cursor-pointer transition-all duration-300"
+          href="https://drive.google.com/file/d/1yup8g5WcxH21nCAvFUI7Fw8mvoKEemT6/view?usp=sharing"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
+            ></path>
+          </svg>
+           Resume
+        </a>
+      </div>
+    </div>
+    <div class="relative hidden md:block">
+      <div class="absolute -inset-2 bg-blue-800/20 rounded-full blur-3xl"></div>
+      <img
+        src="/assets/images/profile.png"
+        alt="Mohamad Kholid Bughowi"
+        class="object-cover rounded-full h-64 w-64 relative overflow-hidden flex-none"
+      />
+    </div>
+  </section>
+  <!-- start - Recent Post -->
+  <section id="recent-posts" class="scroll-my-16">
+    <a
+      href="/blog"
+      class="text-3xl font-bold hover:cursor-pointer hover:text-blueAccent transition-colors w-fit"
+    >
+      Recent Posts
+    </a>
+    <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {someBlogPosts.map((post) => <PostCard post={post} />)}
+    </div>
+    <!-- end - Recent Post -->
+    <div class="py-4"></div>
+    <!-- start - Personal Project -->
+    <section id="personal-projects" class="my-8">
+      <a
+        href="/projects"
+        class="text-3xl font-bold hover:cursor-pointer hover:text-blueAccent w-fit transition-colors"
+      >
+        Personal Projects
+      </a>
+      <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {someProjectPosts.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+    <!-- end - Personal Project -->
+  </section>
+</Layout>

@@ -1,0 +1,148 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import Heading1 from "../../components/typography/Heading1.astro";
+import Text from "../../components/typography/Text.astro";
+import Heading4 from "../../components/typography/Heading4.astro";
+import Layout from "../../layouts/Layout.astro";
+import { formatDate } from "../../utils/date";
+import { compareDesc } from "date-fns";
+
+type StaticPath = {
+  params: {
+    slug: string;
+  };
+};
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+export async function getStaticPaths(): Promise<StaticPath[]> {
+  let blogCllection = await getCollection("blog");
+  return blogCllection
+    .sort((a, b) => compareDesc(a.data.date, b.data.date))
+    .map((post) => ({
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+      },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter, headings } = await post.render();
+const editUrl = `https://github.com/albugowy15/bughowi.com/blob/main/src/content/${post.slug}.mdx`;
+const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=https://bughowi.com/${post.slug}&via=bughowy`;
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <div class="py-4"></div>
+  <Heading1>{post.data.title}</Heading1>
+  <div class="py-2 flex justify-start gap-1 sm:gap-3 items-center">
+    <Text variant="body2">M. K. Bughowi</Text>
+    <span>&#8226;</span>
+    <Text variant="body2">{formatDate(post.data.date.toISOString())}</Text>
+    <span>&#8226;</span>
+    <Text variant="body2" className="text-yellowAccent">
+      {remarkPluginFrontmatter.minutesRead}
+    </Text>
+  </div>
+  <main
+    class="w-full mx-auto xl:flex xl:justify-between xl:gap-10 xl:items-start"
+  >
+    <div class="xl:w-[70%]">
+      <article
+        class="prose prose-invert max-w-none prose-headings:scroll-my-16"
+      >
+        <img
+          src={post.data.thumbnail}
+          alt={post.data.title}
+          width={1080}
+          height={720}
+          class="object-cover rounded-md"
+        />
+        <div id="content-space">
+          <Content />
+        </div>
+        <div class="not-prose flex justify-between mt-6">
+          <a
+            href={editUrl}
+            class="px-4 rounded hover:bg-darkSecondary transition-colors py-1 border border-slate-700 flex items-center gap-2 font-semibold"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-4 h-4"
+            >
+              <path
+                d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"
+              ></path>
+            </svg>
+
+             Edit this page</a
+          >
+          <a
+            href={tweetUrl}
+            class="px-4 rounded hover:bg-darkSecondary transition-colors py-1 border border-slate-700 flex items-center gap-2 font-semibold"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-4 h-4"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M15.75 4.5a3 3 0 11.825 2.066l-8.421 4.679a3.002 3.002 0 010 1.51l8.421 4.679a3 3 0 11-.729 1.31l-8.421-4.678a3 3 0 110-4.132l8.421-4.679a3 3 0 01-.096-.755z"
+                clip-rule="evenodd"></path>
+            </svg>
+             Tweet this article</a
+          >
+        </div>
+      </article>
+      <div class="py-4"></div>
+      <!-- Giscus comment -->
+    </div>
+    <div
+      class="hidden xl:flex flex-col divide-y divide-slate-600 bg-darkSecondary/50 rounded-lg sticky flex-1 top-20 z-40 border-2 border-slate-700"
+    >
+      <div class="flex justify-between px-3 py-2 items-center">
+        <Heading4>Table Of Contents</Heading4>
+        <p id="scroll-top" class="text-sm text-blue-300 cursor-pointer">
+          Back to top
+        </p>
+      </div>
+      <div class="py-2" id="toc-container">
+        {
+          headings.map((heading) => (
+            <div class="">
+              <a
+                href={`#${heading.slug}`}
+                class:list={[
+                  "block text-slate-200/80 font-semibold text-sm py-1.5 px-3 hover:bg-darkSecondary",
+                  {
+                    "pl-2": heading.depth === 2,
+                    "pl-6": heading.depth === 3,
+                    "pl-8": heading.depth === 4,
+                    "pl-10": heading.depth === 5,
+                    "pl-12": heading.depth === 6,
+                  },
+                ]}
+              >
+                {heading.text}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>
+<script>
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+  document.getElementById("scroll-top")?.addEventListener("click", scrollToTop);
+</script>
