@@ -45,12 +45,12 @@ fn main() {
 
 What happens to this string is not a copy. At this point the value for `s1` is moved to `s2` because only one variable can own the value. If we try to go ahead and use `s1` after this point, we get a compiler error: **_borrow of moved value s1_**.
 
-<CustomImage
+{/* <CustomImage
   src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQTv-FYYx3HdfnNT-cpAw5xwESZTwEDs0gKpV6LfApfIyZIbRgO3KcK-9OOGDr9Q19aI0YemFThMTcf7nje1SZKHHHRGzmLUL6xmiXTTfQiwt9FXtsvK7gFlLw5-9xASnMuUEu_7aN0rmMw7WawSAGbGAJyFadvTTn33p7svmCz20UMDlQS5BPTV9MK4c/s566/Screenshot%20from%202023-06-25%2015-39-38.png"
   alt="Error moved value"
   height={247}
   width={566}
-/>
+/> */}
 
 So what's going on here?
 
