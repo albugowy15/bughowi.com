@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import Heading2 from "../../components/typography/Heading2.astro";
+import Text from "../../components/typography/Text.astro";
+import ProjectCard from "../../components/card/ProjectCard.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const allProjects = await getCollection("projects");
+---
+
+<Layout title="Projects" description="Showcase of the projects I've work on">
+  <div class="py-4"></div>
+  <Heading2 classNames="text-center">Projects</Heading2>
+  <Text variant="body1" className="text-center">
+    Showcase of the projects I've work on
+  </Text>
+  <div class="py-5"></div>
+  <section class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {allProjects.map((project) => <ProjectCard project={project} />)}
+  </section>
+</Layout>

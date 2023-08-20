@@ -1,0 +1,85 @@
+---
+title: Create a Simple MDX Table of Contents in Contentlayer
+date: 2022-09-24
+description: Add a simple table of contents component to your contentlayer mdx content with rehype plugins.
+categories: 
+- mdx
+- contentlayer
+thumbnail: https://user-images.githubusercontent.com/49820990/192087996-64d2e76b-c430-4d38-a5bc-63923f22d7df.png
+---
+
+Table of Contents is a common feature that we usually seen in article. This feature make web visitor much easier to navigate between each section of a webpage article. Here I'm gonna show you how to generate table of contents automatically on your mdx contentlayer blog.
+
+## Install rehype-toc plugins
+
+The first step is to install `rehype-toc` plugin created by [jsdevtools](https://www.npmjs.com/package/@jsdevtools/rehype-toc). You can install it with this command.
+
+```sh
+npm install @jsdevtools/rehype-toc
+```
+
+You'll probably want to install `unified`, `rehype-parse`, `rehype-stringify`, and `rehype-slug` as well.
+
+```sh
+npm install unified rehype-parse rehype-stringify rehype-slug
+```
+
+## Edit contentlayer configuration
+
+Next, you need to add `rehype-toc` inside your contentlayer configuration files. Here's the example.
+
+```ts title="contentlayer.config.ts"
+import rehypeToc from "@jsdevtools/rehype-toc";
+
+const contentLayerConfig = makeSource({
+	contentDirPath: "src/contents",
+	documentTypes: [Post, Project],
+	mdx: {
+		remarkPlugins: [remarkGfm],
+		rehypePlugins: [
+			rehypeCodeTitles,
+			rehypeSlug,
+			[rehypeToc, { customizeTOC }], // add rehypeToc and customization
+		],
+	},
+});
+
+export default contentLayerConfig;
+```
+
+## Customize you ToC
+
+If you see the code snippets when I add rehype-toc to my rehypePlugins, I also define my own customization for ToC. Here's the code.
+
+```ts
+const customizeTOC = (toc: RehypeElement): RehypeElement | null => {
+	try {
+		const { children } = toc;
+		const childrenOfChildren = children?.[0]?.children;
+		if (!children?.length || !childrenOfChildren?.length) return null;
+	} catch (e) {}
+	return {
+		type: "element",
+		tagName: "div",
+		properties: { className: "toc" },
+		children: [
+			{
+				type: "element",
+				tagName: "p",
+				properties: { className: "title" },
+				children: [
+					{
+						type: "text",
+						value: "Table of Contents",
+					},
+				],
+			},
+			...(toc.children || []),
+		],
+	};
+};
+```
+
+This customization will wrap our ToC with div element that have class `toc`. Inside this div, we have a text element with `p` tag that have `title` class. Below this `p` tag, we will see our ToC content.
+
+And that's it. Now when you create a new mdx content, ToC will appear in top of your mdx content body. You don't need to add any extra code to your mdx content to display the ToC, because it generates automatically for all your mdx content.

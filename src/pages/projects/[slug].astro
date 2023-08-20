@@ -1,0 +1,114 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import Heading1 from "../../components/typography/Heading1.astro";
+import Text from "../../components/typography/Text.astro";
+import Layout from "../../layouts/Layout.astro";
+import { compareDesc } from "date-fns";
+
+type StaticPath = {
+  params: {
+    slug: string;
+  };
+};
+
+interface Props {
+  post: CollectionEntry<"projects">;
+}
+
+export async function getStaticPaths(): Promise<StaticPath[]> {
+  let blogCllection = await getCollection("projects");
+  return blogCllection
+    .sort((a, b) => compareDesc(a.data.date, b.data.date))
+    .map((post) => ({
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+      },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <div class="py-4"></div>
+  <main class="w-full lg:w-[65%] mx-auto">
+    <Heading1>{post.data.title}</Heading1>
+    <Text variant="body2">{post.data.description}</Text>
+    <article class="mt-5 w-full">
+      {
+        post.data.thumbnail && (
+          <img
+            src={post.data.thumbnail}
+            alt={post.data.title}
+            height={1080}
+            width={720}
+            class="rounded-lg"
+          />
+        )
+      }
+      <div class="py-4"></div>
+      <div id="content-space" class="prose prose-invert max-w-none">
+        <Content />
+      </div>
+      <div class="border-y-2 border-slate-400 mt-3">
+        <p class="py-4 flex flex-wrap items-center gap-2">
+          Tech Stack :{" "}
+          {
+            post.data.tech?.map((tech) => (
+              <span class="py-0.5 px-1 bg-blueAccent text-slate-100 rounded-md">
+                {tech}
+              </span>
+            ))
+          }
+        </p>
+      </div>
+    </article>
+    <div class="py-4"></div>
+    <!-- Giscus comment -->
+  </main>
+</Layout>
+<style lang="scss">
+  #content-space {
+    p {
+      @apply text-base text-slate-200;
+    }
+    h1 {
+      @apply text-3xl;
+    }
+    h2 {
+      @apply text-xl;
+    }
+    h3 {
+      @apply text-xl;
+    }
+    h4 {
+      @apply text-lg;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-bold scroll-my-16 text-white;
+    }
+    blockquote {
+      @apply bg-darkSecondary px-3 py-2 border-l-4 border-blueAccent text-slate-200 font-bold italic;
+    }
+    ol {
+      @apply list-decimal ml-5;
+    }
+
+    ul {
+      @apply list-disc ml-5;
+    }
+
+    a {
+      @apply text-[#6d90e2] hover:underline underline-offset-2 hover:text-[#4276ee] transition-transform ease-linear;
+    }
+  }
+</style>

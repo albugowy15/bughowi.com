@@ -1,0 +1,32 @@
+---
+import { CollectionEntry } from "astro:content";
+import Heading4 from "../typography/Heading4.astro";
+import Text from "../typography/Text.astro";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+---
+
+<div
+  class="flex flex-col bg-darkSecondary p-4 border border-slate-300 border-opacity-40 rounded-md hover:scale-[1.02] transition-transform ease-in-out"
+>
+  <Heading4 classNames="hover:text-blueAccent transition-colors">
+    <a href={`/projects/${project.slug}`}>{project.data.title}</a>
+  </Heading4>
+  <Text variant="body1">{project.data.description}</Text>
+  <div class="flex flex-wrap gap-1 mt-2">
+    {
+      project.data.tech.map((tech) => (
+        <Text
+          variant="label1"
+          className="px-1 py-[0.20rem] bg-blueAccent rounded-md"
+        >
+          {tech}
+        </Text>
+      ))
+    }
+  </div>
+</div>

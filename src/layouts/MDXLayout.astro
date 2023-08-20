@@ -1,0 +1,19 @@
+<div
+  id="content-space"
+  class:list={[
+    "py-3 prose-lg prose-slate prose-headings:font-bold prose-headings:scroll-my-16 prose-headings:text-white",
+    "prose-p:text-base text-slate-200",
+    "prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-xl prose-h4:text-lg",
+  ]}
+>
+  <slot />
+</div>
+
+<style>
+  #content-space p code {
+    color: #d4d4d4;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+  }
+</style>

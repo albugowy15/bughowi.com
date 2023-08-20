@@ -1,0 +1,11 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "astro", // Enable .astro
+    "typescript", // Enable .ts
+    "typescriptreact" // Enable .tsx
+  ],
+  "editor.defaultFormatter": "astro-build.astro-vscode",
+  "editor.formatOnSave": true,
+}
