@@ -11,22 +11,16 @@ const links = [
   class="p-1 w-full sticky top-0 z-50 bg-darkPrimary/70 border-b border-slate-500/40"
 >
   <div class="container 2xl:max-w-7xl px-3 xl:px-14 mx-auto">
-    <!-- Navbar large screen -->
-    <div class="flex items-center justify-between py-2">
-      <div
-        class="flex items-center w-full justify-between sm:justify-start sm:gap-4"
-      >
-        <div class="flex text-sm sm:text-base gap-1 items-center"></div>
-        {
-          links.map((link) => (
-            <a href={link.url}>
-              <p class="font-bold cursor-pointer hover:text-blueAccent hover:bg-darkSecondary hover:rounded transition-colors duration-300 px-1 py-0.5">
-                {link.name}
-              </p>
-            </a>
-          ))
-        }
-      </div>
+    <div class="flex text-sm sm:text-base gap-1 items-center py-1.5">
+      {
+        links.map((link) => (
+          <a href={link.url}>
+            <p class="font-bold cursor-pointer hover:text-blueAccent hover:bg-darkSecondary hover:rounded transition-colors duration-300 px-1 py-0.5">
+              {link.name}
+            </p>
+          </a>
+        ))
+      }
     </div>
   </div>
 </nav>

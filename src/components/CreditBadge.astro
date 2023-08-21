@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 interface Props {
   username: string;
   url: string;
@@ -11,7 +12,7 @@ const { username, url, img } = Astro.props;
 <div
   class="flex items-center flex-start gap-2 border border-gray-800 p-2 rounded hover:scale-105 hover:cursor-pointer transition"
 >
-  <img
+  <Image
     src={img}
     alt={username}
     class="object-fill rounded-full"

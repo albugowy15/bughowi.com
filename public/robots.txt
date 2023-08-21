@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.bughowi.com
+
+# Sitemaps
+Sitemap: https://www.bughowi.com/sitemap.xml
