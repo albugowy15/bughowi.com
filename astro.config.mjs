@@ -7,14 +7,7 @@ import { remarkReadingTime } from './remark-reading-time.mjs';
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  adapter: vercelStatic({
-    imageService: true,
-    analytics: true,
-    imagesConfig: {
-      domains: ['images.unsplash.com', 'user-images.githubusercontent.com', 'avatars.githubusercontent.com', 'github.com', 'blogger.googleusercontent.com'],
-      sizes: [320, 640, 1080],
-    }
-  }),
+  adapter: vercelStatic(),
   markdown: {
     shikiConfig: {
       theme: 'one-dark-pro',
