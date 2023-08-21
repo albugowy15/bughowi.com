@@ -10,6 +10,10 @@ export default defineConfig({
   adapter: vercelStatic({
     imageService: true,
     analytics: true,
+    imagesConfig: {
+      domains: ['images.unsplash.com', 'user-images.githubusercontent.com', 'avatars.githubusercontent.com', 'github.com', 'blogger.googleusercontent.com'],
+      sizes: [320, 640, 1080],
+    }
   }),
   markdown: {
     shikiConfig: {
