@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import Text from '../typography/Text.astro';
+import Text from '@components/typography/Text.astro';
 import { CollectionEntry } from 'astro:content';
-import { formatDate } from '../../utils/date';
-import Heading3 from '../typography/Heading3.astro';
+import { formatDate } from '@utils/date';
+import Heading3 from '@components/typography/Heading3.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;

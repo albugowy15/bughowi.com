@@ -1,4 +1,4 @@
-![bughgowi.com](https://user-images.githubusercontent.com/49820990/213904001-0767e3b5-0fed-4ce1-9eb9-3f68e4f84072.png)
+![bughowi.com](https://user-images.githubusercontent.com/49820990/213904001-0767e3b5-0fed-4ce1-9eb9-3f68e4f84072.png)
 
 ## Description
 

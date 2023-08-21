@@ -4,13 +4,22 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  plugins: ['@typescript-eslint', 'jsx-a11y', 'astro', 'unused-imports'],
+  plugins: [
+    '@typescript-eslint',
+    'jsx-a11y',
+    'astro',
+    'unused-imports',
+    'prettier',
+  ],
   extends: [
     'plugin:astro/recommended',
     'plugin:jsx-a11y/recommended',
     'prettier',
     'plugin:@typescript-eslint/recommended',
   ],
+  rules: {
+    'prettier/prettier': ['error'],
+  },
   overrides: [
     {
       // Define the configuration for `.astro` file.

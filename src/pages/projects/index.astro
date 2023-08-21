@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import Heading2 from '../../components/typography/Heading2.astro';
-import Text from '../../components/typography/Text.astro';
-import ProjectCard from '../../components/card/ProjectCard.astro';
-import Layout from '../../layouts/Layout.astro';
+import Heading2 from '@components/typography/Heading2.astro';
+import Text from '@components/typography/Text.astro';
+import ProjectCard from '@components/card/ProjectCard.astro';
+import Layout from '@layouts/Layout.astro';
 import { compareDesc } from 'date-fns';
 
 const allProjects = await getCollection('projects');

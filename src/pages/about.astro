@@ -1,6 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
+import Layout from '@layouts/Layout.astro';
 
 const about = await getEntry('about', 'about');
 const { Content } = await about.render();

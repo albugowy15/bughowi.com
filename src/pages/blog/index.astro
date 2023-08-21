@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import Text from '../../components/typography/Text.astro';
-import Heading2 from '../../components/typography/Heading2.astro';
-import PostCard from '../../components/card/PostCard.astro';
-import Layout from '../../layouts/Layout.astro';
+import Text from '@components/typography/Text.astro';
+import Heading2 from '@components/typography/Heading2.astro';
+import PostCard from '@components/card/PostCard.astro';
+import Layout from '@layouts/Layout.astro';
 import { compareDesc } from 'date-fns';
 
 const allBlogpost = await getCollection('blog');

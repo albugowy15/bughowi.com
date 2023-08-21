@@ -1,10 +1,11 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
-import Heading1 from '../../components/typography/Heading1.astro';
-import Text from '../../components/typography/Text.astro';
-import Layout from '../../layouts/Layout.astro';
+import Heading1 from '@components/typography/Heading1.astro';
+import Text from '@components/typography/Text.astro';
+import Layout from '@layouts/Layout.astro';
 import { compareDesc } from 'date-fns';
 import { Image } from 'astro:assets';
+import '@styles/syntax-highlight.css';
 
 type StaticPath = {
   params: {

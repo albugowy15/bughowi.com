@@ -1,12 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
-import Heading3 from '../components/typography/Heading3.astro';
-import Text from '../components/typography/Text.astro';
-import Layout from '../layouts/Layout.astro';
-import PostCard from '../components/card/PostCard.astro';
-import ProjectCard from '../components/card/ProjectCard.astro';
+import Heading3 from '@components/typography/Heading3.astro';
+import Text from '@components/typography/Text.astro';
+import Layout from '@layouts/Layout.astro';
+import PostCard from '@components/card/PostCard.astro';
+import ProjectCard from '@components/card/ProjectCard.astro';
 import { compareDesc } from 'date-fns';
-import profile_pic from '../assets/profile.png';
+import profile_pic from '@assets/profile.png';
 import { Image } from 'astro:assets';
 
 const someBlogPosts = await getCollection('blog').then((res) =>

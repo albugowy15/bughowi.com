@@ -1,12 +1,13 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
-import Heading1 from '../../components/typography/Heading1.astro';
-import Text from '../../components/typography/Text.astro';
-import Heading4 from '../../components/typography/Heading4.astro';
-import Layout from '../../layouts/Layout.astro';
-import { formatDate } from '../../utils/date';
+import Heading1 from '@components/typography/Heading1.astro';
+import Text from '@components/typography/Text.astro';
+import Heading4 from '@components/typography/Heading4.astro';
+import Layout from '@layouts/Layout.astro';
+import { formatDate } from '@utils/date';
 import { compareDesc } from 'date-fns';
 import { Image } from 'astro:assets';
+import '@styles/syntax-highlight.css';
 
 type StaticPath = {
   params: {
@@ -163,6 +164,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
     </div>
   </main>
 </Layout>
+
 <script>
   function scrollToTop() {
     window.scrollTo(0, 0);
