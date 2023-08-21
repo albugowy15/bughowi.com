@@ -103,12 +103,7 @@ export default function MyForm() {
 In this example, we are using the `required` function from Yup to specify that the first name and last name fields are required. If the user tries to submit the form with these fields empty, the corresponding error messages will be displayed.
 
 ![display simple errors validation](https://user-images.githubusercontent.com/49820990/210172906-7669ad2a-3aa7-4a2b-b3a1-234e0284c6cb.gif)
-{/* <CustomImage
-  src=""
-  alt="display simple errors validation"
-  height={768}
-  width={1364}
-/> */}
+
 
 Yup also provides a range of other functions for defining validation rules. For example, you can use the `min` function to specify a minimum length for a string field, or the `max` function to specify a maximum length. You can also use the `email` function to ensure that a field contains a valid email address.
 
@@ -204,12 +199,7 @@ export default function MyForm() {
 
 In this example, we are using `useFieldArray` to manage a list of product fields, each with a name and a price. The `append` function is used to add new fields to the array, and the `remove` function is used to remove fields from the array. The fields array contains the current list of fields, and we are using the `map` function to render each field as a form input.
 
-{/* <CustomImage
-  src="https://user-images.githubusercontent.com/49820990/210172909-eb9b98c9-070d-489a-a3c0-68726684e5d9.gif"
-  alt="useFieldArray example"
-  height={768}
-  width={1364}
-/> */}
+![useFieldArray example](https://user-images.githubusercontent.com/49820990/210172909-eb9b98c9-070d-489a-a3c0-68726684e5d9.gif)
 
 For more details about the above example, you can see it from codesandbox below
 
@@ -259,19 +249,9 @@ export default function MyForm() {
 
 In this example, we are using `useWatch` to watch the value of the password field. We are using the password value to show a warning message if the password is longer than 8 characters.
 
-{/* <CustomImage
-  src="https://user-images.githubusercontent.com/49820990/210172910-21a4967b-3b66-4ea2-98cc-942465b3b460.png"
-  alt="Password less than 8 characters"
-  height={269}
-  width={507}
-/>
+![Password less than 8 characters](https://user-images.githubusercontent.com/49820990/210172910-21a4967b-3b66-4ea2-98cc-942465b3b460.png)
 
-<CustomImage
-  src="https://user-images.githubusercontent.com/49820990/210172914-c40764da-6640-46a2-b678-4d25130917d6.png"
-  alt="autocomplete and intellisense in typescript"
-  height={282}
-  width={506}
-/> */}
+![autocomplete and intellisense in typescript](https://user-images.githubusercontent.com/49820990/210172914-c40764da-6640-46a2-b678-4d25130917d6.png)
 
 ## Wrapping up
 
