@@ -1,12 +1,12 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
-import Heading1 from "../../components/typography/Heading1.astro";
-import Text from "../../components/typography/Text.astro";
-import Heading4 from "../../components/typography/Heading4.astro";
-import Layout from "../../layouts/Layout.astro";
-import { formatDate } from "../../utils/date";
-import { compareDesc } from "date-fns";
-import { Image } from "astro:assets";
+import { CollectionEntry, getCollection } from 'astro:content';
+import Heading1 from '../../components/typography/Heading1.astro';
+import Text from '../../components/typography/Text.astro';
+import Heading4 from '../../components/typography/Heading4.astro';
+import Layout from '../../layouts/Layout.astro';
+import { formatDate } from '../../utils/date';
+import { compareDesc } from 'date-fns';
+import { Image } from 'astro:assets';
 
 type StaticPath = {
   params: {
@@ -15,11 +15,11 @@ type StaticPath = {
 };
 
 interface Props {
-  post: CollectionEntry<"blog">;
+  post: CollectionEntry<'blog'>;
 }
 
 export async function getStaticPaths(): Promise<StaticPath[]> {
-  let blogCllection = await getCollection("blog");
+  let blogCllection = await getCollection('blog');
   return blogCllection
     .sort((a, b) => compareDesc(a.data.date, b.data.date))
     .map((post) => ({
@@ -40,52 +40,52 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 
 <Layout
   title={post.data.title}
-  url={"https://www.bughowi.com/blog/" + post.slug}
-  type="article"
+  url={'https://www.bughowi.com/blog/' + post.slug}
+  type='article'
   img={post.data.thumbnail}
   description={post.data.description}
 >
-  <div class="py-4"></div>
+  <div class='py-4'></div>
   <Heading1>{post.data.title}</Heading1>
-  <div class="py-2 flex justify-start gap-1 sm:gap-3 items-center">
-    <Text variant="body1">M. K. Bughowi</Text>
+  <div class='flex items-center justify-start gap-1 py-2 sm:gap-3'>
+    <Text variant='body1'>M. K. Bughowi</Text>
     <span>&#8226;</span>
-    <Text variant="body1">{formatDate(post.data.date.toISOString())}</Text>
+    <Text variant='body1'>{formatDate(post.data.date.toISOString())}</Text>
     <span>&#8226;</span>
-    <Text variant="body1" className="text-yellowAccent">
+    <Text variant='body1' className='text-yellowAccent'>
       {remarkPluginFrontmatter.minutesRead}
     </Text>
   </div>
   <main
-    class="w-full mx-auto xl:flex xl:justify-between xl:gap-10 xl:items-start"
+    class='mx-auto w-full xl:flex xl:items-start xl:justify-between xl:gap-10'
   >
-    <div class="xl:w-[70%]">
+    <div class='xl:w-[70%]'>
       <article
-        class="prose prose-invert max-w-none prose-headings:scroll-my-16"
+        class='prose prose-invert max-w-none prose-headings:scroll-my-16'
       >
         <Image
           src={post.data.thumbnail}
           alt={post.data.title}
           width={1080}
           height={720}
-          class="object-cover rounded-md"
+          class='rounded-md object-cover'
         />
-        <div id="content-space">
+        <div id='content-space'>
           <Content />
         </div>
-        <div class="not-prose flex justify-between mt-6">
+        <div class='not-prose mt-6 flex justify-between'>
           <a
             href={editUrl}
-            class="px-4 rounded hover:bg-darkSecondary transition-colors py-1 border border-slate-700 flex items-center gap-2 font-semibold"
+            class='flex items-center gap-2 rounded border border-slate-700 px-4 py-1 font-semibold transition-colors hover:bg-darkSecondary'
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="w-4 h-4"
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 24 24'
+              fill='currentColor'
+              class='h-4 w-4'
             >
               <path
-                d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"
+                d='M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z'
               ></path>
             </svg>
 
@@ -93,64 +93,64 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
           >
           <a
             href={tweetUrl}
-            class="px-4 rounded hover:bg-darkSecondary transition-colors py-1 border border-slate-700 flex items-center gap-2 font-semibold"
+            class='flex items-center gap-2 rounded border border-slate-700 px-4 py-1 font-semibold transition-colors hover:bg-darkSecondary'
             ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="w-4 h-4"
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 24 24'
+              fill='currentColor'
+              class='h-4 w-4'
             >
               <path
-                fill-rule="evenodd"
-                d="M15.75 4.5a3 3 0 11.825 2.066l-8.421 4.679a3.002 3.002 0 010 1.51l8.421 4.679a3 3 0 11-.729 1.31l-8.421-4.678a3 3 0 110-4.132l8.421-4.679a3 3 0 01-.096-.755z"
-                clip-rule="evenodd"></path>
+                fill-rule='evenodd'
+                d='M15.75 4.5a3 3 0 11.825 2.066l-8.421 4.679a3.002 3.002 0 010 1.51l8.421 4.679a3 3 0 11-.729 1.31l-8.421-4.678a3 3 0 110-4.132l8.421-4.679a3 3 0 01-.096-.755z'
+                clip-rule='evenodd'></path>
             </svg>
              Tweet this article</a
           >
         </div>
       </article>
-      <div class="py-4"></div>
+      <div class='py-4'></div>
       <!-- Giscus comment -->
       <script
-        src="https://giscus.app/client.js"
-        data-repo="albugowy15/bughowi.com"
-        data-repo-id="R_kgDOHqneBQ"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOHqneBc4CQdnP"
-        data-mapping="url"
-        data-strict="0"
-        data-reactions-enabled="0"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="transparent_dark"
-        data-lang="en"
-        data-loading="lazy"
-        crossorigin="anonymous"
+        src='https://giscus.app/client.js'
+        data-repo='albugowy15/bughowi.com'
+        data-repo-id='R_kgDOHqneBQ'
+        data-category='Announcements'
+        data-category-id='DIC_kwDOHqneBc4CQdnP'
+        data-mapping='url'
+        data-strict='0'
+        data-reactions-enabled='0'
+        data-emit-metadata='0'
+        data-input-position='bottom'
+        data-theme='transparent_dark'
+        data-lang='en'
+        data-loading='lazy'
+        crossorigin='anonymous'
         async></script>
     </div>
     <div
-      class="hidden xl:flex flex-col divide-y divide-slate-600 bg-darkSecondary/50 rounded-lg sticky flex-1 top-20 z-40 border-2 border-slate-700"
+      class='sticky top-20 z-40 hidden flex-1 flex-col divide-y divide-slate-600 rounded-lg border-2 border-slate-700 bg-darkSecondary/50 xl:flex'
     >
-      <div class="flex justify-between px-3 py-2 items-center">
+      <div class='flex items-center justify-between px-3 py-2'>
         <Heading4>Table Of Contents</Heading4>
-        <p id="scroll-top" class="text-sm text-blue-300 cursor-pointer">
+        <p id='scroll-top' class='cursor-pointer text-sm text-blue-300'>
           Back to top
         </p>
       </div>
-      <div class="py-2" id="toc-container">
+      <div class='py-2' id='toc-container'>
         {
           headings.map((heading) => (
-            <div class="">
+            <div class=''>
               <a
                 href={`#${heading.slug}`}
                 class:list={[
-                  "block text-slate-200/80 font-semibold text-sm py-1.5 px-3 hover:bg-darkSecondary",
+                  'block px-3 py-1.5 text-sm font-semibold text-slate-200/80 hover:bg-darkSecondary',
                   {
-                    "pl-2": heading.depth === 2,
-                    "pl-6": heading.depth === 3,
-                    "pl-8": heading.depth === 4,
-                    "pl-10": heading.depth === 5,
-                    "pl-12": heading.depth === 6,
+                    'pl-2': heading.depth === 2,
+                    'pl-6': heading.depth === 3,
+                    'pl-8': heading.depth === 4,
+                    'pl-10': heading.depth === 5,
+                    'pl-12': heading.depth === 6,
                   },
                 ]}
               >
@@ -167,5 +167,5 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
   function scrollToTop() {
     window.scrollTo(0, 0);
   }
-  document.getElementById("scroll-top")?.addEventListener("click", scrollToTop);
+  document.getElementById('scroll-top')?.addEventListener('click', scrollToTop);
 </script>

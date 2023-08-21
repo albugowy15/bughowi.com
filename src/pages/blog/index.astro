@@ -1,32 +1,32 @@
 ---
-import { getCollection } from "astro:content";
-import Text from "../../components/typography/Text.astro";
-import Heading2 from "../../components/typography/Heading2.astro";
-import PostCard from "../../components/card/PostCard.astro";
-import Layout from "../../layouts/Layout.astro";
-import { compareDesc } from "date-fns";
+import { getCollection } from 'astro:content';
+import Text from '../../components/typography/Text.astro';
+import Heading2 from '../../components/typography/Heading2.astro';
+import PostCard from '../../components/card/PostCard.astro';
+import Layout from '../../layouts/Layout.astro';
+import { compareDesc } from 'date-fns';
 
-const allBlogpost = await getCollection("blog");
+const allBlogpost = await getCollection('blog');
 const recentPosts = allBlogpost.sort((a, b) =>
-  compareDesc(a.data.date, b.data.date)
+  compareDesc(a.data.date, b.data.date),
 );
 ---
 
 <Layout
-  title="Blog"
-  url="https://www.bughowi.com/blog"
+  title='Blog'
+  url='https://www.bughowi.com/blog'
   description="Welcome to my Blog. Here I share my thoughts related to Fullstack development topics and programming in general. I've always been a fan of writing, and I hope you can find something here that could help you in your developer career."
 >
-  <div class="py-4"></div>
-  <Heading2 classNames="text-center">Blog</Heading2>
-  <Text variant="body1" className="text-center py-3">
+  <div class='py-4'></div>
+  <Heading2 classNames='text-center'>Blog</Heading2>
+  <Text variant='body1' className='text-center py-3'>
     Welcome to my Blog. Here I share my thoughts related to Fullstack
     development topics and programming in general. I've always been a fan of
     writing, and I hope you can find something here that could help you in your
     developer career.
   </Text>
-  <div class="py-5"></div>
-  <section class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class='py-5'></div>
+  <section class='grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
     {recentPosts.map((post) => <PostCard post={post} />)}
   </section>
 </Layout>

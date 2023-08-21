@@ -3,9 +3,9 @@ title: Comparing React's useContext Hook with Redux for State Management
 date: 2023-01-01
 description: Learn the differences between using the useContext hook in React and the Redux library for state management in a React application. Includes examples and tips for choosing the best solution for your needs.
 categories:
-- react
-- redux
-- javascript
+  - react
+  - redux
+  - javascript
 thumbnail: https://user-images.githubusercontent.com/49820990/210159702-25ca4e81-5c46-43ae-a673-6928f9a0ac68.png
 isFeatured: false
 ---
@@ -27,25 +27,36 @@ To use `useContext`, you first neet to create a context object using `React.crea
 Here is an example of how to create and use a context object to share the current theme of a user interface.
 
 ```js
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from 'react';
 
-const ThemeContext = createContext("light");
+const ThemeContext = createContext('light');
 
 function App() {
-	const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState('light');
 
-	return (
-		<ThemeContext.Provider value={theme}>
-			<button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>Toggle theme</button>
-			<Content />
-		</ThemeContext.Provider>
-	);
+  return (
+    <ThemeContext.Provider value={theme}>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Toggle theme
+      </button>
+      <Content />
+    </ThemeContext.Provider>
+  );
 }
 
 function Content() {
-	const theme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
-	return <div style={{ background: theme === "light" ? "white" : "black", color: theme === "light" ? "black" : "white" }}>Hello World</div>;
+  return (
+    <div
+      style={{
+        background: theme === 'light' ? 'white' : 'black',
+        color: theme === 'light' ? 'black' : 'white',
+      }}
+    >
+      Hello World
+    </div>
+  );
 }
 ```
 
@@ -60,31 +71,31 @@ When the user clicks the `button` element, the `setTheme` function is called to 
 Using `useContext` is a great way to shate state between components that are not directly related in the component tree. For example, suppose you have a `Sidebar` component and a `MainContent` component that need to share a `user` object. Instead of passing the `user` object down the tree as props, you can create a `UserContext` and use it to provide the `user` object to both the `Sidebar` and `MainContent` components.
 
 ```js
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext } from 'react';
 
 const UserContext = createContext({});
 
 function App() {
-	const user = { name: "John", email: "john@example.com" };
+  const user = { name: 'John', email: 'john@example.com' };
 
-	return (
-		<UserContext.Provider value={user}>
-			<Sidebar />
-			<MainContent />
-		</UserContext.Provider>
-	);
+  return (
+    <UserContext.Provider value={user}>
+      <Sidebar />
+      <MainContent />
+    </UserContext.Provider>
+  );
 }
 
 function Sidebar() {
-	const user = useContext(UserContext);
+  const user = useContext(UserContext);
 
-	return <div>Welcome, {user.name}!</div>;
+  return <div>Welcome, {user.name}!</div>;
 }
 
 function MainContent() {
-	const user = useContext(UserContext);
+  const user = useContext(UserContext);
 
-	return <div>Your email is: {user.email}</div>;
+  return <div>Your email is: {user.email}</div>;
 }
 ```
 
@@ -107,42 +118,55 @@ To use Redux in a React application, you need to install the `redux` and `react-
 Here is an example of how to use Redux to manage the terms of a user interface.
 
 ```js
-import React from "react";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
+import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
 function reducer(state, action) {
-	switch (action.type) {
-		case "SET_THEME":
-			return { ...state, theme: action.theme };
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case 'SET_THEME':
+      return { ...state, theme: action.theme };
+    default:
+      return state;
+  }
 }
 
-const store = createStore(reducer, { theme: "light" });
+const store = createStore(reducer, { theme: 'light' });
 
 function App() {
-	return (
-		<Provider store={store}>
-			<ThemeToggler />
-			<Content />
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <ThemeToggler />
+      <Content />
+    </Provider>
+  );
 }
 
 function ThemeToggler() {
-	const [state, dispatch] = useRedux(store);
-	const toggleTheme = () => dispatch({ type: "SET_THEME", theme: state.theme === "light" ? "dark" : "light" });
+  const [state, dispatch] = useRedux(store);
+  const toggleTheme = () =>
+    dispatch({
+      type: 'SET_THEME',
+      theme: state.theme === 'light' ? 'dark' : 'light',
+    });
 
-	return <button onClick={toggleTheme}>Toggle theme</button>;
+  return <button onClick={toggleTheme}>Toggle theme</button>;
 }
 
 function Content() {
-	const [state] = useRedux(store);
-	const theme = state.theme;
+  const [state] = useRedux(store);
+  const theme = state.theme;
 
-	return <div style={{ background: theme === "light" ? "white" : "black", color: theme === "light" ? "black" : "white" }}>Hello World</div>;
+  return (
+    <div
+      style={{
+        background: theme === 'light' ? 'white' : 'black',
+        color: theme === 'light' ? 'black' : 'white',
+      }}
+    >
+      Hello World
+    </div>
+  );
 }
 ```
 

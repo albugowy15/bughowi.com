@@ -2,11 +2,11 @@
 title: Create Blog with MDX and Contentlayer
 date: 2022-08-03
 description: Build a Static Blog with Contentlayer, a content SDK that validates and transforms your content into type-safe JSON data you can easily import into your application.
-categories: 
-- mdx
-- contentlayer
-- next.js
-- typescript
+categories:
+  - mdx
+  - contentlayer
+  - next.js
+  - typescript
 thumbnail: https://user-images.githubusercontent.com/49820990/182565319-c3916848-6adc-4aea-894f-5d585b199407.png
 ---
 
@@ -46,7 +46,7 @@ Then, converted to HTML, it will looks like this
 And that's MD all about. Basically, MDX is same as MD but it has more features. MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast.
 
 ```mdx
-import { Chart } from "./snowfall.js";
+import { Chart } from './snowfall.js';
 export const year = 2018;
 
 # Last year’s snowfall
@@ -73,10 +73,10 @@ npm install contentlayer next-contentlayer
 Next, we need to configure our `next.config.js` file to hook Contentlayer into the `next dev` and `next build` processes.
 
 ```js title="next.config.js"
-const { withContentlayer } = require("next-contentlayer");
+const { withContentlayer } = require('next-contentlayer');
 
 module.exports = withContentlayer({
-	// your next config goes here
+  // your next config goes here
 });
 ```
 
@@ -84,15 +84,15 @@ Then add the following code inside `tsconfig.json` (if using TypeScript) or `jsc
 
 ```json title="tsconfig.json"
 {
-	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"contentlayer/generated": ["./.contentlayer/generated"]
-			// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-		}
-	},
-	"include": ["next-env.d.ts", "**/*.tsx", "**/*.ts", ".contentlayer/generated"]
-	//                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "contentlayer/generated": ["./.contentlayer/generated"]
+      // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.tsx", "**/*.ts", ".contentlayer/generated"]
+  //                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 }
 ```
 
@@ -101,41 +101,41 @@ Then add the following code inside `tsconfig.json` (if using TypeScript) or `jsc
 Creat a schema for your MDX content. To do this, you need to create a new file called `contentlayer.config.ts` in root folder of Next.js project. Here I create a schema for my blog post content.
 
 ```ts title="contentlayer.config.ts"
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 
 const Post = defineDocumentType(() => ({
-	name: "Post",
-	filePathPattern: `blog/*.mdx`,
-	contentType: "mdx",
-	fields: {
-		title: {
-			type: "string",
-			description: "The title of the post",
-			required: true,
-		},
-		description: {
-			type: "string",
-			required: true,
-		},
-		date: {
-			type: "date",
-			description: "The date of the post",
-			required: true,
-		},
-		categories: {
-			type: "list",
-			of: Category,
-		},
-	},
-	computedFields: {
-		url: {
-			type: "string",
-			resolve: (post) => `/${post._raw.flattenedPath}`,
-		},
-	},
+  name: 'Post',
+  filePathPattern: `blog/*.mdx`,
+  contentType: 'mdx',
+  fields: {
+    title: {
+      type: 'string',
+      description: 'The title of the post',
+      required: true,
+    },
+    description: {
+      type: 'string',
+      required: true,
+    },
+    date: {
+      type: 'date',
+      description: 'The date of the post',
+      required: true,
+    },
+    categories: {
+      type: 'list',
+      of: Category,
+    },
+  },
+  computedFields: {
+    url: {
+      type: 'string',
+      resolve: (post) => `/${post._raw.flattenedPath}`,
+    },
+  },
 }));
 export default makeSource({
-	documentTypes: [Post],
+  documentTypes: [Post],
 });
 ```
 
@@ -150,10 +150,10 @@ If you see in categories property, I define it as a list of Category. Category i
 
 ```js
 const Category = defineNestedType(() => ({
-	name: "Category",
-	fields: {
-		name: { type: "string", required: true },
-	},
+  name: 'Category',
+  fields: {
+    name: { type: 'string', required: true },
+  },
 }));
 ```
 
@@ -161,8 +161,8 @@ You also can add more than one document type. To do that, you just need create a
 
 ```js
 export default makeSource({
-	contentDirPath: "contents",
-	documentTypes: [Post, Project],
+  contentDirPath: 'contents',
+  documentTypes: [Post, Project],
 });
 ```
 
@@ -195,34 +195,33 @@ npm install date-fns
 Let's get our Post inside `getStaticProps()` function. Then display post title, description, and date in our page component.
 
 ```tsx
-import { compareDesc, format, parseISO } from "date-fns";
-import { allPosts, Post } from "contentlayer/generated";
-import { GetStaticProps } from "next"; // Add this import statement
+import { compareDesc, format, parseISO } from 'date-fns';
+import { allPosts, Post } from 'contentlayer/generated';
+import { GetStaticProps } from 'next'; // Add this import statement
 
 const Home = ({ posts }: { posts: Post[] }) => {
-    return (
-        <div>
-            {posts.map((post, key) => (
-                <div key={key}>
-                    <h1>{post.title}</h1>
-                    <p>{post.description}</p>
-                    <p>{format(parseISO(post.date), "LLLL d, yyyy")}</p>
-                </div>
-            ))}
+  return (
+    <div>
+      {posts.map((post, key) => (
+        <div key={key}>
+          <h1>{post.title}</h1>
+          <p>{post.description}</p>
+          <p>{format(parseISO(post.date), 'LLLL d, yyyy')}</p>
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-    const posts = allPosts.sort((a, b) => {
-        return compareDesc(new Date(a.date), new Date(b.date));
-    });
+  const posts = allPosts.sort((a, b) => {
+    return compareDesc(new Date(a.date), new Date(b.date));
+  });
 
-    return {
-        props: { posts },
-    };
+  return {
+    props: { posts },
+  };
 };
-
 ```

@@ -1,13 +1,13 @@
 ---
-import { Image } from "astro:assets";
-import Heading4 from "../typography/Heading4.astro";
-import Text from "../typography/Text.astro";
-import { CollectionEntry } from "astro:content";
-import { formatDate } from "../../utils/date";
-import Heading3 from "../typography/Heading3.astro";
+import { Image } from 'astro:assets';
+import Heading4 from '../typography/Heading4.astro';
+import Text from '../typography/Text.astro';
+import { CollectionEntry } from 'astro:content';
+import { formatDate } from '../../utils/date';
+import Heading3 from '../typography/Heading3.astro';
 
 interface Props {
-  post: CollectionEntry<"blog">;
+  post: CollectionEntry<'blog'>;
 }
 
 const { post } = Astro.props;
@@ -15,37 +15,37 @@ const { remarkPluginFrontmatter } = await post.render();
 ---
 
 <div
-  class="flex flex-col bg-darkSecondary border border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out"
+  class='flex flex-col border border-slate-300 border-opacity-40 bg-darkSecondary transition-transform ease-in-out hover:scale-[1.02]'
 >
-  <div class="w-full h-52 relative overflow-hidden">
+  <div class='relative h-52 w-full overflow-hidden'>
     <Image
       src={post.data.thumbnail}
       alt={post.data.title}
       width={300}
       height={200}
-      class="object-cover object-center w-full h-full overflow-hidden"
+      class='h-full w-full overflow-hidden object-cover object-center'
     />
   </div>
-  <div class="p-3 flex flex-col items-stretch justify-between">
+  <div class='flex flex-col items-stretch justify-between p-3'>
     <div>
-      <div class="flex gap-1 flex-wrap">
+      <div class='flex flex-wrap gap-1'>
         {
           post.data.categories?.map((category) => (
-            <Text variant="label1" className="bg-blueAccent p-1 rounded-md">
+            <Text variant='label1' className='bg-blueAccent p-1 rounded-md'>
               {category}
             </Text>
           ))
         }
       </div>
-      <div class="py-2"></div>
-      <Heading3 classNames="hover:text-blueAccent transition-colors">
+      <div class='py-2'></div>
+      <Heading3 classNames='hover:text-blueAccent transition-colors'>
         <a href={`/blog/${post.slug}`}>{post.data.title}</a>
       </Heading3>
     </div>
-    <div class="p-4"></div>
-    <div class="flex items-center justify-between text-sm">
-      <Text variant="label1">{formatDate(post.data.date.toISOString())}</Text>
-      <Text variant="label1">
+    <div class='p-4'></div>
+    <div class='flex items-center justify-between text-sm'>
+      <Text variant='label1'>{formatDate(post.data.date.toISOString())}</Text>
+      <Text variant='label1'>
         {remarkPluginFrontmatter.minutesRead}
       </Text>
     </div>

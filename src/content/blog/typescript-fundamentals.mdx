@@ -3,7 +3,7 @@ title: Typescript Fundamentals
 date: 2022-07-30
 description: Learn why Typescript is so awesome and the basic concepts required to be successful using it
 categories:
-- typescript
+  - typescript
 thumbnail: https://user-images.githubusercontent.com/49820990/181875756-693e8d6f-3625-4220-a9fa-3f924f8f0a6c.png
 ---
 
@@ -30,7 +30,7 @@ So the first we'll do is create an `index.ts` file and TypeScript on it's own ca
 Let's start by writing some plain JavaScript in our TypeScript file and then compile it.
 
 ```ts title="index.ts"
-console.log("hello world");
+console.log('hello world');
 ```
 
 Go down to command line and run `tsc index.ts`.
@@ -38,14 +38,14 @@ Go down to command line and run `tsc index.ts`.
 You'll notice it creates an index.js file that's our actual JavaScript code which we can run in the browser or node. And because we just wrote plain JavaScript, the code is identical to what's in the `index.ts` file.
 
 ```js title="index.js"
-console.log("hello world");
+console.log('hello world');
 ```
 
 By default, TypeScript will compile to ES3 which dosn't support for async await. So let's see what's happen when we write an async function in our `.ts` file and the compile it.
 
 ```ts title="index.ts"
 async function hello() {
-  return "world";
+  return 'world';
 }
 ```
 
@@ -72,7 +72,7 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator["throw"](value));
+          step(generator['throw'](value));
         } catch (e) {
           reject(e);
         }
@@ -154,14 +154,14 @@ Then if we try to assign a string value to this variable it's going to give us a
 
 ```ts title="index.ts"
 let lucky = 23; // lucky will have number type
-lucky = "23"; // error because we can't assign string value to number variable
+lucky = '23'; // error because we can't assign string value to number variable
 ```
 
 Unlike languages like C# or Java, we can actually opt out the type system annotating our variable with `any`.
 
 ```ts title="index.ts"
 let lucky: any = 23; // lucky will accept all types of value
-lucky = "23"; // including string
+lucky = '23'; // including string
 ```
 
 This just means that this variable can be assigned any value and the compiler won't type check it. Ideally you want to avoid doing things like this when possible but it does give TypeScript a ton of flexibilty.
@@ -173,7 +173,7 @@ In above example we gave our variable an impicit number type, but what if we don
 ```ts title="index.ts"
 let lucky: number; // lucky type will be number
 
-lucky = "23"; // error assign string value
+lucky = '23'; // error assign string value
 lucky = 23; // no error
 ```
 
@@ -195,7 +195,7 @@ let font: Style;
 Let's say our style type can be only be bold or italic. We can create a union type by separating theme with a pipe. And now we can only assign this variable to this two specific values. And we're not limited to just string, we could even extend this custom type with a number.
 
 ```ts
-type Style = "bold" | "italic" | 23;
+type Style = 'bold' | 'italic' | 23;
 let font: Style;
 ```
 
@@ -205,13 +205,13 @@ So that's pretty cool but more often, you'll be strong typing object that have m
 
 ```ts
 const person1 = {
-  first: "Harry",
-  last: "Maguire",
+  first: 'Harry',
+  last: 'Maguire',
 };
 
 const person2 = {
-  first: "Usain",
-  last: "Bolt",
+  first: 'Usain',
+  last: 'Bolt',
   fast: true,
 };
 ```
@@ -234,13 +234,13 @@ interface Person {
 }
 
 const person1: Person = {
-  first: "Harry",
-  last: "Maguire",
+  first: 'Harry',
+  last: 'Maguire',
 };
 
 const person2 = {
-  first: "Usain",
-  last: "Bolt",
+  first: 'Usain',
+  last: 'Bolt',
   fast: true,
 };
 ```
@@ -255,13 +255,13 @@ interface Person {
 }
 
 const person1: Person = {
-  first: "Harry",
-  last: "Maguire",
+  first: 'Harry',
+  last: 'Maguire',
 };
 
 const person2 = {
-  first: "Usain",
-  last: "Bolt",
+  first: 'Usain',
+  last: 'Bolt',
   fast: true,
 };
 ```
@@ -283,7 +283,7 @@ function pow(x, y) {
   return Math.pow(x, y);
 }
 
-pow("23", "foo");
+pow('23', 'foo');
 ```
 
 You can annotate arguments the same way we do with variables. That will sure only numbers can be passed to this function.
@@ -314,7 +314,7 @@ The next thing we'll look at is how to strong type an array so we'll start by cr
 const arr = [];
 
 arr.push(1);
-arr.push("23");
+arr.push('23');
 arr.push(false);
 ```
 
@@ -324,7 +324,7 @@ We can force this array to only have number types by doing a number type followe
 const arr: number[] = [];
 
 arr.push(1);
-arr.push("23"); // error
+arr.push('23'); // error
 arr.push(false); // error
 ```
 
@@ -338,7 +338,7 @@ type MyList = [number, string, boolean];
 const arr: MyList = [];
 
 arr.push(1);
-arr.push("23");
+arr.push('23');
 arr.push(false);
 ```
 

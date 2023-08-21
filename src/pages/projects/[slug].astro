@@ -1,10 +1,10 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
-import Heading1 from "../../components/typography/Heading1.astro";
-import Text from "../../components/typography/Text.astro";
-import Layout from "../../layouts/Layout.astro";
-import { compareDesc } from "date-fns";
-import { Image } from "astro:assets";
+import { CollectionEntry, getCollection } from 'astro:content';
+import Heading1 from '../../components/typography/Heading1.astro';
+import Text from '../../components/typography/Text.astro';
+import Layout from '../../layouts/Layout.astro';
+import { compareDesc } from 'date-fns';
+import { Image } from 'astro:assets';
 
 type StaticPath = {
   params: {
@@ -13,11 +13,11 @@ type StaticPath = {
 };
 
 interface Props {
-  post: CollectionEntry<"projects">;
+  post: CollectionEntry<'projects'>;
 }
 
 export async function getStaticPaths(): Promise<StaticPath[]> {
-  let blogCllection = await getCollection("projects");
+  let blogCllection = await getCollection('projects');
   return blogCllection
     .sort((a, b) => compareDesc(a.data.date, b.data.date))
     .map((post) => ({
@@ -36,16 +36,16 @@ const { Content } = await post.render();
 
 <Layout
   title={post.data.title}
-  type="article"
+  type='article'
   img={post.data.thumbnail}
   description={post.data.description}
-  url={"https://www.bughowi.com/projects" + post.slug}
+  url={'https://www.bughowi.com/projects' + post.slug}
 >
-  <div class="py-4"></div>
-  <main class="w-full lg:w-[65%] mx-auto">
+  <div class='py-4'></div>
+  <main class='mx-auto w-full lg:w-[65%]'>
     <Heading1>{post.data.title}</Heading1>
-    <Text variant="body1">{post.data.description}</Text>
-    <article class="mt-5 w-full">
+    <Text variant='body1'>{post.data.description}</Text>
+    <article class='mt-5 w-full'>
       {
         post.data.thumbnail && (
           <Image
@@ -53,20 +53,20 @@ const { Content } = await post.render();
             alt={post.data.title}
             height={1080}
             width={720}
-            class="rounded-lg"
+            class='rounded-lg'
           />
         )
       }
-      <div class="py-4"></div>
-      <div id="content-space" class="prose prose-invert max-w-none">
+      <div class='py-4'></div>
+      <div id='content-space' class='prose prose-invert max-w-none'>
         <Content />
       </div>
-      <div class="border-y-2 border-slate-400 mt-3">
-        <p class="py-4 flex flex-wrap items-center gap-2">
-          Tech Stack :{" "}
+      <div class='mt-3 border-y-2 border-slate-400'>
+        <p class='flex flex-wrap items-center gap-2 py-4'>
+          Tech Stack :{' '}
           {
             post.data.tech?.map((tech) => (
-              <span class="py-0.5 px-1 bg-blueAccent text-slate-100 rounded-md">
+              <span class='rounded-md bg-blueAccent px-1 py-0.5 text-slate-100'>
                 {tech}
               </span>
             ))
@@ -74,11 +74,11 @@ const { Content } = await post.render();
         </p>
       </div>
     </article>
-    <div class="py-4"></div>
+    <div class='py-4'></div>
     <!-- Giscus comment -->
   </main>
 </Layout>
-<style lang="scss">
+<style lang='scss'>
   #content-space {
     p {
       @apply text-base text-slate-200;
@@ -101,21 +101,21 @@ const { Content } = await post.render();
     h4,
     h5,
     h6 {
-      @apply font-bold scroll-my-16 text-white;
+      @apply scroll-my-16 font-bold text-white;
     }
     blockquote {
-      @apply bg-darkSecondary px-3 py-2 border-l-4 border-blueAccent text-slate-200 font-bold italic;
+      @apply border-l-4 border-blueAccent bg-darkSecondary px-3 py-2 font-bold italic text-slate-200;
     }
     ol {
-      @apply list-decimal ml-5;
+      @apply ml-5 list-decimal;
     }
 
     ul {
-      @apply list-disc ml-5;
+      @apply ml-5 list-disc;
     }
 
     a {
-      @apply text-[#6d90e2] hover:underline underline-offset-2 hover:text-[#4276ee] transition-transform ease-linear;
+      @apply text-[#6d90e2] underline-offset-2 transition-transform ease-linear hover:text-[#4276ee] hover:underline;
     }
   }
 </style>

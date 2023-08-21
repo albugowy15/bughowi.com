@@ -1,40 +1,40 @@
 ---
-import { CollectionEntry } from "astro:content";
-import Heading4 from "../typography/Heading4.astro";
-import Text from "../typography/Text.astro";
-import { Image } from "astro:assets";
-import Heading3 from "../typography/Heading3.astro";
+import { CollectionEntry } from 'astro:content';
+import Heading4 from '../typography/Heading4.astro';
+import Text from '../typography/Text.astro';
+import { Image } from 'astro:assets';
+import Heading3 from '../typography/Heading3.astro';
 
 interface Props {
-  project: CollectionEntry<"projects">;
+  project: CollectionEntry<'projects'>;
 }
 
 const { project } = Astro.props;
 ---
 
 <div
-  class="flex flex-col bg-darkSecondary p-4 border border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out"
+  class='flex flex-col border border-slate-300 border-opacity-40 bg-darkSecondary p-4 transition-transform ease-in-out hover:scale-[1.02]'
 >
-  <Heading3 classNames="hover:text-blueAccent transition-colors">
+  <Heading3 classNames='hover:text-blueAccent transition-colors'>
     <a href={`/projects/${project.slug}`}>{project.data.title}</a>
   </Heading3>
-  <div class="w-full h-48 relative overflow-hidden py-2">
+  <div class='relative h-48 w-full overflow-hidden py-2'>
     <Image
       src={project.data.thumbnail}
       alt={project.data.title}
       width={400}
       height={200}
-      class="rounded-md object-cover w-full h-full"
+      class='h-full w-full rounded-md object-cover'
     />
   </div>
 
-  <Text variant="body1">{project.data.description}</Text>
-  <div class="flex flex-wrap gap-1 mt-2">
+  <Text variant='body1'>{project.data.description}</Text>
+  <div class='mt-2 flex flex-wrap gap-1'>
     {
       project.data.tech.map((tech) => (
         <Text
-          variant="label1"
-          className="px-1 py-[0.20rem] bg-blueAccent rounded-md"
+          variant='label1'
+          className='px-1 py-[0.20rem] bg-blueAccent rounded-md'
         >
           {tech}
         </Text>

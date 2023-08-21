@@ -1,21 +1,21 @@
 ---
 const links = [
-  { name: "Home", url: "/" },
-  { name: "Blog", url: "/blog" },
-  { name: "Projects", url: "/projects" },
-  { name: "About", url: "/about" },
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog' },
+  { name: 'Projects', url: '/projects' },
+  { name: 'About', url: '/about' },
 ];
 ---
 
 <nav
-  class="p-1 w-full sticky top-0 z-50 bg-darkPrimary border-b border-slate-500/40"
+  class='sticky top-0 z-50 w-full border-b border-slate-500/40 bg-darkPrimary p-1'
 >
-  <div class="container 2xl:max-w-7xl px-3 xl:px-14 mx-auto">
-    <div class="flex text-sm sm:text-base gap-2 items-center py-2">
+  <div class='container mx-auto px-3 xl:px-14 2xl:max-w-7xl'>
+    <div class='flex items-center gap-2 py-2 text-sm sm:text-base'>
       {
         links.map((link) => (
           <a href={link.url}>
-            <p class="font-bold cursor-pointer hover:text-blueAccent hover:bg-darkSecondary hover:rounded transition-colors duration-300 px-1 py-0.5">
+            <p class='cursor-pointer px-1 py-0.5 font-bold transition-colors duration-300 hover:rounded hover:bg-darkSecondary hover:text-blueAccent'>
               {link.name}
             </p>
           </a>

@@ -1,62 +1,62 @@
 ---
-import Footer from "./Footer.astro";
-import Navbar from "./Navbar.astro";
+import Footer from './Footer.astro';
+import Navbar from './Navbar.astro';
 
 interface Props {
   title: string;
   description: string;
   url?: string;
-  type?: "website" | "article";
+  type?: 'website' | 'article';
   img?: string;
 }
 
 const {
   title,
   description,
-  url = "https://www.bughowi.com",
-  type = "website",
-  img = "https://res.cloudinary.com/bughowi-assets/image/upload/c_thumb,w_200,g_face/v1692602156/home-thumbnail.png",
+  url = 'https://www.bughowi.com',
+  type = 'website',
+  img = 'https://res.cloudinary.com/bughowi-assets/image/upload/c_thumb,w_200,g_face/v1692602156/home-thumbnail.png',
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="generator" content={Astro.generator} />
+    <meta charset='UTF-8' />
+    <meta name='description' content={description} />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='sitemap' href='/sitemap-index.xml' />
+    <meta name='generator' content={Astro.generator} />
     <title>{title} - Mohamad Kholid Bughowi</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
+    <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+    <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+    <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+    <link rel='manifest' href='/site.webmanifest' />
+    <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
+    <meta name='msapplication-TileColor' content='#da532c' />
+    <meta name='theme-color' content='#ffffff' />
 
-    <meta property="og:url" content={url} />
-    <meta property="og:type" content={type} />
-    <meta property="og:title" content={`${title} - Mohamad Kholid Bughowi`} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={img} />
+    <meta property='og:url' content={url} />
+    <meta property='og:type' content={type} />
+    <meta property='og:title' content={`${title} - Mohamad Kholid Bughowi`} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={img} />
 
     <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="bughowi.com" />
-    <meta property="twitter:url" content={url} />
-    <meta name="twitter:title" content={`${title} - Mohamad Kholid Bughowi`} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={img} />
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta property='twitter:domain' content='bughowi.com' />
+    <meta property='twitter:url' content={url} />
+    <meta name='twitter:title' content={`${title} - Mohamad Kholid Bughowi`} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={img} />
   </head>
   <body>
-    <div class="w-full min-h-screen flex flex-col border-b border-slate-500/40">
+    <div class='flex min-h-screen w-full flex-col border-b border-slate-500/40'>
       <Navbar />
-      <div class="container 2xl:max-w-7xl px-4 xl:px-14 mx-auto flex-1">
+      <div class='container mx-auto flex-1 px-4 xl:px-14 2xl:max-w-7xl'>
         <slot />
       </div>
-      <div class="py-8"></div>
+      <div class='py-8'></div>
       <Footer />
     </div>
   </body>
@@ -65,23 +65,23 @@ const {
 <style is:global>
   /* latin-ext */
   @font-face {
-    font-family: "Inter";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
       U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
   /* latin */
   @font-face {
-    font-family: "Inter";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
       U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -89,23 +89,23 @@ const {
 
   /* latin-ext */
   @font-face {
-    font-family: "Inter";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
       U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
   /* latin */
   @font-face {
-    font-family: "Inter";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
       U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -113,23 +113,23 @@ const {
 
   /* latin-ext */
   @font-face {
-    font-family: "Inter";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
       U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
   /* latin */
   @font-face {
-    font-family: "Inter";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
       U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -151,11 +151,11 @@ const {
   }
 
   body {
-    @apply bg-darkPrimary text-slate-100 font-primary;
+    @apply bg-darkPrimary font-primary text-slate-100;
   }
 
   html {
-    @apply scroll-smooth relative min-h-full;
+    @apply relative min-h-full scroll-smooth;
   }
 
   #content-space code {
