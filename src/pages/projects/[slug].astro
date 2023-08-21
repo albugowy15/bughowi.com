@@ -34,7 +34,13 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout
+  title={post.data.title}
+  type="article"
+  img={post.data.thumbnail}
+  description={post.data.description}
+  url={"https://www.bughowi.com/projects" + post.slug}
+>
   <div class="py-4"></div>
   <main class="w-full lg:w-[65%] mx-auto">
     <Heading1>{post.data.title}</Heading1>

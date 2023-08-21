@@ -34,11 +34,17 @@ export async function getStaticPaths(): Promise<StaticPath[]> {
 
 const { post } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await post.render();
-const editUrl = `https://github.com/albugowy15/bughowi.com/blob/main/src/content/${post.slug}.mdx`;
-const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=https://bughowi.com/${post.slug}&via=bughowy`;
+const editUrl = `https://github.com/albugowy15/bughowi.com/blob/main/src/content/blog/${post.slug}.mdx`;
+const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=https://bughowi.com/blog/${post.slug}&via=bughowy`;
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout
+  title={post.data.title}
+  url={"https://www.bughowi.com/blog/" + post.slug}
+  type="article"
+  img={post.data.thumbnail}
+  description={post.data.description}
+>
   <div class="py-4"></div>
   <Heading1>{post.data.title}</Heading1>
   <div class="py-2 flex justify-start gap-1 sm:gap-3 items-center">
@@ -120,8 +126,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
         data-lang="en"
         data-loading="lazy"
         crossorigin="anonymous"
-        async
-      ></script>
+        async></script>
     </div>
     <div
       class="hidden xl:flex flex-col divide-y divide-slate-600 bg-darkSecondary/50 rounded-lg sticky flex-1 top-20 z-40 border-2 border-slate-700"

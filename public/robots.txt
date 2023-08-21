@@ -6,4 +6,4 @@ Allow: /
 Host: https://www.bughowi.com
 
 # Sitemaps
-Sitemap: https://www.bughowi.com/sitemap.xml
+Sitemap: https://www.bughowi.com/sitemap-index.xml

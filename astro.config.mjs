@@ -4,25 +4,27 @@ import vercelStatic from '@astrojs/vercel/static';
 import mdx from "@astrojs/mdx";
 import { remarkReadingTime } from './remark-reading-time.mjs';
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   output: "static",
   adapter: vercelStatic(),
   markdown: {
     shikiConfig: {
-      theme: 'one-dark-pro',
+      theme: 'material-theme-palenight'
     },
     remarkPlugins: [remarkReadingTime]
   },
   experimental: {
-    assets: true,
+    assets: true
   },
   image: {
     service: {
-      entrypoint:"astro/assets/services/sharp",
+      entrypoint: "astro/assets/services/sharp"
     },
-    domains: ['images.unsplash.com', 'user-images.githubusercontent.com', 'avatars.githubusercontent.com', 'github.com', 'blogger.googleusercontent.com'],
+    domains: ['images.unsplash.com', 'user-images.githubusercontent.com', 'avatars.githubusercontent.com', 'github.com', 'blogger.googleusercontent.com']
   },
   site: 'https://www.bughowi.com',
-  integrations: [tailwind(), mdx()]
+  integrations: [tailwind(), mdx(), sitemap()]
 });
