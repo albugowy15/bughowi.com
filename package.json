@@ -1,18 +1,18 @@
 {
   "name": "bughowi.com",
   "type": "module",
-  "version": "0.0.1",
+  "version": "3.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "lint": "eslint --ext .js,.astro src"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^0.19.7",
+    "@astrojs/sitemap": "^2.0.2",
     "@astrojs/tailwind": "^4.0.0",
     "@astrojs/vercel": "^3.8.2",
     "astro": "^2.10.7",

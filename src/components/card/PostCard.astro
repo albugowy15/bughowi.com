@@ -4,6 +4,7 @@ import Heading4 from "../typography/Heading4.astro";
 import Text from "../typography/Text.astro";
 import { CollectionEntry } from "astro:content";
 import { formatDate } from "../../utils/date";
+import Heading3 from "../typography/Heading3.astro";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -14,15 +15,15 @@ const { remarkPluginFrontmatter } = await post.render();
 ---
 
 <div
-  class="bg-darkSecondary rounded-md overflow-hidden border-2 border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out"
+  class="flex flex-col bg-darkSecondary border border-slate-300 border-opacity-40 hover:scale-[1.02] transition-transform ease-in-out"
 >
-  <div class="w-full h-48 relative overflow-hidden">
+  <div class="w-full h-52 relative overflow-hidden">
     <Image
       src={post.data.thumbnail}
       alt={post.data.title}
       width={300}
       height={200}
-      class="object-cover object-center w-full h-full"
+      class="object-cover object-center w-full h-full overflow-hidden"
     />
   </div>
   <div class="p-3 flex flex-col items-stretch justify-between">
@@ -37,9 +38,9 @@ const { remarkPluginFrontmatter } = await post.render();
         }
       </div>
       <div class="py-2"></div>
-      <Heading4 classNames="hover:text-blueAccent transition-colors">
+      <Heading3 classNames="hover:text-blueAccent transition-colors">
         <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-      </Heading4>
+      </Heading3>
     </div>
     <div class="p-4"></div>
     <div class="flex items-center justify-between text-sm">
