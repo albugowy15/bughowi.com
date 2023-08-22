@@ -22,3 +22,8 @@ pnpm-debug.log*
 .DS_Store
 
 public/
+
+# content
+src/content/blog/
+src/content/projects/
+src/content/about/
