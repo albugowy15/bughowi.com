@@ -1,0 +1,62 @@
+---
+title: Auto FRS Schedule
+description: Part of the Informatics FRS Helper project to automatically parse all class schedule from Excel files to MySQL database.
+thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/projects-auto-frs-schedule.png
+date: 2023-08-22
+tech:
+  - rust
+  - clap
+  - calamine
+  - tokio
+  - sqlx
+  - mysql
+---
+
+## Description
+
+This project is a part of the [Informatics FRS Helper](https://github.com/albugowy15/informatics-frs-helper) project to automatically parse all class schedule from Excel files to MySQL database.
+
+## Features
+
+- Parse and get specific data from Excel file
+- Write the result to sql file
+- Insert the result to MySQL database
+- Loading bar when inserting to database
+
+Below I have listed some of the supported arguments :
+
+- `-p --push` : Optional arg to determine wether only to parse excel or also push class to DB
+- `-f --file` : Required arg for path to excel file
+- `-s --sheet` : Required arg for excel sheet name
+- `-o --outdir` : Optional arg to write the sql statement to output directory
+
+
+## Repository
+
+Here is the link to the repository of this project: [https://github.com/albugowy15/auto-frs-schedule](https://github.com/albugowy15/auto-frs-schedule)
+
+## Tech Stack
+
+### Rust
+
+Rust is a modern programming language that is known for its memory safety, concurrency support, and efficient performance. It is a good choice for building CLI applications because it can be used to create reliable and fast command-line tools.
+
+### Clap
+
+Clap is a command-line argument parser for Rust. It makes it easy to define and parse command-line inputs, which is essential for any CLI application.
+
+### Calamine
+
+Calamine is an Excel parsing library for Rust. It allows you to read and write Excel files, which is useful for applications that need to interact with Excel data.
+
+### Tokio 
+
+Tokio is a runtime for asynchronous Rust applications. It provides a way to manage tasks and concurrency, which is essential for building scalable and efficient CLI applications.
+
+### Sqlx
+
+Sqlx is a Rust library for interacting with databases. It makes it easy to perform SQL queries, which is useful for applications that need to store and retrieve data from a database.
+
+## Demo
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZZYkbBCab1o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
