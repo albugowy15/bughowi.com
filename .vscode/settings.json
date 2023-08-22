@@ -11,12 +11,15 @@
     "**/*.js",
     "**/*.json",
     "**/*.md",
-    "**/*.mdx",
     "**/*.ts",
     "**/*.tsx"
   ],
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[mdx]": {
+    "editor.defaultFormatter": "unifiedjs.vscode-mdx",
+    "editor.wordWrap": "on"
   },
   "editor.codeActionsOnSave": {
     "source.fixAll": true

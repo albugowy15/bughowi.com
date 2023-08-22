@@ -8,21 +8,51 @@ categories:
 thumbnail: https://user-images.githubusercontent.com/49820990/192087996-64d2e76b-c430-4d38-a5bc-63923f22d7df.png
 ---
 
+import PackageManagerTabs from '../../components/tab/PackageManagerTabs.astro';
+
 Table of Contents is a common feature that we usually seen in article. This feature make web visitor much easier to navigate between each section of a webpage article. Here I'm gonna show you how to generate table of contents automatically on your mdx contentlayer blog.
 
 ## Install rehype-toc plugins
 
 The first step is to install `rehype-toc` plugin created by [jsdevtools](https://www.npmjs.com/package/@jsdevtools/rehype-toc). You can install it with this command.
 
-```sh
-npm install @jsdevtools/rehype-toc
-```
+<PackageManagerTabs>
+  <Fragment slot='npm'>
+    ```shell
+    npm install @jsdevtools/rehype-toc
+    ```
+  </Fragment>
+  <Fragment slot='yarn'>
+    ```shell
+    yarn add @jsdevtools/rehype-toc
+    ```
+  </Fragment>
+  <Fragment slot='pnpm'>
+    ```shell
+    pnpm add @jsdevtools/rehype-toc
+    ```
+  </Fragment>
+</PackageManagerTabs>
 
 You'll probably want to install `unified`, `rehype-parse`, `rehype-stringify`, and `rehype-slug` as well.
 
-```sh
-npm install unified rehype-parse rehype-stringify rehype-slug
-```
+<PackageManagerTabs>
+  <Fragment slot='npm'>
+    ```shell
+    npm install unified rehype-parse rehype-stringify rehype-slug
+    ```
+  </Fragment>
+  <Fragment slot='yarn'>
+    ```shell
+    yarn add unified rehype-parse rehype-stringify rehype-slug
+    ```
+  </Fragment>
+  <Fragment slot='pnpm'>
+    ```shell
+    pnpm add unified rehype-parse rehype-stringify rehype-slug
+    ```
+  </Fragment>
+</PackageManagerTabs>
 
 ## Edit contentlayer configuration
 

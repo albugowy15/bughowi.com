@@ -10,6 +10,8 @@ categories:
 thumbnail: https://user-images.githubusercontent.com/49820990/182565319-c3916848-6adc-4aea-894f-5d585b199407.png
 ---
 
+import PackageManagerTabs from '../../components/tab/PackageManagerTabs.astro';
+
 Blog is a media where we can share information, thoughts, or something else. Just like this blog, here I share my thoughs about some Web Development stuff and also programming in general. When building a personal blog, there are so many ways to store our article and serve it to visitor. We can use CMS (Content Management System) platform to manage contents. Alternatively, we can write contents in MDX format, store it in github repo, and manage it with contentlayer. Maybe some of you is not familiar with MDX and Contentlayer. So, in this article I'm gonna show you what is MDX and Contentlayer and how we can build a personal blog with this two things.
 
 ## MDX
@@ -66,9 +68,23 @@ flood conditions in many of the nearby rivers.
 
 Install contentlayer packages inside Next.js project.
 
-```shell
-npm install contentlayer next-contentlayer
-```
+<PackageManagerTabs>
+  <Fragment slot='npm'>
+    ```shell 
+    npm install contentlayer next-contentlayer
+    ```
+  </Fragment>
+  <Fragment slot='yarn'>
+    ```shell
+    yarn add contentlayer next-contentlayer
+    ```
+  </Fragment>
+  <Fragment slot='pnpm'>
+    ```shell
+    npm add contentlayer next-contentlayer
+    ```
+  </Fragment>
+</PackageManagerTabs>
 
 Next, we need to configure our `next.config.js` file to hook Contentlayer into the `next dev` and `next build` processes.
 

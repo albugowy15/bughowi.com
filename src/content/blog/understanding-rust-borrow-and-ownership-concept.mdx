@@ -136,7 +136,7 @@ fn do_something(s: &String) {
 
 But if we make a mutable reference to a mutable value then we can use the reference to change the value as well.
 
-```rs showLineNumbers {3, 6}
+```rs {3, 6}
 fn main() {
     let mut s1 = String::from("abc");
     do_something(&mut s1);
@@ -151,7 +151,7 @@ The syntax for a mutable reference is a little special: ampersand `*`, `mut`, sp
 
 Now wait, why didn't we have to dereference the mutable reference in order to alter `s` in the `do_stuff()` method?
 
-```rs showLineNumbers {7}
+```rs {7}
 fn main() {
     let mut s1 = String::from("abc");
     do_something(&mut s1);
@@ -168,7 +168,7 @@ The dot operator for a method or a field auto-dereferences down to the actual va
 
 If we manually dereferenced `s`, it would look like this:
 
-```rs showLineNumbers {7}
+```rs {7}
 fn main() {
     let mut s1 = String::from("abc");
     do_something(&mut s1);
@@ -183,7 +183,7 @@ You use an asterisk immediately before a reference to dereference to the value, 
 
 With most other operators (like the assignment operator for example) you'll need to manually dereference your reference if you want to read from or write to the actual value.
 
-```rs showLineNumbers {7-8}
+```rs {7-8}
 fn main() {
     let mut s1 = String::from("abc");
     do_something(&mut s1);
