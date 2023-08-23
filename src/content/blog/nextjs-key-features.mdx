@@ -8,6 +8,8 @@ categories:
 thumbnail: https://user-images.githubusercontent.com/49820990/182567373-faa399fb-f45e-440a-ad02-d94fffde2e71.png
 ---
 
+import PackageManagerTabs from '@components/tab/PackageManagerTabs.astro'
+
 We're going to learn all the key features that make up Next.js. How it pre-renders pages, helps us with search engine optimization, implement data fetching, work with api routes, and many many other important features.
 
 Let's start with the most important question first, what exactly is Next.js and why do we need it?
@@ -42,9 +44,23 @@ Here is the feature which is most important for me labeling Next.js a full stack
 
 Let's get started and create a first Next.js project. For this we just need to run one simple command :
 
-```shell
-npx create-next-app project-name
-```
+<PackageManagerTabs>
+  <Fragment slot='npm'>
+    ```shell
+    npx create-next-app <project-name>
+    ```
+  </Fragment>
+  <Fragment slot='yarn'>
+    ```shell
+    yarn create next-app <project-name>
+    ```
+  </Fragment>
+  <Fragment slot='pnpm'>
+    ```shell
+    pnpm create next-app <project-name>
+    ```
+  </Fragment>
+</PackageManagerTabs>
 
 The three important folders here are pages, public, and styles. Pages is the most important one. Styles holds some css style files. And public simply holds public resources that our page might use likes images.
 
