@@ -17,8 +17,8 @@ interface Props {
 }
 
 export async function getStaticPaths(): Promise<StaticPath[]> {
-  let blogCllection = await getCollection('projects');
-  return blogCllection
+  let projectCollection = await getCollection('projects');
+  return projectCollection
     .sort((a, b) => compareDesc(a.data.date, b.data.date))
     .map((post) => ({
       params: {
@@ -76,5 +76,21 @@ const { Content } = await post.render();
     </article>
     <div class='py-4'></div>
     <!-- Giscus comment -->
+    <script
+      src='https://giscus.app/client.js'
+      data-repo='albugowy15/bughowi.com'
+      data-repo-id='R_kgDOHqneBQ'
+      data-category='Announcements'
+      data-category-id='DIC_kwDOHqneBc4CQdnP'
+      data-mapping='url'
+      data-strict='0'
+      data-reactions-enabled='0'
+      data-emit-metadata='0'
+      data-input-position='bottom'
+      data-theme='transparent_dark'
+      data-lang='en'
+      data-loading='lazy'
+      crossorigin='anonymous'
+      async></script>
   </main>
 </Layout>

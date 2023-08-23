@@ -19,8 +19,8 @@ interface Props {
 }
 
 export async function getStaticPaths(): Promise<StaticPath[]> {
-  let blogCllection = await getCollection('blog');
-  return blogCllection
+  let blogCollection = await getCollection('blog');
+  return blogCollection
     .sort((a, b) => compareDesc(a.data.date, b.data.date))
     .map((post) => ({
       params: {
