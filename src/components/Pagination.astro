@@ -1,0 +1,61 @@
+---
+import { Page } from 'astro';
+interface Props<T> {
+  page: Page<T>;
+}
+
+const { page } = Astro.props;
+---
+
+<section class='mt-6'>
+  <nav class='flex justify-center gap-3'>
+    {
+      page.url.prev ? (
+        <a
+          href={page.url.prev}
+          class='flex items-center gap-2 rounded-lg border border-slate-700 bg-darkSecondary px-4 py-1.5 font-medium transition-all duration-300 hover:cursor-pointer hover:bg-opacity-0 hover:text-blue-400'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='1.5'
+            stroke='currentColor'
+            class='h-5 w-5'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75'
+            />
+          </svg>
+          Prev
+        </a>
+      ) : null
+    }
+    {
+      page.url.next ? (
+        <a
+          href={page.url.next}
+          class='flex items-center gap-2 rounded-lg border border-slate-700 bg-darkSecondary px-4 py-1.5 font-medium transition-all duration-300 hover:cursor-pointer hover:bg-opacity-0 hover:text-blue-400'
+        >
+          Next{' '}
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='1.5'
+            stroke='currentColor'
+            class='h-5 w-5'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75'
+            />
+          </svg>
+        </a>
+      ) : null
+    }
+  </nav>
+</section>
