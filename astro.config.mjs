@@ -29,12 +29,15 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp',
     },
     domains: [
-      'images.unsplash.com',
       'user-images.githubusercontent.com',
       'avatars.githubusercontent.com',
       'github.com',
       'blogger.googleusercontent.com',
+      'res.cloudinary.com',
     ],
+  },
+  redirects: {
+    '/blog': '/blog/page/1',
   },
   site: 'https://www.bughowi.com',
   integrations: [

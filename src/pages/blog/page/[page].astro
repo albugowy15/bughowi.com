@@ -1,0 +1,94 @@
+---
+import PostCard from '@components/card/PostCard.astro';
+import Heading2 from '@components/typography/Heading2.astro';
+import Text from '@components/typography/Text.astro';
+import Layout from '@layouts/Layout.astro';
+import { Page } from 'astro';
+import { CollectionEntry, getCollection } from 'astro:content';
+import { compareDesc } from 'date-fns';
+
+export async function getStaticPaths({ paginate }) {
+  const allBlogpost = await getCollection('blog');
+  const sortedPosts = allBlogpost.sort((a, b) =>
+    compareDesc(a.data.date, b.data.date),
+  );
+  return paginate(sortedPosts, { pageSize: 6 });
+}
+
+interface Props {
+  page: Page<CollectionEntry<'blog'>>;
+}
+
+const { page } = Astro.props;
+---
+
+<Layout
+  title='Blog'
+  url='https://www.bughowi.com/blog'
+  description="Welcome to my Blog. Here I share my thoughts related to Fullstack development topics and programming in general. I've always been a fan of writing, and I hope you can find something here that could help you in your developer career."
+>
+  <div class='py-4'></div>
+  <Heading2 classNames='text-center'>Blog</Heading2>
+  <Text variant='body1' className='text-center py-3'>
+    Welcome to my Blog. Here I share my thoughts related to Fullstack
+    development topics and programming in general. I've always been a fan of
+    writing, and I hope you can find something here that could help you in your
+    developer career.
+  </Text>
+  <div class='py-5'></div>
+  <section class='grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+    {page.data.map((post) => <PostCard post={post} />)}
+  </section>
+  <section class='mt-6'>
+    <nav class='flex justify-center gap-3'>
+      {
+        page.url.prev ? (
+          <a
+            href={page.url.prev}
+            class='flex items-center gap-2 rounded-lg border border-slate-700 bg-darkSecondary px-4 py-1.5 font-medium transition-all duration-300 hover:cursor-pointer hover:bg-opacity-0 hover:text-blue-400'
+          >
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke-width='1.5'
+              stroke='currentColor'
+              class='h-5 w-5'
+            >
+              <path
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                d='M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75'
+              />
+            </svg>
+            Prev
+          </a>
+        ) : null
+      }
+      {
+        page.url.next ? (
+          <a
+            href={page.url.next}
+            class='flex items-center gap-2 rounded-lg border border-slate-700 bg-darkSecondary px-4 py-1.5 font-medium transition-all duration-300 hover:cursor-pointer hover:bg-opacity-0 hover:text-blue-400'
+          >
+            Next{' '}
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke-width='1.5'
+              stroke='currentColor'
+              class='h-5 w-5'
+            >
+              <path
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                d='M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75'
+              />
+            </svg>
+          </a>
+        ) : null
+      }
+    </nav>
+  </section>
+</Layout>

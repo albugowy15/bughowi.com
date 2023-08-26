@@ -18,7 +18,22 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   rules: {
-    'prettier/prettier': ['error'],
+    'no-unused-vars': 'off',
+    'no-console': 'warn',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/triple-slash-reference': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+
+    'unused-imports/no-unused-imports': 'warn',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
+    ],
   },
   overrides: [
     {
@@ -38,32 +53,6 @@ module.exports = {
         'astro/no-unused-css-selector': 'warn',
         'astro/prefer-class-list-directive': 'warn',
         'astro/jsx-a11y/alt-text': 'warn',
-      },
-    },
-    {
-      // Define the configuration for `.ts` and `.tsx` files.
-      files: ['*.ts'],
-      // Extend the following rules for TypeScript files.
-      rules: {
-        // disable @typescript-eslint/triple-slash-reference
-        'no-unused-vars': 'off',
-        'no-console': 'warn',
-        '@typescript-eslint/no-var-requires': 'off',
-        '@typescript-eslint/triple-slash-reference': 'off',
-        //#region  //*=========== Unused Import ===========
-        '@typescript-eslint/no-unused-vars': 'off',
-
-        'unused-imports/no-unused-imports': 'warn',
-        'unused-imports/no-unused-vars': [
-          'warn',
-          {
-            vars: 'all',
-            varsIgnorePattern: '^_',
-            args: 'after-used',
-            argsIgnorePattern: '^_',
-          },
-        ],
-        //#endregion  //*======== Unused Import ===========
       },
     },
   ],
