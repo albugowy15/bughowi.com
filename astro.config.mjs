@@ -38,6 +38,7 @@ export default defineConfig({
   },
   redirects: {
     '/blog': '/blog/page/1',
+    '/projects': '/projects/page/1',
   },
   site: 'https://www.bughowi.com',
   integrations: [
