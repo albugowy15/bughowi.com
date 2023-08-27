@@ -5,6 +5,9 @@ import Text from '@components/typography/Text.astro';
 import Layout from '@layouts/Layout.astro';
 import { compareDesc } from 'date-fns';
 import { Image } from 'astro:assets';
+import ContentPagination, {
+  ContentNavigator,
+} from '@components/pagination/ContentPagination.astro';
 
 type StaticPath = {
   params: {
@@ -14,23 +17,41 @@ type StaticPath = {
 
 interface Props {
   post: CollectionEntry<'projects'>;
+  nextPost: ContentNavigator | null;
+  prevPost: ContentNavigator | null;
 }
 
 export async function getStaticPaths(): Promise<StaticPath[]> {
-  let projectCollection = await getCollection('projects');
-  return projectCollection
-    .sort((a, b) => compareDesc(a.data.date, b.data.date))
-    .map((post) => ({
-      params: {
-        slug: post.slug,
-      },
-      props: {
-        post,
-      },
-    }));
+  const projectCollection = await getCollection('projects');
+  const sortedProjectCollection = projectCollection.sort((a, b) =>
+    compareDesc(a.data.date, b.data.date),
+  );
+  const totalPost = sortedProjectCollection.length;
+  return sortedProjectCollection.map((post, idx) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: {
+      nextPost:
+        idx !== totalPost - 1
+          ? {
+              title: sortedProjectCollection[idx + 1].data.title,
+              slug: '/projects/' + sortedProjectCollection[idx + 1].slug,
+            }
+          : null,
+      prevPost:
+        idx !== 0
+          ? {
+              title: sortedProjectCollection[idx - 1].data.title,
+              slug: '/projects/' + sortedProjectCollection[idx - 1].slug,
+            }
+          : null,
+      post,
+    },
+  }));
 }
 
-const { post } = Astro.props;
+const { post, nextPost, prevPost } = Astro.props;
 const { Content } = await post.render();
 ---
 
@@ -75,6 +96,7 @@ const { Content } = await post.render();
       </div>
     </article>
     <div class='py-4'></div>
+    <ContentPagination next={nextPost} prev={prevPost} />
     <!-- Giscus comment -->
     <script
       src='https://giscus.app/client.js'

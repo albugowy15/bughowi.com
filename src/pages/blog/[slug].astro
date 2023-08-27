@@ -7,6 +7,9 @@ import Layout from '@layouts/Layout.astro';
 import { formatDate } from '@utils/date';
 import { compareDesc } from 'date-fns';
 import { Image } from 'astro:assets';
+import ContentPagination, {
+  ContentNavigator,
+} from '@components/pagination/ContentPagination.astro';
 
 type StaticPath = {
   params: {
@@ -16,23 +19,41 @@ type StaticPath = {
 
 interface Props {
   post: CollectionEntry<'blog'>;
+  nextPost: ContentNavigator | null;
+  prevPost: ContentNavigator | null;
 }
 
 export async function getStaticPaths(): Promise<StaticPath[]> {
-  let blogCollection = await getCollection('blog');
-  return blogCollection
-    .sort((a, b) => compareDesc(a.data.date, b.data.date))
-    .map((post) => ({
-      params: {
-        slug: post.slug,
-      },
-      props: {
-        post,
-      },
-    }));
+  const blogCollection = await getCollection('blog');
+  const sortedBlogCollection = blogCollection.sort((a, b) =>
+    compareDesc(a.data.date, b.data.date),
+  );
+  const totalPost = sortedBlogCollection.length;
+  return sortedBlogCollection.map((post, idx) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: {
+      nextPost:
+        idx !== totalPost - 1
+          ? {
+              title: sortedBlogCollection[idx + 1].data.title,
+              slug: '/blog/' + sortedBlogCollection[idx + 1].slug,
+            }
+          : null,
+      prevPost:
+        idx !== 0
+          ? {
+              title: sortedBlogCollection[idx - 1].data.title,
+              slug: '/blog/' + sortedBlogCollection[idx - 1].slug,
+            }
+          : null,
+      post,
+    },
+  }));
 }
 
-const { post } = Astro.props;
+const { post, nextPost, prevPost } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await post.render();
 const editUrl = `https://github.com/albugowy15/bughowi.com/blob/main/src/content/blog/${post.slug}.mdx`;
 const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=https://bughowi.com/blog/${post.slug}&via=bughowy`;
@@ -47,7 +68,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 >
   <div class='py-4'></div>
   <Heading1>{post.data.title}</Heading1>
-  <div class='flex items-center justify-start gap-1 py-2 sm:gap-3'>
+  <div class='flex flex-wrap items-center justify-start gap-1 py-2 sm:gap-3'>
     <Text variant='body1'>M. K. Bughowi</Text>
     <span>&#8226;</span>
     <Text variant='body1'>{formatDate(post.data.date.toISOString())}</Text>
@@ -73,10 +94,10 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
         <div id='content-space'>
           <Content />
         </div>
-        <div class='not-prose mt-6 flex justify-between'>
+        <div class='not-prose mt-6 flex flex-wrap justify-between gap-2'>
           <a
             href={editUrl}
-            class='flex items-center gap-2 rounded border border-slate-700 px-4 py-1 font-semibold transition-colors hover:bg-darkSecondary'
+            class='flex items-center gap-2 rounded border border-slate-700 px-2 py-1 font-semibold transition-colors hover:bg-darkSecondary'
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -93,7 +114,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
           >
           <a
             href={tweetUrl}
-            class='flex items-center gap-2 rounded border border-slate-700 px-4 py-1 font-semibold transition-colors hover:bg-darkSecondary'
+            class='flex items-center gap-2 rounded border border-slate-700 px-2 py-1 font-semibold transition-colors hover:bg-darkSecondary'
             ><svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 24 24'
@@ -109,6 +130,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
           >
         </div>
       </article>
+      <ContentPagination next={nextPost} prev={prevPost} />
       <div class='py-4'></div>
       <!-- Giscus comment -->
       <script

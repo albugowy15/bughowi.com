@@ -1,0 +1,84 @@
+---
+import Text from '@components/typography/Text.astro';
+
+export type ContentNavigator = {
+  title: string;
+  slug: string;
+};
+
+interface Props {
+  prev: ContentNavigator | null;
+  next: ContentNavigator | null;
+}
+
+const { prev, next } = Astro.props;
+---
+
+<section
+  class:list={[
+    'flex flex-col gap-3 py-6 md:flex-row',
+    {
+      'justify-between': prev != null && next != null,
+    },
+    {
+      'justify-end': next != null,
+    },
+    {
+      'justify-start': prev != null,
+    },
+  ]}
+>
+  {
+    prev ? (
+      <div class='flex w-full items-center justify-start gap-2 rounded-md border border-slate-500 p-4 sm:gap-6 md:w-1/2'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke-width='1.5'
+          stroke='currentColor'
+          class='h-7 w-7 flex-none text-slate-400'
+        >
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            d='M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18'
+          />
+        </svg>
+
+        <div>
+          <Text variant='body2' className='text-yellowAccent font-medium'>
+            Previous
+          </Text>
+          <a href={prev.slug}>{prev.title}</a>
+        </div>
+      </div>
+    ) : null
+  }
+  {
+    next ? (
+      <div class='flex w-full items-center justify-end gap-2 rounded-md border border-slate-500 p-4 sm:gap-6 md:w-1/2'>
+        <div>
+          <Text variant='body2' className='text-yellowAccent font-medium'>
+            Next
+          </Text>
+          <a href={next.slug}>{next.title}</a>
+        </div>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke-width='1.5'
+          stroke='currentColor'
+          class='h-7 w-7 flex-none text-slate-400'
+        >
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3'
+          />
+        </svg>
+      </div>
+    ) : null
+  }
+</section>
