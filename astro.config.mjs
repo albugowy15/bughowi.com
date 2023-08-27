@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, sharpImageService } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import vercelStatic from '@astrojs/vercel/static';
 import mdx from '@astrojs/mdx';
@@ -25,9 +25,7 @@ export default defineConfig({
     assets: true,
   },
   image: {
-    service: {
-      entrypoint: 'astro/assets/services/sharp',
-    },
+    service: sharpImageService(),
     domains: [
       'user-images.githubusercontent.com',
       'avatars.githubusercontent.com',
