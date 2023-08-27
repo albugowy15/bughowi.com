@@ -7,11 +7,11 @@ const links = [
 ];
 ---
 
-<nav
+<header
   class='sticky top-0 z-50 w-full border-b border-slate-500/40 bg-darkPrimary p-1'
 >
   <div class='container mx-auto px-3 xl:px-14 2xl:max-w-7xl'>
-    <div class='flex items-center gap-2 py-2 text-sm sm:text-base'>
+    <nav class='flex items-center gap-2 py-2 text-sm sm:text-base'>
       {
         links.map((link) => (
           <a href={link.url}>
@@ -21,6 +21,6 @@ const links = [
           </a>
         ))
       }
-    </div>
+    </nav>
   </div>
-</nav>
+</header>

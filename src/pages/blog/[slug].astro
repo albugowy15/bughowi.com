@@ -68,7 +68,9 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 >
   <div class='py-4'></div>
   <Heading1>{post.data.title}</Heading1>
-  <div class='flex flex-wrap items-center justify-start gap-1 py-2 sm:gap-3'>
+  <section
+    class='flex flex-wrap items-center justify-start gap-1 py-2 sm:gap-3'
+  >
     <Text variant='body1'>M. K. Bughowi</Text>
     <span>&#8226;</span>
     <Text variant='body1'>{formatDate(post.data.date.toISOString())}</Text>
@@ -76,8 +78,8 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
     <Text variant='body1' className='text-yellowAccent'>
       {remarkPluginFrontmatter.minutesRead}
     </Text>
-  </div>
-  <main
+  </section>
+  <div
     class='mx-auto w-full xl:flex xl:items-start xl:justify-between xl:gap-10'
   >
     <div class='xl:w-[70%]'>
@@ -89,12 +91,13 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
           alt={post.data.title}
           width={1080}
           height={720}
+          loading='eager'
           class='rounded-md object-cover'
         />
-        <div id='content-space'>
+        <section id='content-space'>
           <Content />
-        </div>
-        <div class='not-prose mt-6 flex flex-wrap justify-between gap-2'>
+        </section>
+        <section class='not-prose mt-6 flex flex-wrap justify-between gap-2'>
           <a
             href={editUrl}
             class='flex items-center gap-2 rounded border border-slate-700 px-2 py-1 font-semibold transition-colors hover:bg-darkSecondary'
@@ -128,7 +131,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
             </svg>
              Tweet this article</a
           >
-        </div>
+        </section>
       </article>
       <ContentPagination next={nextPost} prev={prevPost} />
       <div class='py-4'></div>
@@ -150,7 +153,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
         crossorigin='anonymous'
         async></script>
     </div>
-    <div
+    <aside
       class='sticky top-20 z-40 hidden flex-1 flex-col divide-y divide-slate-600 rounded-lg border-2 border-slate-700 bg-darkSecondary/50 xl:flex'
     >
       <div class='flex items-center justify-between px-3 py-2'>
@@ -159,10 +162,10 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
           Back to top
         </p>
       </div>
-      <div class='py-2' id='toc-container'>
+      <ul class='py-2' id='toc-container'>
         {
           headings.map((heading) => (
-            <div class=''>
+            <li class=''>
               <a
                 href={`#${heading.slug}`}
                 class:list={[
@@ -178,12 +181,12 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
               >
                 {heading.text}
               </a>
-            </div>
+            </li>
           ))
         }
-      </div>
-    </div>
-  </main>
+      </ul>
+    </aside>
+  </div>
 </Layout>
 
 <script>

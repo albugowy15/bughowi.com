@@ -14,7 +14,7 @@ interface Props {
 const { prev, next } = Astro.props;
 ---
 
-<section
+<nav
   class:list={[
     'flex flex-col gap-3 py-6 md:flex-row',
     {
@@ -81,4 +81,4 @@ const { prev, next } = Astro.props;
       </div>
     ) : null
   }
-</section>
+</nav>
