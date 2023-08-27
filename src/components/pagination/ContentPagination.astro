@@ -30,7 +30,14 @@ const { prev, next } = Astro.props;
 >
   {
     prev ? (
-      <div class='flex w-full items-center justify-start gap-2 rounded-md border border-slate-500 p-4 sm:gap-6 md:w-1/2'>
+      <a
+        class:list={[
+          'flex w-full items-center gap-2 rounded-md border border-slate-500 p-4 hover:cursor-pointer hover:bg-darkSecondary hover:transition-colors sm:gap-6 md:w-1/2',
+          next ? 'justify-start' : 'justify-between',
+        ]}
+        aria-label='Go to previous content'
+        href={prev.slug}
+      >
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
@@ -50,19 +57,36 @@ const { prev, next } = Astro.props;
           <Text variant='body2' className='text-yellowAccent font-medium'>
             Previous
           </Text>
-          <a href={prev.slug}>{prev.title}</a>
+          <Text
+            variant='body1'
+            className='hover:text-blue-700 hover:transition-colors'
+          >
+            {prev.title}
+          </Text>
         </div>
-      </div>
+      </a>
     ) : null
   }
   {
     next ? (
-      <div class='flex w-full items-center justify-end gap-2 rounded-md border border-slate-500 p-4 sm:gap-6 md:w-1/2'>
+      <a
+        class:list={[
+          'flex w-full items-center gap-2 rounded-md border border-slate-500 p-4 hover:cursor-pointer hover:bg-darkSecondary hover:transition-colors sm:gap-6 md:w-1/2',
+          prev ? 'justify-end' : 'justify-between',
+        ]}
+        aria-label='Go to next content'
+        href={next.slug}
+      >
         <div>
           <Text variant='body2' className='text-yellowAccent font-medium'>
             Next
           </Text>
-          <a href={next.slug}>{next.title}</a>
+          <Text
+            variant='body1'
+            className='hover:text-blue-700 hover:transition-colors'
+          >
+            {next.title}
+          </Text>
         </div>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -78,7 +102,7 @@ const { prev, next } = Astro.props;
             d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3'
           />
         </svg>
-      </div>
+      </a>
     ) : null
   }
 </nav>

@@ -17,15 +17,13 @@ const { project } = Astro.props;
   <Heading3 classNames='hover:text-blueAccent transition-colors'>
     <a href={`/projects/${project.slug}`}>{project.data.title}</a>
   </Heading3>
-  <div class='relative h-48 w-full overflow-hidden py-2'>
-    <Image
-      src={project.data.thumbnail}
-      alt={project.data.title}
-      width={400}
-      height={200}
-      class='h-full w-full rounded-md object-cover'
-    />
-  </div>
+  <Image
+    src={project.data.thumbnail}
+    alt={project.data.title}
+    width={400}
+    height={200}
+    class='object-cover py-2'
+  />
 
   <Text variant='body1'>{project.data.description}</Text>
   <div class='mt-2 flex flex-wrap gap-1'>
@@ -33,7 +31,7 @@ const { project } = Astro.props;
       project.data.tech.map((tech) => (
         <Text
           variant='label1'
-          className='px-1 py-[0.20rem] bg-blueAccent rounded-md'
+          className='px-1 py-[0.20rem] bg-blue-700 rounded-md'
         >
           {tech}
         </Text>
