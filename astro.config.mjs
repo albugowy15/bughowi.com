@@ -17,9 +17,7 @@ const astroExpressiveCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  adapter: vercelStatic({
-    imageService: true,
-  }),
+  adapter: vercelStatic(),
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },

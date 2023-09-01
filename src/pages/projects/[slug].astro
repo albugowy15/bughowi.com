@@ -27,7 +27,7 @@ export async function getStaticPaths(): Promise<StaticPath[]> {
     compareDesc(a.data.date, b.data.date),
   );
   const totalPost = sortedProjectCollection.length;
-  return sortedProjectCollection.map((post, idx) => ({
+  return sortedProjectCollection.flatMap((post, idx) => ({
     params: {
       slug: post.slug,
     },
