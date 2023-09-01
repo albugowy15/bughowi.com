@@ -1,4 +1,4 @@
-import { defineConfig, sharpImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import vercelStatic from '@astrojs/vercel/static';
 import mdx from '@astrojs/mdx';
@@ -17,15 +17,13 @@ const astroExpressiveCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  adapter: vercelStatic(),
+  adapter: vercelStatic({
+    imageService: true,
+  }),
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },
-  experimental: {
-    assets: true,
-  },
   image: {
-    service: sharpImageService(),
     domains: [
       'user-images.githubusercontent.com',
       'avatars.githubusercontent.com',
