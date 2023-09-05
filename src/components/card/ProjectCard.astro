@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import Text from '@components/typography/Text.astro';
 import { Image } from 'astro:assets';
 import Heading3 from '@components/typography/Heading3.astro';
@@ -21,7 +21,7 @@ const { project } = Astro.props;
     src={project.data.thumbnail}
     alt={project.data.title}
     width={400}
-    height={200}
+    height={250}
     class='w-full object-cover py-2'
   />
 

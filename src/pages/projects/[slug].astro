@@ -1,12 +1,12 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 import Heading1 from '@components/typography/Heading1.astro';
 import Text from '@components/typography/Text.astro';
 import Layout from '@layouts/Layout.astro';
 import { compareDesc } from 'date-fns';
 import { Image } from 'astro:assets';
 import ContentPagination, {
-  ContentNavigator,
+  type ContentNavigator,
 } from '@components/pagination/ContentPagination.astro';
 
 type StaticPath = {
