@@ -2,6 +2,7 @@
 import Footer from '@layouts/Footer.astro';
 import Navbar from '@layouts/Navbar.astro';
 import '@styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -50,6 +51,7 @@ const {
     <meta name='twitter:title' content={`${title} - Mohamad Kholid Bughowi`} />
     <meta name='twitter:description' content={description} />
     <meta name='twitter:image' content={img} />
+    <ViewTransitions />
   </head>
   <body>
     <div class='flex min-h-screen w-full flex-col border-b border-slate-500/40'>

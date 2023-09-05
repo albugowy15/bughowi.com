@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Text from '@components/typography/Text.astro';
-import { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import { formatDate } from '@utils/date';
 import Heading3 from '@components/typography/Heading3.astro';
 
@@ -20,8 +20,8 @@ const { remarkPluginFrontmatter } = await post.render();
     <Image
       src={post.data.thumbnail}
       alt={post.data.title}
-      width={300}
-      height={200}
+      width={400}
+      height={250}
       class='h-full w-full overflow-hidden object-cover object-center'
     />
   </div>

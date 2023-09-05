@@ -3,8 +3,8 @@ import PostCard from '@components/card/PostCard.astro';
 import Heading2 from '@components/typography/Heading2.astro';
 import Text from '@components/typography/Text.astro';
 import Layout from '@layouts/Layout.astro';
-import { Page } from 'astro';
-import { CollectionEntry, getCollection } from 'astro:content';
+import type { Page } from 'astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
 import { compareDesc } from 'date-fns';
 import PagePagination from '@components/pagination/PagePagination.astro';
 

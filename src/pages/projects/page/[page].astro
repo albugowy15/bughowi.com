@@ -1,11 +1,11 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 import Heading2 from '@components/typography/Heading2.astro';
 import Text from '@components/typography/Text.astro';
 import ProjectCard from '@components/card/ProjectCard.astro';
 import Layout from '@layouts/Layout.astro';
 import { compareDesc } from 'date-fns';
-import { Page } from 'astro';
+import type { Page } from 'astro';
 import PagePagination from '@components/pagination/PagePagination.astro';
 
 export async function getStaticPaths({ paginate }) {
