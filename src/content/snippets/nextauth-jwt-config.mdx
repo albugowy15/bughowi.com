@@ -1,0 +1,116 @@
+---
+title: Next Auth JWT Configuration
+date: 2023-12-11
+description: A boilerplate for configuring next auth for JWT Auth Strategy
+categories:
+  - typescript
+  - next.js
+  - nextauth
+---
+
+NextAuth is a powerful authentication library for Next.js applications, offering various authentication providers, including the `CredentialsProvider` for handling username and password-based authentication. In this article, we'll walk through an example of using NextAuth's `CredentialsProvider` to implement authentication using JSON Web Tokens (JWT).
+
+## Setting Up NextAuth and CredentialsProvider
+
+Firstly, ensure you have NextAuth installed in your Next.js project. You can do this by running:
+
+```bash
+npm install next-auth
+```
+
+Now, let's take a look at a sample authentication configuration file leveraging the `CredentialsProvider`.
+
+```ts
+import { type DefaultSession, type NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+
+export interface LoginResponseData {
+  username: string;
+  email: string;
+  accessToken: string;
+  id: string;
+}
+
+declare module 'next-auth' {
+  interface Session extends DefaultSession {
+    user: LoginResponseData & DefaultSession['user'];
+  }
+}
+
+export const authOptions: NextAuthOptions = {
+  providers: [
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {
+        username: {
+          label: 'Username',
+          type: 'text',
+        },
+        password: {
+          label: 'Password',
+          type: 'password',
+        },
+      },
+      async authorize(credentials) {
+        if (!credentials) {
+          throw new Error('Username and password are empty');
+        }
+        try {
+          // TODO: Implement the actual login fetch logic here
+        } catch (e: unknown) {
+          if (e instanceof Error) {
+            throw new Error(e.message);
+          } else {
+            throw new Error('INTERNAL ERROR');
+          }
+        }
+      },
+    }),
+  ],
+  callbacks: {
+    jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+        },
+      };
+    },
+  },
+  secret: process.env.NEXTAUTH_SECRET, // Replace with your actual secret
+  session: {
+    strategy: 'jwt',
+  },
+  pages: {
+    signIn: '/login',
+  },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET, // Replace with your actual secret
+  },
+};
+```
+
+This configuration sets up a `CredentialsProvider` for handling username and password authentication. The `authorize` function is where you'll implement the logic to verify the provided credentials and perform the actual login fetch.
+
+## Custom Session Interface
+
+We've extended the default `Session` interface to include properties from `LoginResponseData`. This ensures that our user session contains the necessary information.
+
+## JWT Callbacks
+
+The `jwt` callback merges properties from the JWT token and the user, while the session callback updates the `session` by adding the user's ID from the token.
+
+## Configuration Options
+
+- `secret`: Replace `process.env.NEXTAUTH_SECRET` with your actual secret.
+- `session`: Specifies the session strategy as "jwt".
+- `pages`: Customizes the sign-in page to "/login".
+- `jwt`: Sets the JWT secret.
+
+Ensure you replace placeholders like NEXTAUTH_SECRET with your actual values and handle the actual login fetch logic inside the authorize function.
+
+This setup provides a foundation for implementing JWT authentication with NextAuth's CredentialsProvider in your Next.js application. Customize it according to your specific authentication requirements.
