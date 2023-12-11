@@ -8,11 +8,15 @@ import ProjectCard from '@components/card/ProjectCard.astro';
 import { compareDesc } from 'date-fns';
 import profile_pic from '@assets/profile.png';
 import { Image } from 'astro:assets';
+import SnippetCard from '@components/card/SnippetCard.astro';
 
 const someBlogPosts = await getCollection('blog').then((res) =>
   res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6),
 );
 const someProjectPosts = await getCollection('projects').then((res) =>
+  res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6),
+);
+const someSnippetPosts = await getCollection('snippets').then((res) =>
   res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6),
 );
 ---
@@ -152,18 +156,32 @@ const someProjectPosts = await getCollection('projects').then((res) =>
     </div>
     <!-- end - Recent Post -->
     <div class='py-4'></div>
-    <!-- start - Personal Project -->
-    <section id='personal-projects' class='my-8'>
-      <a
-        href='/projects/page/1'
-        class='w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-blueAccent'
-      >
-        Personal Projects
-      </a>
-      <div class='mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-        {someProjectPosts.map((project) => <ProjectCard project={project} />)}
-      </div>
-    </section>
-    <!-- end - Personal Project -->
   </section>
+  <!-- start - Personal Project -->
+  <section id='personal-projects' class='my-8'>
+    <a
+      href='/projects/page/1'
+      class='w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-blueAccent'
+    >
+      Personal Projects
+    </a>
+    <div class='mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+      {someProjectPosts.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+  <!-- end - Personal Project -->
+
+  <!-- start - Snippet -->
+  <section id='snippets' class='my-8'>
+    <a
+      href='/snippets/page/1'
+      class='w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-blueAccent'
+    >
+      Snippets
+    </a>
+    <div class='mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+      {someSnippetPosts.map((snippet) => <SnippetCard snippet={snippet} />)}
+    </div>
+  </section>
+  <!-- end - Snippet -->
 </Layout>

@@ -1,0 +1,43 @@
+---
+title: Zod Optional Empty Field
+date: 2023-12-11
+description: Make a string field become optional when it's an empty string
+categories:
+  - typescript
+  - zod
+  - data validation
+---
+
+## The Snippets
+
+```ts
+const emptyStringToUndefined = z.literal('').transform(() => undefined);
+export function asOptionalField<T extends z.ZodTypeAny>(schema: T) {
+  return schema.optional().or(emptyStringToUndefined);
+}
+```
+
+The `emptyStringToUndefined` uses `z.literal("")` schema to represent a literal empty string. The `transform` method is the used to convert the empty string to `undefined`.
+
+The function `asOptionalField` takes a zod schema as its parameter. It then makes use of the zod `optional` method to make the field optional, and it combines this with the `or` method to include the `emptyStringToUndefined` transform. This means that the resulting schema will accept either the original value, or an empty string (which will be transformed to `undefined`).
+
+In summary, the `asOptionalField` function is designed to take any Zod schema and make it optional, allowing it to accept either the original value or an empty string (transformed to `undefined`). This can be useful when dealing with optional fields in data validation scenarios.
+
+## How to Use
+
+```ts
+export const editProfileSchema = z.object({
+  username: z.string(),
+  email: z.string().email(),
+  whatsapp: asOptionalField(
+    z
+      .string()
+      .min(9, { message: 'Whatsapp number minimum 9 digits' })
+      .max(14, { message: 'Whatsapp number minimum 9 digits' })
+      .startsWith('08', { message: 'Not valid Whatsapp number' })
+      .regex(/^[0-9]*$/, { message: 'Not valid Whatsapp number' }),
+  ),
+});
+```
+
+In this context, we utilize the `asOptionalField` to validate the input of a WhatsApp number. The methods `min()`, `max()`, `startsWith()`, and `regex()` will only be invoked if the WhatsApp number input is neither `undefined` nor an empty string ("").
