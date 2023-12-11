@@ -26,8 +26,19 @@ const aboutCollection = defineCollection({
   type: 'content',
 });
 
+const snippetCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    categories: z.array(z.string()),
+    date: z.date(),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   projects: projectCollection,
   about: aboutCollection,
+  snippets: snippetCollection,
 };
