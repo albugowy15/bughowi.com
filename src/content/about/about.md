@@ -2,27 +2,64 @@
 
 ## Introduction
 
-Hello! I'm <span className="font-bold text-yellowAccent">Owi</span>. I'm a Computer Science student - Fullstack Developer from Jepara, Indonesia. I have been learning some basic of Web Programming since high school by creating a blog using CMS likes Wordpress and Blogger. But I didn't create it myself. Instead I was just download some free Wordpress or Blogger template on the internet then I modified it a little bit.
+Hello! I'm <span className="font-bold text-yellowAccent">Owi</span>. I'm a Computer Science student - Software Engineer from Jepara, Indonesia. I've established this blog with two primary objectives. Firstly, as a developer, I'm in a perpetual state of acquiring new skills and exploring emerging technologies. I sought to create a space where I can meticulously document and reflect upon my learning journey, thus reinforcing my comprehension and establishing a reference for future use. Secondly, I aimed to showcase my projects and share my experiences with fellow members of the developer community. I firmly believe that the act of sharing knowledge and aiding others is integral to the role of a developer. My aspiration is for this blog to serve as a valuable resource for fellow developers, facilitating mutual growth within the community and contributing to my continuous development as a skilled professional.
 
-I started digging more about Web Development stuff during my college. Start by learn Javascript and PHP, then continue using some popular framework such as React.js, Next.js and Laravel. As I delved deeper into the world of web development, I discovered TypeScript and was immediately drawn to its strong typing and improved code scalability. I decided to make the switch and have been loving the enhanced development experience that TypeScript provides. It has not only helped me write more robust and maintainable code, but it has also allowed me to take on more complex projects with confidence. I'm excited to continue exploring the capabilities of TypeScript and using it to build even more powerful web applications.
+## Programming Languages
 
-I've created this blog for two main reasons. First, as a developer, I am constantly learning new skills and technologies. I wanted a place to document and reflect on what I've learned inorder to solidify my understanding and be able to refer back to it later. Second, I wanted to showcase my projects and share my experiences with others in the developer community. I believe that sharing knowledge and helping others is an important part of being a developer. I hope that my blog will be a useful resource for other developers, and that it will help me to continue growing as a developer.
+Currently, I am focused on learning and implementing **TypeScript**, **Go**, and **Rust** as the primary programming languages in my projects. I believe that proficiency in these three languages can significantly enhance the value in software development.
 
-## Tech Stack
+TypeScript offers advantages in terms of static typing, which can improve code security and quality. Meanwhile, Go, with its concurrency concepts and high performance, is well-suited for large-scale projects. Rust, on the other hand, provides high-level security without compromising performance, making it valuable for the development of critical systems.
 
-I'm currently enjoy build website using TypeScript, Next.js, and Tailwind CSS.
+Through this blog, I hope to share a profound understanding of the usage of these three languages, as well as the experiences and challenges that arise in their implementation. By sharing this knowledge, my aim is to make a positive contribution to the developer community and facilitate the exchange of valuable information for fellow developers in Indonesia and around the world.
 
-### TypeScript
+## Favorite Frameworks
 
-I have found that using TypeScript as my current tech stack is the perfect choice for me. TypeScript is a superset of JavaScript that adds optional static typing, classes, and interfaces. It provides many features that help me to catch errors early in the development process, making my code more reliable. TypeScript also enables me to write object-oriented code, and it's easy to refactor and scale. The type checking and autocompletion features that TypeScript provides, make my development process faster and more efficient. I'm excited to continue working with TypeScript and using it to build more powerful and scalable applications.
+Discovering the utility of frameworks has significantly accelerated my application development process, enhancing both speed and efficiency. These frameworks not only facilitate swift development but also contribute to the creation of more secure and scalable applications. I am enthusiastic about further delving into the capabilities of these frameworks and harnessing them to construct even more robust applications.
 
 ### Next.js
 
-Next.js is a framework built on top of React that makes it easy to create server-rendered React applications. The framework provides a lot of out-of-the-box features that make development much faster and easier. It also enables me to build applications that are SEO friendly and have a better performance. With the help of Next.js, I have been able to build highly dynamic and responsive web applications that are optimized for both the user and the developer. I'm excited to continue exploring the capabilities of Next.js and using it to build even more powerful web applications.
+Next.js stands out as a preferred framework, offering advanced features and a seamless development experience. Its capabilities in server-side rendering and routing make it a valuable asset in creating dynamic and performant web applications.
 
 ### Tailwind
 
-I have found that using a utility-first CSS framework like Tailwind CSS can help me to create fast, responsive, and beautiful web pages. Tailwind CSS provides a wide range of pre-defined CSS classes that can be used to quickly style elements on a page. This makes it easy to create consistent and responsive designs that look great on any device. I also appreciate the flexibility and customization options that Tailwind CSS provides. I can easily customize the design to match the look and feel of any project. I'm excited to continue working with Tailwind CSS and using it to create beautiful and functional web pages.
+Embracing Tailwind has proven instrumental in streamlining my styling process. The utility-first approach of Tailwind enables rapid and consistent styling, empowering me to create visually appealing and responsive user interfaces efficiently.
+
+### Astro
+
+Exploring the innovative features of Astro has been an exciting journey. Its focus on performance and the ability to seamlessly blend static and dynamic content make it a promising framework for building modern, high-performance websites. I look forward to utilizing Astro's capabilities for future projects and expanding my expertise in web development.
+
+There are also other frameworks and libraries that I have used in my projects, such as Prisma, tRPC, Tokio, and Gin. I am excited to continue exploring the capabilities of these frameworks and libraries and using them to build even more powerful applications.
+
+## Experience
+
+### Software Developer at Department of Communication and Information (Dinkominfo) Surabaya
+
+- **Type** : Internship
+- **Start - End** : August 2023 - December 2023
+- **Duration** : 5 months
+- **Tasks** : 
+  - Developed an API Gateway to seamlessly connect all existing APIs in Surabaya.
+  - Built a user-friendly dashboard using Laravel for efficient management of connected APIs within the Gateway.
+  - Implemented logging and monitoring functionalities for tracking each incoming request to the API Gateway.
+
+### Fullstack Developer at Harisenin.com
+
+- **Type** : Internship
+- **Start - End** : September 2022 - December 2022
+- **Duration** : 3 months
+- **Tasks** : 
+  - Developed a new internal dashboard using TypeScript, Next.js, and Tailwind CSS.
+  - Added new features to an existing internal dashboard using Laravel.
+  - Established a new subdomain.
+
+### Frontend Engineer at Torche Education
+
+- **Type** : Internship
+- **Start - End** : October 2022 - February 20223
+- **Duration** : 4 months
+- **Tasks** : 
+  - Crafted a new company landing page using Typescript, Next.js, and Tailwind.
+  - Migrated the existing tech stack to the MERN (MongoDB, Express, React, Node) stack.
 
 ## Contact Me
 
