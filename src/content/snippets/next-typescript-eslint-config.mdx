@@ -1,0 +1,108 @@
+---
+title: Eslint Config for Next.js + TypeScript Project
+date: 2023-12-27
+description: A ready-to-use configuration template for ESLint tailored for Next.js and TypeScript projects.
+categories:
+  - eslint
+  - next.js
+  - typescript
+---
+
+import PackageManagerTabs from '../../components/tab/PackageManagerTabs.astro';
+
+ESLint is a powerful tool for catching errors and maintaining a consistent code style in your Next.js + TypeScript projects. In this guide, we'll walk through the process of setting up ESLint with a ready-to-use configuration tailored for optimal development.
+
+## Install Dependencies
+
+Begin by installing the necessary ESLint dev dependencies. Each package serves a specific purpose in enhancing your development workflow.
+
+<PackageManagerTabs>
+  <Fragment slot='npm'>
+    ```shell
+    npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next eslint-plugin-unused-imports
+    ```
+  </Fragment>
+  <Fragment slot='pnpm'>
+    ```shell
+    pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next eslint-plugin-unused-imports
+    ```
+  </Fragment>
+  <Fragment slot='yarn'>
+    ```shell
+    yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next eslint-plugin-unused-imports
+    ```
+  </Fragment>
+</PackageManagerTabs>
+
+## The Configuration
+
+Configure ESLint with the following settings. The accompanying comments explain the purpose of key rules and settings.
+
+```js title=".eslintrc.cjs"
+/** @type {import("eslint").Linter.Config} */
+module.exports = {
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: true,
+  },
+  plugins: ["@typescript-eslint", "unused-imports"],
+  extends: [
+    "plugin:@next/next/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
+  ],
+  rules: {
+    "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
+
+    "@typescript-eslint/consistent-type-imports": [
+      "warn",
+      {
+        prefer: "type-imports",
+        fixStyle: "inline-type-imports",
+      },
+    ],
+    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        checksVoidReturn: { attributes: false },
+      },
+    ],
+
+    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+      },
+    ],
+  },
+};
+```
+
+Here's an explanation of each section:
+
+### `parser` and `parserOptions`
+
+The configuration specifies the use of `@typescript-eslint/parser` as the parser for ESLint, indicating compatibility with TypeScript. Additionally, `parserOptions` is configured with `project: true`, instructing ESLint to utilize the TypeScript project's configuration.
+
+### Plugins
+
+The configuration includes two ESLint plugins, `@typescript-eslint` and `unused-imports`. These plugins extend ESLint's capabilities by providing TypeScript-specific rules and detecting unused imports and variables.
+
+### Extensions
+
+The `extends` section extends the rule set with recommended configurations from Next.js (`plugin:@next/next/recommended`) and TypeScript (`plugin:@typescript-eslint/recommended-type-checked`, `plugin:@typescript-eslint/stylistic-type-checked`). This ensures compatibility with Next.js best practices and incorporates type-checking and stylistic conventions for TypeScript.
+
+### Rule Configurations
+
+The `rules` section customizes ESLint's behavior with specific rule configurations. Notable examples include turning off rules like `@typescript-eslint/array-type` and `@typescript-eslint/consistent-type-definitions`. The rule `@typescript-eslint/consistent-type-imports` is set to `warn`, encouraging the use of type-imports with a fix option to convert to `inline-type-imports`.
+
+## Additional Rules
+
+In addition to TypeScript-specific rules, the configuration integrates rules from the `unused-imports` plugin. These rules aim to identify and warn about unused imports and variables, promoting a cleaner codebase.

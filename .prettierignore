@@ -7,6 +7,7 @@ dist/
 
 # dependencies
 node_modules/
+pnpm-lock.yaml
 
 # logs
 npm-debug.log*
@@ -27,3 +28,4 @@ public/
 src/content/blog/
 src/content/projects/
 src/content/about/
+src/content/snippets
