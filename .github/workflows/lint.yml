@@ -10,25 +10,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: ⬣ ESLint and 💅 Prettier
+  typecheck:
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v2
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: 📥 Download deps
-        uses: u0reo/npm-install@fix/restore-failure
-        with:
-          useRollingCache: true
-
-      - name: 🔬 Lint
-        run: yarn lint
-
-      - name: 💅 Prettier check
-        run: yarn format:check
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Download deps
+        run: npm install
+      - name: TypeScript
+        run: npm run typecheck
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Download deps
+        run: npm install
+      - name: ESlint
+        run: npm run lint
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Download deps
+        run: npm install
+      - name: Prettier
+        run: npm run format:check
