@@ -9,6 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "typecheck": "tsc --noEmit --incremental false",
     "format": "prettier . \"**/*.astro\" --write",
     "format:check": "prettier . \"**/*.astro\" -c",
     "lint": "eslint --ext .astro,.js,.ts",
