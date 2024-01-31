@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import vercelStatic from '@astrojs/vercel/static';
 import mdx from '@astrojs/mdx';
+import vercelStatic from '@astrojs/vercel/static';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';

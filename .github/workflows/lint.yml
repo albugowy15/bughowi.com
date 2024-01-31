@@ -18,7 +18,7 @@ jobs:
       - name: Download deps
         run: npm install
       - name: Generate types from astro
-        run: npm sync
+        run: npm run sync
       - name: TypeScript
         run: npm run typecheck
   lint:
@@ -29,7 +29,7 @@ jobs:
       - name: Download deps
         run: npm install
       - name: Generate types from astro
-        run: npm sync
+        run: npm run sync
       - name: ESlint
         run: npm run lint
   prettier:
@@ -40,6 +40,6 @@ jobs:
       - name: Download deps
         run: npm install
       - name: Generate types from astro
-        run: npm sync
+        run: npm run sync
       - name: Prettier
         run: npm run format:check
