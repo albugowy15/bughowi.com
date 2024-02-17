@@ -12,9 +12,9 @@
       "@utils/*": ["./src/utils/*"],
       "@content/*": ["./src/content/*"],
       "@assets/*": ["./src/assets/*"],
-      "@stores/*": ["./src/stores/*"],
+      "@stores/*": ["./src/stores/*"]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-  },
+    "jsxImportSource": "preact"
+  }
 }

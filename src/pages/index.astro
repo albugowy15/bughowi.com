@@ -23,7 +23,7 @@ const someSnippetPosts = await getCollection('snippets').then((res) =>
 
 <Layout
   title='Home'
-  description='Full Stack Developer with a passion for creating innovative web apps. Proficient in TypeScript and Go, dedicated to seamless user experiences.'
+  description="A software engineer passionate about crafting high-performance solutions with expertise in TypeScript, Rust, and Go. Specializing in optimizing code for seamless user experiences, from efficient backend services to elegant frontend solutions. Dedicated to pushing the boundaries of software development. Let's collaborate and create something extraordinary!"
 >
   <section
     class='flex min-h-screen items-center justify-between md:my-28 md:min-h-fit'
@@ -34,11 +34,14 @@ const someSnippetPosts = await getCollection('snippets').then((res) =>
       >
         Mohamad Kholid Bughowi
       </p>
-      <Heading3 classNames='py-2'>Fullstack Developer</Heading3>
+      <Heading3 classNames='py-2'>Software Engineer</Heading3>
       <Text variant='body1'>
-        Full Stack Developer with a passion for creating innovative web apps.
-        Proficient in TypeScript, Go, and Rust, dedicated to seamless user
-        experiences. Follow my blog for dev insights and projects.
+        A software engineer passionate about crafting high-performance solutions
+        with expertise in TypeScript, Rust, and Go. Specializing in optimizing
+        code for seamless user experiences, from efficient backend services to
+        elegant frontend solutions. Dedicated to pushing the boundaries of
+        software development. Let's collaborate and create something
+        extraordinary!
       </Text>
       <div
         class='flex flex-wrap items-center justify-center gap-6 py-5 md:justify-start'
@@ -137,6 +140,7 @@ const someSnippetPosts = await getCollection('snippets').then((res) =>
     <div class='relative hidden md:block'>
       <div class='absolute -inset-2 rounded-full bg-blue-800/20 blur-3xl'></div>
       <Image
+        loading='eager'
         src={profile_pic}
         alt='Mohamad Kholid Bughowi'
         class='relative h-64 w-64 flex-none overflow-hidden rounded-full object-cover'

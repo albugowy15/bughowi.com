@@ -12,7 +12,7 @@ TypeScript offers advantages in terms of static typing, which can improve code s
 
 Through this blog, I hope to share a profound understanding of the usage of these three languages, as well as the experiences and challenges that arise in their implementation. By sharing this knowledge, my aim is to make a positive contribution to the developer community and facilitate the exchange of valuable information for fellow developers in Indonesia and around the world.
 
-## Favorite Frameworks
+## Favorite Frameworks and Libraries
 
 Discovering the utility of frameworks has significantly accelerated my application development process, enhancing both speed and efficiency. These frameworks not only facilitate swift development but also contribute to the creation of more secure and scalable applications. I am enthusiastic about further delving into the capabilities of these frameworks and harnessing them to construct even more robust applications.
 
@@ -28,7 +28,7 @@ Embracing Tailwind has proven instrumental in streamlining my styling process. T
 
 Exploring the innovative features of Astro has been an exciting journey. Its focus on performance and the ability to seamlessly blend static and dynamic content make it a promising framework for building modern, high-performance websites. I look forward to utilizing Astro's capabilities for future projects and expanding my expertise in web development.
 
-There are also other frameworks and libraries that I have used in my projects, such as Prisma, tRPC, Tokio, and Gin. I am excited to continue exploring the capabilities of these frameworks and libraries and using them to build even more powerful applications.
+There are also other frameworks and libraries that I have used in my projects, such as Prisma, tRPC, Tokio, Gin, and Axum. I am excited to continue exploring the capabilities of these frameworks and libraries and using them to build even more powerful applications.
 
 ## Experience
 
@@ -38,19 +38,9 @@ There are also other frameworks and libraries that I have used in my projects, s
 - **Start - End** : August 2023 - December 2023
 - **Duration** : 5 months
 - **Tasks** : 
-  - Developed an API Gateway to seamlessly connect all existing APIs in Surabaya.
-  - Built a user-friendly dashboard using Laravel for efficient management of connected APIs within the Gateway.
-  - Implemented logging and monitoring functionalities for tracking each incoming request to the API Gateway.
-
-### Fullstack Developer at Harisenin.com
-
-- **Type** : Internship
-- **Start - End** : September 2022 - December 2022
-- **Duration** : 3 months
-- **Tasks** : 
-  - Developed a new internal dashboard using TypeScript, Next.js, and Tailwind CSS.
-  - Added new features to an existing internal dashboard using Laravel.
-  - Established a new subdomain.
+  - Led the development of an API Gateway, facilitating seamless integration of multiple APIs across Surabaya. 
+  - Utilized Laravel to craft a user-friendly dashboard, simplifying the management of connected APIs within the Gateway for enhanced efficiency. 
+  - Implemented logging and monitoring functionalities to track incoming requests to the API Gateway, ensuring thorough oversight and security an API Gateway to seamlessly connect all existing APIs in Surabaya.
 
 ### Frontend Engineer at Torche Education
 
@@ -58,8 +48,19 @@ There are also other frameworks and libraries that I have used in my projects, s
 - **Start - End** : October 2022 - February 20223
 - **Duration** : 4 months
 - **Tasks** : 
-  - Crafted a new company landing page using Typescript, Next.js, and Tailwind.
-  - Migrated the existing tech stack to the MERN (MongoDB, Express, React, Node) stack.
+  - Developed a new company landing page with Typescript, Next.js, and Tailwind CSS, enhancing the user experience and visual appeal. 
+  - Migrated the existing technology stack to the MERN stack (MongoDB, Express, React, Node.js), improving scalability and performance across the platform.
+
+### Fullstack Developer at Harisenin.com
+
+- **Type** : Internship
+- **Start - End** : September 2022 - November 2022
+- **Duration** : 3 months
+- **Tasks** : 
+  - Actively maintained and improved the internal company dashboard, addressing bugs and enhancing functionality on a daily basis. 
+  - Implemented new features to enhance the usability and effectiveness of the internal company dashboard, contributing to increased efficiency and productivity. 
+  - Seamlessly transitioned into a new project, taking the lead in developing a cutting-edge company dashboard from scratch.
+  - Demonstrated versatility and adaptability by effectively balancing responsibilities across multiple projects, showcasing a proactive approach to problem-solving and project management.
 
 ## Contact Me
 
