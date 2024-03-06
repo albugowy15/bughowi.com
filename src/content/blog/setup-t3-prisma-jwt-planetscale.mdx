@@ -13,8 +13,6 @@ categories:
 thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/setup-t3-prisma-planetscale-jwt_kb2xej.png
 ---
 
-import PackageManagerTabs from '../../components/tab/PackageManagerTabs.astro';
-
 The T3 Stack is a web development stack that focuses on simplicity, modularity, and full-stack type safety. It is made up of the following technologies:
 
 - **Next.js:** A React framework that makes it easy to build server-rendered and static web pages.
@@ -39,23 +37,9 @@ Now, let's begin to set up this project.
 
 First, we will initiate our project with T3 stack command.
 
-<PackageManagerTabs>
-    <Fragment slot='npm'>
-    ```shell
-    npm create t3-app@latest
-    ```
-    </Fragment>
-    <Fragment slot='yarn'>
-    ```shell
-    yarn create t3-app
-    ```
-    </Fragment>
-    <Fragment slot='pnpm'>
-    ```shell
-    pnpm create t3-app
-    ```
-    </Fragment>
-</PackageManagerTabs>
+```shell
+npm create t3-app@latest
+```
 
 You have to answer some command prompts. Make sure you choose to use TypeScript and enable `nextAuth`, `prisma`, `tailwind`, and `tRPC` packages.
 
@@ -147,23 +131,9 @@ Maintain this connection active. This sets up a safe link to PlanetScale and is 
 
 The next step involves pushing your Prisma schema. Open a new tab in your terminal and execute this command:
 
-<PackageManagerTabs>
-    <Fragment slot='npm'>
-    ```shell
-    npx prisma db push
-    ```
-    </Fragment>
-    <Fragment slot='yarn'>
-    ```shell
-    yarn prisma db push
-    ```
-    </Fragment>
-    <Fragment slot='pnpm'>
-    ```shell
-    pnpm prisma db push
-    ```
-    </Fragment>
-</PackageManagerTabs>
+```shell
+npx prisma db push
+```
 
 When working with Prisma and PlanetScale, it's advisable to follow the workflow of using `prisma db push` instead of `prisma migrate`. You can find additional information about `[prisma db push` [here]([https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push)).
 

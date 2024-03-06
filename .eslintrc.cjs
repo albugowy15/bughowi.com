@@ -4,37 +4,11 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  plugins: [
-    '@typescript-eslint',
-    'jsx-a11y',
-    'astro',
-    'unused-imports',
-    'prettier',
-  ],
+  plugins: ['@typescript-eslint', 'astro'],
   extends: [
     'plugin:astro/recommended',
-    'plugin:jsx-a11y/recommended',
-    'prettier',
     'plugin:@typescript-eslint/recommended',
   ],
-  rules: {
-    'no-unused-vars': 'off',
-    'no-console': 'warn',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/triple-slash-reference': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-
-    'unused-imports/no-unused-imports': 'warn',
-    'unused-imports/no-unused-vars': [
-      'warn',
-      {
-        vars: 'all',
-        varsIgnorePattern: '^_',
-        args: 'after-used',
-        argsIgnorePattern: '^_',
-      },
-    ],
-  },
   overrides: [
     {
       // Define the configuration for `.astro` file.

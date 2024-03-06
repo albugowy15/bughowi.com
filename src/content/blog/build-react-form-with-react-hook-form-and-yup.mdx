@@ -10,8 +10,6 @@ categories:
 thumbnail: https://user-images.githubusercontent.com/49820990/210173587-6f3972b6-0c87-43ab-9959-95f2b2fcf5cf.png
 ---
 
-import PackageManagerTabs from '../../components/tab/PackageManagerTabs.astro';
-
 In this tutorial, we will learn how to use React Hook Form and Yup to build forms in a React application. We will cover how to set up React Hook Form, add Yup validation, customize error messages, and perform asynchronous validation. We will also learn how to manage arrays of fields with `useFieldArray` and watch form values with `useWatch`. By the end of this tutorial, you will have a good understanding of how to build robust and user-friendly forms in React.
 
 ## Introduction to React Hook Form
@@ -22,23 +20,9 @@ React Hook Form is a powerful tool for building forms in React applications. It 
 
 To get started with React Hook Form, you will first need to install it in your project.
 
-<PackageManagerTabs>
-  <Fragment slot='npm'>
-    ```shell
-    npm install react-hook-form
-    ```
-  </Fragment>
-  <Fragment slot='pnpm'>
-    ```shell
-    pnpm add react-hook-form
-    ```
-  </Fragment>
-  <Fragment slot='yarn'>
-    ```shell
-    yarn add react-hook-form
-    ```
-  </Fragment>
-</PackageManagerTabs>
+```shell
+npm install react-hook-form
+```
 
 Then, you can import the `useForm` hook from the react-hook-form
 library and use it to create a form component. The `useForm` hook returns several
@@ -78,23 +62,9 @@ export default function MyForm() {
 
 To add Yup validation to this form, you will need to install the Yup library:
 
-<PackageManagerTabs>
-  <Fragment slot='npm'>
-    ```shell
-    npm install @hookform/resolvers yup
-    ```
-  </Fragment>
-  <Fragment slot='yarn'>
-    ```shell
-    yarn add @hookform/resolvers yup
-    ```
-  </Fragment>
-  <Fragment slot='pnpm'>
-    ```shell
-    pnpm add @hookform/resolvers yup
-    ```
-  </Fragment>
-</PackageManagerTabs>
+```shell
+npm install @hookform/resolvers yup
+```
 
 Then, you can use the `validationSchema` option
 of the useForm hook to specify a Yup validation schema for your form. The validation

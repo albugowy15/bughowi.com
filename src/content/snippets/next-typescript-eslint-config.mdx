@@ -8,31 +8,15 @@ categories:
   - typescript
 ---
 
-import PackageManagerTabs from '../../components/tab/PackageManagerTabs.astro';
-
 ESLint is a powerful tool for catching errors and maintaining a consistent code style in your Next.js + TypeScript projects. In this guide, we'll walk through the process of setting up ESLint with a ready-to-use configuration tailored for optimal development.
 
 ## Install Dependencies
 
 Begin by installing the necessary ESLint dev dependencies. Each package serves a specific purpose in enhancing your development workflow.
 
-<PackageManagerTabs>
-  <Fragment slot='npm'>
-    ```shell
-    npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next eslint-plugin-unused-imports
-    ```
-  </Fragment>
-  <Fragment slot='pnpm'>
-    ```shell
-    pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next eslint-plugin-unused-imports
-    ```
-  </Fragment>
-  <Fragment slot='yarn'>
-    ```shell
-    yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next eslint-plugin-unused-imports
-    ```
-  </Fragment>
-</PackageManagerTabs>
+```shell
+npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next eslint-plugin-unused-imports
+```
 
 ## The Configuration
 
