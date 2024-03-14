@@ -4,29 +4,26 @@ import Text from '@components/typography/Text.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  snippet: CollectionEntry<'snippets'>;
+	snippet: CollectionEntry<'snippets'>;
 }
 
 const { snippet } = Astro.props;
 ---
 
 <div
-  class='flex flex-col border border-slate-300 border-opacity-40 bg-darkSecondary p-4 transition-transform ease-in-out hover:scale-[1.02]'
+	class="flex flex-col border border-slate-300 border-opacity-40 bg-darkSecondary p-4 transition-transform ease-in-out hover:scale-[1.02]"
 >
-  <Heading3 classNames='hover:text-blueAccent transition-colors'>
-    <a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
-  </Heading3>
-  <div class='my-2 flex flex-wrap gap-1'>
-    {
-      snippet.data.categories.map((category) => (
-        <Text
-          variant='label1'
-          className='px-1 py-[0.20rem] bg-blue-700 rounded-md'
-        >
-          {category}
-        </Text>
-      ))
-    }
-  </div>
-  <Text variant='body1'>{snippet.data.description}</Text>
+	<Heading3 classNames="hover:text-blueAccent transition-colors">
+		<a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
+	</Heading3>
+	<div class="my-2 flex flex-wrap gap-1">
+		{
+			snippet.data.categories.map((category) => (
+				<Text variant="label1" className="px-1 py-[0.20rem] bg-blue-700 rounded-md">
+					{category}
+				</Text>
+			))
+		}
+	</div>
+	<Text variant="body1">{snippet.data.description}</Text>
 </div>

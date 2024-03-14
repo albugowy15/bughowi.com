@@ -2,107 +2,101 @@
 import Text from '@components/typography/Text.astro';
 
 export type ContentNavigator = {
-  title: string;
-  slug: string;
+	title: string;
+	slug: string;
 };
 
 interface Props {
-  prev: ContentNavigator | null;
-  next: ContentNavigator | null;
+	prev: ContentNavigator | null;
+	next: ContentNavigator | null;
 }
 
 const { prev, next } = Astro.props;
 ---
 
 <nav
-  class:list={[
-    'flex flex-col gap-3 py-6 md:flex-row',
-    {
-      'justify-between': prev != null && next != null,
-    },
-    {
-      'justify-end': next != null,
-    },
-    {
-      'justify-start': prev != null,
-    },
-  ]}
+	class:list={[
+		'flex flex-col gap-3 py-6 md:flex-row',
+		{
+			'justify-between': prev != null && next != null,
+		},
+		{
+			'justify-end': next != null,
+		},
+		{
+			'justify-start': prev != null,
+		},
+	]}
 >
-  {
-    prev ? (
-      <a
-        class:list={[
-          'flex w-full items-center gap-2 rounded-md border border-slate-500 p-4 hover:cursor-pointer hover:bg-darkSecondary hover:transition-colors sm:gap-6 md:w-1/2',
-          next ? 'justify-start' : 'justify-between',
-        ]}
-        aria-label='Go to previous content'
-        href={prev.slug}
-      >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke-width='1.5'
-          stroke='currentColor'
-          class='h-7 w-7 flex-none text-slate-400'
-        >
-          <path
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            d='M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18'
-          />
-        </svg>
+	{
+		prev ? (
+			<a
+				class:list={[
+					'flex w-full items-center gap-2 rounded-md border border-slate-500 p-4 hover:cursor-pointer hover:bg-darkSecondary hover:transition-colors sm:gap-6 md:w-1/2',
+					next ? 'justify-start' : 'justify-between',
+				]}
+				aria-label="Go to previous content"
+				href={prev.slug}
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="h-7 w-7 flex-none text-slate-400"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+					/>
+				</svg>
 
-        <div>
-          <Text variant='body2' className='text-yellowAccent font-medium'>
-            Previous
-          </Text>
-          <Text
-            variant='body1'
-            className='hover:text-blue-700 hover:transition-colors'
-          >
-            {prev.title}
-          </Text>
-        </div>
-      </a>
-    ) : null
-  }
-  {
-    next ? (
-      <a
-        class:list={[
-          'flex w-full items-center gap-2 rounded-md border border-slate-500 p-4 hover:cursor-pointer hover:bg-darkSecondary hover:transition-colors sm:gap-6 md:w-1/2',
-          prev ? 'justify-end' : 'justify-between',
-        ]}
-        aria-label='Go to next content'
-        href={next.slug}
-      >
-        <div>
-          <Text variant='body2' className='text-yellowAccent font-medium'>
-            Next
-          </Text>
-          <Text
-            variant='body1'
-            className='hover:text-blue-700 hover:transition-colors'
-          >
-            {next.title}
-          </Text>
-        </div>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke-width='1.5'
-          stroke='currentColor'
-          class='h-7 w-7 flex-none text-slate-400'
-        >
-          <path
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3'
-          />
-        </svg>
-      </a>
-    ) : null
-  }
+				<div>
+					<Text variant="body2" className="text-yellowAccent font-medium">
+						Previous
+					</Text>
+					<Text variant="body1" className="hover:text-blue-700 hover:transition-colors">
+						{prev.title}
+					</Text>
+				</div>
+			</a>
+		) : null
+	}
+	{
+		next ? (
+			<a
+				class:list={[
+					'flex w-full items-center gap-2 rounded-md border border-slate-500 p-4 hover:cursor-pointer hover:bg-darkSecondary hover:transition-colors sm:gap-6 md:w-1/2',
+					prev ? 'justify-end' : 'justify-between',
+				]}
+				aria-label="Go to next content"
+				href={next.slug}
+			>
+				<div>
+					<Text variant="body2" className="text-yellowAccent font-medium">
+						Next
+					</Text>
+					<Text variant="body1" className="hover:text-blue-700 hover:transition-colors">
+						{next.title}
+					</Text>
+				</div>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="h-7 w-7 flex-none text-slate-400"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+					/>
+				</svg>
+			</a>
+		) : null
+	}
 </nav>

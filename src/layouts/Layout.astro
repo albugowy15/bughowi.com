@@ -4,61 +4,61 @@ import Navbar from '@layouts/Navbar.astro';
 import '@styles/global.css';
 
 interface Props {
-  title: string;
-  description: string;
-  url?: string;
-  type?: 'website' | 'article';
-  img?: string;
+	title: string;
+	description: string;
+	url?: string;
+	type?: 'website' | 'article';
+	img?: string;
 }
 
 const {
-  title,
-  description,
-  url = 'https://www.bughowi.com',
-  type = 'website',
-  img = 'https://res.cloudinary.com/bughowi-assets/image/upload/c_thumb,w_200,g_face/v1692602156/home-thumbnail.png',
+	title,
+	description,
+	url = 'https://www.bughowi.com',
+	type = 'website',
+	img = 'https://res.cloudinary.com/bughowi-assets/image/upload/c_thumb,w_200,g_face/v1692602156/home-thumbnail.png',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang='en'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='description' content={description} />
-    <meta name='viewport' content='width=device-width' />
-    <link rel='sitemap' href='/sitemap-index.xml' />
-    <meta name='generator' content={Astro.generator} />
-    <title>{title} - Mohamad Kholid Bughowi</title>
-    <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
-    <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
-    <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
-    <link rel='manifest' href='/site.webmanifest' />
-    <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
-    <meta name='msapplication-TileColor' content='#da532c' />
-    <meta name='theme-color' content='#ffffff' />
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} - Mohamad Kholid Bughowi</title>
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="msapplication-TileColor" content="#da532c" />
+		<meta name="theme-color" content="#ffffff" />
 
-    <meta property='og:url' content={url} />
-    <meta property='og:type' content={type} />
-    <meta property='og:title' content={`${title} - Mohamad Kholid Bughowi`} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={img} />
+		<meta property="og:url" content={url} />
+		<meta property="og:type" content={type} />
+		<meta property="og:title" content={`${title} - Mohamad Kholid Bughowi`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={img} />
 
-    <!-- Twitter Meta Tags -->
-    <meta name='twitter:card' content='summary_large_image' />
-    <meta property='twitter:domain' content='bughowi.com' />
-    <meta property='twitter:url' content={url} />
-    <meta name='twitter:title' content={`${title} - Mohamad Kholid Bughowi`} />
-    <meta name='twitter:description' content={description} />
-    <meta name='twitter:image' content={img} />
-  </head>
-  <body>
-    <div class='flex min-h-screen w-full flex-col border-b border-slate-500/40'>
-      <Navbar />
-      <main class='container mx-auto flex-1 px-3 xl:px-14 2xl:max-w-7xl'>
-        <slot />
-      </main>
-      <div class='py-8'></div>
-      <Footer />
-    </div>
-  </body>
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:domain" content="bughowi.com" />
+		<meta property="twitter:url" content={url} />
+		<meta name="twitter:title" content={`${title} - Mohamad Kholid Bughowi`} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={img} />
+	</head>
+	<body>
+		<div class="flex min-h-screen w-full flex-col border-b border-slate-500/40">
+			<Navbar />
+			<main class="container mx-auto flex-1 px-3 xl:px-14 2xl:max-w-7xl">
+				<slot />
+			</main>
+			<div class="py-8"></div>
+			<Footer />
+		</div>
+	</body>
 </html>

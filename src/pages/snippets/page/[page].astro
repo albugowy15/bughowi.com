@@ -10,33 +10,29 @@ import PagePagination from '@components/pagination/PagePagination.astro';
 import SnippetCard from '@components/card/SnippetCard.astro';
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const allSnippets = await getCollection('snippets');
-  const sortedSnippets = allSnippets.sort((a, b) =>
-    compareDesc(a.data.date, b.data.date),
-  );
-  return paginate(sortedSnippets, { pageSize: 6 });
+	const allSnippets = await getCollection('snippets');
+	const sortedSnippets = allSnippets.sort((a, b) => compareDesc(a.data.date, b.data.date));
+	return paginate(sortedSnippets, { pageSize: 6 });
 }) satisfies GetStaticPaths;
 
 interface Props {
-  page: Page<CollectionEntry<'snippets'>>;
+	page: Page<CollectionEntry<'snippets'>>;
 }
 
 const { page } = Astro.props;
 ---
 
 <Layout
-  title='Snippets'
-  url=`https://www.bughowi.com/snippets/page/${page.currentPage}`
-  description='Some code snippets that maybe usefull'
+	title="Snippets"
+	url=`https://www.bughowi.com/snippets/page/${page.currentPage}`
+	description="Some code snippets that maybe usefull"
 >
-  <div class='py-4'></div>
-  <Heading2 classNames='text-center'>Snippets</Heading2>
-  <Text variant='body1' className='text-center'>
-    Some snippets that maybe usefull
-  </Text>
-  <div class='py-5'></div>
-  <section class='grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
-    {page.data.map((snippet) => <SnippetCard snippet={snippet} />)}
-  </section>
-  <PagePagination page={page} />
+	<div class="py-4"></div>
+	<Heading2 classNames="text-center">Snippets</Heading2>
+	<Text variant="body1" className="text-center"> Some snippets that maybe usefull </Text>
+	<div class="py-5"></div>
+	<section class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+		{page.data.map((snippet) => <SnippetCard snippet={snippet} />)}
+	</section>
+	<PagePagination page={page} />
 </Layout>

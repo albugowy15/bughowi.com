@@ -1,11 +1,11 @@
 ---
 interface Props {
-  classNames: string;
+	classNames: string;
 }
 
 const { classNames } = Astro.props;
 ---
 
 <h3 class:list={[classNames, 'text-xl font-bold text-white']}>
-  <slot />
+	<slot />
 </h3>
