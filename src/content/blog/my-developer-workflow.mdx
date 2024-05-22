@@ -9,6 +9,7 @@ categories:
   - tmux
 thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-ultimate-developer-workflow.png
 ---
+import { Image } from 'astro:assets';
 
 ## Introduction
 In the expansive domain of software development, efficiency stands as the cornerstone of success. Much like a meticulously organized toolbox, where each tool has its designated place, a streamlined workflow ensures that tasks flow seamlessly from start to finish. Imagine stepping into a workshop where every tool is neatly arranged on pegboards, shelves, or in drawers, ready to be grabbed at a moment's notice. With such meticulous organization, there's no time wasted searching for the right tool or getting sidetracked by clutter. Instead, the focus remains squarely on the task at hand: crafting elegant and effective code. This streamlined approach minimizes distractions, maximizes productivity, and empowers us to devote our full attention to the creative process of software engineering.
@@ -23,8 +24,19 @@ Several Linux distributions are geared towards developers, providing pre-configu
 
 Debian's focus on stability, reliability, and extensive software repository, along with strong community support, distinguishes it from other Linux distributions. Its package management system, APT (Advanced Package Tool), simplifies software installation and updates.
 
-![Debian Linux Home](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/debian-linux-home.png)
-![Debian Linux Home](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/neofetch-debian.png)
+<Image
+  alt="Debian Linux Home"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/debian-linux-home.png"
+  width="1400"
+  height="800"
+/>
+
+<Image
+  alt="Debian Linux Home"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/neofetch-debian.png"
+  width="1400"
+  height="800"
+/>
 
 ### Alacritty
 As a developer, having a fast and reliable terminal emulator is crucial for my workflow, and Alacritty stands out as a top contender in this realm. [Alacritty](https://alacritty.org/) is a cross-platform, GPU-accelerated terminal emulator that focuses on speed, simplicity, and efficiency. It is designed to be lightweight, responsive, and highly customizable.
@@ -68,16 +80,46 @@ Central to Neovim's efficiency is its support for Vim keybindings, allowing quic
 
 Setting up Neovim to function as a comprehensive IDE can be time-consuming, involving the installation of numerous plugins such as plugin managers, treesitter, LSP, and more. As a result, we opt for popular Neovim starter configurations like [LazyVim](http://www.lazyvim.org/), which comes pre-configured with all the necessary plugins to transform Neovim into a fully-fledged IDE. Here is my [Neovim setup](https://github.com/albugowy15/neovim-config) based on LazyVim. In this configuration, I have disabled some plugins that I never use and have added additional support for certain programming languages.
 
-![My Neovim Config](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-neovim-config.png)
-![Neovim with Telescope Plugin](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-neovim-with-telescope-plugin.png)
-![Neovim error highlighting with trouble plugin and LSP](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-neovim-trouble-with-lsp.png)
-![LazyGit inside neovim](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/lazygit-with-neovim.png)
+<Image
+  alt="My Neovim Config"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-neovim-config.png"
+  width="1400"
+  height="800"
+/>
+<Image
+  alt="Neovim with Telescope Plugin"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-neovim-with-telescope-plugin.png"
+  width="1400"
+  height="800"
+/>
+<Image
+  alt="Neovim error highlighting with trouble plugin and LSP"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-neovim-trouble-with-lsp.png"
+  width="1400"
+  height="800"
+/>
+<Image
+  alt="LazyGit inside neovim"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/lazygit-with-neovim.png"
+  width="1400"
+  height="800"
+/>
 
 ### Tmux
 [Tmux](https://github.com/tmux/tmux/wiki), short for "Terminal Multiplexer," is a command-line tool that allows you to manage multiple terminal sessions within a single window. It provides a terminal window manager that enables you to create, organize, and navigate between multiple virtual terminals, or "panes," within a single terminal window. Tmux offers a wide range of features designed to enhance your command-line experience, but one of its standout features is its ability to manage multiple windows and panes. With Tmux, you can create multiple windows, each containing one or more panes, allowing you to work on multiple tasks simultaneously within a single terminal window. This feature is invaluable for organizing your workflow, enabling you to switch between projects, run commands, and monitor processes with ease.
 
-![My alacritty with tmux configuration](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-alacritty-with-tmux-setup.png)
-![Tmux list all sessions](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/tmux-list-all-sessions.png)
+<Image
+  alt="My alacritty with tmux configuration"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-alacritty-with-tmux-setup.png"
+  width="1400"
+  height="800"
+/>
+<Image
+  alt="Tmux list all sessions"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/tmux-list-all-sessions.png"
+  width="1400"
+  height="800"
+/>
 
 My Tmux config:
 
@@ -135,10 +177,30 @@ As software engineers, we spend a significant portion of our time working in the
 
 Starship enhances developer productivity by providing at-a-glance information and intuitive customization options. Its minimalistic design reduces clutter and distraction, while its extensive configuration allows us to tailor the prompt to our specific needs and preferences. With Starship, we can quickly navigate directories, track version control status, and stay informed about our development environment, all from within the command line.
 
-![Starship Go Project](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/starship-go-project.png)
-![Starship Node Project](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/starship-node-project.png)
-![Starship Rust Project](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/starship-rust-project.png)
-![Starship Flutter Project](https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/starship-flutter-project.png)
+<Image
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/starship-go-project.png"
+  alt="Starship Go Project"
+  width="500"
+  height="70"
+/>
+<Image
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/starship-node-project.png"
+  alt="Starship Node Project"
+  width="500"
+  height="70"
+/>
+<Image
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/starship-rust-project.png"
+  alt="Starship Rust Project"
+  width="500"
+  height="70"
+/>
+<Image
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/starship-flutter-project.png"
+  alt="Starship Flutter Project"
+  width="500"
+  height="70"
+/>
 
 ## Conclusion
 In conclusion, a productive developer workflow is not merely about mastering tools and techniques; it's a holistic approach that encompasses mindset, habits, and environment. By leveraging the right tools, adopting efficient practices, and fostering a conducive workspace, I can optimize my workflow to achieve greater efficiency, creativity, and satisfaction in my work.

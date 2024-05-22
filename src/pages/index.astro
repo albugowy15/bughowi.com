@@ -150,7 +150,7 @@ const someSnippetPosts = await getCollection('snippets').then((res) =>
 			Recent Posts
 		</a>
 		<div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-			{someBlogPosts.map((post) => <PostCard post={post} />)}
+			{someBlogPosts.map((post) => <PostCard post={post} eagerLoadImg />)}
 		</div>
 		<!-- end - Recent Post -->
 		<div class="py-4"></div>

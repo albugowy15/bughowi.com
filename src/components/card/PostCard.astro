@@ -7,9 +7,10 @@ import Heading3 from '@components/typography/Heading3.astro';
 
 interface Props {
 	post: CollectionEntry<'blog'>;
+	eagerLoadImg?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, eagerLoadImg } = Astro.props;
 const { remarkPluginFrontmatter } = await post.render();
 ---
 
@@ -21,6 +22,7 @@ const { remarkPluginFrontmatter } = await post.render();
 			src={post.data.thumbnail}
 			alt={post.data.title}
 			width={400}
+			loading={eagerLoadImg ? 'eager' : 'lazy'}
 			height={250}
 			class="h-full w-full overflow-hidden object-cover object-center"
 		/>

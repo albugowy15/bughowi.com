@@ -6,9 +6,10 @@ import Heading3 from '@components/typography/Heading3.astro';
 
 interface Props {
 	project: CollectionEntry<'projects'>;
+	eagerLoadImg?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, eagerLoadImg } = Astro.props;
 ---
 
 <div
@@ -20,6 +21,7 @@ const { project } = Astro.props;
 	<Image
 		src={project.data.thumbnail}
 		alt={project.data.title}
+		loading={eagerLoadImg ? 'eager' : 'lazy'}
 		width={400}
 		height={250}
 		class="w-full object-cover py-2"

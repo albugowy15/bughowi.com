@@ -9,6 +9,7 @@ categories:
   - typescript
 thumbnail: https://user-images.githubusercontent.com/49820990/210173587-6f3972b6-0c87-43ab-9959-95f2b2fcf5cf.png
 ---
+import { Image } from 'astro:assets';
 
 In this tutorial, we will learn how to use React Hook Form and Yup to build forms in a React application. We will cover how to set up React Hook Form, add Yup validation, customize error messages, and perform asynchronous validation. We will also learn how to manage arrays of fields with `useFieldArray` and watch form values with `useWatch`. By the end of this tutorial, you will have a good understanding of how to build robust and user-friendly forms in React.
 
@@ -265,9 +266,19 @@ export default function MyForm() {
 
 In this example, we are using `useWatch` to watch the value of the password field. We are using the password value to show a warning message if the password is longer than 8 characters.
 
-![Password less than 8 characters](https://user-images.githubusercontent.com/49820990/210172910-21a4967b-3b66-4ea2-98cc-942465b3b460.png)
+<Image
+  src="https://user-images.githubusercontent.com/49820990/210172910-21a4967b-3b66-4ea2-98cc-942465b3b460.png"
+  alt="Password less than 8 characters"
+  width="500"
+  height="300"
+/>
 
-![autocomplete and intellisense in typescript](https://user-images.githubusercontent.com/49820990/210172914-c40764da-6640-46a2-b678-4d25130917d6.png)
+<Image
+  alt="autocomplete and intellisense in typescript"
+  src="https://user-images.githubusercontent.com/49820990/210172914-c40764da-6640-46a2-b678-4d25130917d6.png"
+  width="500"
+  height="300"
+/>
 
 ## Wrapping up
 

@@ -7,6 +7,7 @@ categories:
   - enums
 thumbnail: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwuRuX-y0CyhmUxETY3oeTZXlhLSnnqSuXy9u-RtjrZiIyPSWS627mcxJ_CrzijNsEB-I65IrhRwYKeOWwd1HxYITIH31eKV8tPb1EXEmfDHm8TMK1CFto1p9kOjfevrFC8tZDIXgzafZ1Vb7SGhMXvurq3hBtwLsCn-eOCROVP7IK_KKxG-70btEUteE/s16000/Enums_Error_Null.png
 ---
+import {Image} from "astro:assets";
 
 ## Introduction
 
@@ -221,7 +222,12 @@ fn main() {
 
 Here I bring `std::fs::File` into scope and then try to open a file. This returns a Result because the file might not get opened successfully. Since I dropped the Result without doing anything with it, I get this compiler warning: **_"unused `std::result::Result` that must be used"_**.
 
-![Rust error unused result must be used](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjW3Ee5C2tYagiTqWWQGNfr95uArp44UJWTbFRQIfxoQ8Vf3A84m62tuoI48_o9Bar8wN1i2vzMKG6pmN_mJgSiLGT7o_M6dlmBEzX2xLxunwzBV4FjuALwrZH70jFrU2jfU1GQwgfwLxrfMi7hDEtms1T2pHPDIWYVQZr84YhCmY4hsWmUKVpeGnnMExE/s16000/Screenshot%20from%202023-06-26%2011-18-58.png)
+<Image
+  src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjW3Ee5C2tYagiTqWWQGNfr95uArp44UJWTbFRQIfxoQ8Vf3A84m62tuoI48_o9Bar8wN1i2vzMKG6pmN_mJgSiLGT7o_M6dlmBEzX2xLxunwzBV4FjuALwrZH70jFrU2jfU1GQwgfwLxrfMi7hDEtms1T2pHPDIWYVQZr84YhCmY4hsWmUKVpeGnnMExE/s16000/Screenshot%20from%202023-06-26%2011-18-58.png"
+  alt="Rust error unused result must be used"
+  width="500"
+  height="300"
+/>
 
 The point is: ignoring errors is not a safe thing to do! So let's go choose something to do with our Result.
 
