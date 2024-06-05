@@ -20,7 +20,7 @@
     "@astrojs/sitemap": "^3.1.5",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^7.6.0",
-    "astro": "^4.8.7",
+    "astro": "^4.9.3",
     "astro-expressive-code": "^0.35.3",
     "date-fns": "^3.6.0",
     "mdast-util-to-string": "^4.0.0",
@@ -30,14 +30,14 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
-    "@typescript-eslint/eslint-plugin": "^7.10.0",
-    "@typescript-eslint/parser": "^7.10.0",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
     "astro-eslint-parser": "^1.0.2",
     "eslint": "^8.57.0",
     "eslint-plugin-astro": "^1.2.0",
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0",
+    "prettier": "^3.3.1",
+    "prettier-plugin-astro": "^0.14.0",
     "typescript": "^5.4.5"
   },
-  "packageManager": "pnpm@9.1.0+sha256.22e36fba7f4880ecf749a5ca128b8435da085ecd49575e7fb9e64d6bf4fad394"
+  "packageManager": "pnpm@9.1.4+sha512.9df9cf27c91715646c7d675d1c9c8e41f6fce88246f1318c1aa6a1ed1aeb3c4f032fcdf4ba63cc69c4fe6d634279176b5358727d8f2cc1e65b65f43ce2f8bfb0"
 }
