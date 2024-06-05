@@ -5,6 +5,11 @@
     "baseUrl": ".",
     "strictNullChecks": true,
     "allowJs": true,
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ],
     "paths": {
       "@components/*": ["./src/components/*"],
       "@layouts/*": ["./src/layouts/*"],

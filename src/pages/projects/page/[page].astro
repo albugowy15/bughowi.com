@@ -1,4 +1,5 @@
 ---
+import { type GetStaticPaths } from 'astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Heading2 from '@components/typography/Heading2.astro';
 import Text from '@components/typography/Text.astro';
@@ -8,11 +9,11 @@ import { compareDesc } from 'date-fns';
 import type { Page } from 'astro';
 import PagePagination from '@components/pagination/PagePagination.astro';
 
-export async function getStaticPaths({ paginate }) {
+export const getStaticPaths = (async ({ paginate }) => {
 	const allProjects = await getCollection('projects');
 	const sortedProjects = allProjects.sort((a, b) => compareDesc(a.data.date, b.data.date));
 	return paginate(sortedProjects, { pageSize: 6 });
-}
+}) as GetStaticPaths;
 
 interface Props {
 	page: Page<CollectionEntry<'projects'>>;

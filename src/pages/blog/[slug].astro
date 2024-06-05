@@ -1,4 +1,5 @@
 ---
+import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Heading1 from '@components/typography/Heading1.astro';
@@ -11,19 +12,13 @@ import { Image } from 'astro:assets';
 import ContentPagination from '@components/pagination/ContentPagination.astro';
 import type { ContentNavigator } from '@components/pagination/ContentPagination.astro';
 
-type StaticPath = {
-	params: {
-		slug: string;
-	};
-};
-
 interface Props {
 	post: CollectionEntry<'blog'>;
 	nextPost: ContentNavigator | null;
 	prevPost: ContentNavigator | null;
 }
 
-export async function getStaticPaths(): Promise<StaticPath[]> {
+export const getStaticPaths = (async () => {
 	const blogCollection = await getCollection('blog');
 	const sortedBlogCollection = blogCollection.sort((a, b) => compareDesc(a.data.date, b.data.date));
 	const totalPost = sortedBlogCollection.length;
@@ -49,7 +44,7 @@ export async function getStaticPaths(): Promise<StaticPath[]> {
 			post,
 		},
 	}));
-}
+}) satisfies GetStaticPaths;
 
 const { post, nextPost, prevPost } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await post.render();
@@ -131,6 +126,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 			<div class="py-4"></div>
 			<!-- Giscus comment -->
 			<script
+				is:inline
 				src="https://giscus.app/client.js"
 				data-repo="albugowy15/bughowi.com"
 				data-repo-id="R_kgDOHqneBQ"

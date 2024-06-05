@@ -1,4 +1,5 @@
 ---
+import { type GetStaticPaths } from 'astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Heading1 from '@components/typography/Heading1.astro';
 import Text from '@components/typography/Text.astro';
@@ -9,19 +10,13 @@ import ContentPagination, {
 	type ContentNavigator,
 } from '@components/pagination/ContentPagination.astro';
 
-type StaticPath = {
-	params: {
-		slug: string;
-	};
-};
-
 interface Props {
 	post: CollectionEntry<'projects'>;
 	nextPost: ContentNavigator | null;
 	prevPost: ContentNavigator | null;
 }
 
-export async function getStaticPaths(): Promise<StaticPath[]> {
+export const getStaticPaths = (async () => {
 	const projectCollection = await getCollection('projects');
 	const sortedProjectCollection = projectCollection.sort((a, b) =>
 		compareDesc(a.data.date, b.data.date)
@@ -49,7 +44,7 @@ export async function getStaticPaths(): Promise<StaticPath[]> {
 			post,
 		},
 	}));
-}
+}) satisfies GetStaticPaths;
 
 const { post, nextPost, prevPost } = Astro.props;
 const { Content } = await post.render();
@@ -98,6 +93,7 @@ const { Content } = await post.render();
 		<ContentPagination next={nextPost} prev={prevPost} />
 		<!-- Giscus comment -->
 		<script
+			is:inline
 			src="https://giscus.app/client.js"
 			data-repo="albugowy15/bughowi.com"
 			data-repo-id="R_kgDOHqneBQ"
