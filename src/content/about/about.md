@@ -32,23 +32,33 @@ There are also other frameworks and libraries that I have used in my projects, s
 
 ## Experience
 
+### Software Engineer at Bitkreasi
+
+- **Type** : Internship
+- **Start - End** : January 2024 - April 2024
+- **Duration** : 4 months
+- **Tasks** :
+  - Spearheaded the development of a robust village administration management website.
+  - Implemented monorepo strategy with Nx to facilitate seamless collaboration across repositories.
+  - Demonstrated expertise in building backend infrastructure with Express and designing an intuitive frontend interface with Next.js.
+
 ### Software Developer at Department of Communication and Information (Dinkominfo) Surabaya
 
 - **Type** : Internship
 - **Start - End** : August 2023 - December 2023
 - **Duration** : 5 months
-- **Tasks** : 
-  - Led the development of an API Gateway, facilitating seamless integration of multiple APIs across Surabaya. 
-  - Utilized Laravel to craft a user-friendly dashboard, simplifying the management of connected APIs within the Gateway for enhanced efficiency. 
-  - Implemented logging and monitoring functionalities to track incoming requests to the API Gateway, ensuring thorough oversight and security an API Gateway to seamlessly connect all existing APIs in Surabaya.
+- **Tasks** :
+  - Led the development of an API Gateway, enabling seamless integration of multiple APIs throughout Surabaya.
+  - Utilized Laravel to craft a user-friendly dashboard for easy management of the API Gateway.
+  - Implemented logging and monitoring functionalities to track incoming requests to the API Gateway.
 
 ### Frontend Engineer at Torche Education
 
 - **Type** : Internship
 - **Start - End** : October 2022 - February 20223
 - **Duration** : 4 months
-- **Tasks** : 
-  - Developed a new company landing page with Typescript, Next.js, and Tailwind CSS, enhancing the user experience and visual appeal. 
+- **Tasks** :
+  - Developed a new company landing page with Typescript, Next.js, and Tailwind CSS, enhancing the user experience and visual appeal.
   - Migrated the existing technology stack to the MERN stack (MongoDB, Express, React, Node.js), improving scalability and performance across the platform.
 
 ### Fullstack Developer at Harisenin.com
@@ -56,11 +66,10 @@ There are also other frameworks and libraries that I have used in my projects, s
 - **Type** : Internship
 - **Start - End** : September 2022 - November 2022
 - **Duration** : 3 months
-- **Tasks** : 
-  - Actively maintained and improved the internal company dashboard, addressing bugs and enhancing functionality on a daily basis. 
-  - Implemented new features to enhance the usability and effectiveness of the internal company dashboard, contributing to increased efficiency and productivity. 
+- **Tasks** :
+  - Actively maintained and improved the internal company dashboard, addressing bugs and enhancing functionality on a daily basis.
   - Seamlessly transitioned into a new project, taking the lead in developing a cutting-edge company dashboard from scratch.
-  - Demonstrated versatility and adaptability by effectively balancing responsibilities across multiple projects, showcasing a proactive approach to problem-solving and project management.
+  - Demonstrated versatility and adaptability by effectively balancing responsibilities across multiple projects
 
 ## Contact Me
 
