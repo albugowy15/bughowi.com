@@ -9,6 +9,7 @@ categories:
   - typescript
 thumbnail: https://user-images.githubusercontent.com/49820990/213977382-3c5904ed-2590-4b9f-a14f-f7e5f7909c68.png
 ---
+
 import { Image } from 'astro:assets';
 
 Building an email newsletter for your Next.js blog can be a great way to keep your viewers informed about your business and articles. By integrating Next.js with an email marketing platform like Sendinblue, you can easily create and send newsletters to a large number of recipients.
@@ -39,25 +40,25 @@ First, create a new component called `NewsletterForm.tsx`. Start creating your o
 ```tsx title="./components/NewsletterForm.tsx"
 const NewsletterForm = () => {
   return (
-    <div className='mx-auto w-full max-w-xl rounded border border-gray-700 bg-slate-900 p-5'>
-      <p className='text-lg font-bold'>Subscribe to the newsletter</p>
+    <div className="mx-auto w-full max-w-xl rounded border border-gray-700 bg-slate-900 p-5">
+      <p className="text-lg font-bold">Subscribe to the newsletter</p>
 
-      <p className='py-1'>
-        Get emails from me about web development, programming, tech, and early
-        access to new articles.
+      <p className="py-1">
+        Get emails from me about web development, programming, tech, and early access to new
+        articles.
       </p>
-      <form className='mx-auto mt-1 w-full' method='post' target='_blank'>
-        <div className='flex w-full flex-wrap items-center justify-center gap-2'>
+      <form className="mx-auto mt-1 w-full" method="post" target="_blank">
+        <div className="flex w-full flex-wrap items-center justify-center gap-2">
           <input
-            type='email'
-            id='email'
-            className='block flex-auto rounded border border-darkSecondary bg-darkPrimary p-2 text-sm text-slate-400 focus:border-blue-500 focus:ring-blue-500'
-            placeholder='name@gmail.com'
+            type="email"
+            id="email"
+            className="block flex-auto rounded border border-darkSecondary bg-darkPrimary p-2 text-sm text-slate-400 focus:border-blue-500 focus:ring-blue-500"
+            placeholder="name@gmail.com"
             required
           />
           <button
-            type='submit'
-            className='w-28 flex-1 rounded bg-blueAccent p-1.5 text-center font-bold text-slate-200 transition-colors hover:bg-blue-500'
+            type="submit"
+            className="w-28 flex-1 rounded bg-blueAccent p-1.5 text-center font-bold text-slate-200 transition-colors hover:bg-blue-500"
           >
             Subscribe
           </button>
@@ -72,9 +73,10 @@ export default NewsletterForm;
 
 Now, our Newsletter Form will looks like this
 
-<Image src="https://user-images.githubusercontent.com/49820990/213977560-3891bdbf-46de-4a31-b066-9f339ffa039e.png" 
-  alt="Subscribe Newsletter Component" 
-  width="500" 
+<Image
+  src="https://user-images.githubusercontent.com/49820990/213977560-3891bdbf-46de-4a31-b066-9f339ffa039e.png"
+  alt="Subscribe Newsletter Component"
+  width="500"
   height="200"
 />
 
@@ -349,10 +351,7 @@ To handle the form submission from the `useNewsletter` hook, you will need to cr
 ```ts title="./pages/api/newsletter.ts"
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { email } = req.body;
 
   if (!email) {
@@ -394,42 +393,33 @@ const NewsletterForm = () => {
   const { form, subscribe, inputEl } = useNewsletter();
 
   return (
-    <div className='mx-auto w-full max-w-xl rounded border border-gray-700 bg-slate-900 p-5'>
-      <p className='text-lg font-bold'>Subscribe to the newsletter</p>
+    <div className="mx-auto w-full max-w-xl rounded border border-gray-700 bg-slate-900 p-5">
+      <p className="text-lg font-bold">Subscribe to the newsletter</p>
 
-      <p className='py-1'>
-        Get emails from me about web development, programming, tech, and early
-        access to new articles.
+      <p className="py-1">
+        Get emails from me about web development, programming, tech, and early access to new
+        articles.
       </p>
-      <form
-        onSubmit={subscribe}
-        className='mx-auto mt-1 w-full'
-        method='post'
-        target='_blank'
-      >
-        <div className='flex w-full flex-wrap items-center justify-center gap-2'>
+      <form onSubmit={subscribe} className="mx-auto mt-1 w-full" method="post" target="_blank">
+        <div className="flex w-full flex-wrap items-center justify-center gap-2">
           <input
-            type='email'
+            type="email"
             ref={inputEl}
-            id='email'
-            className='block flex-auto rounded border border-slate-700 bg-slate-700 p-2 text-sm text-slate-400 focus:border-blue-500 focus:ring-blue-500'
-            placeholder='name@gmail.com'
+            id="email"
+            className="block flex-auto rounded border border-slate-700 bg-slate-700 p-2 text-sm text-slate-400 focus:border-blue-500 focus:ring-blue-500"
+            placeholder="name@gmail.com"
             required
           />
           <button
-            type='submit'
-            className='w-28 flex-1 rounded bg-blue-600 p-1.5 text-center font-bold text-slate-200 transition-colors hover:bg-blue-500'
+            type="submit"
+            className="w-28 flex-1 rounded bg-blue-600 p-1.5 text-center font-bold text-slate-200 transition-colors hover:bg-blue-500"
           >
-            {form.state === Form.Loading ? (
-              <span>Loading...</span>
-            ) : (
-              'Subscribe'
-            )}
+            {form.state === Form.Loading ? <span>Loading...</span> : 'Subscribe'}
           </button>
         </div>
         {form.state === Form.Success ? (
-          <div className='mt-4'>
-            <span className='font-bold text-green-600'>
+          <div className="mt-4">
+            <span className="font-bold text-green-600">
               <span>&#128522;</span> Thank you for subscribing my newsletters
             </span>
           </div>

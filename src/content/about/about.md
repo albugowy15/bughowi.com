@@ -32,44 +32,55 @@ There are also other frameworks and libraries that I have used in my projects, s
 
 ## Experience
 
+### Software Engineer at Hash
+
+- **Type** : Internship
+- **Start - End** : April 2024 - Now
+- **Location** : Malang, Indonesia (Remote)
+- **Tech Stacks** : TypeScript, Next.js
+
 ### Software Engineer at Bitkreasi
 
 - **Type** : Internship
 - **Start - End** : January 2024 - April 2024
-- **Duration** : 4 months
+- **Location** : Purwokerto, Indonesia (Remote)
 - **Tasks** :
   - Spearheaded the development of a robust village administration management website.
   - Implemented monorepo strategy with Nx to facilitate seamless collaboration across repositories.
   - Demonstrated expertise in building backend infrastructure with Express and designing an intuitive frontend interface with Next.js.
+- **Tech Stacks** : TypeScript, Next.js, Express.js, Nx monorepo
 
 ### Software Developer at Department of Communication and Information (Dinkominfo) Surabaya
 
 - **Type** : Internship
 - **Start - End** : August 2023 - December 2023
-- **Duration** : 5 months
+- **Location** : Surabaya, Indonesia (Onsite)
 - **Tasks** :
   - Led the development of an API Gateway, enabling seamless integration of multiple APIs throughout Surabaya.
   - Utilized Laravel to craft a user-friendly dashboard for easy management of the API Gateway.
   - Implemented logging and monitoring functionalities to track incoming requests to the API Gateway.
+- **Tech Stacks** : PHP, Laravel, PostgreSQL
 
 ### Frontend Engineer at Torche Education
 
 - **Type** : Internship
-- **Start - End** : October 2022 - February 20223
-- **Duration** : 4 months
+- **Start - End** : October 2022 - February 2023
+- **Location** : Tangerang, Indonesia (Remote)
 - **Tasks** :
   - Developed a new company landing page with Typescript, Next.js, and Tailwind CSS, enhancing the user experience and visual appeal.
   - Migrated the existing technology stack to the MERN stack (MongoDB, Express, React, Node.js), improving scalability and performance across the platform.
+- **Tech Stacks** : TypeScript, Next.js, Express.js, MongoDB
 
 ### Fullstack Developer at Harisenin.com
 
 - **Type** : Internship
 - **Start - End** : September 2022 - November 2022
-- **Duration** : 3 months
+- **Location** : Jakarta, Indonesia (Remote)
 - **Tasks** :
   - Actively maintained and improved the internal company dashboard, addressing bugs and enhancing functionality on a daily basis.
   - Seamlessly transitioned into a new project, taking the lead in developing a cutting-edge company dashboard from scratch.
   - Demonstrated versatility and adaptability by effectively balancing responsibilities across multiple projects
+- **Tech Stacks** : PHP, TypeScript, Laravel, Next.js, MySQL
 
 ## Contact Me
 

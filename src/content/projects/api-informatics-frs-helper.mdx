@@ -17,6 +17,7 @@ The [Informatics FRS Helper](https://tc-frs-helper.live) Public API is a robust 
 ## Endpoints
 
 The API offers various endpoints for accessing specific data:
+
 - **Courses Endpoint (/v1/matkul)**: Retrieve comprehensive information about courses.
 - **Lecturers Endpoint (/v1/dosen)**: Access details about lecturers.
 - **Classes Endpoint (/v1/kelas)**: Obtain information related to classes.
@@ -29,17 +30,20 @@ For a comprehensive understanding of the API and its usage, please refer to the 
 
 The API is efficiently deployed on Fly.io using a Docker container. Access the API through the following deployment URL: [https://api-informatics-frs-helper.fly.dev](https://api-informatics-frs-helper.fly.dev)
 
-
 ## Tech Stacks
 
 ### Rust
+
 Rust is a multi-paradigm programming language designed for performance and safety, especially safe concurrency. Rust is syntactically similar to C++, but its designers intend it to provide better memory safety while maintaining high performance.
 
 ### Axum
+
 Axum is a web application framework that focuses on ergonomics and modularity. It's built on Tokio and Hyper, and it provides everything you need to build robust and efficient web applications with Rust.
 
 ### SQLx
+
 SQLx is an async, pure Rust SQL crate featuring compile-time checked queries without a DSL. It enables you to interact with databases directly in Rust, ensuring type safety and connection handling.
 
 ### Tokio
+
 Tokio is a Rust framework for developing applications which perform asynchronous I/O — an event-driven approach that can often achieve better performance, lower latency, and greater resource utilization than conventional synchronous I/O.

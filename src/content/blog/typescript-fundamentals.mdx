@@ -6,7 +6,8 @@ categories:
   - typescript
 thumbnail: https://user-images.githubusercontent.com/49820990/181875756-693e8d6f-3625-4220-a9fa-3f924f8f0a6c.png
 ---
-import {Image} from "astro:assets"
+
+import { Image } from 'astro:assets';
 
 So originally I was resistant to even learn TypeScript because I wasn't comfortable with strong typed languages and I really tried to avoid writing any more code that I have to. But this is the situation where writing a little more code upfront will pay big devidends as your project grows.
 
@@ -79,9 +80,7 @@ var __awaiter =
         }
       }
       function step(result) {
-        result.done
-          ? resolve(result.value)
-          : adopt(result.value).then(fulfilled, rejected);
+        result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
       }
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });

@@ -12,7 +12,8 @@ categories:
   - planetscale
 thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/setup-t3-prisma-planetscale-jwt_kb2xej.png
 ---
-import {Image} from "astro:assets"
+
+import { Image } from 'astro:assets';
 
 The T3 Stack is a web development stack that focuses on simplicity, modularity, and full-stack type safety. It is made up of the following technologies:
 
@@ -28,7 +29,7 @@ There are many reasons to use the T3 Stack for your next web development project
 - **Modularity:** The T3 Stack is modular, which means that you can choose the technologies that are right for your project. This makes it easy to scale your application and add new features.
 - **Maintainability:** The T3 Stack is easy to maintain. The use of TypeScript helps to prevent errors and improve code quality. The modularity of the stack makes it easy to add new features and scale your application.
 
-[PlanetScale](https://planetscale.com/) is a serverless database designed to be scalable, secure, and user-friendly. It is built upon [Vitess](https://vitess.io/), an open-source database technology originally developed by YouTube. PlanetScale offers an excellent free plan, allowing you to have one MySQL database with a maximum of ***1 billion row reads*** and ***10 million row writes*** each month. It's an excellent choice if you are seeking a database service for your personal project.
+[PlanetScale](https://planetscale.com/) is a serverless database designed to be scalable, secure, and user-friendly. It is built upon [Vitess](https://vitess.io/), an open-source database technology originally developed by YouTube. PlanetScale offers an excellent free plan, allowing you to have one MySQL database with a maximum of **_1 billion row reads_** and **_10 million row writes_** each month. It's an excellent choice if you are seeking a database service for your personal project.
 
 For the authentication, we will use NextAuth with JWT strategy. This approach provides a secure and efficient way to manage user authentication for your application. This method simplifies the user authentication by eliminating the need for session management on the server side. JWTs facilitate secure transmission of user information, granting users seamless and authenticated access to protected resources.
 
@@ -90,7 +91,6 @@ model User {
 
 Then, because we are using planetscale as our database services, inside `datasource db`, set provider to `mysql` and `relationMode` to `prisma`.
 
-
 ```
 datasource db {
     provider = "mysql"
@@ -141,7 +141,7 @@ The next step involves pushing your Prisma schema. Open a new tab in your termin
 npx prisma db push
 ```
 
-When working with Prisma and PlanetScale, it's advisable to follow the workflow of using `prisma db push` instead of `prisma migrate`. You can find additional information about `[prisma db push` [here]([https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push)).
+When working with Prisma and PlanetScale, it's advisable to follow the workflow of using `prisma db push` instead of `prisma migrate`. You can find additional information about `[prisma db push` [here](<[https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push)>).
 
 Upon successful completion, your PlanetScale database schema will align with the Prisma schema you set up in `prisma/schema.prisma`.
 
@@ -320,8 +320,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       ...shape,
       data: {
         ...shape.data,
-        zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
+        zodError: error.cause instanceof ZodError ? error.cause.flatten() : null,
       },
     };
   },
@@ -354,7 +353,7 @@ const KEY = env.NEXTAUTH_SECRET as string;
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<APIResponse<LoginResponseData>>,
+  res: NextApiResponse<APIResponse<LoginResponseData>>
 ) {
   const { method } = req;
 
@@ -376,7 +375,7 @@ export default async function handler(
   }
 
   const user = await prisma.user.findUnique({
-    where: {username: username}
+    where: { username: username },
   });
 
   if (!user) {
@@ -436,7 +435,7 @@ type RegisterResponseData = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<APIResponse<RegisterResponseData>>,
+  res: NextApiResponse<APIResponse<RegisterResponseData>>
 ) {
   const { method } = req;
   if (method !== 'POST') {
@@ -492,11 +491,9 @@ To register a new user, create a registration page that accepts input for userna
 
 ```ts
 const onSubmit = async (data: RegisterForm) => {
-    axios
-      .post('/api/register', data)
-      .then(() => {
-        router.push('/login');
-      });
+  axios.post('/api/register', data).then(() => {
+    router.push('/login');
+  });
 };
 ```
 
@@ -504,13 +501,13 @@ For user login, you'll need a login page that takes the username and password as
 
 ```ts
 const onSubmit: SubmitHandler<LoginForm> = async (data) => {
-    signIn('credentials', {
-      username: data.username,
-      password: data.password,
-      redirect: false,
-    }).then((res) => {
-      if (res?.ok) window.location.replace('/');
-    });
+  signIn('credentials', {
+    username: data.username,
+    password: data.password,
+    redirect: false,
+  }).then((res) => {
+    if (res?.ok) window.location.replace('/');
+  });
 };
 ```
 
@@ -519,13 +516,11 @@ const onSubmit: SubmitHandler<LoginForm> = async (data) => {
 Querying and mutating data using tRPC is straightforward, akin to using TanStack Query. Here's an example of data querying:
 
 ```ts
-const response = api.common.getAllNews.useQuery(
-    {
-      category: 'sport',
-			 author: 'Joh Doe',
-      min_views: 20000,
-    },
-);
+const response = api.common.getAllNews.useQuery({
+  category: 'sport',
+  author: 'Joh Doe',
+  min_views: 20000,
+});
 ```
 
 And for data mutation:
@@ -534,13 +529,12 @@ And for data mutation:
 const mutateNews = api.news.createNews.useMutation();
 
 function handleCreateNews(data: NewsData) {
-	mutateNews.mutate({
-			title: 't3 Stack is awesome',
-			desc: 'Scaffold your next project with T3 Stack for excellent type safety',
-			author: 'M. K. Bughowi'
-		}
-	)
-} 
+  mutateNews.mutate({
+    title: 't3 Stack is awesome',
+    desc: 'Scaffold your next project with T3 Stack for excellent type safety',
+    author: 'M. K. Bughowi',
+  });
+}
 ```
 
 Querying and mutating data in protected routes is nearly identical to how it's done in public routes. Authentication is automatically managed by tRPC and NextAuth.

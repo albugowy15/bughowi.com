@@ -35,7 +35,7 @@ export const editProfileSchema = z.object({
       .min(9, { message: 'Whatsapp number minimum 9 digits' })
       .max(14, { message: 'Whatsapp number minimum 9 digits' })
       .startsWith('08', { message: 'Not valid Whatsapp number' })
-      .regex(/^[0-9]*$/, { message: 'Not valid Whatsapp number' }),
+      .regex(/^[0-9]*$/, { message: 'Not valid Whatsapp number' })
   ),
 });
 ```

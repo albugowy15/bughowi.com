@@ -36,9 +36,7 @@ function App() {
 
   return (
     <ThemeContext.Provider value={theme}>
-      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-        Toggle theme
-      </button>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Toggle theme</button>
       <Content />
     </ThemeContext.Provider>
   );

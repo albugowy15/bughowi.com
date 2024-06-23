@@ -99,7 +99,7 @@ export default function Home() {
   return (
     <div>
       <h1>This is HomePage</h1>
-      <Link href='/news'>Go to news page</Link>
+      <Link href="/news">Go to news page</Link>
     </div>
   );
 }
@@ -221,10 +221,7 @@ export default function NewsDetail() {
   <div>
     <Head>
       <title>My Page Title</title>
-      <meta
-        name='description'
-        content='This is my page description for My Page Title'
-      />
+      <meta name="description" content="This is my page description for My Page Title" />
     </Head>
     <p>Hello World!</p>
   </div>;
@@ -250,8 +247,8 @@ import logo from '../public/logo.svg';
 export default function PostImage() {
   return (
     <>
-      <Image src='/photo.svg' fill />
-      <Image src={logo} width='100px' height='200px' />
+      <Image src="/photo.svg" fill />
+      <Image src={logo} width="100px" height="200px" />
     </>
   );
 }
@@ -283,11 +280,9 @@ import Footer from 'components/footer/Footer';
 
 function Layout({ children }) {
   return (
-    <div className='flex min-h-screen w-full flex-col'>
+    <div className="flex min-h-screen w-full flex-col">
       <Navbar />
-      <div className='container mx-auto flex-1 px-4 2xl:max-w-7xl'>
-        {children}
-      </div>
+      <div className="container mx-auto flex-1 px-4 2xl:max-w-7xl">{children}</div>
       <Footer />
     </div>
   );

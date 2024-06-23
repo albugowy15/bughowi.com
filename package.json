@@ -16,11 +16,11 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.0",
-    "@astrojs/sitemap": "^3.1.5",
+    "@astrojs/mdx": "^3.1.1",
+    "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
-    "@astrojs/vercel": "^7.7.0",
-    "astro": "^4.10.2",
+    "@astrojs/vercel": "^7.7.1",
+    "astro": "^4.11.0",
     "astro-expressive-code": "^0.35.3",
     "date-fns": "^3.6.0",
     "mdast-util-to-string": "^4.0.0",
@@ -32,14 +32,14 @@
     "@astrojs/check": "^0.7.0",
     "@astrojs/ts-plugin": "^1.8.0",
     "@tailwindcss/typography": "^0.5.13",
-    "@typescript-eslint/eslint-plugin": "^7.13.0",
-    "@typescript-eslint/parser": "^7.13.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
     "astro-eslint-parser": "^1.0.2",
     "eslint": "^8.57.0",
     "eslint-plugin-astro": "^1.2.2",
     "prettier": "^3.3.2",
     "prettier-plugin-astro": "^0.14.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
-  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
+  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
 }
