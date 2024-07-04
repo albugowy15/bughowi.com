@@ -7,7 +7,7 @@ categories:
   - neovim
   - alacritty
   - tmux
-thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-ultimate-developer-workflow.png
+thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-ultimate-developer-workflow_j1mafg.jpg
 ---
 
 import { Image } from 'astro:assets';
@@ -15,6 +15,10 @@ import { Image } from 'astro:assets';
 ## Introduction
 
 In the expansive domain of software development, efficiency stands as the cornerstone of success. Much like a meticulously organized toolbox, where each tool has its designated place, a streamlined workflow ensures that tasks flow seamlessly from start to finish. Imagine stepping into a workshop where every tool is neatly arranged on pegboards, shelves, or in drawers, ready to be grabbed at a moment's notice. With such meticulous organization, there's no time wasted searching for the right tool or getting sidetracked by clutter. Instead, the focus remains squarely on the task at hand: crafting elegant and effective code. This streamlined approach minimizes distractions, maximizes productivity, and empowers us to devote our full attention to the creative process of software engineering.
+
+## Configuration
+
+To maintain a streamlined workflow, I use a personalized set of configurations stored in my GitHub repository. These dotfiles ensure that my development environment is tailored to my preferences and optimized for productivity. Each of these components is configured to work harmoniously, ensuring a cohesive and efficient development environment. You can find my full dotfiles configuration on this repository: https://github.com/albugowy15/dotfiles.
 
 ## Essential Tools
 
@@ -24,22 +28,20 @@ To achieve this, I rely on a set of essential tools that act as my guide through
 
 In today's fast-paced software world, the choice of operating system greatly affects productivity. Linux, with its open-source nature and developer-friendly features, is an excellent pick for optimizing workflow. We can customize our environment easily, thanks to Linux's flexibility, and the command-line interface allows for efficient task automation. Compared to Windows, Linux excels in customization, flexibility, and security, making it a top choice for many developers who value transparency and collaboration.
 
-Several Linux distributions are geared towards developers, providing pre-configured environments and extensive software repositories. Popular options include [Ubuntu](https://ubuntu.com/), [Fedora](https://fedoraproject.org/), [Arch](https://archlinux.org/), and [Debian](https://www.debian.org/), each catering to different preferences and requirements. Among them, Debian stands out for stability, reliability, and adherence to open-source principles. It offers a solid foundation for software development, with a vast software repository and strong security measures. Debian's predictable release cycle and long-term support make it suitable for both personal and professional use.
+Several Linux distributions are geared towards developers, providing pre-configured environments and extensive software repositories. Popular options include [Ubuntu](https://ubuntu.com/), [Fedora](https://fedoraproject.org/), [Arch](https://archlinux.org/), and [Debian](https://www.debian.org/), each catering to different preferences and requirements. Among them, Arch Linux stands out for its simplicity and control. It offers a cutting-edge environment for software development, with a rolling release model and access to the Arch User Repository (AUR) for a vast array of software. Arch Linux's flexibility and focus on user control make it suitable for developers who want a tailored and up-to-date system.
 
-Debian's focus on stability, reliability, and extensive software repository, along with strong community support, distinguishes it from other Linux distributions. Its package management system, APT (Advanced Package Tool), simplifies software installation and updates.
-
-> Update as of June 2, 2024: I'm now using Arch, btw.
+Arch Linux's emphasis on simplicity, user control, and an extensive software repository, along with strong community support, distinguishes it from other Linux distributions. Its package management system, Pacman, simplifies software installation and updates, allowing users to maintain a streamlined and efficient development environment.
 
 <Image
-  alt="Debian Linux Home"
-  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/debian-linux-home.png"
+  alt="Arch Linux Home"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/arch-linux-home_omxfng.png"
   width="1400"
   height="800"
 />
 
 <Image
-  alt="Debian Linux Home"
-  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/neofetch-debian.png"
+  alt="Arch Linux Neofetch"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/neofetch_ybdfky.png"
   width="1400"
   height="800"
 />
@@ -49,34 +51,6 @@ Debian's focus on stability, reliability, and extensive software repository, alo
 As a developer, having a fast and reliable terminal emulator is crucial for my workflow, and Alacritty stands out as a top contender in this realm. [Alacritty](https://alacritty.org/) is a cross-platform, GPU-accelerated terminal emulator that focuses on speed, simplicity, and efficiency. It is designed to be lightweight, responsive, and highly customizable.
 
 Alacritty stands out from other terminal emulators for several reasons. Firstly, its GPU acceleration ensures smooth rendering and fast performance, even when dealing with large amounts of text or complex graphical interfaces. Additionally, Alacritty is highly customizable, allowing me to configure it to suit my preferences and workflow.
-
-Here is my Alacritty configuration
-
-```toml title="~/.config/alacritty/alacritty.toml"
-import = ["~/.config/alacritty/carbonfox.toml"]
-
-[window.class]
-general = "Alacritty"
-instance = "Alacritty"
-
-[window]
-startup_mode = "Maximized"
-dynamic_title = false
-decorations = "None"
-decorations_theme_variant = "Dark"
-
-# [colors.primary]
-# background = "#1c1c1c"
-
-[font]
-size = 8.7
-normal = { family = "Fira Mono Nerd Font", style = "Medium" }
-bold = { family = "Fira Mono Nerd Font", style = "Bold" }
-italic = { family = "Fira Mono Nerd Font", style = "Italic" }
-bold_italic = { family = "Fira Mono Nerd Font", style = "Bold Italic" }
-```
-
-This Alacritty configuration aims to maximize screen real estate by starting windows in maximized mode, removing window decorations for a clean appearance, and customizing the font settings for improved readability. At the top of the file, it imports `carbonfox.toml`. This file contains colorscheme configurations to theme my Alacritty appearance. You can obtain this configuration [here](https://github.com/EdenEast/nightfox.nvim/blob/main/extra/carbonfox/alacritty.toml).
 
 ### Neovim
 
@@ -129,54 +103,6 @@ Setting up Neovim to function as a comprehensive IDE can be time-consuming, invo
   width="1400"
   height="800"
 />
-
-My Tmux config:
-
-```zsh title="~/.tmux.conf"
-unbind r
-bind r source-file ~/.tmux.conf
-
-# List of plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'MunifTanjim/tmux-mode-indicator'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'tmux-plugins/tmux-yank'
-
-set -g mouse on
-set -g mode-keys vi
-
-bind-key h select-pane -L
-bind-key j select-pane -D
-bind-key k select-pane -U
-bind-key l select-pane -R
-
-# carbonfox conf
-set -g mode-style "fg=#0c0c0c,bg=#b6b8bb"
-set -g message-style "fg=#0c0c0c,bg=#b6b8bb"
-set -g message-command-style "fg=#0c0c0c,bg=#b6b8bb"
-set -g pane-border-style "fg=#b6b8bb"
-set -g pane-active-border-style "fg=#78a9ff"
-set -g status "on"
-set -g status-justify "left"
-set -g status-style "fg=#b6b8bb,bg=#0c0c0c"
-set -g status-left-length "100"
-set -g status-right-length "100"
-set -g status-left-style NONE
-set -g status-right-style NONE
-set -g status-left "#[fg=#0c0c0c,bg=#78a9ff,bold] #S #[fg=#78a9ff,bg=#0c0c0c,nobold,nounderscore,noitalics]"
-set -g status-right "#[fg=#0c0c0c,bg=#0c0c0c,nobold,nounderscore,noitalics]#[fg=#78a9ff,bg=#0c0c0c] #{prefix_highlight} #[fg=#b6b8bb,bg=#0c0c0c,nobold,nounderscore,noitalics]#[fg=#0c0c0c,bg=#b6b8bb] %Y-%m-%d  %I:%M %p #[fg=#78a9ff,bg=#b6b8bb,nobold,nounderscore,noitalics]#[fg=#0c0c0c,bg=#78a9ff,bold] #h "
-setw -g window-status-activity-style "underscore,fg=#7b7c7e,bg=#0c0c0c"
-setw -g window-status-separator ""
-setw -g window-status-style "NONE,fg=#7b7c7e,bg=#0c0c0c"
-setw -g window-status-format "#[fg=#0c0c0c,bg=#0c0c0c,nobold,nounderscore,noitalics]#[default] #I  #W #F #[fg=#0c0c0c,bg=#0c0c0c,nobold,nounderscore,noitalics]"
-setw -g window-status-current-format "#[fg=#0c0c0c,bg=#b6b8bb,nobold,nounderscore,noitalics]#[fg=#0c0c0c,bg=#b6b8bb,bold] #I  #W #F #[fg=#b6b8bb,bg=#0c0c0c,nobold,nounderscore,noitalics]"
-
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
-```
-
-Overall, this Tmux configuration file optimizes the Tmux experience by incorporating essential plugins, enabling mouse support, defining intuitive key bindings, and customizing the appearance for enhanced usability and productivity
 
 ### Oh My Zsh
 
