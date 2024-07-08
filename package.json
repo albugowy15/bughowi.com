@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "astro-eslint-parser": "^1.0.2",
-    "eslint": "8.57.0",
+    "eslint": "9.6.0",
     "eslint-plugin-astro": "^1.2.2",
     "prettier": "^3.3.2",
     "prettier-plugin-astro": "^0.14.0",
