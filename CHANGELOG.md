@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/albugowy15/bughowi.com/compare/v3.1.0...v3.2.0) (2024-08-02)
+
+
+### Features
+
+* update about page content ([d5d0de3](https://github.com/albugowy15/bughowi.com/commit/d5d0de3196d40b102702a9dc095fadcf038a10f4))
+
 ## [3.1.0](https://github.com/albugowy15/bughowi.com/compare/3.0.0...v3.1.0) (2024-06-17)
 
 
