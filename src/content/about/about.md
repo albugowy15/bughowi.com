@@ -1,43 +1,32 @@
 # About Me
 
-## Introduction
+Welcome to my personal space on the web! I'm a passionate software engineer dedicated to creating impactful solutions and pushing the boundaries of technology. With a background in computer science and hands-on experience in various projects, I thrive on solving complex problems and delivering high-quality software. Whether it’s through coding, collaboration, or continuous learning, I’m committed to advancing the field of software engineering and contributing to meaningful innovations.
 
-Hello! I'm <span className="font-bold text-yellowAccent">Owi</span>. I'm a Computer Science student - Software Engineer from Jepara, Indonesia. I've established this blog with two primary objectives. Firstly, as a developer, I'm in a perpetual state of acquiring new skills and exploring emerging technologies. I sought to create a space where I can meticulously document and reflect upon my learning journey, thus reinforcing my comprehension and establishing a reference for future use. Secondly, I aimed to showcase my projects and share my experiences with fellow members of the developer community. I firmly believe that the act of sharing knowledge and aiding others is integral to the role of a developer. My aspiration is for this blog to serve as a valuable resource for fellow developers, facilitating mutual growth within the community and contributing to my continuous development as a skilled professional.
+## Education
 
-## Programming Languages
+I hold a **Bachelor's degree in Informatics or Computer Science** from **Institut Teknologi Sepuluh Nopember (ITS)**, where I graduated with a **GPA of 3.71/4.00**. During my studies, I built a strong foundation in computer science principles and software engineering practices. My academic journey was marked by hands-on projects and collaborative research, which significantly shaped my approach to problem-solving and innovation.
 
-Currently, I am focused on learning and implementing **TypeScript**, **Go**, and **Rust** as the primary programming languages in my projects. I believe that proficiency in these three languages can significantly enhance the value in software development.
+## Preferred Programming Languages
 
-TypeScript offers advantages in terms of static typing, which can improve code security and quality. Meanwhile, Go, with its concurrency concepts and high performance, is well-suited for large-scale projects. Rust, on the other hand, provides high-level security without compromising performance, making it valuable for the development of critical systems.
+I have a particular affinity for:
 
-Through this blog, I hope to share a profound understanding of the usage of these three languages, as well as the experiences and challenges that arise in their implementation. By sharing this knowledge, my aim is to make a positive contribution to the developer community and facilitate the exchange of valuable information for fellow developers in Indonesia and around the world.
+- **TypeScript**: For its static type-checking capabilities and seamless integration with modern web frameworks.
+- **Go**: Valued for its performance, simplicity, and efficiency in building scalable systems.
+- **Rust**: Appreciated for its focus on safety and performance, making it ideal for systems programming and high-performance applications.
 
-## Favorite Frameworks and Libraries
-
-Discovering the utility of frameworks has significantly accelerated my application development process, enhancing both speed and efficiency. These frameworks not only facilitate swift development but also contribute to the creation of more secure and scalable applications. I am enthusiastic about further delving into the capabilities of these frameworks and harnessing them to construct even more robust applications.
-
-### Next.js
-
-Next.js stands out as a preferred framework, offering advanced features and a seamless development experience. Its capabilities in server-side rendering and routing make it a valuable asset in creating dynamic and performant web applications.
-
-### Tailwind
-
-Embracing Tailwind has proven instrumental in streamlining my styling process. The utility-first approach of Tailwind enables rapid and consistent styling, empowering me to create visually appealing and responsive user interfaces efficiently.
-
-### Astro
-
-Exploring the innovative features of Astro has been an exciting journey. Its focus on performance and the ability to seamlessly blend static and dynamic content make it a promising framework for building modern, high-performance websites. I look forward to utilizing Astro's capabilities for future projects and expanding my expertise in web development.
-
-There are also other frameworks and libraries that I have used in my projects, such as Prisma, tRPC, Tokio, Gin, and Axum. I am excited to continue exploring the capabilities of these frameworks and libraries and using them to build even more powerful applications.
-
-## Experience
+## Experiences
 
 ### Software Engineer at Hash
 
 - **Type** : Internship
-- **Start - End** : April 2024 - Now
+- **Start - End** : March 2024 - Now
 - **Location** : Malang, Indonesia (Remote)
-- **Tech Stacks** : TypeScript, Next.js
+- **Tasks** :
+  - Actively contributed to the development of an advanced information system for a hospital
+  - Implemented solutions using TypeScript and Next.js to build responsive and scalable applications.
+  - Facilitated seamless frontend-to-backend communication using GraphQL to ensure efficient integration.
+  - Collaborated with the team to overcome technical challenges and enhance the quality and functionality of the application.
+- **Tech Stacks** : TypeScript, Next.js, Apollo GraphQL, Hasura
 
 ### Software Engineer at Bitkreasi
 
@@ -82,9 +71,9 @@ There are also other frameworks and libraries that I have used in my projects, s
   - Demonstrated versatility and adaptability by effectively balancing responsibilities across multiple projects
 - **Tech Stacks** : PHP, TypeScript, Laravel, Next.js, MySQL
 
-## Contact Me
+## Contact
 
-If you want to contact me, go ahead and send me a message through my email and social media below. I'll be happy to receive your feedback.
+Feel free to connect with me via email or social media below. I’m always open to discussing new projects, opportunities, or just sharing ideas!
 
 <div class='not-prose flex w-fit flex-wrap justify-center gap-2 rounded border-gray-800 p-4 sm:gap-5'>
   <div class='flex-start flex items-center gap-1 rounded border border-gray-800 p-2 transition hover:scale-105 hover:cursor-pointer'>
