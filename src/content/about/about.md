@@ -4,7 +4,7 @@ Welcome to my personal space on the web! I'm a passionate software engineer dedi
 
 ## Education
 
-I hold a **Bachelor's degree in Informatics or Computer Science** from **Institut Teknologi Sepuluh Nopember (ITS)**, where I graduated with a **GPA of 3.71/4.00**. During my studies, I built a strong foundation in computer science principles and software engineering practices. My academic journey was marked by hands-on projects and collaborative research, which significantly shaped my approach to problem-solving and innovation.
+I hold a **Bachelor's degree in Informatics or Computer Science** from **Institut Teknologi Sepuluh Nopember (ITS)**. During my studies, I built a strong foundation in computer science principles and software engineering practices. My academic journey was marked by hands-on projects and collaborative research, which significantly shaped my approach to problem-solving and innovation.
 
 ## Preferred Programming Languages
 
@@ -19,7 +19,7 @@ I have a particular affinity for:
 ### Software Engineer at Hash
 
 - **Type** : Internship
-- **Start - End** : March 2024 - Now
+- **Start - End** : March 2024 - July 2024
 - **Location** : Malang, Indonesia (Remote)
 - **Tasks** :
   - Actively contributed to the development of an advanced information system for a hospital
