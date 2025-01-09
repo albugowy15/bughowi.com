@@ -16,6 +16,19 @@ I have a particular affinity for:
 
 ## Experiences
 
+### Software Engineer at Teepee
+
+- **Type** : Part time
+- **Start - End** : August 2024 - November 2024
+- **Location** : Denpasar, Indonesia (Remote)
+- **Tasks** :
+  - Contributed to the development of a social media app which connects businesses with creators (influencers) for product reviews and endorsements.
+  - Migrated backend services from Strapi to Go, enhancing performance by shifting complex business logic from the frontend to the backend
+  - Developed a backend service to generate and deliver detailed performance reports for business accounts, providing insights on engagement metrics
+  - Implemented a watchlist feature allowing creators to save and manage promotional offers from businesses
+  - Optimized the migration process through incremental updates, ensuring seamless user experience during backend restructuring
+- **Tech Stacks** : Go, JavaScript, Gin, Strapi, PostgreSQL
+
 ### Software Engineer at Hash
 
 - **Type** : Internship
