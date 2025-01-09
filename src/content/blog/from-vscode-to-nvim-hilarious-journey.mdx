@@ -1,0 +1,126 @@
+---
+title: 'From VSCode to Neovim: A Hilarious Journey of Text Editor Addiction'
+date: 2025-01-09
+description: Learn how I discovered the magic of modal editing, survived the infamous learning curve, and eventually built my own custom Neovim setup.
+categories:
+  - neovim
+  - vscode
+  - text-editor
+thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1736398441/i-cant-exit-neovim_pehdoh.jpg
+---
+
+import { Image } from 'astro:assets';
+
+You know that feeling when you find your soulmate? Well, I found mine – it's just not a person, it's a text editor! 😄 As an Informatics or (computer science) student, having a good text editor is like having a trusty sidekick in your coding adventures. For the longest time, Visual Studio Code (VSCode) was my faithful companion. I started using it in my second semester and stuck with it until my seventh semester. VSCode was like that reliable friend who always has your back – comfortable, dependable, and drama-free. But then, like in any good rom-com, everything changed when I met Neovim.
+
+<Image
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/v1736395377/vscode-vs-vim-young-coders_exnb8a.jpg"
+  alt="vscode-vs-vim-young-coders"
+  width="400"
+  height="400"
+/>
+
+## What Are Vim and Neovim?
+
+It's the 1970s, computers are the size of refrigerators, and programmers are typing away on terminals. This is where our story begins. Vim (which stands for "Vi IMproved") was born as a text editor that lives in your terminal. Think of it as the Swiss Army knife of text editing – it's super fast and efficient because you can do everything without touching your mouse.
+
+But here's the catch – learning Vim is like learning to ride a bike. At first, you're going to fall... a lot. You might even wonder why anyone would choose this over walking (or in our case, using a normal editor). But once you get the hang of it, you'll be doing tricks and wondering how you ever lived without it!
+
+Neovim is like Vim's cooler, younger sibling who went to tech school. It takes everything great about Vim and adds modern features like:
+
+- Lua support (think JavaScript, but faster and more mysterious 🧙‍♂️)
+- A plugin system that makes adding new features as easy as installing apps on your phone
+- LSP support (fancy tech-speak for "your editor understands your code better")
+
+## Why Learn Vim Keybindings?
+
+Let me tell you a joke: How many mouse clicks does it take to edit a file in Vim? None! 😅
+
+But seriously, learning Vim keybindings is like gaining a superpower. Imagine being able to edit text as fast as you can think. No more reaching for the mouse, no more clicking around like you're playing whack-a-mole with your cursor. It's all right there at your fingertips.
+
+Here's why Vim keybindings are worth your time:
+
+- They work everywhere – from your fancy MacBook to that ancient Linux server in your company's basement
+- They make you look like a coding wizard in front of your colleagues
+- Your wrists will thank you (seriously, RSI is no joke!)
+- You'll finally have a legitimate reason to tell people "I use Vim, by the way" at parties
+
+## My Initial Skepticism (Or: Why I Thought Vim Users Were Crazy)
+
+<Image
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/v1736395371/use-vim-faster_lkw3ty.webp"
+  alt="use-vim-faster"
+  width="500"
+  height="300"
+/>
+
+When I first heard about Neovim, I rolled my eyes so hard they almost got stuck. Setting up Neovim seemed like building IKEA furniture without instructions – lots of pieces, confusing steps, and a high probability of ending up with something that doesn't work quite right.
+
+The whole thing required learning Lua (a programming language I'd never used), installing plugins, and basically building your own IDE from scratch. Meanwhile, VSCode was sitting there, ready to go, with all its shiny buttons and friendly interface. It felt like choosing to write a letter by hand when you have a perfectly good printer.
+
+But then I stumbled upon [ThePrimeagen's YouTube channel](https://www.youtube.com/@ThePrimeagen). Watching him use Vim was like watching a pianist play Mozart – it was beautiful, efficient, and kind of made me feel bad about my own skills. This guy was editing code faster than I could think, and I wanted in on that magic.
+
+## Learning Vim Mode
+
+Instead of diving straight into the deep end, I started with the kiddie pool – Vim mode in VSCode. It's like Vim with training wheels, and let me tell you, I needed those training wheels!
+
+The first two weeks were... interesting. Here's a typical day:
+
+- Try to type "hello"
+- Accidentally delete half my file
+- Spend 10 minutes figuring out how to undo
+- Finally learn what hjkl means
+- Feel like a hacker
+- Accidentally delete the other half of my file
+- Question all my life choices
+
+But you know what? After those two weeks, something clicked. My fingers started dancing across the keyboard like they knew what they were doing. Those weird commands (**dd**, **yy**, **ciw**) became second nature. I was becoming one with the Vim.
+
+## Transitioning to Neovim with LazyVim
+
+When I finally decided to try Neovim, I started with a Neovim distribution called [LazyVim](https://www.lazyvim.org/). LazyVim is a preconfigured setup that includes various plugins, keymaps, and features. This distribution spared me from the complex manual setup, allowing me to use Neovim as an IDE right away.
+
+Thanks to LazyVim, I quickly grew comfortable with Neovim. Features like autocompletion, linting, and debugging were readily available, making the experience comparable to VSCode.
+
+## Building My Own Setup (Or: How I Learned to Stop Worrying and Love the Config File)
+
+Remember when I mentioned LazyVim? Well, after using it for a while, I realized it was more like buying a mansion when all I needed was a cozy apartment. It had everything – including three swimming pools and a helicopter pad – when all I really wanted was a comfortable place to code.
+
+So, I did what any reasonable person would do: I started from scratch. I kept only the essentials:
+
+- nvim-treesitter (because nobody likes boring syntax highlighting)
+- telescope.nvim (for finding files faster than your crush's Instagram profile)
+- lspconfig (because we all need a friend who tells us when we're making mistakes)
+
+## The Addiction is Real
+
+<Image
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/v1736395372/why-you-use-vim_sab0el.jpg"
+  alt="Meme Why do you use vim?"
+  width="600"
+  height="450"
+/>
+
+Now, I'm that person. You know the one. The person who:
+
+- Can't use any editor without Vim keybindings
+- Accidentally types `:w` in Google Docs
+- Tells everyone about the wonders of modal editing
+- Has strong opinions about the best way to delete words
+- Considers "hjkl" a valid answer to "how are you?"
+
+But here's the thing: I regret nothing. Using Vim is like having a secret superpower. Sure, it took time to learn, and yes, I probably lost years of productivity in those first few weeks. But now? Now I can edit text faster than I can think.
+
+They say the best tools are the ones you don't notice using. Well, I notice Vim every day – because using anything else feels like typing with oven mitts on. It's not just a text editor anymore; it's a way of life. A slightly obsessive, occasionally frustrating, but ultimately rewarding way of life.
+
+So, are you ready to join the dark side? We have efficient text editing and a superiority complex! Remember: the hardest part isn't learning Vim – it's explaining to your friends why you spend hours configuring a text editor when you could be doing literally anything else.
+
+But trust me, it's worth it. And hey, if nothing else, you'll finally understand why some developers haven't figured out how to exit Vim since 1976. (Hint: it's `:q!` – or is it `:wq`? Maybe just restart your computer to be safe... 😉)
+
+## Share the Love: My Neovim Configuration
+
+If you're interested in starting your own Neovim journey but don't want to start from absolute zero, I've got you covered! I've shared all my configuration files (including my Neovim setup) in my dotfiles repository on GitHub: [https://github.com/albugowy15/dotfiles](https://github.com/albugowy15/dotfiles).
+
+Feel free to explore, fork, or steal shamelessly from my configuration. After all, that's how most of us built our perfect setup – by standing on the shoulders of giants (and by giants, I mean "other people who figured out how to make Neovim work properly" 😄).
+
+Remember though: the best configuration is the one that works for you. Use my dotfiles as a starting point, then tweak and customize until it feels just right. Happy coding.
