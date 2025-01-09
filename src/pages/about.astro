@@ -3,6 +3,10 @@ import { getEntry } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
 
 const about = await getEntry('about', 'about');
+if (!about) {
+	console.error('about content empty:');
+	return;
+}
 const { Content } = await about.render();
 ---
 
