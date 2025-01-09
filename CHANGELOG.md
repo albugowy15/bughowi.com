@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.2.0](https://github.com/albugowy15/bughowi.com/compare/v3.1.0...v3.2.0) (2025-01-09)
+
+
+### Features
+
+* add teepee to working experience ([3558f3e](https://github.com/albugowy15/bughowi.com/commit/3558f3e793a43bd3cdcb1bcf3ce5789e896dd1da))
+* add view transitions ([825336c](https://github.com/albugowy15/bughowi.com/commit/825336cc1bd6caee37bc910e821483558133e71e))
+* **blog:** from-vscode-to-nvim-hilarious-journey.mdx blog content ([41639c8](https://github.com/albugowy15/bughowi.com/commit/41639c8ee52dbfa364dbc85ce80bd7c385abbc59))
+* update about page content ([d5d0de3](https://github.com/albugowy15/bughowi.com/commit/d5d0de3196d40b102702a9dc095fadcf038a10f4))
+* upgrade astro to latest ([b02329a](https://github.com/albugowy15/bughowi.com/commit/b02329a98d8d6b93e2095aaaab70785d86aaf167))
+
 ## [3.1.0](https://github.com/albugowy15/bughowi.com/compare/3.0.0...v3.1.0) (2024-06-17)
 
 
