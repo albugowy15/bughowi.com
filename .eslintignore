@@ -1,8 +1,0 @@
-.astro
-.git
-.github
-.vercel
-.vscode
-node_modules
-public
-dist
