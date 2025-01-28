@@ -8,9 +8,9 @@ import Heading4 from '@components/typography/Heading4.astro';
 import Layout from '@layouts/Layout.astro';
 import { formatDate } from '@utils/date';
 import { compareDesc } from 'date-fns';
-import { Image } from 'astro:assets';
 import ContentPagination from '@components/pagination/ContentPagination.astro';
 import type { ContentNavigator } from '@components/pagination/ContentPagination.astro';
+import { buttonCva } from '@components/Button.astro';
 
 interface Props {
 	post: CollectionEntry<'blog'>;
@@ -59,35 +59,32 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 	img={post.data.thumbnail}
 	description={post.data.description}
 >
-	<div class="py-4"></div>
-	<Heading1>{post.data.title}</Heading1>
-	<section class="flex flex-wrap items-center justify-start gap-1 py-2 sm:gap-3">
-		<Text variant="body1">M. K. Bughowi</Text>
-		<span>&#8226;</span>
-		<Text variant="body1">{formatDate(post.data.date.toISOString())}</Text>
-		<span>&#8226;</span>
-		<Text variant="body1" className="text-yellowAccent">
-			{remarkPluginFrontmatter.minutesRead}
-		</Text>
-	</section>
-	<div class="mx-auto w-full xl:flex xl:items-start xl:justify-between xl:gap-10">
+	<div class="mx-auto w-full xl:flex xl:items-start xl:justify-between xl:gap-10 mt-5">
 		<div class="xl:w-[70%]">
+			<div class="flex flex-col gap-2">
+				<section class="flex flex-wrap items-center justify-start gap-1 sm:gap-3">
+					<Text variant="body1">M. K. Bughowi</Text>
+					<span>&#8226;</span>
+					<Text variant="body1">{formatDate(post.data.date.toISOString())}</Text>
+					<span>&#8226;</span>
+					<p class="text-secondary">
+						{remarkPluginFrontmatter.minutesRead}
+					</p>
+				</section>
+				<Heading1>{post.data.title}</Heading1>
+				<p class="text-default-500">{post.data.description}</p>
+			</div>
 			<article class="prose prose-invert max-w-none prose-headings:scroll-my-16">
-				<Image
-					src={post.data.thumbnail}
-					alt={post.data.title}
-					width={1080}
-					height={720}
-					loading="eager"
-					class="rounded-md object-cover"
-				/>
 				<section id="content-space">
 					<Content />
 				</section>
 				<section class="not-prose mt-6 flex flex-wrap justify-between gap-2">
 					<a
 						href={editUrl}
-						class="flex items-center gap-2 rounded border border-slate-700 px-2 py-1 font-semibold transition-colors hover:bg-darkSecondary"
+						class:list={[
+							buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
+							'flex items-center gap-2 border-default hover:bg-default transition-colors',
+						]}
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +102,11 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 					>
 					<a
 						href={tweetUrl}
-						class="flex items-center gap-2 rounded border border-slate-700 px-2 py-1 font-semibold transition-colors hover:bg-darkSecondary"
+						href={editUrl}
+						class:list={[
+							buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
+							'flex items-center gap-2 border-default hover:bg-default transition-colors',
+						]}
 						><svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -144,11 +145,11 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 				async></script>
 		</div>
 		<aside
-			class="sticky top-20 z-40 hidden flex-1 flex-col divide-y divide-slate-600 rounded-lg border-2 border-slate-700 bg-darkSecondary/50 xl:flex"
+			class="sticky top-32 hidden flex-1 flex-col divide-y divide-default-100 rounded-lg border-2 border-default-100 xl:flex"
 		>
 			<div class="flex items-center justify-between px-3 py-2">
 				<Heading4>Table Of Contents</Heading4>
-				<p id="scroll-top" class="cursor-pointer text-sm text-blue-300">Back to top</p>
+				<p id="scroll-top" class="cursor-pointer text-sm text-primary-500">Back to top</p>
 			</div>
 			<ul class="py-2" id="toc-container">
 				{
@@ -157,7 +158,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 							<a
 								href={`#${heading.slug}`}
 								class:list={[
-									'block px-3 py-1.5 text-sm font-semibold text-slate-200/80 hover:bg-darkSecondary',
+									'block px-3 py-1.5 text-sm font-semibold text-foreground/80 hover:bg-default-100/40',
 									{
 										'pl-2': heading.depth === 2,
 										'pl-6': heading.depth === 3,

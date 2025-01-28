@@ -1,20 +1,5 @@
-::-webkit-scrollbar {
-	height: 7px;
-	width: 7px;
-}
-
-::-webkit-scrollbar-thumb {
-	background: #413c58;
-	border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:horizontal {
-	background: #413c58;
-	border-radius: 10px;
-}
-
 body {
-	@apply bg-darkPrimary font-primary text-slate-100;
+	@apply bg-background font-primary text-foreground;
 }
 
 html {

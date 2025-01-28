@@ -1,6 +1,5 @@
 ---
-import Heading3 from '@components/typography/Heading3.astro';
-import Text from '@components/typography/Text.astro';
+import Chip from '@components/Chip.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -11,19 +10,19 @@ const { snippet } = Astro.props;
 ---
 
 <div
-	class="flex flex-col border border-slate-300 border-opacity-40 bg-darkSecondary p-4 transition-transform ease-in-out hover:scale-[1.02]"
+	class="group flex flex-col p-4 gap-3 rounded cursor-pointer border border-default-100 hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
 >
-	<Heading3 classNames="hover:text-blueAccent transition-colors">
+	<h3 class="text-lg font-bold hover:text-primary transition-colors line-clamp-2">
 		<a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
-	</Heading3>
-	<div class="my-2 flex flex-wrap gap-1">
+	</h3>
+	<div class="flex flex-wrap gap-1">
 		{
 			snippet.data.categories.map((category) => (
-				<Text variant="label1" className="px-1 py-[0.20rem] bg-blue-700 rounded-md">
-					{category}
-				</Text>
+				<Chip variant="bordered" radius="sm" size="sm" class="border-default">
+					# {category}
+				</Chip>
 			))
 		}
 	</div>
-	<Text variant="body1">{snippet.data.description}</Text>
+	<p class="line-clamp-3 text-foreground/70">{snippet.data.description}</p>
 </div>

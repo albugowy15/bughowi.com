@@ -29,14 +29,14 @@ const { page } = Astro.props;
 >
 	<div class="py-4"></div>
 	<Heading2 classNames="text-center">Blog</Heading2>
-	<Text variant="body1" className="py-3 text-center">
+	<Text variant="body1" className="py-3 text-foreground/70 text-center">
 		Welcome to my Blog. Here I share my thoughts related to Fullstack development topics and
 		programming in general. I've always been a fan of writing, and I hope you can find something
 		here that could help you in your developer career.
 	</Text>
 	<div class="py-5"></div>
 	<section class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-		{page.data.map((post) => <PostCard post={post} eagerLoadImg />)}
+		{page.data.map((post) => <PostCard post={post} />)}
 	</section>
 	<PagePagination page={page} />
 </Layout>

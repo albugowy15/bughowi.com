@@ -1,4 +1,5 @@
 ---
+import { buttonCva } from '@components/Button.astro';
 import Text from '@components/typography/Text.astro';
 
 export type ContentNavigator = {
@@ -32,7 +33,8 @@ const { prev, next } = Astro.props;
 		prev ? (
 			<a
 				class:list={[
-					'flex w-full items-center gap-2 rounded-md border border-slate-500 p-4 hover:cursor-pointer hover:bg-darkSecondary hover:transition-colors sm:gap-6 md:w-1/2',
+					buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
+					'flex w-full items-center gap-2 border-default cursor-pointer hover:bg-default transition-colors sm:gap-6 md:w-1/2',
 					next ? 'justify-start' : 'justify-between',
 				]}
 				aria-label="Go to previous content"
@@ -44,7 +46,7 @@ const { prev, next } = Astro.props;
 					viewBox="0 0 24 24"
 					stroke-width="1.5"
 					stroke="currentColor"
-					class="h-7 w-7 flex-none text-slate-400"
+					class="h-7 w-7 flex-none"
 				>
 					<path
 						stroke-linecap="round"
@@ -54,12 +56,8 @@ const { prev, next } = Astro.props;
 				</svg>
 
 				<div>
-					<Text variant="body2" className="text-yellowAccent font-medium">
-						Previous
-					</Text>
-					<Text variant="body1" className="hover:text-blue-700 hover:transition-colors">
-						{prev.title}
-					</Text>
+					<p class="text-sm text-secondary">Previous</p>
+					<Text variant="body1">{prev.title}</Text>
 				</div>
 			</a>
 		) : null
@@ -68,16 +66,15 @@ const { prev, next } = Astro.props;
 		next ? (
 			<a
 				class:list={[
-					'flex w-full items-center gap-2 rounded-md border border-slate-500 p-4 hover:cursor-pointer hover:bg-darkSecondary hover:transition-colors sm:gap-6 md:w-1/2',
+					buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
+					'flex w-full items-center gap-2 border-default cursor-pointer hover:bg-default transition-colors sm:gap-6 md:w-1/2',
 					prev ? 'justify-end' : 'justify-between',
 				]}
 				aria-label="Go to next content"
 				href={next.slug}
 			>
 				<div>
-					<Text variant="body2" className="text-yellowAccent font-medium">
-						Next
-					</Text>
+					<p class="text-sm text-secondary">Next</p>
 					<Text variant="body1">{next.title}</Text>
 				</div>
 				<svg
@@ -86,7 +83,7 @@ const { prev, next } = Astro.props;
 					viewBox="0 0 24 24"
 					stroke-width="1.5"
 					stroke="currentColor"
-					class="h-7 w-7 flex-none text-slate-400"
+					class="h-7 w-7 flex-none"
 				>
 					<path
 						stroke-linecap="round"

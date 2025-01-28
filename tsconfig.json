@@ -20,6 +20,8 @@
       "@content/*": ["./src/content/*"],
       "@assets/*": ["./src/assets/*"],
       "@stores/*": ["./src/stores/*"]
-    }
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
