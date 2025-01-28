@@ -1,39 +1,28 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import Text from '@components/typography/Text.astro';
-import { Image } from 'astro:assets';
-import Heading3 from '@components/typography/Heading3.astro';
+import Chip from '@components/Chip.astro';
 
 interface Props {
 	project: CollectionEntry<'projects'>;
-	eagerLoadImg?: boolean;
 }
 
-const { project, eagerLoadImg } = Astro.props;
+const { project } = Astro.props;
 ---
 
 <div
-	class="flex flex-col border border-slate-300 border-opacity-40 bg-darkSecondary p-4 transition-transform ease-in-out hover:scale-[1.02]"
+	class="group flex flex-col justify-between p-4 gap-3 rounded cursor-pointer border border-default-100 hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
 >
-	<Heading3 classNames="hover:text-blueAccent transition-colors">
+	<h3 class="text-lg font-bold hover:text-primary transition-colors line-clamp-2">
 		<a href={`/projects/${project.slug}`}>{project.data.title}</a>
-	</Heading3>
-	<Image
-		src={project.data.thumbnail}
-		alt={project.data.title}
-		loading={eagerLoadImg ? 'eager' : 'lazy'}
-		width={400}
-		height={250}
-		class="w-full object-cover py-2"
-	/>
+	</h3>
 
-	<Text variant="body1">{project.data.description}</Text>
-	<div class="mt-2 flex flex-wrap gap-1">
+	<p class="line-clamp-3 text-foreground/70">{project.data.description}</p>
+	<div class="flex flex-wrap gap-2">
 		{
-			project.data.tech.map((tech) => (
-				<Text variant="label1" className="px-1 py-[0.20rem] bg-blue-700 rounded-md">
+			project.data.tech?.map((tech) => (
+				<Chip variant="bordered" radius="sm" size="sm" class="border-default">
 					{tech}
-				</Text>
+				</Chip>
 			))
 		}
 	</div>

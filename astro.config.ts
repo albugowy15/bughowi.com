@@ -1,10 +1,11 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-import vercelStatic from '@astrojs/vercel';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import sitemap from '@astrojs/sitemap';
 import expressiveCode, { type AstroExpressiveCodeOptions } from 'astro-expressive-code';
+
+import react from '@astrojs/react';
 
 const astroExpressiveCodeOptions: AstroExpressiveCodeOptions = {
 	// Example: Change the theme to "dracula"
@@ -15,7 +16,6 @@ const astroExpressiveCodeOptions: AstroExpressiveCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
 	output: 'static',
-	adapter: vercelStatic(),
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
 	},
@@ -33,5 +33,5 @@ export default defineConfig({
 		'/projects': '/projects/page/1',
 	},
 	site: 'https://www.bughowi.com',
-	integrations: [tailwind(), expressiveCode(astroExpressiveCodeOptions), mdx(), sitemap()],
+	integrations: [tailwind(), expressiveCode(astroExpressiveCodeOptions), mdx(), sitemap(), react()],
 });

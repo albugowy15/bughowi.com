@@ -60,7 +60,7 @@ const { Content } = await post.render();
 	<div class="py-4"></div>
 	<div class="mx-auto w-full lg:w-[65%]">
 		<Heading1>{post.data.title}</Heading1>
-		<Text variant="body1">{post.data.description}</Text>
+		<Text variant="body1" className="mt-2 text-default-500">{post.data.description}</Text>
 		<article class="mt-5 w-full">
 			{
 				post.data.thumbnail && (
@@ -77,16 +77,6 @@ const { Content } = await post.render();
 			<div class="py-4"></div>
 			<section id="content-space" class="prose prose-invert max-w-none">
 				<Content />
-			</section>
-			<section class="mt-3 border-y-2 border-slate-400">
-				<p class="flex flex-wrap items-center gap-2 py-4">
-					Tech Stack :{' '}
-					{
-						post.data.tech?.map((tech) => (
-							<span class="rounded-md bg-blue-700 px-1 py-0.5 text-slate-200">{tech}</span>
-						))
-					}
-				</p>
 			</section>
 		</article>
 		<div class="py-4"></div>

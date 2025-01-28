@@ -1,5 +1,3 @@
-![bughowi.com](https://user-images.githubusercontent.com/49820990/213904001-0767e3b5-0fed-4ce1-9eb9-3f68e4f84072.png)
-
 ## Description
 
 My personal blog that contains article about Web Development and programming in general. In this blog I document and reflect on what I’ve learned inorder to solidify my understanding and be able to refer back to it later.

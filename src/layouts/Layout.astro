@@ -2,7 +2,7 @@
 import '@fontsource/inter';
 import '@styles/global.css';
 import Footer from '@layouts/Footer.astro';
-import Navbar from '@layouts/Navbar.astro';
+import { NavbarMenu } from './NavbarMenu.tsx';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
@@ -12,6 +12,13 @@ interface Props {
 	type?: 'website' | 'article';
 	img?: string;
 }
+
+const links = [
+	{ title: 'Blog', path: '/blog/page/1' },
+	{ title: 'Projects', path: '/projects/page/1' },
+	{ title: 'Snippets', path: '/snippets/page/1' },
+	{ title: 'About', path: '/about' },
+];
 
 const {
 	title,
@@ -28,7 +35,6 @@ const {
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} - Mohamad Kholid Bughowi</title>
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -36,6 +42,13 @@ const {
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 		<link rel="manifest" href="/site.webmanifest" />
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="Mohamad Kholid Bughowi's Personal Blog"
+			href={new URL('rss.xml', Astro.site)}
+		/>
 		<meta name="msapplication-TileColor" content="#da532c" />
 		<meta name="theme-color" content="#ffffff" />
 
@@ -56,8 +69,8 @@ const {
 		<ClientRouter />
 	</head>
 	<body>
-		<div class="flex min-h-screen w-full flex-col border-b border-slate-500/40">
-			<Navbar />
+		<div class="flex min-h-screen w-full flex-col">
+			<NavbarMenu client:load links={links} />
 			<main class="container mx-auto flex-1 px-3 xl:px-14 2xl:max-w-7xl">
 				<slot />
 			</main>

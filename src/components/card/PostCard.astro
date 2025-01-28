@@ -1,54 +1,39 @@
 ---
-import { Image } from 'astro:assets';
-import Text from '@components/typography/Text.astro';
 import type { CollectionEntry } from 'astro:content';
 import { formatDate } from '@utils/date';
-import Heading3 from '@components/typography/Heading3.astro';
+import Chip from '@components/Chip.astro';
 
 interface Props {
 	post: CollectionEntry<'blog'>;
-	eagerLoadImg?: boolean;
 }
 
-const { post, eagerLoadImg } = Astro.props;
+const { post } = Astro.props;
 const { remarkPluginFrontmatter } = await post.render();
 ---
 
 <div
-	class="flex flex-col border border-slate-300 border-opacity-40 bg-darkSecondary transition-transform ease-in-out hover:scale-[1.02]"
+	class="group flex flex-col border border-default-100 hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
 >
-	<div class="relative h-52 w-full overflow-hidden">
-		<Image
-			src={post.data.thumbnail}
-			alt={post.data.title}
-			width={400}
-			loading={eagerLoadImg ? 'eager' : 'lazy'}
-			height={250}
-			class="h-full w-full overflow-hidden object-cover object-center"
-		/>
-	</div>
-	<div class="flex flex-col items-stretch justify-between p-3">
-		<div>
-			<div class="flex flex-wrap gap-1">
-				{
-					post.data.categories?.map((category) => (
-						<Text variant="label1" className="bg-blue-700 p-1 rounded-md">
-							{category}
-						</Text>
-					))
-				}
-			</div>
-			<div class="py-2"></div>
-			<Heading3 classNames="hover:text-blueAccent transition-colors">
-				<a href={`/blog/${post.slug}`}>{post.data.title}</a>
-			</Heading3>
+	<div class="relative flex flex-col justify-between p-4 gap-3 rounded cursor-pointer h-full">
+		<div class="flex flex-wrap gap-2">
+			{
+				post.data.categories?.map((category) => (
+					<Chip variant="bordered" radius="sm" size="sm" class="border-default">
+						# {category}
+					</Chip>
+				))
+			}
 		</div>
-		<div class="p-4"></div>
-		<div class="flex items-center justify-between text-sm">
-			<Text variant="label1">{formatDate(post.data.date.toISOString())}</Text>
-			<Text variant="label1">
+		<h3 class="text-lg font-bold hover:text-primary transition-colors line-clamp-2">
+			<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+		</h3>
+		<p class="line-clamp-3 text-foreground/70">{post.data.description}</p>
+		<div class="py-4"></div>
+		<div class="flex items-center justify-between text-sm absolute bottom-0 right-0 left-0 p-4">
+			<p class="text-foreground/50">{formatDate(post.data.date.toISOString())}</p>
+			<p class="text-foreground/50">
 				{remarkPluginFrontmatter.minutesRead}
-			</Text>
+			</p>
 		</div>
 	</div>
 </div>
