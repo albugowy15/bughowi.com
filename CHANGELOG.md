@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.2.0](https://github.com/albugowy15/bughowi.com/compare/v3.1.0...v3.2.0) (2025-01-29)
+
+
+### Features
+
+* add teepee to working experience ([3558f3e](https://github.com/albugowy15/bughowi.com/commit/3558f3e793a43bd3cdcb1bcf3ce5789e896dd1da))
+* add view transitions ([825336c](https://github.com/albugowy15/bughowi.com/commit/825336cc1bd6caee37bc910e821483558133e71e))
+* **blog:** from-vscode-to-nvim-hilarious-journey.mdx blog content ([41639c8](https://github.com/albugowy15/bughowi.com/commit/41639c8ee52dbfa364dbc85ce80bd7c385abbc59))
+* change blueish to darker backround ([5eb031a](https://github.com/albugowy15/bughowi.com/commit/5eb031a254a623b617ffa6bb1a6453599976ca9f))
+* replace local font with fontsource ([dd4e2c0](https://github.com/albugowy15/bughowi.com/commit/dd4e2c01162d4bf59e8f747262e8069c53c0d6e8))
+* revamp blog ui ([53b9d43](https://github.com/albugowy15/bughowi.com/commit/53b9d430e6a56109a55cd7aeff2cce411e99d397))
+* update about page content ([d5d0de3](https://github.com/albugowy15/bughowi.com/commit/d5d0de3196d40b102702a9dc095fadcf038a10f4))
+* update copyright to 2025 ([a33ba3f](https://github.com/albugowy15/bughowi.com/commit/a33ba3f01d732670e30db1c357e9ffc3d12b0008))
+* upgrade astro to latest ([b02329a](https://github.com/albugowy15/bughowi.com/commit/b02329a98d8d6b93e2095aaaab70785d86aaf167))
+
 ## [3.1.0](https://github.com/albugowy15/bughowi.com/compare/3.0.0...v3.1.0) (2024-06-17)
 
 
