@@ -10,7 +10,7 @@ import { formatDate } from '@utils/date';
 import { compareDesc } from 'date-fns';
 import ContentPagination from '@components/pagination/ContentPagination.astro';
 import type { ContentNavigator } from '@components/pagination/ContentPagination.astro';
-import Button, { buttonCva } from '@components/Button.astro';
+import { buttonCva } from '@components/Button.astro';
 import Chip from '@components/Chip.astro';
 
 interface Props {
@@ -146,12 +146,11 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 				data-category-id="DIC_kwDOHqneBc4CQdnP"
 				data-mapping="url"
 				data-strict="0"
-				data-reactions-enabled="0"
+				data-reactions-enabled="1"
 				data-emit-metadata="0"
 				data-input-position="bottom"
 				data-theme="transparent_dark"
 				data-lang="en"
-				data-loading="lazy"
 				crossorigin="anonymous"
 				async></script>
 		</div>
