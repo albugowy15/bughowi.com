@@ -3,15 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import sitemap from '@astrojs/sitemap';
-import expressiveCode, { type AstroExpressiveCodeOptions } from 'astro-expressive-code';
-
+import astroExpressiveCode from 'astro-expressive-code';
 import react from '@astrojs/react';
-
-const astroExpressiveCodeOptions: AstroExpressiveCodeOptions = {
-	// Example: Change the theme to "dracula"
-	// @ts-expect-error this is should be ok
-	theme: 'dracula',
-};
 
 // https://astro.build/config
 export default defineConfig({
@@ -33,5 +26,13 @@ export default defineConfig({
 		'/projects': '/projects/page/1',
 	},
 	site: 'https://www.bughowi.com',
-	integrations: [tailwind(), expressiveCode(astroExpressiveCodeOptions), mdx(), sitemap(), react()],
+	integrations: [
+		tailwind(),
+		astroExpressiveCode({
+			themes: ['aurora-x'],
+		}),
+		mdx(),
+		sitemap(),
+		react(),
+	],
 });

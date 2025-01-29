@@ -69,7 +69,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 					<div className="p-3 border border-default-100 rounded-lg flex flex-col gap-5">
 						<ul className="flex items-center gap-2 justify-center">
 							{links.map((link) => (
-								<li key={link.path} className="text-sm">
+								<li key={link.path} className="text-lg">
 									<a href={link.path} className="hover:text-primary transition-colors">
 										{link.title}
 									</a>
@@ -89,8 +89,8 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
-											width="15"
-											height="15"
+											width="20"
+											height="20"
 											fill="currentColor"
 											className="bi bi-github"
 											viewBox="0 0 16 16"
@@ -109,8 +109,8 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
-											width="15"
-											height="15"
+											width="20"
+											height="20"
 											fill="currentColor"
 											className="bi bi-twitter"
 											viewBox="0 0 16 16"
@@ -129,8 +129,8 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
-											width="15"
-											height="15"
+											width="20"
+											height="20"
 											fill="currentColor"
 											className="bi bi-linkedin"
 											viewBox="0 0 16 16"
@@ -148,8 +148,8 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
+							width="30"
+							height="30"
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"

@@ -10,7 +10,8 @@ import { formatDate } from '@utils/date';
 import { compareDesc } from 'date-fns';
 import ContentPagination from '@components/pagination/ContentPagination.astro';
 import type { ContentNavigator } from '@components/pagination/ContentPagination.astro';
-import { buttonCva } from '@components/Button.astro';
+import Button, { buttonCva } from '@components/Button.astro';
+import Chip from '@components/Chip.astro';
 
 interface Props {
 	post: CollectionEntry<'blog'>;
@@ -62,17 +63,27 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 	<div class="mx-auto w-full xl:flex xl:items-start xl:justify-between xl:gap-10 mt-5">
 		<div class="xl:w-[70%]">
 			<div class="flex flex-col gap-2">
-				<section class="flex flex-wrap items-center justify-start gap-1 sm:gap-3">
-					<Text variant="body1">M. K. Bughowi</Text>
-					<span>&#8226;</span>
-					<Text variant="body1">{formatDate(post.data.date.toISOString())}</Text>
-					<span>&#8226;</span>
-					<p class="text-secondary">
-						{remarkPluginFrontmatter.minutesRead}
-					</p>
-				</section>
 				<Heading1>{post.data.title}</Heading1>
 				<p class="text-default-500">{post.data.description}</p>
+				<section class="flex flex-wrap items-center justify-start gap-1 sm:gap-3">
+					<Text variant="body1">📆 {formatDate(post.data.date.toISOString())}</Text>
+					<span>&#8226;</span>
+					<Text variant="body1">
+						⏳ {remarkPluginFrontmatter.minutesRead}
+					</Text>
+					<span>&#8226;</span>
+					<ul class="flex items-center gap-2">
+						{
+							post.data.categories.map((item) => (
+								<li>
+									<Chip variant="bordered" class="border-default-100">
+										# {item}
+									</Chip>
+								</li>
+							))
+						}
+					</ul>
+				</section>
 			</div>
 			<article class="prose prose-invert max-w-none prose-headings:scroll-my-16">
 				<section id="content-space">
