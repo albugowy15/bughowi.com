@@ -48,6 +48,7 @@ export const getStaticPaths = (async () => {
 
 const { post, nextPost, prevPost } = Astro.props;
 const { Content } = await post.render();
+const url = new URL('/projects/' + post.slug, Astro.site);
 ---
 
 <Layout
@@ -55,7 +56,7 @@ const { Content } = await post.render();
 	type="article"
 	img={post.data.thumbnail}
 	description={post.data.description}
-	url={'https://www.bughowi.com/projects/' + post.slug}
+	url={url.href}
 >
 	<div class="py-4"></div>
 	<div class="mx-auto w-full lg:w-[65%]">

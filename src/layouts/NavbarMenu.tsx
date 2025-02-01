@@ -14,7 +14,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 		<>
 			<header className="sticky top-0 z-30 w-full py-3 lgpy-6">
 				<div className="container mx-auto px-3 xl:px-14 2xl:max-w-7xl">
-					<nav className="flex justify-between items-center px-4 py-3 lg:px-5 lg:py-4 rounded-full backdrop-blur-lg text-sm sm:text-base bg-background/50 border border-default-100">
+					<nav className="flex justify-between items-center px-4 py-3 lg:px-5 lg:py-4 rounded-full backdrop-blur-md text-sm sm:text-base bg-background/40 border border-default-100">
 						<a href="/" title="Homepage" aria-label="Homepage">
 							<img
 								src={profile_pic.src}
@@ -30,17 +30,18 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 								<a
 									key={link.title + '_' + link.path}
 									href={link.path}
-									className="cursor-pointer text-lg text-foreground/70 px-1 py-0.5 font-bold transition-colors duration-300 hover:text-primary"
+									className="cursor-pointer text-foreground/70 px-1 py-0.5 font-bold transition-colors duration-300 hover:text-primary"
 								>
 									{link.title}
 								</a>
 							))}
 						</div>
 						<button
-							className="lg:hidden"
+							aria-label="Open Mobile Menu"
+							title="Open Mobile Menu"
+							className="md:hidden"
 							onClick={() => {
 								setOpenMenu(true);
-								console.log('hello');
 							}}
 						>
 							<svg
@@ -65,7 +66,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 			</header>
 
 			{openMenu && (
-				<div className="lg:hidden z-50 flex flex-col items-center justify-center fixed right-0 left-0 bottom-0 top-0 bg-background/40 backdrop-blur-md">
+				<div className="md:hidden z-50 flex flex-col items-center justify-center fixed right-0 left-0 bottom-0 top-0 bg-background/40 backdrop-blur-md">
 					<div className="p-3 border border-default-100 rounded-lg flex flex-col gap-5">
 						<ul className="flex items-center gap-2 justify-center">
 							{links.map((link) => (
@@ -86,6 +87,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 										target="_blank"
 										title="github"
 										className="flex items-center gap-1 font-bold transition-colors hover:text-primary"
+										aria-label="github"
 									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -106,6 +108,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 										target="_blank"
 										className="flex items-center gap-1 font-bold transition-colors hover:text-primary"
 										title="x"
+										aria-label="x"
 									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -126,6 +129,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 										target="_blank"
 										className="flex items-center gap-1 font-bold transition-colors hover:text-primary"
 										title="linkedin"
+										aria-label="linkedin"
 									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -143,6 +147,8 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 						</div>
 					</div>
 					<button
+						aria-label="Close Mobile Menu"
+						title="Close Mobile Menu"
 						className="p-1 mt-3 rounded-full border border-default-100 w-fit"
 						onClick={() => setOpenMenu(false)}
 					>

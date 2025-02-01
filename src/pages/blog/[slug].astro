@@ -51,11 +51,12 @@ const { post, nextPost, prevPost } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await post.render();
 const editUrl = `https://github.com/albugowy15/bughowi.com/blob/main/src/content/blog/${post.slug}.mdx`;
 const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=https://bughowi.com/blog/${post.slug}&via=bughowy`;
+const url = new URL('/blog/' + post.slug, Astro.site);
 ---
 
 <Layout
 	title={post.data.title}
-	url={'https://www.bughowi.com/blog/' + post.slug}
+	url={url.href}
 	type="article"
 	img={post.data.thumbnail}
 	description={post.data.description}
@@ -72,7 +73,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 						⏳ {remarkPluginFrontmatter.minutesRead}
 					</Text>
 					<span>&#8226;</span>
-					<ul class="flex items-center gap-2">
+					<ul class="flex flex-wrap items-center gap-2">
 						{
 							post.data.categories.map((item) => (
 								<li>
@@ -96,6 +97,7 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 							buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
 							'flex items-center gap-2 border-default hover:bg-default transition-colors',
 						]}
+						aria-label="Edit this page"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -113,11 +115,11 @@ const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=h
 					>
 					<a
 						href={tweetUrl}
-						href={editUrl}
 						class:list={[
 							buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
 							'flex items-center gap-2 border-default hover:bg-default transition-colors',
 						]}
+						aria-label="Tweet this article"
 						><svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"

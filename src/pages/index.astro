@@ -34,7 +34,7 @@ const someSnippetPosts = await getCollection('snippets').then((res) =>
 			<a
 				class:list={[
 					buttonCva({ variant: 'solid', size: 'md', radius: 'md' }),
-					'bg-primary font-bold hover:bg-transparent border border-primary transition-colors',
+					'bg-primary-100 font-bold hover:bg-transparent border border-primary transition-colors',
 				]}
 				href="/about">More About Me</a
 			>
@@ -43,6 +43,7 @@ const someSnippetPosts = await getCollection('snippets').then((res) =>
 					buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
 					'flex gap-1 items-center font-bold hover:bg-secondary border-secondary transition-colors',
 				]}
+				aria-label="Resume"
 				href="https://drive.google.com/file/d/1V5vUaofRneAJPGW9VgErhloWXNyu8vV4/view?usp=sharing"
 				rel="noreferrer"
 				target="_blank"

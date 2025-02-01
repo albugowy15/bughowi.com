@@ -3,7 +3,6 @@ import '@fontsource/inter';
 import '@styles/global.css';
 import Footer from '@layouts/Footer.astro';
 import { NavbarMenu } from './NavbarMenu.tsx';
-import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -65,8 +64,6 @@ const {
 		<meta name="twitter:title" content={`${title} - Mohamad Kholid Bughowi`} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={img} />
-
-		<ClientRouter />
 	</head>
 	<body>
 		<div class="flex min-h-screen w-full flex-col">
