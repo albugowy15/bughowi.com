@@ -74,14 +74,14 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.2 }}
-						className="md:hidden z-50 flex flex-col items-center justify-center fixed right-0 left-0 bottom-0 top-0 bg-background/60 backdrop-blur-md"
+						className="md:hidden z-50 flex flex-col items-center justify-center fixed right-0 left-0 bottom-0 top-0 bg-background/80 backdrop-blur-md"
 					>
 						<motion.div
 							initial={{ scale: 0.9, y: -20 }}
 							animate={{ scale: 1, y: 0 }}
 							exit={{ scale: 0.9, y: -20 }}
 							transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-							className="p-3 border border-default-100 rounded-lg flex flex-col gap-5"
+							className="p-3 border border-default-100 rounded-lg flex flex-col gap-5 bg-background shadow-lg"
 						>
 							<ul className="flex items-center gap-2 justify-center">
 								{links.map((link, index) => (
@@ -166,7 +166,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 						<button
 							aria-label="Close Mobile Menu"
 							title="Close Mobile Menu"
-							className="p-1 mt-3 rounded-full border border-default-100 w-fit"
+							className="p-1 mt-3 rounded-full border border-default-100 w-fit shadow-lg"
 							onClick={() => setOpenMenu(false)}
 						>
 							<svg
