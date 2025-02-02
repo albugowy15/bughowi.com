@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.3.0](https://github.com/albugowy15/bughowi.com/compare/v3.2.0...v3.3.0) (2025-02-02)
+
+
+### Features
+
+* add mobile nav animation ([ecdda6a](https://github.com/albugowy15/bughowi.com/commit/ecdda6afac37d8da9feac283c3c58a6bc8e78a1d))
+* upgrade tailwind v4 ([a20879b](https://github.com/albugowy15/bughowi.com/commit/a20879b1f46fabc0f8729cb67f9abd96b479fdf7))
+* use roboto flex font ([fa55833](https://github.com/albugowy15/bughowi.com/commit/fa558330fb3506fdad7c651708d8d44e0b1eda4b))
+
+
+### Bug Fixes
+
+* broken anchor link ([20e374d](https://github.com/albugowy15/bughowi.com/commit/20e374daac2e1cb7bdbd18afb5be79089c68cf56))
+* disable giscus lazyload ([072be76](https://github.com/albugowy15/bughowi.com/commit/072be76858f90bb583785a675f203f8387cde88f))
+* label chip overflow ([fc5c51b](https://github.com/albugowy15/bughowi.com/commit/fc5c51b9dd196dc75b3ad18ca487a54592f90a8d))
+* mobile nav solid background ([f34765a](https://github.com/albugowy15/bughowi.com/commit/f34765a10923e9989f15154a45e184cd42d94330))
+* mobile navigation too small ([a0f85c8](https://github.com/albugowy15/bughowi.com/commit/a0f85c83734cd54a8033d87a165ded19f2ba59d5))
+
 ## [3.2.0](https://github.com/albugowy15/bughowi.com/compare/v3.1.0...v3.2.0) (2025-01-29)
 
 
