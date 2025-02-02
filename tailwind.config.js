@@ -6,7 +6,7 @@ const config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				primary: ['Inter', ...fontFamily.sans],
+				primary: ['Roboto Flex', ...fontFamily.sans],
 			},
 			colors: {
 				// layout
