@@ -40,7 +40,7 @@ First, create a new component called `NewsletterForm.tsx`. Start creating your o
 ```tsx title="./components/NewsletterForm.tsx"
 const NewsletterForm = () => {
   return (
-    <div className="mx-auto w-full max-w-xl rounded border border-gray-700 bg-slate-900 p-5">
+    <div className="mx-auto w-full max-w-xl rounded-sm border border-gray-700 bg-slate-900 p-5">
       <p className="text-lg font-bold">Subscribe to the newsletter</p>
 
       <p className="py-1">
@@ -52,13 +52,13 @@ const NewsletterForm = () => {
           <input
             type="email"
             id="email"
-            className="block flex-auto rounded p-2 text-sm text-slate-400 focus:border-blue-500 focus:ring-blue-500"
+            className="block flex-auto rounded-sm p-2 text-sm text-slate-400 focus:border-blue-500 focus:ring-blue-500"
             placeholder="name@gmail.com"
             required
           />
           <button
             type="submit"
-            className="w-28 flex-1 rounded bg-blueAccent p-1.5 text-center font-bold text-slate-200 transition-colors hover:bg-blue-500"
+            className="w-28 flex-1 rounded-sm bg-blueAccent p-1.5 text-center font-bold text-slate-200 transition-colors hover:bg-blue-500"
           >
             Subscribe
           </button>
@@ -393,7 +393,7 @@ const NewsletterForm = () => {
   const { form, subscribe, inputEl } = useNewsletter();
 
   return (
-    <div className="mx-auto w-full max-w-xl rounded border border-gray-700 bg-slate-900 p-5">
+    <div className="mx-auto w-full max-w-xl rounded-sm border border-gray-700 bg-slate-900 p-5">
       <p className="text-lg font-bold">Subscribe to the newsletter</p>
 
       <p className="py-1">
@@ -406,13 +406,13 @@ const NewsletterForm = () => {
             type="email"
             ref={inputEl}
             id="email"
-            className="block flex-auto rounded border border-slate-700 bg-slate-700 p-2 text-sm text-slate-400 focus:border-blue-500 focus:ring-blue-500"
+            className="block flex-auto rounded-sm border border-slate-700 bg-slate-700 p-2 text-sm text-slate-400 focus:border-blue-500 focus:ring-blue-500"
             placeholder="name@gmail.com"
             required
           />
           <button
             type="submit"
-            className="w-28 flex-1 rounded bg-blue-600 p-1.5 text-center font-bold text-slate-200 transition-colors hover:bg-blue-500"
+            className="w-28 flex-1 rounded-sm bg-blue-600 p-1.5 text-center font-bold text-slate-200 transition-colors hover:bg-blue-500"
           >
             {form.state === Form.Loading ? <span>Loading...</span> : 'Subscribe'}
           </button>

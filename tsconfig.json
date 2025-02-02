@@ -1,12 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "exclude": [
-    "dist"
-  ],
-  "include": [
-    ".astro/types.d.ts",
-    "**/*"
-  ],
+  "exclude": ["dist"],
+  "include": [".astro/types.d.ts", "**/*"],
   "compilerOptions": {
     "baseUrl": ".",
     "strictNullChecks": true,
@@ -17,30 +12,14 @@
       }
     ],
     "paths": {
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@layouts/*": [
-        "./src/layouts/*"
-      ],
-      "@pages/*": [
-        "./src/pages/*"
-      ],
-      "@styles/*": [
-        "./src/styles/*"
-      ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@content/*": [
-        "./src/content/*"
-      ],
-      "@assets/*": [
-        "./src/assets/*"
-      ],
-      "@stores/*": [
-        "./src/stores/*"
-      ]
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@content/*": ["./src/content/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@stores/*": ["./src/stores/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"

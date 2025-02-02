@@ -18,7 +18,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 		<>
 			<header className="sticky top-0 z-30 w-full py-3 lg:py-6">
 				<div className="container mx-auto px-3 xl:px-14 2xl:max-w-7xl">
-					<nav className="flex justify-between items-center px-4 py-3 lg:px-5 lg:py-4 rounded-full backdrop-blur-md text-sm sm:text-base bg-background/40 border border-default-100">
+					<nav className="flex justify-between items-center px-4 py-3 lg:px-5 lg:py-4 rounded-full backdrop-blur-md text-sm sm:text-base bg-background/60 border border-default-100">
 						<a href="/" title="Homepage" aria-label="Homepage">
 							<img
 								src={profile_pic.src}
@@ -74,7 +74,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.2 }}
-						className="md:hidden z-50 flex flex-col items-center justify-center fixed right-0 left-0 bottom-0 top-0 bg-background/40 backdrop-blur-md"
+						className="md:hidden z-50 flex flex-col items-center justify-center fixed right-0 left-0 bottom-0 top-0 bg-background/60 backdrop-blur-md"
 					>
 						<motion.div
 							initial={{ scale: 0.9, y: -20 }}

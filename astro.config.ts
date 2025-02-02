@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import sitemap from '@astrojs/sitemap';
@@ -26,8 +26,10 @@ export default defineConfig({
 		'/projects': '/projects/page/1',
 	},
 	site: 'https://www.bughowi.com',
+	vite: {
+		plugins: [tailwindcss()],
+	},
 	integrations: [
-		tailwind(),
 		astroExpressiveCode({
 			themes: ['aurora-x'],
 		}),
