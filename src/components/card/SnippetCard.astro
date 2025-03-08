@@ -3,26 +3,26 @@ import Chip from '@components/Chip.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-	snippet: CollectionEntry<'snippets'>;
+  snippet: CollectionEntry<'snippets'>;
 }
 
 const { snippet } = Astro.props;
 ---
 
 <div
-	class="group flex flex-col p-4 gap-3 rounded-sm cursor-pointer border border-default-100 hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
+  class="group flex flex-col p-4 gap-3 rounded-sm cursor-pointer border border-default-100 hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
 >
-	<h3 class="text-lg font-bold hover:text-primary transition-colors line-clamp-2">
-		<a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
-	</h3>
-	<div class="flex flex-wrap gap-1">
-		{
-			snippet.data.categories.map((category) => (
-				<Chip variant="bordered" radius="sm" size="sm" class="border-default">
-					# {category}
-				</Chip>
-			))
-		}
-	</div>
-	<p class="line-clamp-3 text-foreground/70">{snippet.data.description}</p>
+  <h3 class="text-lg font-bold hover:text-primary transition-colors line-clamp-2">
+    <a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
+  </h3>
+  <div class="flex flex-wrap gap-1">
+    {
+      snippet.data.categories.map((category) => (
+        <Chip variant="bordered" radius="sm" size="sm" class="border-default">
+          # {category}
+        </Chip>
+      ))
+    }
+  </div>
+  <p class="line-clamp-3 text-foreground/70">{snippet.data.description}</p>
 </div>

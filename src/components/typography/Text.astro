@@ -1,21 +1,21 @@
 ---
 interface Props {
-	variant: 'body1' | 'body2' | 'body3' | 'label1' | 'label2';
-	className?: string;
+  variant: 'body1' | 'body2' | 'body3' | 'label1' | 'label2';
+  className?: string;
 }
 
 const { variant, className } = Astro.props;
 ---
 
 <p
-	class:list={[
-		className,
-		variant === 'body1' && 'text-base text-slate-200',
-		variant === 'body2' && 'text-sm text-slate-200',
-		variant === 'body3' && 'text-xs text-slate-200',
-		variant === 'label1' && 'text-sm font-medium text-slate-200',
-		variant === 'label2' && 'text-xs font-medium text-slate-200',
-	]}
+  class:list={[
+    className,
+    variant === 'body1' && 'text-base text-slate-200',
+    variant === 'body2' && 'text-sm text-slate-200',
+    variant === 'body3' && 'text-xs text-slate-200',
+    variant === 'label1' && 'text-sm font-medium text-slate-200',
+    variant === 'label2' && 'text-xs font-medium text-slate-200',
+  ]}
 >
-	<slot />
+  <slot />
 </p>

@@ -4,7 +4,7 @@ import { formatDate } from '@utils/date';
 import Chip from '@components/Chip.astro';
 
 interface Props {
-	post: CollectionEntry<'blog'>;
+  post: CollectionEntry<'blog'>;
 }
 
 const { post } = Astro.props;
@@ -12,28 +12,28 @@ const { remarkPluginFrontmatter } = await post.render();
 ---
 
 <div
-	class="group flex flex-col border border-default-100 hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
+  class="group flex flex-col border border-default-100 hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
 >
-	<div class="relative flex flex-col justify-between p-4 gap-3 rounded-sm cursor-pointer h-full">
-		<div class="flex flex-wrap gap-2">
-			{
-				post.data.categories?.map((category) => (
-					<Chip variant="bordered" radius="sm" size="sm" class="border-default">
-						# {category}
-					</Chip>
-				))
-			}
-		</div>
-		<h3 class="text-lg font-bold hover:text-primary transition-colors line-clamp-2">
-			<a href={`/blog/${post.slug}`}>{post.data.title}</a>
-		</h3>
-		<p class="line-clamp-3 text-foreground/70">{post.data.description}</p>
-		<div class="py-4"></div>
-		<div class="flex items-center justify-between text-sm absolute bottom-0 right-0 left-0 p-4">
-			<p class="text-foreground/50">{formatDate(post.data.date.toISOString())}</p>
-			<p class="text-foreground/50">
-				{remarkPluginFrontmatter.minutesRead}
-			</p>
-		</div>
-	</div>
+  <div class="relative flex flex-col justify-between p-4 gap-3 rounded-sm cursor-pointer h-full">
+    <div class="flex flex-wrap gap-2">
+      {
+        post.data.categories?.map((category) => (
+          <Chip variant="bordered" radius="sm" size="sm" class="border-default">
+            # {category}
+          </Chip>
+        ))
+      }
+    </div>
+    <h3 class="text-lg font-bold hover:text-primary transition-colors line-clamp-2">
+      <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+    </h3>
+    <p class="line-clamp-3 text-foreground/70">{post.data.description}</p>
+    <div class="py-4"></div>
+    <div class="flex items-center justify-between text-sm absolute bottom-0 right-0 left-0 p-4">
+      <p class="text-foreground/50">{formatDate(post.data.date.toISOString())}</p>
+      <p class="text-foreground/50">
+        {remarkPluginFrontmatter.minutesRead}
+      </p>
+    </div>
+  </div>
 </div>

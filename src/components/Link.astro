@@ -3,18 +3,18 @@ import { type HTMLAttributes } from 'astro/types';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const link = cva('a', {
-	variants: {
-		variant: {
-			default: '',
-			underline: 'underline',
-			block: 'px-1.5 py-1.5 rounded-lg bg-default',
-		},
-		size: {
-			sm: 'text-sm',
-			md: 'text-base',
-			lg: 'text-lg',
-		},
-	},
+  variants: {
+    variant: {
+      default: '',
+      underline: 'underline',
+      block: 'px-1.5 py-1.5 rounded-lg bg-default',
+    },
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+    },
+  },
 });
 export interface Props extends HTMLAttributes<'a'>, VariantProps<typeof link> {}
 
@@ -22,5 +22,5 @@ const { class: className, variant = 'default', size = 'md', ...rest } = Astro.pr
 ---
 
 <a class={link({ variant, size, className })} {...rest}>
-	<slot />
+  <slot />
 </a>

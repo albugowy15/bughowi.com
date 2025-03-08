@@ -7,43 +7,43 @@ import Layout from '@layouts/Layout.astro';
 import { compareDesc } from 'date-fns';
 import { Image } from 'astro:assets';
 import ContentPagination, {
-	type ContentNavigator,
+  type ContentNavigator,
 } from '@components/pagination/ContentPagination.astro';
 
 interface Props {
-	post: CollectionEntry<'projects'>;
-	nextPost: ContentNavigator | null;
-	prevPost: ContentNavigator | null;
+  post: CollectionEntry<'projects'>;
+  nextPost: ContentNavigator | null;
+  prevPost: ContentNavigator | null;
 }
 
 export const getStaticPaths = (async () => {
-	const projectCollection = await getCollection('projects');
-	const sortedProjectCollection = projectCollection.sort((a, b) =>
-		compareDesc(a.data.date, b.data.date)
-	);
-	const totalPost = sortedProjectCollection.length;
-	return sortedProjectCollection.flatMap((post, idx) => ({
-		params: {
-			slug: post.slug,
-		},
-		props: {
-			nextPost:
-				idx !== totalPost - 1
-					? {
-							title: sortedProjectCollection[idx + 1].data.title,
-							slug: '/projects/' + sortedProjectCollection[idx + 1].slug,
-						}
-					: null,
-			prevPost:
-				idx !== 0
-					? {
-							title: sortedProjectCollection[idx - 1].data.title,
-							slug: '/projects/' + sortedProjectCollection[idx - 1].slug,
-						}
-					: null,
-			post,
-		},
-	}));
+  const projectCollection = await getCollection('projects');
+  const sortedProjectCollection = projectCollection.sort((a, b) =>
+    compareDesc(a.data.date, b.data.date)
+  );
+  const totalPost = sortedProjectCollection.length;
+  return sortedProjectCollection.flatMap((post, idx) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: {
+      nextPost:
+        idx !== totalPost - 1
+          ? {
+              title: sortedProjectCollection[idx + 1].data.title,
+              slug: '/projects/' + sortedProjectCollection[idx + 1].slug,
+            }
+          : null,
+      prevPost:
+        idx !== 0
+          ? {
+              title: sortedProjectCollection[idx - 1].data.title,
+              slug: '/projects/' + sortedProjectCollection[idx - 1].slug,
+            }
+          : null,
+      post,
+    },
+  }));
 }) satisfies GetStaticPaths;
 
 const { post, nextPost, prevPost } = Astro.props;
@@ -52,52 +52,52 @@ const url = new URL('/projects/' + post.slug, Astro.site);
 ---
 
 <Layout
-	title={post.data.title}
-	type="article"
-	img={post.data.thumbnail}
-	description={post.data.description}
-	url={url.href}
+  title={post.data.title}
+  type="article"
+  img={post.data.thumbnail}
+  description={post.data.description}
+  url={url.href}
 >
-	<div class="py-4"></div>
-	<div class="mx-auto w-full lg:w-[65%]">
-		<Heading1>{post.data.title}</Heading1>
-		<Text variant="body1" className="mt-2 text-default-500">{post.data.description}</Text>
-		<article class="mt-5 w-full">
-			{
-				post.data.thumbnail && (
-					<Image
-						src={post.data.thumbnail}
-						alt={post.data.title}
-						height={1080}
-						width={720}
-						loading="eager"
-						class="rounded-lg"
-					/>
-				)
-			}
-			<div class="py-4"></div>
-			<section id="content-space" class="prose prose-invert max-w-none">
-				<Content />
-			</section>
-		</article>
-		<div class="py-4"></div>
-		<ContentPagination next={nextPost} prev={prevPost} />
-		<!-- Giscus comment -->
-		<script
-			is:inline
-			src="https://giscus.app/client.js"
-			data-repo="albugowy15/bughowi.com"
-			data-repo-id="R_kgDOHqneBQ"
-			data-category="Announcements"
-			data-category-id="DIC_kwDOHqneBc4CQdnP"
-			data-mapping="url"
-			data-strict="0"
-			data-reactions-enabled="1"
-			data-emit-metadata="0"
-			data-input-position="bottom"
-			data-theme="transparent_dark"
-			data-lang="en"
-			crossorigin="anonymous"
-			async></script>
-	</div>
+  <div class="py-4"></div>
+  <div class="mx-auto w-full lg:w-[65%]">
+    <Heading1>{post.data.title}</Heading1>
+    <Text variant="body1" className="mt-2 text-default-500">{post.data.description}</Text>
+    <article class="mt-5 w-full">
+      {
+        post.data.thumbnail && (
+          <Image
+            src={post.data.thumbnail}
+            alt={post.data.title}
+            height={1080}
+            width={720}
+            loading="eager"
+            class="rounded-lg"
+          />
+        )
+      }
+      <div class="py-4"></div>
+      <section id="content-space" class="prose prose-invert max-w-none">
+        <Content />
+      </section>
+    </article>
+    <div class="py-4"></div>
+    <ContentPagination next={nextPost} prev={prevPost} />
+    <!-- Giscus comment -->
+    <script
+      is:inline
+      src="https://giscus.app/client.js"
+      data-repo="albugowy15/bughowi.com"
+      data-repo-id="R_kgDOHqneBQ"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOHqneBc4CQdnP"
+      data-mapping="url"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="transparent_dark"
+      data-lang="en"
+      crossorigin="anonymous"
+      async></script>
+  </div>
 </Layout>

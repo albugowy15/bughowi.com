@@ -4,19 +4,19 @@ import Layout from '@layouts/Layout.astro';
 
 const about = await getEntry('about', 'about');
 if (!about) {
-	console.error('about content empty:');
-	return;
+  console.error('about content empty:');
+  return;
 }
 const { Content } = await about.render();
 ---
 
 <Layout
-	title="About Me"
-	url="https://www.bughowi.com/about"
-	description="A passionate software engineer with a knack for turning complex problems into elegant solutions"
+  title="About Me"
+  url="https://www.bughowi.com/about"
+  description="A passionate software engineer with a knack for turning complex problems into elegant solutions"
 >
-	<div class="py-4"></div>
-	<div id="content-space" class="prose prose-invert mx-auto">
-		<Content />
-	</div>
+  <div class="py-4"></div>
+  <div id="content-space" class="prose prose-invert mx-auto">
+    <Content />
+  </div>
 </Layout>

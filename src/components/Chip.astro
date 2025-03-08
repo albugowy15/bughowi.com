@@ -3,25 +3,25 @@ import type { HTMLAttributes } from 'astro/types';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const chip = cva('chip', {
-	variants: {
-		variant: {
-			solid: 'bg-default',
-			light: 'bg-transparent',
-			bordered: 'border-2 bg-transparent',
-		},
-		radius: {
-			none: 'rounded-none',
-			sm: 'rounded-xs',
-			md: 'rounded-sm',
-			lg: 'rounded-lg',
-			full: 'rounded-full',
-		},
-		size: {
-			sm: 'p-1.5 text-sm leading-none',
-			md: 'p-1.5 text-base leading-none',
-			lg: 'p-1.5 text-lg leading-none',
-		},
-	},
+  variants: {
+    variant: {
+      solid: 'bg-default',
+      light: 'bg-transparent',
+      bordered: 'border-2 bg-transparent',
+    },
+    radius: {
+      none: 'rounded-none',
+      sm: 'rounded-xs',
+      md: 'rounded-sm',
+      lg: 'rounded-lg',
+      full: 'rounded-full',
+    },
+    size: {
+      sm: 'p-1.5 text-sm leading-none',
+      md: 'p-1.5 text-base leading-none',
+      lg: 'p-1.5 text-lg leading-none',
+    },
+  },
 });
 
 export interface Props extends Omit<HTMLAttributes<'div'>, 'color'>, VariantProps<typeof chip> {}
@@ -30,5 +30,5 @@ const { class: className, variant = 'solid', size = 'md', radius = 'md', ...rest
 ---
 
 <div class={chip({ className, variant, size, radius })} {...rest}>
-	<slot />
+  <slot />
 </div>

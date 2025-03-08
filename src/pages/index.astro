@@ -8,103 +8,103 @@ import { compareDesc } from 'date-fns';
 import SnippetCard from '@components/card/SnippetCard.astro';
 
 const someBlogPosts = await getCollection('blog').then((res) =>
-	res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
+  res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
 );
 const someProjectPosts = await getCollection('projects').then((res) =>
-	res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
+  res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
 );
 const someSnippetPosts = await getCollection('snippets').then((res) =>
-	res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
+  res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
 );
 ---
 
 <Layout
-	title="Home"
-	description="Software architect and engineer with a passion for building comprehensive solutions. From initial concept to production deployment, I create robust systems that drive business value and user satisfaction."
+  title="Home"
+  description="Software architect and engineer with a passion for building comprehensive solutions. From initial concept to production deployment, I create robust systems that drive business value and user satisfaction."
 >
-	<section class="min-h-screen gap-2 lg:gap-4 flex flex-col justify-center items-center -mt-14">
-		<h1 class="text-2xl font-bold lg:text-5xl">Mohamad Kholid Bughowi</h1>
-		<h2 class="text-lg lg:text-3xl font-semibold">Software Engineer</h2>
-		<p class="text-foreground/80 text-base lg:text-xl text-center max-w-4xl">
-			Software architect and engineer with a passion for building comprehensive solutions. From
-			initial concept to production deployment, I create robust systems that drive business value
-			and user satisfaction.
-		</p>
-		<div class="mt-5 flex items-center justify-center gap-4 md:justify-start">
-			<a
-				class:list={[
-					buttonCva({ variant: 'solid', size: 'md', radius: 'md' }),
-					'bg-primary-100 font-bold hover:bg-transparent border border-primary transition-colors',
-				]}
-				href="/about">More About Me</a
-			>
-			<a
-				class:list={[
-					buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
-					'flex gap-1 items-center font-bold hover:bg-secondary border-secondary transition-colors',
-				]}
-				aria-label="Resume"
-				href="https://drive.google.com/file/d/1V5vUaofRneAJPGW9VgErhloWXNyu8vV4/view?usp=sharing"
-				rel="noreferrer"
-				target="_blank"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="h-5 w-5"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
-					></path>
-				</svg>
-				Resume
-			</a>
-		</div>
-	</section>
-	<!-- start - Recent Post -->
-	<section id="recent-posts" class="scroll-my-16">
-		<a
-			href="/blog/page/1"
-			class="w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-primary"
-		>
-			Recent Posts
-		</a>
-		<div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-			{someBlogPosts.map((post) => <PostCard post={post} />)}
-		</div>
-		<!-- end - Recent Post -->
-		<div class="py-4"></div>
-	</section>
-	<!-- start - Personal Project -->
-	<section id="personal-projects" class="my-8">
-		<a
-			href="/projects/page/1"
-			class="w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-primary"
-		>
-			Personal Projects
-		</a>
-		<div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-			{someProjectPosts.map((project) => <ProjectCard project={project} />)}
-		</div>
-	</section>
-	<!-- end - Personal Project -->
+  <section class="min-h-screen gap-2 lg:gap-4 flex flex-col justify-center items-center -mt-14">
+    <h1 class="text-2xl font-bold lg:text-5xl">Mohamad Kholid Bughowi</h1>
+    <h2 class="text-lg lg:text-3xl font-semibold">Software Engineer</h2>
+    <p class="text-foreground/80 text-base lg:text-xl text-center max-w-4xl">
+      Software architect and engineer with a passion for building comprehensive solutions. From
+      initial concept to production deployment, I create robust systems that drive business value
+      and user satisfaction.
+    </p>
+    <div class="mt-5 flex items-center justify-center gap-4 md:justify-start">
+      <a
+        class:list={[
+          buttonCva({ variant: 'solid', size: 'md', radius: 'md' }),
+          'bg-primary-100 font-bold hover:bg-transparent border border-primary transition-colors',
+        ]}
+        href="/about">More About Me</a
+      >
+      <a
+        class:list={[
+          buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
+          'flex gap-1 items-center font-bold hover:bg-secondary border-secondary transition-colors',
+        ]}
+        aria-label="Resume"
+        href="https://drive.google.com/file/d/1V5vUaofRneAJPGW9VgErhloWXNyu8vV4/view?usp=sharing"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-5 w-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
+          ></path>
+        </svg>
+        Resume
+      </a>
+    </div>
+  </section>
+  <!-- start - Recent Post -->
+  <section id="recent-posts" class="scroll-my-16">
+    <a
+      href="/blog/page/1"
+      class="w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-primary"
+    >
+      Recent Posts
+    </a>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {someBlogPosts.map((post) => <PostCard post={post} />)}
+    </div>
+    <!-- end - Recent Post -->
+    <div class="py-4"></div>
+  </section>
+  <!-- start - Personal Project -->
+  <section id="personal-projects" class="my-8">
+    <a
+      href="/projects/page/1"
+      class="w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-primary"
+    >
+      Personal Projects
+    </a>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {someProjectPosts.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+  <!-- end - Personal Project -->
 
-	<!-- start - Snippet -->
-	<section id="snippets" class="my-8">
-		<a
-			href="/snippets/page/1"
-			class="w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-primary"
-		>
-			Snippets
-		</a>
-		<div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-			{someSnippetPosts.map((snippet) => <SnippetCard snippet={snippet} />)}
-		</div>
-	</section>
-	<!-- end - Snippet -->
+  <!-- start - Snippet -->
+  <section id="snippets" class="my-8">
+    <a
+      href="/snippets/page/1"
+      class="w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-primary"
+    >
+      Snippets
+    </a>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {someSnippetPosts.map((snippet) => <SnippetCard snippet={snippet} />)}
+    </div>
+  </section>
+  <!-- end - Snippet -->
 </Layout>

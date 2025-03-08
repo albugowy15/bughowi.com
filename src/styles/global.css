@@ -1,55 +1,56 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 @theme {
-	--font-primary: Roboto Flex, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-primary:
+    Roboto Flex, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
 
-	--color-background: #000000;
-	--color-foreground: #ecedee;
-	--color-focus: #006fee;
-	--color-content1: #18181b;
-	--color-content2: #27272a;
-	--color-content3: #3f3f46;
-	--color-content4: #52525b;
-	--color-success: #17c964;
-	--color-warning: #f5a524;
-	--color-danger: #f31260;
+  --color-background: #000000;
+  --color-foreground: #ecedee;
+  --color-focus: #006fee;
+  --color-content1: #18181b;
+  --color-content2: #27272a;
+  --color-content3: #3f3f46;
+  --color-content4: #52525b;
+  --color-success: #17c964;
+  --color-warning: #f5a524;
+  --color-danger: #f31260;
 
-	--color-default-50: #18181b;
-	--color-default-100: #27272a;
-	--color-default-200: #3f3f46;
-	--color-default-300: #52525b;
-	--color-default-400: #71717a;
-	--color-default-500: #a1a1aa;
-	--color-default-600: #d4d4d8;
-	--color-default-700: #e4e4e7;
-	--color-default-800: #f4f4f5;
-	--color-default-900: #fafafa;
-	--color-default: #3f3f46;
+  --color-default-50: #18181b;
+  --color-default-100: #27272a;
+  --color-default-200: #3f3f46;
+  --color-default-300: #52525b;
+  --color-default-400: #71717a;
+  --color-default-500: #a1a1aa;
+  --color-default-600: #d4d4d8;
+  --color-default-700: #e4e4e7;
+  --color-default-800: #f4f4f5;
+  --color-default-900: #fafafa;
+  --color-default: #3f3f46;
 
-	--color-primary-50: #001731;
-	--color-primary-100: #002e62;
-	--color-primary-200: #004493;
-	--color-primary-300: #005bc4;
-	--color-primary-400: #006fee;
-	--color-primary-500: #338ef7;
-	--color-primary-600: #66aaf9;
-	--color-primary-700: #99c7fb;
-	--color-primary-800: #cce3fd;
-	--color-primary-900: #e6f1fe;
-	--color-primary: #006fee;
+  --color-primary-50: #001731;
+  --color-primary-100: #002e62;
+  --color-primary-200: #004493;
+  --color-primary-300: #005bc4;
+  --color-primary-400: #006fee;
+  --color-primary-500: #338ef7;
+  --color-primary-600: #66aaf9;
+  --color-primary-700: #99c7fb;
+  --color-primary-800: #cce3fd;
+  --color-primary-900: #e6f1fe;
+  --color-primary: #006fee;
 
-	--color-secondary-50: #180828;
-	--color-secondary-100: #301050;
-	--color-secondary-200: #481878;
-	--color-secondary-300: #6020a0;
-	--color-secondary-400: #7828c8;
-	--color-secondary-500: #9353d3;
-	--color-secondary-600: #ae7ede;
-	--color-secondary-700: #c9a9e9;
-	--color-secondary-800: #e4d4f4;
-	--color-secondary-900: #f2eafa;
-	--color-secondary: #9353d3;
+  --color-secondary-50: #180828;
+  --color-secondary-100: #301050;
+  --color-secondary-200: #481878;
+  --color-secondary-300: #6020a0;
+  --color-secondary-400: #7828c8;
+  --color-secondary-500: #9353d3;
+  --color-secondary-600: #ae7ede;
+  --color-secondary-700: #c9a9e9;
+  --color-secondary-800: #e4d4f4;
+  --color-secondary-900: #f2eafa;
+  --color-secondary: #9353d3;
 }
 
 /*
@@ -61,19 +62,19 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-	*,
-	::after,
-	::before,
-	::backdrop,
-	::file-selector-button {
-		border-color: var(--color-gray-200, currentColor);
-	}
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
 body {
-	@apply bg-background font-primary text-foreground;
+  @apply bg-background font-primary text-foreground;
 }
 
 html {
-	@apply relative min-h-full scroll-smooth;
+  @apply relative min-h-full scroll-smooth;
 }

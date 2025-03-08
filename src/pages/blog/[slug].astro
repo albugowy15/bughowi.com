@@ -14,37 +14,37 @@ import { buttonCva } from '@components/Button.astro';
 import Chip from '@components/Chip.astro';
 
 interface Props {
-	post: CollectionEntry<'blog'>;
-	nextPost: ContentNavigator | null;
-	prevPost: ContentNavigator | null;
+  post: CollectionEntry<'blog'>;
+  nextPost: ContentNavigator | null;
+  prevPost: ContentNavigator | null;
 }
 
 export const getStaticPaths = (async () => {
-	const blogCollection = await getCollection('blog');
-	const sortedBlogCollection = blogCollection.sort((a, b) => compareDesc(a.data.date, b.data.date));
-	const totalPost = sortedBlogCollection.length;
-	return sortedBlogCollection.flatMap((post, idx) => ({
-		params: {
-			slug: post.slug,
-		},
-		props: {
-			nextPost:
-				idx !== totalPost - 1
-					? {
-							title: sortedBlogCollection[idx + 1].data.title,
-							slug: '/blog/' + sortedBlogCollection[idx + 1].slug,
-						}
-					: null,
-			prevPost:
-				idx !== 0
-					? {
-							title: sortedBlogCollection[idx - 1].data.title,
-							slug: '/blog/' + sortedBlogCollection[idx - 1].slug,
-						}
-					: null,
-			post,
-		},
-	}));
+  const blogCollection = await getCollection('blog');
+  const sortedBlogCollection = blogCollection.sort((a, b) => compareDesc(a.data.date, b.data.date));
+  const totalPost = sortedBlogCollection.length;
+  return sortedBlogCollection.flatMap((post, idx) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: {
+      nextPost:
+        idx !== totalPost - 1
+          ? {
+              title: sortedBlogCollection[idx + 1].data.title,
+              slug: '/blog/' + sortedBlogCollection[idx + 1].slug,
+            }
+          : null,
+      prevPost:
+        idx !== 0
+          ? {
+              title: sortedBlogCollection[idx - 1].data.title,
+              slug: '/blog/' + sortedBlogCollection[idx - 1].slug,
+            }
+          : null,
+      post,
+    },
+  }));
 }) satisfies GetStaticPaths;
 
 const { post, nextPost, prevPost } = Astro.props;
@@ -55,144 +55,144 @@ const url = new URL('/blog/' + post.slug, Astro.site);
 ---
 
 <Layout
-	title={post.data.title}
-	url={url.href}
-	type="article"
-	img={post.data.thumbnail}
-	description={post.data.description}
+  title={post.data.title}
+  url={url.href}
+  type="article"
+  img={post.data.thumbnail}
+  description={post.data.description}
 >
-	<div class="mx-auto w-full xl:flex xl:items-start xl:justify-between xl:gap-10 mt-5">
-		<div class="xl:w-[70%]">
-			<div class="flex flex-col gap-2">
-				<Heading1>{post.data.title}</Heading1>
-				<p class="text-default-500">{post.data.description}</p>
-				<section class="flex flex-wrap items-center justify-start gap-1 sm:gap-3">
-					<Text variant="body1">📆 {formatDate(post.data.date.toISOString())}</Text>
-					<span>&#8226;</span>
-					<Text variant="body1">
-						⏳ {remarkPluginFrontmatter.minutesRead}
-					</Text>
-					<span>&#8226;</span>
-					<ul class="flex flex-wrap items-center gap-2">
-						{
-							post.data.categories.map((item) => (
-								<li>
-									<Chip variant="bordered" class="border-default-100">
-										# {item}
-									</Chip>
-								</li>
-							))
-						}
-					</ul>
-				</section>
-			</div>
-			<article class="prose prose-invert max-w-none prose-headings:scroll-mt-25">
-				<section id="content-space">
-					<Content />
-				</section>
-				<section class="not-prose mt-6 flex flex-wrap justify-between gap-2">
-					<a
-						href={editUrl}
-						class:list={[
-							buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
-							'flex items-center gap-2 border-default hover:bg-default transition-colors',
-						]}
-						aria-label="Edit this page"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="20"
-							height="20"
-							fill="currentColor"
-							class="text-green-600"
-							viewBox="0 0 16 16"
-						>
-							<path
-								d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
-							></path>
-						</svg>
-						Edit this page</a
-					>
-					<a
-						href={tweetUrl}
-						class:list={[
-							buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
-							'flex items-center gap-2 border-default hover:bg-default transition-colors',
-						]}
-						aria-label="Tweet this article"
-						><svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="20"
-							height="20"
-							fill="currentColor"
-							class="text-cyan-600"
-							viewBox="0 0 16 16"
-						>
-							<path
-								d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-							></path>
-						</svg>
-						Tweet this article</a
-					>
-				</section>
-			</article>
-			<ContentPagination next={nextPost} prev={prevPost} />
-			<div class="py-4"></div>
-			<!-- Giscus comment -->
-			<script
-				is:inline
-				src="https://giscus.app/client.js"
-				data-repo="albugowy15/bughowi.com"
-				data-repo-id="R_kgDOHqneBQ"
-				data-category="Announcements"
-				data-category-id="DIC_kwDOHqneBc4CQdnP"
-				data-mapping="url"
-				data-strict="0"
-				data-reactions-enabled="1"
-				data-emit-metadata="0"
-				data-input-position="bottom"
-				data-theme="transparent_dark"
-				data-lang="en"
-				crossorigin="anonymous"
-				async></script>
-		</div>
-		<aside
-			class="sticky top-32 hidden flex-1 flex-col divide-y divide-default-100 rounded-lg border-2 border-default-100 xl:flex"
-		>
-			<div class="flex items-center justify-between px-3 py-2">
-				<Heading4>Table Of Contents</Heading4>
-				<p id="scroll-top" class="cursor-pointer text-sm text-primary-500">Back to top</p>
-			</div>
-			<ul class="py-2" id="toc-container">
-				{
-					headings.map((heading) => (
-						<li class="">
-							<a
-								href={`#${heading.slug}`}
-								class:list={[
-									'block px-3 py-1.5 text-sm font-semibold text-foreground/80 hover:bg-default-100/40',
-									{
-										'pl-2': heading.depth === 2,
-										'pl-6': heading.depth === 3,
-										'pl-8': heading.depth === 4,
-										'pl-10': heading.depth === 5,
-										'pl-12': heading.depth === 6,
-									},
-								]}
-							>
-								{heading.text}
-							</a>
-						</li>
-					))
-				}
-			</ul>
-		</aside>
-	</div>
+  <div class="mx-auto w-full xl:flex xl:items-start xl:justify-between xl:gap-10 mt-5">
+    <div class="xl:w-[70%]">
+      <div class="flex flex-col gap-2">
+        <Heading1>{post.data.title}</Heading1>
+        <p class="text-default-500">{post.data.description}</p>
+        <section class="flex flex-wrap items-center justify-start gap-1 sm:gap-3">
+          <Text variant="body1">📆 {formatDate(post.data.date.toISOString())}</Text>
+          <span>&#8226;</span>
+          <Text variant="body1">
+            ⏳ {remarkPluginFrontmatter.minutesRead}
+          </Text>
+          <span>&#8226;</span>
+          <ul class="flex flex-wrap items-center gap-2">
+            {
+              post.data.categories.map((item) => (
+                <li>
+                  <Chip variant="bordered" class="border-default-100">
+                    # {item}
+                  </Chip>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </div>
+      <article class="prose prose-invert max-w-none prose-headings:scroll-mt-25">
+        <section id="content-space">
+          <Content />
+        </section>
+        <section class="not-prose mt-6 flex flex-wrap justify-between gap-2">
+          <a
+            href={editUrl}
+            class:list={[
+              buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
+              'flex items-center gap-2 border-default hover:bg-default transition-colors',
+            ]}
+            aria-label="Edit this page"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="text-green-600"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+              ></path>
+            </svg>
+            Edit this page</a
+          >
+          <a
+            href={tweetUrl}
+            class:list={[
+              buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
+              'flex items-center gap-2 border-default hover:bg-default transition-colors',
+            ]}
+            aria-label="Tweet this article"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="text-cyan-600"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+              ></path>
+            </svg>
+            Tweet this article</a
+          >
+        </section>
+      </article>
+      <ContentPagination next={nextPost} prev={prevPost} />
+      <div class="py-4"></div>
+      <!-- Giscus comment -->
+      <script
+        is:inline
+        src="https://giscus.app/client.js"
+        data-repo="albugowy15/bughowi.com"
+        data-repo-id="R_kgDOHqneBQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOHqneBc4CQdnP"
+        data-mapping="url"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="transparent_dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async></script>
+    </div>
+    <aside
+      class="sticky top-32 hidden flex-1 flex-col divide-y divide-default-100 rounded-lg border-2 border-default-100 xl:flex"
+    >
+      <div class="flex items-center justify-between px-3 py-2">
+        <Heading4>Table Of Contents</Heading4>
+        <p id="scroll-top" class="cursor-pointer text-sm text-primary-500">Back to top</p>
+      </div>
+      <ul class="py-2" id="toc-container">
+        {
+          headings.map((heading) => (
+            <li class="">
+              <a
+                href={`#${heading.slug}`}
+                class:list={[
+                  'block px-3 py-1.5 text-sm font-semibold text-foreground/80 hover:bg-default-100/40',
+                  {
+                    'pl-2': heading.depth === 2,
+                    'pl-6': heading.depth === 3,
+                    'pl-8': heading.depth === 4,
+                    'pl-10': heading.depth === 5,
+                    'pl-12': heading.depth === 6,
+                  },
+                ]}
+              >
+                {heading.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </aside>
+  </div>
 </Layout>
 
 <script>
-	function scrollToTop() {
-		window.scrollTo(0, 0);
-	}
-	document.getElementById('scroll-top')?.addEventListener('click', scrollToTop);
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+  document.getElementById('scroll-top')?.addEventListener('click', scrollToTop);
 </script>
