@@ -1,17 +1,17 @@
 ---
-import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import Heading1 from '@components/typography/Heading1.astro';
-import Text from '@components/typography/Text.astro';
-import Heading4 from '@components/typography/Heading4.astro';
-import Layout from '@layouts/Layout.astro';
-import { formatDate } from '@utils/date';
-import { compareDesc } from 'date-fns';
-import ContentPagination from '@components/pagination/ContentPagination.astro';
-import type { ContentNavigator } from '@components/pagination/ContentPagination.astro';
 import { buttonCva } from '@components/Button.astro';
 import Chip from '@components/Chip.astro';
+import ContentPagination from '@components/pagination/ContentPagination.astro';
+import type { ContentNavigator } from '@components/pagination/ContentPagination.astro';
+import Heading1 from '@components/typography/Heading1.astro';
+import Heading4 from '@components/typography/Heading4.astro';
+import Text from '@components/typography/Text.astro';
+import Layout from '@layouts/Layout.astro';
+import { formatDate } from '@utils/date';
+import type { GetStaticPaths } from 'astro';
+import { compareDesc } from 'date-fns';
 
 interface Props {
   post: CollectionEntry<'blog'>;

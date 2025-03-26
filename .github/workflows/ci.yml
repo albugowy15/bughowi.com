@@ -25,9 +25,7 @@ jobs:
         run: pnpm sync
       - name: TypeScript
         run: pnpm typecheck
-      - name: ESlint
-        run: pnpm lint
-      - name: Prettier
-        run: pnpm format:check
+      - name: Biome
+        run: pnpm biome ci .
       - name: Build
         run: pnpm build

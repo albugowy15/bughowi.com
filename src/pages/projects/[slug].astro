@@ -1,14 +1,14 @@
 ---
-import { type GetStaticPaths } from 'astro';
-import { type CollectionEntry, getCollection } from 'astro:content';
-import Heading1 from '@components/typography/Heading1.astro';
-import Text from '@components/typography/Text.astro';
-import Layout from '@layouts/Layout.astro';
-import { compareDesc } from 'date-fns';
 import { Image } from 'astro:assets';
+import { type CollectionEntry, getCollection } from 'astro:content';
 import ContentPagination, {
   type ContentNavigator,
 } from '@components/pagination/ContentPagination.astro';
+import Heading1 from '@components/typography/Heading1.astro';
+import Text from '@components/typography/Text.astro';
+import Layout from '@layouts/Layout.astro';
+import { type GetStaticPaths } from 'astro';
+import { compareDesc } from 'date-fns';
 
 interface Props {
   post: CollectionEntry<'projects'>;
