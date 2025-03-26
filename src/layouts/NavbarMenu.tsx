@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import profile_pic from '@assets/profile.png';
+import { AnimatePresence, motion } from 'motion/react';
+import * as React from 'react';
 
 interface NavbarLink {
   path: string;
