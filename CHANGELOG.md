@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/albugowy15/bughowi.com/compare/v3.3.0...v3.4.0) (2025-03-26)
+
+
+### Features
+
+* adjust content width for non-blog page ([f6babd9](https://github.com/albugowy15/bughowi.com/commit/f6babd9a2566003b74fd30cf36b46ad7de805d3e))
+
 ## [3.3.0](https://github.com/albugowy15/bughowi.com/compare/v3.2.0...v3.3.0) (2025-02-02)
 
 
