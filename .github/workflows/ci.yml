@@ -21,11 +21,13 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Generate types from astro
-        run: pnpm sync
-      - name: TypeScript
-        run: pnpm typecheck
+      - name: Astro check
+        run: pnpm check
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
+        with:
+          version: latest
       - name: Biome
-        run: pnpm biome ci .
+        run: biome ci
       - name: Build
         run: pnpm build

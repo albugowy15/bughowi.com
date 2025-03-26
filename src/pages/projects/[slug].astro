@@ -7,7 +7,7 @@ import ContentPagination, {
 import Heading1 from '@components/typography/Heading1.astro';
 import Text from '@components/typography/Text.astro';
 import Layout from '@layouts/Layout.astro';
-import { type GetStaticPaths } from 'astro';
+import type { GetStaticPaths } from 'astro';
 import { compareDesc } from 'date-fns';
 
 interface Props {
@@ -31,14 +31,14 @@ export const getStaticPaths = (async () => {
         idx !== totalPost - 1
           ? {
               title: sortedProjectCollection[idx + 1].data.title,
-              slug: '/projects/' + sortedProjectCollection[idx + 1].slug,
+              slug: `/projects/${sortedProjectCollection[idx + 1].slug}`,
             }
           : null,
       prevPost:
         idx !== 0
           ? {
               title: sortedProjectCollection[idx - 1].data.title,
-              slug: '/projects/' + sortedProjectCollection[idx - 1].slug,
+              slug: `/projects/${sortedProjectCollection[idx - 1].slug}`,
             }
           : null,
       post,
@@ -48,7 +48,7 @@ export const getStaticPaths = (async () => {
 
 const { post, nextPost, prevPost } = Astro.props;
 const { Content } = await post.render();
-const url = new URL('/projects/' + post.slug, Astro.site);
+const url = new URL(`/projects/${post.slug}`, Astro.site);
 ---
 
 <Layout

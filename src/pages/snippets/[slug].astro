@@ -29,14 +29,14 @@ export const getStaticPaths = (async () => {
         idx !== totalSnippet - 1
           ? {
               title: sortedSnippetCollection[idx + 1].data.title,
-              slug: '/snippets/' + sortedSnippetCollection[idx + 1].slug,
+              slug: `/snippets/${sortedSnippetCollection[idx + 1].slug}`,
             }
           : null,
       prevPost:
         idx !== 0
           ? {
               title: sortedSnippetCollection[idx - 1].data.title,
-              slug: '/snippets/' + sortedSnippetCollection[idx - 1].slug,
+              slug: `/snippets/${sortedSnippetCollection[idx - 1].slug}`,
             }
           : null,
       post,
