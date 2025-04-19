@@ -1,6 +1,6 @@
-import profile_pic from '@assets/profile.png';
-import { AnimatePresence, motion } from 'motion/react';
 import * as React from 'react';
+import profile_pic from '@/assets/profile.png';
+import { AnimatePresence, motion } from 'motion/react';
 
 interface NavbarLink {
   path: string;
@@ -10,6 +10,15 @@ interface NavbarLink {
 interface NavbarProps {
   links: NavbarLink[];
 }
+
+const socialMediaLinks = [
+  { href: 'https://github.com/albugowy15', title: 'github' },
+  { href: 'https://twitter.com/bughowy', title: 'x' },
+  {
+    href: 'https://linkedin.com/in/bughowi',
+    title: 'linkedin',
+  },
+];
 
 const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
   const [openMenu, setOpenMenu] = React.useState(false);
@@ -104,11 +113,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
 
               <div className="flex flex-col items-center justify-center gap-2">
                 <ul className="flex items-center gap-2 justify-center">
-                  {[
-                    { href: 'https://github.com/albugowy15', title: 'github' },
-                    { href: 'https://twitter.com/bughowy', title: 'x' },
-                    { href: 'https://linkedin.com/in/bughowi', title: 'linkedin' },
-                  ].map((social, index) => (
+                  {socialMediaLinks.map((social, index) => (
                     <motion.li
                       key={social.href}
                       initial={{ opacity: 0, scale: 0.5 }}

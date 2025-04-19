@@ -1,18 +1,18 @@
 ---
 import { getEntry } from 'astro:content';
-import Layout from '@layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
 
 const about = await getEntry('about', 'about');
 if (!about) {
-  console.error('about content empty:');
-  return;
+  throw new Error('About content is empty');
 }
 const { Content } = await about.render();
+const url = new URL('/about', Astro.site);
 ---
 
 <Layout
   title="About Me"
-  url="https://www.bughowi.com/about"
+  url={url.href}
   description="A passionate software engineer with a knack for turning complex problems into elegant solutions"
 >
   <div class="py-4"></div>

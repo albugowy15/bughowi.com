@@ -1,7 +1,7 @@
 ---
 import '@fontsource/roboto-flex';
-import '@styles/global.css';
-import Footer from '@layouts/Footer.astro';
+import '@/styles/global.css';
+import Footer from '@/layouts/Footer.astro';
 import { NavbarMenu } from './NavbarMenu.tsx';
 
 interface Props {
@@ -31,11 +31,11 @@ const {
 <!doctype html>
 <html lang="en">
   <head>
+    <title>{title} - Mohamad Kholid Bughowi</title>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} - Mohamad Kholid Bughowi</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

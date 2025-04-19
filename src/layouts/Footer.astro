@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import profile_pic from '@assets/profile.png';
-import Link from '@components/Link.astro';
+import profile_pic from '@/assets/profile.png';
+import Link from '@/components/Link.astro';
 ---
 
 <footer class="not-prose container mx-auto flex-1 px-3 xl:px-14 2xl:max-w-7xl mb-8">
@@ -19,7 +19,7 @@ import Link from '@components/Link.astro';
         <p class="text-foreground/60">Blog content managed using Astro content collection</p>
       </div>
       <p class="text-foreground/60 text-sm lg:text-base">
-        Made with ❤️ By <Link
+        Made with ❤ By <Link
           variant="underline"
           class={'cursor-pointer text-foreground lg:mx-1 text-sm lg:text-base'}
           href="https://github.com/albugowy15">Mohamad Kholid Bughowi</Link

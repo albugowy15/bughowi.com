@@ -1,17 +1,18 @@
 ---
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import { buttonCva } from '@components/Button.astro';
-import Chip from '@components/Chip.astro';
-import ContentPagination from '@components/pagination/ContentPagination.astro';
-import type { ContentNavigator } from '@components/pagination/ContentPagination.astro';
-import Heading1 from '@components/typography/Heading1.astro';
-import Heading4 from '@components/typography/Heading4.astro';
-import Text from '@components/typography/Text.astro';
-import Layout from '@layouts/Layout.astro';
-import { formatDate } from '@utils/date';
+import { buttonCva } from '@/components/Button.astro';
+import Chip from '@/components/Chip.astro';
+import ContentPagination from '@/components/pagination/ContentPagination.astro';
+import type { ContentNavigator } from '@/components/pagination/ContentPagination.astro';
+import Heading1 from '@/components/typography/Heading1.astro';
+import Heading4 from '@/components/typography/Heading4.astro';
+import Text from '@/components/typography/Text.astro';
+import Layout from '@/layouts/Layout.astro';
+import { formatDate } from '@/utils/date';
 import type { GetStaticPaths } from 'astro';
 import { compareDesc } from 'date-fns';
+import { GITHUB_PROFILE_URL, X_USERNAME } from '@/lib/constant';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -49,14 +50,14 @@ export const getStaticPaths = (async () => {
 
 const { post, nextPost, prevPost } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await post.render();
-const editUrl = `https://github.com/albugowy15/bughowi.com/blob/main/src/content/blog/${post.slug}.mdx`;
-const tweetUrl = `https://twitter.com/intent/tweet?text=${post.data.title}&url=https://bughowi.com/blog/${post.slug}&via=bughowy`;
-const url = new URL(`/blog/${post.slug}`, Astro.site);
+const editUrl = `${GITHUB_PROFILE_URL}/bughowi.com/blob/main/src/content/blog/${post.slug}.mdx`;
+const tweetUrl = `https://x.com/intent/tweet?text=${post.data.title}&url=${Astro.site}/blog/${post.slug}&via=${X_USERNAME}`;
+const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
 ---
 
 <Layout
   title={post.data.title}
-  url={url.href}
+  url={postUrl.href}
   type="article"
   img={post.data.thumbnail}
   description={post.data.description}
@@ -154,7 +155,8 @@ const url = new URL(`/blog/${post.slug}`, Astro.site);
         data-theme="transparent_dark"
         data-lang="en"
         crossorigin="anonymous"
-        async></script>
+        async
+      />
     </div>
     <aside
       class="sticky top-32 hidden flex-1 flex-col divide-y divide-default-100 rounded-lg border-2 border-default-100 xl:flex"

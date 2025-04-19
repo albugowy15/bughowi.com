@@ -1,21 +1,28 @@
 ---
 import { getCollection } from 'astro:content';
-import { buttonCva } from '@components/Button.astro';
-import PostCard from '@components/card/PostCard.astro';
-import ProjectCard from '@components/card/ProjectCard.astro';
-import SnippetCard from '@components/card/SnippetCard.astro';
-import Layout from '@layouts/Layout.astro';
+import { buttonCva } from '@/components/Button.astro';
+import PostCard from '@/components/card/PostCard.astro';
+import ProjectCard from '@/components/card/ProjectCard.astro';
+import SnippetCard from '@/components/card/SnippetCard.astro';
+import Layout from '@/layouts/Layout.astro';
 import { compareDesc } from 'date-fns';
+import { CV_DOCUMENT_URL } from '@/lib/constant';
 
-const someBlogPosts = await getCollection('blog').then((res) =>
-  res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
-);
-const someProjectPosts = await getCollection('projects').then((res) =>
-  res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
-);
-const someSnippetPosts = await getCollection('snippets').then((res) =>
-  res.sort((a, b) => compareDesc(a.data.date, b.data.date)).slice(0, 6)
-);
+const [blogCollections, projectCollections, snippetCollections] = await Promise.all([
+  getCollection('blog'),
+  getCollection('projects'),
+  getCollection('snippets'),
+]);
+
+const someBlogPosts = blogCollections
+  .sort((a, b) => compareDesc(a.data.date, b.data.date))
+  .slice(0, 6);
+const someProjectPosts = projectCollections
+  .sort((a, b) => compareDesc(a.data.date, b.data.date))
+  .slice(0, 6);
+const someSnippetPosts = snippetCollections
+  .sort((a, b) => compareDesc(a.data.date, b.data.date))
+  .slice(0, 6);
 ---
 
 <Layout
@@ -44,7 +51,7 @@ const someSnippetPosts = await getCollection('snippets').then((res) =>
           'flex gap-1 items-center font-bold hover:bg-secondary border-secondary transition-colors',
         ]}
         aria-label="Resume"
-        href="https://drive.google.com/file/d/1V5vUaofRneAJPGW9VgErhloWXNyu8vV4/view?usp=sharing"
+        href={CV_DOCUMENT_URL}
         rel="noreferrer"
         target="_blank"
       >

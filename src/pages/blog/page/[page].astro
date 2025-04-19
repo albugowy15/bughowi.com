@@ -1,10 +1,10 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import PostCard from '@components/card/PostCard.astro';
-import PagePagination from '@components/pagination/PagePagination.astro';
-import Heading2 from '@components/typography/Heading2.astro';
-import Text from '@components/typography/Text.astro';
-import Layout from '@layouts/Layout.astro';
+import PostCard from '@/components/card/PostCard.astro';
+import PagePagination from '@/components/pagination/PagePagination.astro';
+import Heading2 from '@/components/typography/Heading2.astro';
+import Text from '@/components/typography/Text.astro';
+import Layout from '@/layouts/Layout.astro';
 import type { GetStaticPaths } from 'astro';
 import type { Page } from 'astro';
 import { compareDesc } from 'date-fns';
@@ -20,11 +20,12 @@ interface Props {
 }
 
 const { page } = Astro.props;
+const url = new URL(`/blog/page/${page.currentPage}`, Astro.site);
 ---
 
 <Layout
   title="Blog"
-  url=`https://www.bughowi.com/blog/page/${page.currentPage}`
+  url={url.href}
   description="Welcome to my Blog. Here I share my thoughts related to Fullstack development topics and programming in general. I've always been a fan of writing, and I hope you can find something here that could help you in your developer career."
 >
   <div class="py-4"></div>

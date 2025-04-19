@@ -1,10 +1,10 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import type { ContentNavigator } from '@components/pagination/ContentPagination.astro';
-import ContentPagination from '@components/pagination/ContentPagination.astro';
-import Heading1 from '@components/typography/Heading1.astro';
-import Text from '@components/typography/Text.astro';
-import Layout from '@layouts/Layout.astro';
+import type { ContentNavigator } from '@/components/pagination/ContentPagination.astro';
+import ContentPagination from '@/components/pagination/ContentPagination.astro';
+import Heading1 from '@/components/typography/Heading1.astro';
+import Text from '@/components/typography/Text.astro';
+import Layout from '@/layouts/Layout.astro';
 import type { GetStaticPaths } from 'astro';
 import { compareDesc } from 'date-fns';
 
@@ -46,13 +46,14 @@ export const getStaticPaths = (async () => {
 
 const { post, nextPost, prevPost } = Astro.props;
 const { Content } = await post.render();
+const snippetUrl = new URL(`/snippets/${post.slug}`, Astro.site);
 ---
 
 <Layout
   title={post.data.title}
   type="article"
   description={post.data.description}
-  url={'https://www.bughowi.com/snippets/' + post.slug}
+  url={snippetUrl.href}
 >
   <div class="py-4"></div>
   <div class="mx-auto max-w-3xl">

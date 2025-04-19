@@ -1,10 +1,10 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import SnippetCard from '@components/card/SnippetCard.astro';
-import PagePagination from '@components/pagination/PagePagination.astro';
-import Heading2 from '@components/typography/Heading2.astro';
-import Text from '@components/typography/Text.astro';
-import Layout from '@layouts/Layout.astro';
+import SnippetCard from '@/components/card/SnippetCard.astro';
+import PagePagination from '@/components/pagination/PagePagination.astro';
+import Heading2 from '@/components/typography/Heading2.astro';
+import Text from '@/components/typography/Text.astro';
+import Layout from '@/layouts/Layout.astro';
 import type { GetStaticPaths } from 'astro';
 import type { Page } from 'astro';
 import { compareDesc } from 'date-fns';
@@ -20,11 +20,12 @@ interface Props {
 }
 
 const { page } = Astro.props;
+const url = new URL(`/snippets/page/${page.currentPage}`, Astro.site);
 ---
 
 <Layout
   title="Snippets"
-  url=`https://www.bughowi.com/snippets/page/${page.currentPage}`
+  url={url.href}
   description="Some code snippets that maybe usefull"
 >
   <div class="py-4"></div>
