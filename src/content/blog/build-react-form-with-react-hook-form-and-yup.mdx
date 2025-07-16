@@ -10,7 +10,7 @@ categories:
 thumbnail: https://user-images.githubusercontent.com/49820990/210173587-6f3972b6-0c87-43ab-9959-95f2b2fcf5cf.png
 ---
 
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 In this tutorial, we will learn how to use React Hook Form and Yup to build forms in a React application. We will cover how to set up React Hook Form, add Yup validation, customize error messages, and perform asynchronous validation. We will also learn how to manage arrays of fields with `useFieldArray` and watch form values with `useWatch`. By the end of this tutorial, you will have a good understanding of how to build robust and user-friendly forms in React.
 
@@ -32,7 +32,7 @@ functions that you can use to register input fields, handle form submission, and
 access errors. For example:
 
 ```tsx title="Form.tsx"
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler } from "react-hook-form";
 
 interface FormInput {
   firstName: string;
@@ -50,9 +50,9 @@ export default function MyForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('firstName')} />
+      <input {...register("firstName")} />
       {errors.firstName && <span>This field is required</span>}
-      <input {...register('lastName')} />
+      <input {...register("lastName")} />
       {errors.lastName && <span>This field is required</span>}
       <input type="submit" />
     </form>
@@ -133,12 +133,12 @@ One of the benefits of using Yup for form validation is that it allows you to cu
 const validationSchema = yup.object().shape({
   firstName: yup
     .string()
-    .required('First name is required')
-    .min(2, 'First name must be at least 2 characters long'),
+    .required("First name is required")
+    .min(2, "First name must be at least 2 characters long"),
   lastName: yup
     .string()
-    .required('Last name is required')
-    .min(2, 'Last name must be at least 2 characters long'),
+    .required("Last name is required")
+    .min(2, "Last name must be at least 2 characters long"),
 });
 ```
 
@@ -152,11 +152,15 @@ Sometimes, you may need to perform asynchronous validation with Yup. For example
 const validationSchema = yup.object().shape({
   username: yup
     .string()
-    .required('Username is required')
-    .test('username-unique', 'This username is already taken', async (value) => {
-      const isUnique = await checkUsernameAvailability(value);
-      return isUnique;
-    }),
+    .required("Username is required")
+    .test(
+      "username-unique",
+      "This username is already taken",
+      async (value) => {
+        const isUnique = await checkUsernameAvailability(value);
+        return isUnique;
+      },
+    ),
 });
 ```
 
@@ -169,7 +173,7 @@ Another useful feature of React Hook Form is the `useFieldArray` hook, which all
 To use `useFieldArray`, you will need to import it from the react-hook-form library and pass it the name of the field array that you want to manage. The hook returns several functions that you can use to add, remove, and modify the fields in the array. Here is an example of how to use `useFieldArray`:
 
 ```tsx title="Form.tsx"
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useFieldArray, useForm } from "react-hook-form";
 
 type Product = {
   name: string;
@@ -184,7 +188,7 @@ export default function MyForm() {
   const { register, control, handleSubmit } = useForm<MyFormInput>();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'products',
+    name: "products",
   });
 
   const onSubmit = (data: MyFormInput) => {
@@ -202,7 +206,7 @@ export default function MyForm() {
           </button>
         </div>
       ))}
-      <button type="button" onClick={() => append({ name: '', price: '' })}>
+      <button type="button" onClick={() => append({ name: "", price: "" })}>
         Add product
       </button>
       <input type="submit" />
@@ -220,11 +224,11 @@ For more details about the above example, you can see it from codesandbox below
 <iframe
   src="https://codesandbox.io/embed/misty-dew-q32sm5?fontsize=14&hidenavigation=1&theme=dark"
   style={{
-    width: '100%',
-    height: '500px',
+    width: "100%",
+    height: "500px",
     border: 0,
-    borderRadius: '4px',
-    overflow: 'hidden',
+    borderRadius: "4px",
+    overflow: "hidden",
   }}
   title="react-hook-form"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -238,11 +242,11 @@ Another useful feature of React Hook Form is the `useWatch` hook, which allows y
 To use `useWatch`, you will need to import it from the react-hook-form library and pass it the name of the field or form data that you want to watch. The hook returns the current value of the field or form data. Here is an example of how to use useWatch:
 
 ```tsx title="Form.tsx"
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm, useWatch } from "react-hook-form";
 
 export default function MyForm() {
   const { register, handleSubmit, control } = useForm();
-  const password = useWatch({ control, name: 'password' });
+  const password = useWatch({ control, name: "password" });
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -250,9 +254,11 @@ export default function MyForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('username')} />
-      <input type="password" {...register('password')} />
-      {password && password.length > 8 && <p>Password must be 8 characters or less</p>}
+      <input {...register("username")} />
+      <input type="password" {...register("password")} />
+      {password && password.length > 8 && (
+        <p>Password must be 8 characters or less</p>
+      )}
       <input type="submit" />
     </form>
   );

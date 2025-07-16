@@ -1,10 +1,12 @@
 ---
-import { Image } from 'astro:assets';
-import profile_pic from '@/assets/profile.png';
-import Link from '@/components/Link.astro';
+import { Image } from "astro:assets";
+import profile_pic from "@/assets/profile.png";
+import Link from "@/components/Link.astro";
 ---
 
-<footer class="not-prose container mx-auto flex-1 px-3 xl:px-14 2xl:max-w-7xl mb-8">
+<footer
+  class="not-prose container mx-auto flex-1 px-3 xl:px-14 2xl:max-w-7xl mb-8"
+>
   <div class="border border-default-100 rounded-md flex justify-between p-5">
     <div class="flex flex-col gap-3">
       <Image
@@ -16,16 +18,18 @@ import Link from '@/components/Link.astro';
       />
       <div class="lg:mt-4 text-sm lg:text-base flex flex-col gap-1">
         <p class="font-bold">Mohamad Kholid Bughowi - Personal Blog</p>
-        <p class="text-foreground/60">Blog content managed using Astro content collection</p>
+        <p class="text-foreground/60">
+          Blog content managed using Astro content collection
+        </p>
       </div>
       <p class="text-foreground/60 text-sm lg:text-base">
         Made with ❤ By <Link
           variant="underline"
-          class={'cursor-pointer text-foreground lg:mx-1 text-sm lg:text-base'}
+          class={"cursor-pointer text-foreground lg:mx-1 text-sm lg:text-base"}
           href="https://github.com/albugowy15">Mohamad Kholid Bughowi</Link
         > using <Link
           variant="underline"
-          class={'cursor-pointer text-foreground lg:mx-1 text-sm lg:text-base'}
+          class={"cursor-pointer text-foreground lg:mx-1 text-sm lg:text-base"}
           href="https://astro.build">Astro</Link
         >
       </p>

@@ -1,28 +1,30 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import { buttonCva } from '@/components/Button.astro';
-import Chip from '@/components/Chip.astro';
-import ContentPagination from '@/components/pagination/ContentPagination.astro';
-import type { ContentNavigator } from '@/components/pagination/ContentPagination.astro';
-import Heading1 from '@/components/typography/Heading1.astro';
-import Heading4 from '@/components/typography/Heading4.astro';
-import Text from '@/components/typography/Text.astro';
-import Layout from '@/layouts/Layout.astro';
-import { formatDate } from '@/utils/date';
-import type { GetStaticPaths } from 'astro';
-import { compareDesc } from 'date-fns';
-import { GITHUB_PROFILE_URL, X_USERNAME } from '@/lib/constant';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { buttonCva } from "@/components/Button.astro";
+import Chip from "@/components/Chip.astro";
+import ContentPagination from "@/components/pagination/ContentPagination.astro";
+import type { ContentNavigator } from "@/components/pagination/ContentPagination.astro";
+import Heading1 from "@/components/typography/Heading1.astro";
+import Heading4 from "@/components/typography/Heading4.astro";
+import Text from "@/components/typography/Text.astro";
+import Layout from "@/layouts/Layout.astro";
+import { formatDate } from "@/utils/date";
+import type { GetStaticPaths } from "astro";
+import { compareDesc } from "date-fns";
+import { GITHUB_PROFILE_URL, X_USERNAME } from "@/lib/constant";
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
   nextPost: ContentNavigator | null;
   prevPost: ContentNavigator | null;
 }
 
 export const getStaticPaths = (async () => {
-  const blogCollection = await getCollection('blog');
-  const sortedBlogCollection = blogCollection.sort((a, b) => compareDesc(a.data.date, b.data.date));
+  const blogCollection = await getCollection("blog");
+  const sortedBlogCollection = blogCollection.sort((a, b) =>
+    compareDesc(a.data.date, b.data.date),
+  );
   const totalPost = sortedBlogCollection.length;
   return sortedBlogCollection.flatMap((post, idx) => ({
     params: {
@@ -62,13 +64,19 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
   img={post.data.thumbnail}
   description={post.data.description}
 >
-  <div class="mx-auto w-full xl:flex xl:items-start xl:justify-between xl:gap-10 mt-5">
+  <div
+    class="mx-auto w-full xl:flex xl:items-start xl:justify-between xl:gap-10 mt-5"
+  >
     <div class="xl:w-[70%]">
       <div class="flex flex-col gap-2">
         <Heading1>{post.data.title}</Heading1>
         <p class="text-default-500">{post.data.description}</p>
-        <section class="flex flex-wrap items-center justify-start gap-1 sm:gap-3">
-          <Text variant="body1">📆 {formatDate(post.data.date.toISOString())}</Text>
+        <section
+          class="flex flex-wrap items-center justify-start gap-1 sm:gap-3"
+        >
+          <Text variant="body1"
+            >📆 {formatDate(post.data.date.toISOString())}</Text
+          >
           <span>&#8226;</span>
           <Text variant="body1">
             ⏳ {remarkPluginFrontmatter.minutesRead}
@@ -87,7 +95,9 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
           </ul>
         </section>
       </div>
-      <article class="prose prose-invert max-w-none prose-headings:scroll-mt-25">
+      <article
+        class="prose prose-invert max-w-none prose-headings:scroll-mt-25"
+      >
         <section id="content-space">
           <Content />
         </section>
@@ -95,8 +105,8 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
           <a
             href={editUrl}
             class:list={[
-              buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
-              'flex items-center gap-2 border-default hover:bg-default transition-colors',
+              buttonCva({ variant: "bordered", size: "md", radius: "md" }),
+              "flex items-center gap-2 border-default hover:bg-default transition-colors",
             ]}
             aria-label="Edit this page"
           >
@@ -117,8 +127,8 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
           <a
             href={tweetUrl}
             class:list={[
-              buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
-              'flex items-center gap-2 border-default hover:bg-default transition-colors',
+              buttonCva({ variant: "bordered", size: "md", radius: "md" }),
+              "flex items-center gap-2 border-default hover:bg-default transition-colors",
             ]}
             aria-label="Tweet this article"
             ><svg
@@ -155,15 +165,16 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
         data-theme="transparent_dark"
         data-lang="en"
         crossorigin="anonymous"
-        async
-      />
+        async></script>
     </div>
     <aside
       class="sticky top-32 hidden flex-1 flex-col divide-y divide-default-100 rounded-lg border-2 border-default-100 xl:flex"
     >
       <div class="flex items-center justify-between px-3 py-2">
         <Heading4>Table Of Contents</Heading4>
-        <p id="scroll-top" class="cursor-pointer text-sm text-primary-500">Back to top</p>
+        <p id="scroll-top" class="cursor-pointer text-sm text-primary-500">
+          Back to top
+        </p>
       </div>
       <ul class="py-2" id="toc-container">
         {
@@ -172,13 +183,13 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
               <a
                 href={`#${heading.slug}`}
                 class:list={[
-                  'block px-3 py-1.5 text-sm font-semibold text-foreground/80 hover:bg-default-100/40',
+                  "block px-3 py-1.5 text-sm font-semibold text-foreground/80 hover:bg-default-100/40",
                   {
-                    'pl-2': heading.depth === 2,
-                    'pl-6': heading.depth === 3,
-                    'pl-8': heading.depth === 4,
-                    'pl-10': heading.depth === 5,
-                    'pl-12': heading.depth === 6,
+                    "pl-2": heading.depth === 2,
+                    "pl-6": heading.depth === 3,
+                    "pl-8": heading.depth === 4,
+                    "pl-10": heading.depth === 5,
+                    "pl-12": heading.depth === 6,
                   },
                 ]}
               >
@@ -196,5 +207,5 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
   function scrollToTop() {
     window.scrollTo(0, 0);
   }
-  document.getElementById('scroll-top')?.addEventListener('click', scrollToTop);
+  document.getElementById("scroll-top")?.addEventListener("click", scrollToTop);
 </script>

@@ -21,8 +21,8 @@ npm install next-auth
 Now, let's take a look at a sample authentication configuration file leveraging the `CredentialsProvider`.
 
 ```ts
-import { type DefaultSession, type NextAuthOptions } from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
+import { type DefaultSession, type NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 export interface LoginResponseData {
   username: string;
@@ -31,29 +31,29 @@ export interface LoginResponseData {
   id: string;
 }
 
-declare module 'next-auth' {
+declare module "next-auth" {
   interface Session extends DefaultSession {
-    user: LoginResponseData & DefaultSession['user'];
+    user: LoginResponseData & DefaultSession["user"];
   }
 }
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {
         username: {
-          label: 'Username',
-          type: 'text',
+          label: "Username",
+          type: "text",
         },
         password: {
-          label: 'Password',
-          type: 'password',
+          label: "Password",
+          type: "password",
         },
       },
       async authorize(credentials) {
         if (!credentials) {
-          throw new Error('Username and password are empty');
+          throw new Error("Username and password are empty");
         }
         try {
           // TODO: Implement the actual login fetch logic here
@@ -61,7 +61,7 @@ export const authOptions: NextAuthOptions = {
           if (e instanceof Error) {
             throw new Error(e.message);
           } else {
-            throw new Error('INTERNAL ERROR');
+            throw new Error("INTERNAL ERROR");
           }
         }
       },
@@ -83,10 +83,10 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET, // Replace with your actual secret
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   pages: {
-    signIn: '/login',
+    signIn: "/login",
   },
   jwt: {
     secret: process.env.NEXTAUTH_SECRET, // Replace with your actual secret

@@ -29,10 +29,10 @@ npm install unified rehype-parse rehype-stringify rehype-slug
 Next, you need to add `rehype-toc` inside your contentlayer configuration files. Here's the example.
 
 ```ts title="contentlayer.config.ts"
-import rehypeToc from '@jsdevtools/rehype-toc';
+import rehypeToc from "@jsdevtools/rehype-toc";
 
 const contentLayerConfig = makeSource({
-  contentDirPath: 'src/contents',
+  contentDirPath: "src/contents",
   documentTypes: [Post, Project],
   mdx: {
     remarkPlugins: [remarkGfm],
@@ -59,18 +59,18 @@ const customizeTOC = (toc: RehypeElement): RehypeElement | null => {
     if (!children?.length || !childrenOfChildren?.length) return null;
   } catch (e) {}
   return {
-    type: 'element',
-    tagName: 'div',
-    properties: { className: 'toc' },
+    type: "element",
+    tagName: "div",
+    properties: { className: "toc" },
     children: [
       {
-        type: 'element',
-        tagName: 'p',
-        properties: { className: 'title' },
+        type: "element",
+        tagName: "p",
+        properties: { className: "title" },
         children: [
           {
-            type: 'text',
-            value: 'Table of Contents',
+            type: "text",
+            value: "Table of Contents",
           },
         ],
       },

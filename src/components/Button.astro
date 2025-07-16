@@ -1,32 +1,39 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
-import { type VariantProps, cva } from 'class-variance-authority';
+import type { HTMLAttributes } from "astro/types";
+import { type VariantProps, cva } from "class-variance-authority";
 
-export const buttonCva = cva('button', {
+export const buttonCva = cva("button", {
   variants: {
     variant: {
-      solid: 'bg-default',
-      light: 'bg-transparent',
-      bordered: 'border-2 bg-transparent',
+      solid: "bg-default",
+      light: "bg-transparent",
+      bordered: "border-2 bg-transparent",
     },
     size: {
-      sm: 'px-3 py-1.5 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-5 py-2.5 text-lg',
+      sm: "px-3 py-1.5 text-sm",
+      md: "px-4 py-2 text-base",
+      lg: "px-5 py-2.5 text-lg",
     },
     radius: {
-      none: 'rounded-none',
-      sm: 'rounded-xs',
-      md: 'rounded-sm',
-      lg: 'rounded-lg',
-      full: 'rounded-full',
+      none: "rounded-none",
+      sm: "rounded-xs",
+      md: "rounded-sm",
+      lg: "rounded-lg",
+      full: "rounded-full",
     },
   },
 });
 
-export interface Props extends HTMLAttributes<'button'>, VariantProps<typeof buttonCva> {}
+export interface Props
+  extends HTMLAttributes<"button">,
+    VariantProps<typeof buttonCva> {}
 
-const { class: className, variant = 'solid', size = 'md', radius = 'none' } = Astro.props;
+const {
+  class: className,
+  variant = "solid",
+  size = "md",
+  radius = "none",
+} = Astro.props;
 ---
 
 <button class={buttonCva({ variant, size, radius, className })}>

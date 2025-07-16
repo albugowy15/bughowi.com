@@ -1,18 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
-import { buttonCva } from '@/components/Button.astro';
-import PostCard from '@/components/card/PostCard.astro';
-import ProjectCard from '@/components/card/ProjectCard.astro';
-import SnippetCard from '@/components/card/SnippetCard.astro';
-import Layout from '@/layouts/Layout.astro';
-import { compareDesc } from 'date-fns';
-import { CV_DOCUMENT_URL } from '@/lib/constant';
+import { getCollection } from "astro:content";
+import { buttonCva } from "@/components/Button.astro";
+import PostCard from "@/components/card/PostCard.astro";
+import ProjectCard from "@/components/card/ProjectCard.astro";
+import SnippetCard from "@/components/card/SnippetCard.astro";
+import Layout from "@/layouts/Layout.astro";
+import { compareDesc } from "date-fns";
+import { CV_DOCUMENT_URL } from "@/lib/constant";
 
-const [blogCollections, projectCollections, snippetCollections] = await Promise.all([
-  getCollection('blog'),
-  getCollection('projects'),
-  getCollection('snippets'),
-]);
+const [blogCollections, projectCollections, snippetCollections] =
+  await Promise.all([
+    getCollection("blog"),
+    getCollection("projects"),
+    getCollection("snippets"),
+  ]);
 
 const someBlogPosts = blogCollections
   .sort((a, b) => compareDesc(a.data.date, b.data.date))
@@ -29,26 +30,28 @@ const someSnippetPosts = snippetCollections
   title="Home"
   description="Software architect and engineer with a passion for building comprehensive solutions. From initial concept to production deployment, I create robust systems that drive business value and user satisfaction."
 >
-  <section class="min-h-screen gap-2 lg:gap-4 flex flex-col justify-center items-center -mt-14">
+  <section
+    class="min-h-screen gap-2 lg:gap-4 flex flex-col justify-center items-center -mt-14"
+  >
     <h1 class="text-2xl font-bold lg:text-5xl">Mohamad Kholid Bughowi</h1>
     <h2 class="text-lg lg:text-3xl font-semibold">Software Engineer</h2>
     <p class="text-foreground/80 text-base lg:text-xl text-center max-w-4xl">
-      Software architect and engineer with a passion for building comprehensive solutions. From
-      initial concept to production deployment, I create robust systems that drive business value
-      and user satisfaction.
+      Software architect and engineer with a passion for building comprehensive
+      solutions. From initial concept to production deployment, I create robust
+      systems that drive business value and user satisfaction.
     </p>
     <div class="mt-5 flex items-center justify-center gap-4 md:justify-start">
       <a
         class:list={[
-          buttonCva({ variant: 'solid', size: 'md', radius: 'md' }),
-          'bg-primary-100 font-bold hover:bg-transparent border border-primary transition-colors',
+          buttonCva({ variant: "solid", size: "md", radius: "md" }),
+          "bg-primary-100 font-bold hover:bg-transparent border border-primary transition-colors",
         ]}
         href="/about">More About Me</a
       >
       <a
         class:list={[
-          buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
-          'flex gap-1 items-center font-bold hover:bg-secondary border-secondary transition-colors',
+          buttonCva({ variant: "bordered", size: "md", radius: "md" }),
+          "flex gap-1 items-center font-bold hover:bg-secondary border-secondary transition-colors",
         ]}
         aria-label="Resume"
         href={CV_DOCUMENT_URL}

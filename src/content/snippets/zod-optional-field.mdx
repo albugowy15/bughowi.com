@@ -11,7 +11,7 @@ categories:
 ## The Snippets
 
 ```ts
-const emptyStringToUndefined = z.literal('').transform(() => undefined);
+const emptyStringToUndefined = z.literal("").transform(() => undefined);
 export function asOptionalField<T extends z.ZodTypeAny>(schema: T) {
   return schema.optional().or(emptyStringToUndefined);
 }
@@ -32,10 +32,10 @@ export const editProfileSchema = z.object({
   whatsapp: asOptionalField(
     z
       .string()
-      .min(9, { message: 'Whatsapp number minimum 9 digits' })
-      .max(14, { message: 'Whatsapp number minimum 9 digits' })
-      .startsWith('08', { message: 'Not valid Whatsapp number' })
-      .regex(/^[0-9]*$/, { message: 'Not valid Whatsapp number' })
+      .min(9, { message: "Whatsapp number minimum 9 digits" })
+      .max(14, { message: "Whatsapp number minimum 9 digits" })
+      .startsWith("08", { message: "Not valid Whatsapp number" })
+      .regex(/^[0-9]*$/, { message: "Not valid Whatsapp number" }),
   ),
 });
 ```

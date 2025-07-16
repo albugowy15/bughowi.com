@@ -23,11 +23,9 @@ jobs:
         run: pnpm install
       - name: Astro check
         run: pnpm check
-      - name: Setup Biome
-        uses: biomejs/setup-biome@v2
-        with:
-          version: latest
-      - name: Biome
-        run: biome ci
+      - name: ESlint
+        run: pnpm lint
+      - name: Prettier
+        run: pnpm format:check
       - name: Build
         run: pnpm build

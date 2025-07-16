@@ -1,0 +1,11 @@
+.astro
+.git
+.github
+dist
+.vercel
+.vscode
+node_modules
+pnpm-lock.yaml
+.DS_Store
+public
+CHANGELOG.md

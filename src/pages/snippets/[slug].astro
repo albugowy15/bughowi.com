@@ -1,23 +1,23 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import type { ContentNavigator } from '@/components/pagination/ContentPagination.astro';
-import ContentPagination from '@/components/pagination/ContentPagination.astro';
-import Heading1 from '@/components/typography/Heading1.astro';
-import Text from '@/components/typography/Text.astro';
-import Layout from '@/layouts/Layout.astro';
-import type { GetStaticPaths } from 'astro';
-import { compareDesc } from 'date-fns';
+import { type CollectionEntry, getCollection } from "astro:content";
+import type { ContentNavigator } from "@/components/pagination/ContentPagination.astro";
+import ContentPagination from "@/components/pagination/ContentPagination.astro";
+import Heading1 from "@/components/typography/Heading1.astro";
+import Text from "@/components/typography/Text.astro";
+import Layout from "@/layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import { compareDesc } from "date-fns";
 
 interface Props {
-  post: CollectionEntry<'snippets'>;
+  post: CollectionEntry<"snippets">;
   nextPost: ContentNavigator | null;
   prevPost: ContentNavigator | null;
 }
 
 export const getStaticPaths = (async () => {
-  const snippetCollection = await getCollection('snippets');
+  const snippetCollection = await getCollection("snippets");
   const sortedSnippetCollection = snippetCollection.sort((a, b) =>
-    compareDesc(a.data.date, b.data.date)
+    compareDesc(a.data.date, b.data.date),
   );
   const totalSnippet = sortedSnippetCollection.length;
   return sortedSnippetCollection.flatMap((post, idx) => ({
@@ -58,7 +58,9 @@ const snippetUrl = new URL(`/snippets/${post.slug}`, Astro.site);
   <div class="py-4"></div>
   <div class="mx-auto max-w-3xl">
     <Heading1>{post.data.title}</Heading1>
-    <Text variant="body1" className="mt-2 text-default-500">{post.data.description}</Text>
+    <Text variant="body1" className="mt-2 text-default-500"
+      >{post.data.description}</Text
+    >
     <article class="mt-5 w-full">
       <section id="content-space" class="prose prose-invert max-w-none">
         <Content />

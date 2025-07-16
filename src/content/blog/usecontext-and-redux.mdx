@@ -27,16 +27,18 @@ To use `useContext`, you first neet to create a context object using `React.crea
 Here is an example of how to create and use a context object to share the current theme of a user interface.
 
 ```js
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
-const ThemeContext = createContext('light');
+const ThemeContext = createContext("light");
 
 function App() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState("light");
 
   return (
     <ThemeContext.Provider value={theme}>
-      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Toggle theme</button>
+      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+        Toggle theme
+      </button>
       <Content />
     </ThemeContext.Provider>
   );
@@ -48,8 +50,8 @@ function Content() {
   return (
     <div
       style={{
-        background: theme === 'light' ? 'white' : 'black',
-        color: theme === 'light' ? 'black' : 'white',
+        background: theme === "light" ? "white" : "black",
+        color: theme === "light" ? "black" : "white",
       }}
     >
       Hello World
@@ -69,12 +71,12 @@ When the user clicks the `button` element, the `setTheme` function is called to 
 Using `useContext` is a great way to shate state between components that are not directly related in the component tree. For example, suppose you have a `Sidebar` component and a `MainContent` component that need to share a `user` object. Instead of passing the `user` object down the tree as props, you can create a `UserContext` and use it to provide the `user` object to both the `Sidebar` and `MainContent` components.
 
 ```js
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext } from "react";
 
 const UserContext = createContext({});
 
 function App() {
-  const user = { name: 'John', email: 'john@example.com' };
+  const user = { name: "John", email: "john@example.com" };
 
   return (
     <UserContext.Provider value={user}>
@@ -116,20 +118,20 @@ To use Redux in a React application, you need to install the `redux` and `react-
 Here is an example of how to use Redux to manage the terms of a user interface.
 
 ```js
-import React from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import React from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'SET_THEME':
+    case "SET_THEME":
       return { ...state, theme: action.theme };
     default:
       return state;
   }
 }
 
-const store = createStore(reducer, { theme: 'light' });
+const store = createStore(reducer, { theme: "light" });
 
 function App() {
   return (
@@ -144,8 +146,8 @@ function ThemeToggler() {
   const [state, dispatch] = useRedux(store);
   const toggleTheme = () =>
     dispatch({
-      type: 'SET_THEME',
-      theme: state.theme === 'light' ? 'dark' : 'light',
+      type: "SET_THEME",
+      theme: state.theme === "light" ? "dark" : "light",
     });
 
   return <button onClick={toggleTheme}>Toggle theme</button>;
@@ -158,8 +160,8 @@ function Content() {
   return (
     <div
       style={{
-        background: theme === 'light' ? 'white' : 'black',
-        color: theme === 'light' ? 'black' : 'white',
+        background: theme === "light" ? "white" : "black",
+        color: theme === "light" ? "black" : "white",
       }}
     >
       Hello World

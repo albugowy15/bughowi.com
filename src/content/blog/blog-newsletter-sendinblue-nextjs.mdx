@@ -10,7 +10,7 @@ categories:
 thumbnail: https://user-images.githubusercontent.com/49820990/213977382-3c5904ed-2590-4b9f-a14f-f7e5f7909c68.png
 ---
 
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 Building an email newsletter for your Next.js blog can be a great way to keep your viewers informed about your business and articles. By integrating Next.js with an email marketing platform like Sendinblue, you can easily create and send newsletters to a large number of recipients.
 
@@ -44,8 +44,8 @@ const NewsletterForm = () => {
       <p className="text-lg font-bold">Subscribe to the newsletter</p>
 
       <p className="py-1">
-        Get emails from me about web development, programming, tech, and early access to new
-        articles.
+        Get emails from me about web development, programming, tech, and early
+        access to new articles.
       </p>
       <form className="mx-auto mt-1 w-full" method="post" target="_blank">
         <div className="flex w-full flex-wrap items-center justify-center gap-2">
@@ -85,7 +85,7 @@ Now, our Newsletter Form will looks like this
 We need to create a custom hook for handling the form. By abstracting it with a custom hook is a great way to keep your code organized and reusable. Here's an example of how you might create a custom hook for handling the newsletter form.
 
 ```ts title="./utils/hooks/useNewsletter.ts" {16}
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
 export enum Form {
   Initial,
@@ -107,7 +107,7 @@ export function useNewsletter() {
 The hook also declares a variable called `inputEl` which is initialized with the `useRef` hook. This variable is used to keep track of the email input element in the form.
 
 ```ts title="./utils/hooks/useNewsletter.ts" {17}
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
 export enum Form {
   Initial,
@@ -136,7 +136,7 @@ Next, the hook exports a function called `subscribe` that handles the form submi
 Inside the function, the first thing it does is calling the `preventDefault` method on the event object to prevent the page from refreshing when the form is submitted. Then it changes the state of the form to `Form.Loading`
 
 ```ts title="./utils/hooks/useNewsletter.ts" {19-22}
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
 export enum Form {
   Initial,
@@ -166,7 +166,7 @@ After that, it uses the fetch API to make a POST request to the endpoint `/api/n
 Once the fetch request is complete, it parses the response as json and destructures the object to get the value of the error property. If the error property is not undefined, it means that the request failed, it updates the state of the form to `Form.Error` and sets the message to the error returned.
 
 ```ts title="./utils/hooks/useNewsletter.ts" {23-40}
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
 export enum Form {
   Initial,
@@ -193,9 +193,9 @@ export function useNewsletter() {
         email: inputEl.current!.value,
       }),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      method: 'POST',
+      method: "POST",
     });
 
     const { error } = await res.json();
@@ -214,7 +214,7 @@ export function useNewsletter() {
 If there was no error, it sets the value of the input field to empty string, and updates the state of the form to `Form.Success` and sets the message to _"Success! You've been added to the list!"_
 
 ```ts title="./utils/hooks/useNewsletter.ts" {43-47}
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
 export enum Form {
   Initial,
@@ -241,9 +241,9 @@ export function useNewsletter() {
         email: inputEl.current!.value,
       }),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      method: 'POST',
+      method: "POST",
     });
 
     const { error } = await res.json();
@@ -256,7 +256,7 @@ export function useNewsletter() {
       return;
     }
 
-    inputEl.current!.value = '';
+    inputEl.current!.value = "";
     setForm({
       state: Form.Success,
       message: `Success! You've been added to the list!`,
@@ -268,7 +268,7 @@ export function useNewsletter() {
 Finally, the hook returns an object containing the `subscribe` function, the `inputEl` variable and the form state variable. These are the values that are needed by the component that uses this hook to render the form and handle the form submission.
 
 ```ts title="./utils/hooks/useNewsletter.ts" {50}
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
 export enum Form {
   Initial,
@@ -295,9 +295,9 @@ export function useNewsletter() {
         email: inputEl.current!.value,
       }),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      method: 'POST',
+      method: "POST",
     });
 
     const { error } = await res.json();
@@ -310,7 +310,7 @@ export function useNewsletter() {
       return;
     }
 
-    inputEl.current!.value = '';
+    inputEl.current!.value = "";
     setForm({
       state: Form.Success,
       message: `Success! You've been added to the list!`,
@@ -349,21 +349,24 @@ To handle the form submission from the `useNewsletter` hook, you will need to cr
 3. In newsletter.ts, you will use the next/api route to define the route that will handle the newsletter subscription. Here's an example of what the code might look like:
 
 ```ts title="./pages/api/newsletter.ts"
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { email } = req.body;
 
   if (!email) {
-    return res.status(400).json({ error: 'Email is required' });
+    return res.status(400).json({ error: "Email is required" });
   }
 
-  const result = await fetch('https://api.sendinblue.com/v3/contacts', {
-    method: 'POST',
+  const result = await fetch("https://api.sendinblue.com/v3/contacts", {
+    method: "POST",
     headers: {
-      accept: 'application/json',
-      'Content-Type': 'application/json',
-      'api-key': process.env.SENDINBLUE_API_KEY!,
+      accept: "application/json",
+      "Content-Type": "application/json",
+      "api-key": process.env.SENDINBLUE_API_KEY!,
     },
     body: JSON.stringify({ updateEnabled: false, email: email, listIds: [5] }),
   });
@@ -374,7 +377,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(500).json({ error: data.error.email[0] });
   }
 
-  return res.status(201).json({ error: '' });
+  return res.status(201).json({ error: "" });
 }
 ```
 
@@ -387,7 +390,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 Let's get back to NewsletterForm component and add the useNewsletter hooks to handle the form submission.
 
 ```tsx title="./components/NewsletterForm.tsx"
-import { useNewsletter, Form } from '@utils/hooks';
+import { useNewsletter, Form } from "@utils/hooks";
 
 const NewsletterForm = () => {
   const { form, subscribe, inputEl } = useNewsletter();
@@ -397,10 +400,15 @@ const NewsletterForm = () => {
       <p className="text-lg font-bold">Subscribe to the newsletter</p>
 
       <p className="py-1">
-        Get emails from me about web development, programming, tech, and early access to new
-        articles.
+        Get emails from me about web development, programming, tech, and early
+        access to new articles.
       </p>
-      <form onSubmit={subscribe} className="mx-auto mt-1 w-full" method="post" target="_blank">
+      <form
+        onSubmit={subscribe}
+        className="mx-auto mt-1 w-full"
+        method="post"
+        target="_blank"
+      >
         <div className="flex w-full flex-wrap items-center justify-center gap-2">
           <input
             type="email"
@@ -414,7 +422,11 @@ const NewsletterForm = () => {
             type="submit"
             className="w-28 flex-1 rounded-sm bg-blue-600 p-1.5 text-center font-bold text-slate-200 transition-colors hover:bg-blue-500"
           >
-            {form.state === Form.Loading ? <span>Loading...</span> : 'Subscribe'}
+            {form.state === Form.Loading ? (
+              <span>Loading...</span>
+            ) : (
+              "Subscribe"
+            )}
           </button>
         </div>
         {form.state === Form.Success ? (

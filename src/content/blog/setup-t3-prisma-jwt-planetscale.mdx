@@ -13,7 +13,7 @@ categories:
 thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/setup-t3-prisma-planetscale-jwt_kb2xej.png
 ---
 
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 The T3 Stack is a web development stack that focuses on simplicity, modularity, and full-stack type safety. It is made up of the following technologies:
 
@@ -153,7 +153,7 @@ There are a couple steps to set up our JWT authentication flow within NextAuth.
 
 ```ts title="src/types/api.ts"
 export type APIResponse<TData> = {
-  status: 'success' | 'error';
+  status: "success" | "error";
   message: string;
   data?: TData;
 };
@@ -169,7 +169,7 @@ export type LoginResponseData = {
   id: string;
 };
 
-declare module 'next-auth' {
+declare module "next-auth" {
   interface Session {
     user: LoginResponseData;
   }
@@ -184,22 +184,22 @@ The code segment includes TypeScript type definitions within the `next-auth.d.ts
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {
         username: {
-          label: 'Username',
-          type: 'text',
+          label: "Username",
+          type: "text",
         },
         password: {
-          label: 'Password',
-          type: 'password',
+          label: "Password",
+          type: "password",
         },
       },
       async authorize(credentials) {
         const res = await fetch(`${env.BASE_URL}/api/login`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(credentials),
         });
@@ -225,10 +225,10 @@ export const authOptions: NextAuthOptions = {
   },
   secret: env.NEXTAUTH_SECRET,
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   pages: {
-    signIn: '/login',
+    signIn: "/login",
   },
   jwt: {
     secret: env.NEXTAUTH_SECRET,
@@ -236,8 +236,8 @@ export const authOptions: NextAuthOptions = {
 };
 
 export const getServerAuthSession = (ctx: {
-  req: GetServerSidePropsContext['req'];
-  res: GetServerSidePropsContext['res'];
+  req: GetServerSidePropsContext["req"];
+  res: GetServerSidePropsContext["res"];
 }) => {
   return getServerSession(ctx.req, ctx.res, authOptions);
 };
@@ -267,7 +267,7 @@ We also need to update our tRPC middleware as follows:
 ```ts
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
   if (!ctx.session || !ctx.session.user) {
-    throw new TRPCError({ code: 'UNAUTHORIZED' });
+    throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
     ctx: {
@@ -283,8 +283,8 @@ This middleware is applied to TRPC methods to ensure that a user is authenticate
 The complete setup for our trpc will looks like this.
 
 ```ts title="src/server/api/trpc.ts"
-import { type CreateNextContextOptions } from '@trpc/server/adapters/next';
-import { type Session } from 'next-auth';
+import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
+import { type Session } from "next-auth";
 
 type CreateContextOptions = {
   session: Session | null;
@@ -307,11 +307,11 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   });
 };
 
-import { initTRPC, TRPCError } from '@trpc/server';
-import superjson from 'superjson';
-import { ZodError } from 'zod';
+import { initTRPC, TRPCError } from "@trpc/server";
+import superjson from "superjson";
+import { ZodError } from "zod";
 
-import { getServerAuthSession } from '~/server/auth';
+import { getServerAuthSession } from "~/server/auth";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
@@ -320,7 +320,8 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       ...shape,
       data: {
         ...shape.data,
-        zodError: error.cause instanceof ZodError ? error.cause.flatten() : null,
+        zodError:
+          error.cause instanceof ZodError ? error.cause.flatten() : null,
       },
     };
   },
@@ -331,7 +332,7 @@ export const publicProcedure = t.procedure;
 
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
   if (!ctx.session || !ctx.session.user) {
-    throw new TRPCError({ code: 'UNAUTHORIZED' });
+    throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
     ctx: {
@@ -353,14 +354,14 @@ const KEY = env.NEXTAUTH_SECRET as string;
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<APIResponse<LoginResponseData>>
+  res: NextApiResponse<APIResponse<LoginResponseData>>,
 ) {
   const { method } = req;
 
-  if (method !== 'POST') {
+  if (method !== "POST") {
     res.status(400).json({
-      status: 'error',
-      message: 'Method not implemented',
+      status: "error",
+      message: "Method not implemented",
     });
     return;
   }
@@ -368,8 +369,8 @@ export default async function handler(
   const { username, password } = req.body;
   if (!username || !password) {
     res.status(400).json({
-      status: 'error',
-      message: 'Request missing username or password',
+      status: "error",
+      message: "Request missing username or password",
     });
     return;
   }
@@ -380,8 +381,8 @@ export default async function handler(
 
   if (!user) {
     res.status(401).json({
-      status: 'error',
-      message: 'User not found',
+      status: "error",
+      message: "User not found",
     });
     return;
   }
@@ -394,8 +395,8 @@ export default async function handler(
   const isMatch = await bcrypt.compare(password, userPassword);
   if (!isMatch) {
     res.status(400).json({
-      status: 'error',
-      message: 'Password incorrect',
+      status: "error",
+      message: "Password incorrect",
     });
     return;
   }
@@ -405,10 +406,10 @@ export default async function handler(
     email: userEmail,
   };
   try {
-    const token = jwt.sign(payload, KEY, { expiresIn: '1d' });
+    const token = jwt.sign(payload, KEY, { expiresIn: "1d" });
     res.status(200).json({
-      status: 'success',
-      message: 'User successfully logged in',
+      status: "success",
+      message: "User successfully logged in",
       data: {
         id: userId,
         username: userUsername,
@@ -418,8 +419,8 @@ export default async function handler(
     });
   } catch (e) {
     res.status(500).json({
-      status: 'error',
-      message: 'ERROR SIGN TOKEN',
+      status: "error",
+      message: "ERROR SIGN TOKEN",
     });
   }
   return;
@@ -435,13 +436,13 @@ type RegisterResponseData = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<APIResponse<RegisterResponseData>>
+  res: NextApiResponse<APIResponse<RegisterResponseData>>,
 ) {
   const { method } = req;
-  if (method !== 'POST') {
+  if (method !== "POST") {
     res.status(405).json({
-      status: 'error',
-      message: 'Request method not allowed',
+      status: "error",
+      message: "Request method not allowed",
     });
     return;
   }
@@ -450,8 +451,8 @@ export default async function handler(
   // check if password and confirm password match
   if (password !== confirmPassword) {
     res.status(400).json({
-      status: 'error',
-      message: 'Confirmation password not match',
+      status: "error",
+      message: "Confirmation password not match",
     });
     return;
   }
@@ -467,16 +468,16 @@ export default async function handler(
     });
 
     res.status(201).json({
-      status: 'success',
-      message: 'Accound created successfully',
+      status: "success",
+      message: "Accound created successfully",
       data: {
         id: user.id,
       },
     });
   } catch (error) {
     return res.status(400).json({
-      status: 'error',
-      message: 'Username or email is already used',
+      status: "error",
+      message: "Username or email is already used",
     });
   }
   return;
@@ -491,8 +492,8 @@ To register a new user, create a registration page that accepts input for userna
 
 ```ts
 const onSubmit = async (data: RegisterForm) => {
-  axios.post('/api/register', data).then(() => {
-    router.push('/login');
+  axios.post("/api/register", data).then(() => {
+    router.push("/login");
   });
 };
 ```
@@ -501,12 +502,12 @@ For user login, you'll need a login page that takes the username and password as
 
 ```ts
 const onSubmit: SubmitHandler<LoginForm> = async (data) => {
-  signIn('credentials', {
+  signIn("credentials", {
     username: data.username,
     password: data.password,
     redirect: false,
   }).then((res) => {
-    if (res?.ok) window.location.replace('/');
+    if (res?.ok) window.location.replace("/");
   });
 };
 ```
@@ -517,8 +518,8 @@ Querying and mutating data using tRPC is straightforward, akin to using TanStack
 
 ```ts
 const response = api.common.getAllNews.useQuery({
-  category: 'sport',
-  author: 'Joh Doe',
+  category: "sport",
+  author: "Joh Doe",
   min_views: 20000,
 });
 ```
@@ -530,9 +531,9 @@ const mutateNews = api.news.createNews.useMutation();
 
 function handleCreateNews(data: NewsData) {
   mutateNews.mutate({
-    title: 't3 Stack is awesome',
-    desc: 'Scaffold your next project with T3 Stack for excellent type safety',
-    author: 'M. K. Bughowi',
+    title: "t3 Stack is awesome",
+    desc: "Scaffold your next project with T3 Stack for excellent type safety",
+    author: "M. K. Bughowi",
   });
 }
 ```

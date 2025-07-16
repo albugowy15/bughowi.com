@@ -1,6 +1,6 @@
 ---
-import { buttonCva } from '@/components/Button.astro';
-import Text from '@/components/typography/Text.astro';
+import { buttonCva } from "@/components/Button.astro";
+import Text from "@/components/typography/Text.astro";
 
 export type ContentNavigator = {
   title: string;
@@ -17,15 +17,15 @@ const { prev, next } = Astro.props;
 
 <nav
   class:list={[
-    'flex flex-col gap-3 py-6 md:flex-row',
+    "flex flex-col gap-3 py-6 md:flex-row",
     {
-      'justify-between': prev != null && next != null,
+      "justify-between": prev != null && next != null,
     },
     {
-      'justify-end': next != null,
+      "justify-end": next != null,
     },
     {
-      'justify-start': prev != null,
+      "justify-start": prev != null,
     },
   ]}
 >
@@ -33,9 +33,9 @@ const { prev, next } = Astro.props;
     prev ? (
       <a
         class:list={[
-          buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
-          'flex w-full items-center gap-2 border-default cursor-pointer hover:bg-default transition-colors sm:gap-6 md:w-1/2',
-          next ? 'justify-start' : 'justify-between',
+          buttonCva({ variant: "bordered", size: "md", radius: "md" }),
+          "flex w-full items-center gap-2 border-default cursor-pointer hover:bg-default transition-colors sm:gap-6 md:w-1/2",
+          next ? "justify-start" : "justify-between",
         ]}
         aria-label="Go to previous content"
         href={prev.slug}
@@ -66,9 +66,9 @@ const { prev, next } = Astro.props;
     next ? (
       <a
         class:list={[
-          buttonCva({ variant: 'bordered', size: 'md', radius: 'md' }),
-          'flex w-full items-center gap-2 border-default cursor-pointer hover:bg-default transition-colors sm:gap-6 md:w-1/2',
-          prev ? 'justify-end' : 'justify-between',
+          buttonCva({ variant: "bordered", size: "md", radius: "md" }),
+          "flex w-full items-center gap-2 border-default cursor-pointer hover:bg-default transition-colors sm:gap-6 md:w-1/2",
+          prev ? "justify-end" : "justify-between",
         ]}
         aria-label="Go to next content"
         href={next.slug}

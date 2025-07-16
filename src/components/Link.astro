@@ -1,24 +1,29 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
-import { type VariantProps, cva } from 'class-variance-authority';
+import type { HTMLAttributes } from "astro/types";
+import { type VariantProps, cva } from "class-variance-authority";
 
-const link = cva('a', {
+const link = cva("a", {
   variants: {
     variant: {
-      default: '',
-      underline: 'underline',
-      block: 'px-1.5 py-1.5 rounded-lg bg-default',
+      default: "",
+      underline: "underline",
+      block: "px-1.5 py-1.5 rounded-lg bg-default",
     },
     size: {
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
     },
   },
 });
-export interface Props extends HTMLAttributes<'a'>, VariantProps<typeof link> {}
+export interface Props extends HTMLAttributes<"a">, VariantProps<typeof link> {}
 
-const { class: className, variant = 'default', size = 'md', ...rest } = Astro.props;
+const {
+  class: className,
+  variant = "default",
+  size = "md",
+  ...rest
+} = Astro.props;
 ---
 
 <a class={link({ variant, size, className })} {...rest}>

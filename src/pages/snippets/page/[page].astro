@@ -1,22 +1,24 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import SnippetCard from '@/components/card/SnippetCard.astro';
-import PagePagination from '@/components/pagination/PagePagination.astro';
-import Heading2 from '@/components/typography/Heading2.astro';
-import Text from '@/components/typography/Text.astro';
-import Layout from '@/layouts/Layout.astro';
-import type { GetStaticPaths } from 'astro';
-import type { Page } from 'astro';
-import { compareDesc } from 'date-fns';
+import { type CollectionEntry, getCollection } from "astro:content";
+import SnippetCard from "@/components/card/SnippetCard.astro";
+import PagePagination from "@/components/pagination/PagePagination.astro";
+import Heading2 from "@/components/typography/Heading2.astro";
+import Text from "@/components/typography/Text.astro";
+import Layout from "@/layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import type { Page } from "astro";
+import { compareDesc } from "date-fns";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const allSnippets = await getCollection('snippets');
-  const sortedSnippets = allSnippets.sort((a, b) => compareDesc(a.data.date, b.data.date));
+  const allSnippets = await getCollection("snippets");
+  const sortedSnippets = allSnippets.sort((a, b) =>
+    compareDesc(a.data.date, b.data.date),
+  );
   return paginate(sortedSnippets, { pageSize: 6 });
 }) satisfies GetStaticPaths;
 
 interface Props {
-  page: Page<CollectionEntry<'snippets'>>;
+  page: Page<CollectionEntry<"snippets">>;
 }
 
 const { page } = Astro.props;

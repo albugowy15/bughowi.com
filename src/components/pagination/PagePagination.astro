@@ -1,6 +1,6 @@
 ---
-import { buttonCva } from '@/components/Button.astro';
-import type { Page } from 'astro';
+import { buttonCva } from "@/components/Button.astro";
+import type { Page } from "astro";
 interface Props<T> {
   page: Page<T>;
 }
@@ -15,8 +15,8 @@ const { page } = Astro.props;
         <a
           href={page.url.prev}
           class:list={[
-            'flex items-center gap-2 border border-default hover:bg-transparent transition-colors',
-            buttonCva({ variant: 'solid', size: 'md', radius: 'md' }),
+            "flex items-center gap-2 border border-default hover:bg-transparent transition-colors",
+            buttonCva({ variant: "solid", size: "md", radius: "md" }),
           ]}
         >
           <svg
@@ -42,11 +42,11 @@ const { page } = Astro.props;
         <a
           href={page.url.next}
           class:list={[
-            'flex items-center gap-2 border border-default hover:bg-transparent transition-colors',
-            buttonCva({ variant: 'solid', size: 'md', radius: 'md' }),
+            "flex items-center gap-2 border border-default hover:bg-transparent transition-colors",
+            buttonCva({ variant: "solid", size: "md", radius: "md" }),
           ]}
         >
-          Next{' '}
+          Next{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

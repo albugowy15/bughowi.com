@@ -1,13 +1,13 @@
 ---
-import { getEntry } from 'astro:content';
-import Layout from '@/layouts/Layout.astro';
+import { getEntry } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
 
-const about = await getEntry('about', 'about');
+const about = await getEntry("about", "about");
 if (!about) {
-  throw new Error('About content is empty');
+  throw new Error("About content is empty");
 }
 const { Content } = await about.render();
-const url = new URL('/about', Astro.site);
+const url = new URL("/about", Astro.site);
 ---
 
 <Layout

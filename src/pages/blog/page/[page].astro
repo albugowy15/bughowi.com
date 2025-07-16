@@ -1,22 +1,24 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import PostCard from '@/components/card/PostCard.astro';
-import PagePagination from '@/components/pagination/PagePagination.astro';
-import Heading2 from '@/components/typography/Heading2.astro';
-import Text from '@/components/typography/Text.astro';
-import Layout from '@/layouts/Layout.astro';
-import type { GetStaticPaths } from 'astro';
-import type { Page } from 'astro';
-import { compareDesc } from 'date-fns';
+import { type CollectionEntry, getCollection } from "astro:content";
+import PostCard from "@/components/card/PostCard.astro";
+import PagePagination from "@/components/pagination/PagePagination.astro";
+import Heading2 from "@/components/typography/Heading2.astro";
+import Text from "@/components/typography/Text.astro";
+import Layout from "@/layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import type { Page } from "astro";
+import { compareDesc } from "date-fns";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const allBlogpost = await getCollection('blog');
-  const sortedPosts = allBlogpost.sort((a, b) => compareDesc(a.data.date, b.data.date));
+  const allBlogpost = await getCollection("blog");
+  const sortedPosts = allBlogpost.sort((a, b) =>
+    compareDesc(a.data.date, b.data.date),
+  );
   return paginate(sortedPosts, { pageSize: 6 });
 }) satisfies GetStaticPaths;
 
 interface Props {
-  page: Page<CollectionEntry<'blog'>>;
+  page: Page<CollectionEntry<"blog">>;
 }
 
 const { page } = Astro.props;
@@ -31,9 +33,10 @@ const url = new URL(`/blog/page/${page.currentPage}`, Astro.site);
   <div class="py-4"></div>
   <Heading2 classNames="text-center">Blog</Heading2>
   <Text variant="body1" className="py-3 text-foreground/70 text-center">
-    Welcome to my Blog. Here I share my thoughts related to Fullstack development topics and
-    programming in general. I've always been a fan of writing, and I hope you can find something
-    here that could help you in your developer career.
+    Welcome to my Blog. Here I share my thoughts related to Fullstack
+    development topics and programming in general. I've always been a fan of
+    writing, and I hope you can find something here that could help you in your
+    developer career.
   </Text>
   <div class="py-5"></div>
   <section class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">

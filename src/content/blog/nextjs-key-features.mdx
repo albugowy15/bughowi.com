@@ -61,7 +61,7 @@ But how if we want to implement dynamic routes in Next.js?. For that, we change 
 When a user visits this page, to extract the concrete value entered in the url when this page is loaded, Next.js gives us a special hook. You can import `useRouter` from `next-router`. We can call this hook inside of the page simply like this.
 
 ```js title="pages/[news].js"
-import useRouter from 'next-router';
+import useRouter from "next-router";
 
 export default function NewsDetail() {
   const router = useRouter();
@@ -73,7 +73,7 @@ export default function NewsDetail() {
 If we do that we get access to our router object. On that router object we get certain pieces of data and certain methods which we can call. For example we got `query` property which gives us access to a nested object. On that query object, we then have the identifier which we chose between the `[]` as a property name.
 
 ```js title="pages/[news].js"
-import useRouter from 'next-router';
+import useRouter from "next-router";
 
 export default function NewsDetail() {
   const router = useRouter();
@@ -93,7 +93,7 @@ And let's just talk about it a little bit. So it's a little different than what 
 For example I want to navigate to news page from home page. Then inside Home page, call Link component and pass "/news" to href props.
 
 ```js
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -146,7 +146,7 @@ If we want to fetch data inside dynamic page, then we also need to specify how m
 
 ```js
 export async function getStaticPaths() {
-  const response = await fetch('/api/news'); // fetch data from api
+  const response = await fetch("/api/news"); // fetch data from api
   const paths = response.map((slug) => ({
     params: { slug },
   }));
@@ -201,7 +201,7 @@ In this api folder you can add javascript files where the file names will act as
 
 ```js
 export default function handler(req, res) {
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     // Process a POST request
   } else {
     // Handle any other HTTP method
@@ -214,14 +214,17 @@ export default function handler(req, res) {
 Adding head elements to our Next.js pages is very simple. To do that we can import a special component offered by Next.js that is `Head` compoenent from `next/head`. This component allows you to add head elements to the head section of your page. For example, I want to add title and description for my NewsDetail page.
 
 ```js
-import Head from 'next/head';
+import Head from "next/head";
 
 export default function NewsDetail() {
   return;
   <div>
     <Head>
       <title>My Page Title</title>
-      <meta name="description" content="This is my page description for My Page Title" />
+      <meta
+        name="description"
+        content="This is my page description for My Page Title"
+      />
     </Head>
     <p>Hello World!</p>
   </div>;
@@ -241,8 +244,8 @@ To fix all those issues, Next.js provides an Image component(**next/image**) wit
 - Dynamic image resizes for local and remote CDN paths
 
 ```js
-import Image from 'next/image';
-import logo from '../public/logo.svg';
+import Image from "next/image";
+import logo from "../public/logo.svg";
 
 export default function PostImage() {
   return (
@@ -261,7 +264,7 @@ If you use images url from other website such as unsplash, then you must add the
 ```js title="next.config.js"
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com'],
+    domains: ["images.unsplash.com"],
   },
 };
 
@@ -275,14 +278,16 @@ Mostly when we build web interface, there are some components that always appear
 First, let's create a Layout.jsx components. Place Navbar and Footer components inside it.
 
 ```jsx
-import Navbar from 'components/header/Navbar';
-import Footer from 'components/footer/Footer';
+import Navbar from "components/header/Navbar";
+import Footer from "components/footer/Footer";
 
 function Layout({ children }) {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <Navbar />
-      <div className="container mx-auto flex-1 px-4 2xl:max-w-7xl">{children}</div>
+      <div className="container mx-auto flex-1 px-4 2xl:max-w-7xl">
+        {children}
+      </div>
       <Footer />
     </div>
   );
@@ -294,7 +299,7 @@ export default Layout;
 If you only have one layout for your entire application, you can customize `_app.js` and wrap your application with the layout.
 
 ```js title="pages/_app.js"
-import Layout from '../components/layout';
+import Layout from "../components/layout";
 
 export default function MyApp({ Component, pageProps }) {
   return (
