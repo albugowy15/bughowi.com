@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.4.0](https://github.com/albugowy15/bughowi.com/compare/v3.3.0...v3.4.0) (2025-08-12)
+
+
+### Features
+
+* add constant config ([af015a4](https://github.com/albugowy15/bughowi.com/commit/af015a4fbddd29d15d0ae30378e70fa5effe9184))
+* adjust content width for non-blog page ([f6babd9](https://github.com/albugowy15/bughowi.com/commit/f6babd9a2566003b74fd30cf36b46ad7de805d3e))
+* optimize font loading and reduce js ([4dcf38d](https://github.com/albugowy15/bughowi.com/commit/4dcf38d33e71488185ecba3b538f79429ae6fa0e))
+
 ## [3.3.0](https://github.com/albugowy15/bughowi.com/compare/v3.2.0...v3.3.0) (2025-02-02)
 
 
