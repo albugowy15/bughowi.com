@@ -1,9 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@theme {
-  --font-primary:
-    Roboto Flex, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+@theme inline {
+  --font-primary: var(--font-roboto);
 
   --color-background: #000000;
   --color-foreground: #ecedee;

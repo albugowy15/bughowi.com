@@ -1,8 +1,10 @@
 ---
-import "@fontsource/roboto-flex";
 import "@/styles/global.css";
 import Footer from "@/layouts/Footer.astro";
 import { NavbarMenu } from "./NavbarMenu.tsx";
+import { Font } from "astro:assets";
+import profile_pic from "@/assets/profile.png";
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;
@@ -31,6 +33,7 @@ const {
 <!doctype html>
 <html lang="en">
   <head>
+    <Font cssVariable="--font-roboto" preload />
     <title>{title} - Mohamad Kholid Bughowi</title>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -65,9 +68,39 @@ const {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={img} />
   </head>
-  <body>
+  <body id="mainBody">
     <div class="flex min-h-screen w-full flex-col">
-      <NavbarMenu client:load links={links} />
+      <header class="sticky top-0 z-30 w-full py-3 lg:py-6">
+        <div class="container mx-auto px-3 xl:px-14 2xl:max-w-7xl">
+          <nav
+            class="flex justify-between items-center px-4 py-3 lg:px-5 lg:py-4 rounded-full backdrop-blur-md text-sm sm:text-base bg-background/60 border border-default-100"
+          >
+            <a href="/" title="Homepage" aria-label="Homepage">
+              <Image
+                src={profile_pic}
+                width={30}
+                height={30}
+                loading="eager"
+                class="aspect-square"
+                alt="Mohamad Kholid Bughowi"
+              />
+            </a>
+            <div class="hidden md:flex items-center gap-2">
+              {
+                links.map((link) => (
+                  <a
+                    href={link.path}
+                    class="cursor-pointer text-foreground/70 px-1 py-0.5 font-bold transition-colors duration-300 hover:text-primary"
+                  >
+                    {link.title}
+                  </a>
+                ))
+              }
+            </div>
+            <NavbarMenu client:only="react" links={links} />
+          </nav>
+        </div>
+      </header>
       <main class="container mx-auto flex-1 px-3 xl:px-14 2xl:max-w-7xl">
         <slot />
       </main>

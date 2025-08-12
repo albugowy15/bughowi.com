@@ -3,11 +3,26 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import astroExpressiveCode from "astro-expressive-code";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.fontsource(),
+        name: "Roboto Flex",
+        cssVariable: "--font-roboto",
+        weights: [400, 500, 600, 700],
+        styles: ["normal", "italic"],
+        subsets: ["latin"],
+        fallbacks: ["sans-serif"],
+        display: "swap",
+        optimizedFallbacks: true,
+      },
+    ],
+  },
   output: "static",
   markdown: {
     remarkPlugins: [remarkReadingTime],
