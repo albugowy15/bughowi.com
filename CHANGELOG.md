@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.4.1](https://github.com/albugowy15/bughowi.com/compare/v3.4.0...v3.4.1) (2025-08-17)
+
+
+### Bug Fixes
+
+* contrast accesibility ([fbdc371](https://github.com/albugowy15/bughowi.com/commit/fbdc37143c327cb8a7c002813667907f2278c0d1))
+* lazy load client js and external script ([43c6091](https://github.com/albugowy15/bughowi.com/commit/43c6091044485c3458edcb86204b53a45ad6dae5))
+* text prose-invert in dark ([837139d](https://github.com/albugowy15/bughowi.com/commit/837139df42ff49a32a4ef30895a3cbbd97c71bc8))
+
 ## [3.4.0](https://github.com/albugowy15/bughowi.com/compare/v3.3.0...v3.4.0) (2025-08-12)
 
 
