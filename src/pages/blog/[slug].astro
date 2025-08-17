@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { buttonCva } from "@/components/Button.astro";
 import Chip from "@/components/Chip.astro";
 import ContentPagination from "@/components/pagination/ContentPagination.astro";
 import type { ContentNavigator } from "@/components/pagination/ContentPagination.astro";
@@ -13,6 +12,7 @@ import { formatDate } from "@/utils/date";
 import type { GetStaticPaths } from "astro";
 import { compareDesc } from "date-fns";
 import { GITHUB_PROFILE_URL, X_USERNAME } from "@/lib/constant";
+import { buttonVariants } from "@/components/Button";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -86,9 +86,7 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
             {
               post.data.categories.map((item) => (
                 <li>
-                  <Chip variant="bordered" class="border-default-100">
-                    # {item}
-                  </Chip>
+                  <Chip variant="bordered"># {item}</Chip>
                 </li>
               ))
             }
@@ -96,7 +94,7 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
         </section>
       </div>
       <article
-        class="prose prose-invert max-w-none prose-headings:scroll-mt-25"
+        class="prose dark:prose-invert max-w-none prose-headings:scroll-mt-25"
       >
         <section id="content-space">
           <Content />
@@ -105,8 +103,8 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
           <a
             href={editUrl}
             class:list={[
-              buttonCva({ variant: "bordered", size: "md", radius: "md" }),
-              "flex items-center gap-2 border-default hover:bg-default transition-colors",
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "flex items-center gap-2",
             ]}
             aria-label="Edit this page"
           >
@@ -127,8 +125,8 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
           <a
             href={tweetUrl}
             class:list={[
-              buttonCva({ variant: "bordered", size: "md", radius: "md" }),
-              "flex items-center gap-2 border-default hover:bg-default transition-colors",
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "flex items-center gap-2",
             ]}
             aria-label="Tweet this article"
             ><svg
@@ -162,13 +160,13 @@ const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
-        data-theme="transparent_dark"
+        data-theme="dark"
         data-lang="en"
         crossorigin="anonymous"
         async></script>
     </div>
     <aside
-      class="sticky top-32 hidden flex-1 flex-col divide-y divide-default-100 rounded-lg border-2 border-default-100 xl:flex"
+      class="sticky top-32 hidden flex-1 flex-col divide-y divide-default-100 rounded-lg border xl:flex"
     >
       <div class="flex items-center justify-between px-3 py-2">
         <Heading4>Table Of Contents</Heading4>

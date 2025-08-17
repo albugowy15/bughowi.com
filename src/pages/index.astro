@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content";
-import { buttonCva } from "@/components/Button.astro";
 import PostCard from "@/components/card/PostCard.astro";
 import ProjectCard from "@/components/card/ProjectCard.astro";
 import SnippetCard from "@/components/card/SnippetCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { compareDesc } from "date-fns";
 import { CV_DOCUMENT_URL } from "@/lib/constant";
+import { buttonVariants } from "@/components/Button";
 
 const [blogCollections, projectCollections, snippetCollections] =
   await Promise.all([
@@ -43,15 +43,15 @@ const someSnippetPosts = snippetCollections
     <div class="mt-5 flex items-center justify-center gap-4 md:justify-start">
       <a
         class:list={[
-          buttonCva({ variant: "solid", size: "md", radius: "md" }),
-          "bg-primary-100 font-bold hover:bg-transparent border border-primary transition-colors",
+          buttonVariants({ variant: "default", size: "lg" }),
+          "!font-bold",
         ]}
         href="/about">More About Me</a
       >
       <a
         class:list={[
-          buttonCva({ variant: "bordered", size: "md", radius: "md" }),
-          "flex gap-1 items-center font-bold hover:bg-secondary border-secondary transition-colors",
+          buttonVariants({ variant: "outline", size: "lg" }),
+          "!font-bold",
         ]}
         aria-label="Resume"
         href={CV_DOCUMENT_URL}

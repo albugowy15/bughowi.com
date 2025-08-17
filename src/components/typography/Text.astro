@@ -10,11 +10,11 @@ const { variant, className } = Astro.props;
 <p
   class:list={[
     className,
-    variant === "body1" && "text-base text-slate-200",
-    variant === "body2" && "text-sm text-slate-200",
-    variant === "body3" && "text-xs text-slate-200",
-    variant === "label1" && "text-sm font-medium text-slate-200",
-    variant === "label2" && "text-xs font-medium text-slate-200",
+    variant === "body1" && "text-base",
+    variant === "body2" && "text-sm",
+    variant === "body3" && "text-xs",
+    variant === "label1" && "text-sm font-medium",
+    variant === "label2" && "text-xs font-medium",
   ]}
 >
   <slot />

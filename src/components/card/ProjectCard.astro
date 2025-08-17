@@ -10,7 +10,7 @@ const { project } = Astro.props;
 ---
 
 <div
-  class="group flex flex-col justify-between p-4 gap-3 rounded-sm cursor-pointer border border-default-100 hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
+  class="group flex flex-col justify-between p-4 gap-3 rounded-sm cursor-pointer border hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
 >
   <h3
     class="text-lg font-bold hover:text-primary transition-colors line-clamp-2"
@@ -22,7 +22,7 @@ const { project } = Astro.props;
   <div class="flex flex-wrap gap-2">
     {
       project.data.tech?.map((tech) => (
-        <Chip variant="bordered" radius="sm" size="sm" class="border-default">
+        <Chip variant="bordered" radius="sm" size="sm">
           {tech}
         </Chip>
       ))

@@ -1,5 +1,5 @@
 ---
-import { buttonCva } from "@/components/Button.astro";
+import { buttonVariants } from "@/components/Button";
 import Text from "@/components/typography/Text.astro";
 
 export type ContentNavigator = {
@@ -33,8 +33,8 @@ const { prev, next } = Astro.props;
     prev ? (
       <a
         class:list={[
-          buttonCva({ variant: "bordered", size: "md", radius: "md" }),
-          "flex w-full items-center gap-2 border-default cursor-pointer hover:bg-default transition-colors sm:gap-6 md:w-1/2",
+          buttonVariants({ variant: "outline", size: "lg" }),
+          "flex w-full items-center gap-2 cursor-pointer py-10 sm:gap-6 md:w-1/2",
           next ? "justify-start" : "justify-between",
         ]}
         aria-label="Go to previous content"
@@ -56,8 +56,10 @@ const { prev, next } = Astro.props;
         </svg>
 
         <div>
-          <p class="text-sm font-bold text-secondary-500">Previous</p>
-          <Text variant="body1">{prev.title}</Text>
+          <p class="text-sm font-bold">Previous</p>
+          <Text variant="body1" className="text-wrap">
+            {prev.title}
+          </Text>
         </div>
       </a>
     ) : null
@@ -66,16 +68,18 @@ const { prev, next } = Astro.props;
     next ? (
       <a
         class:list={[
-          buttonCva({ variant: "bordered", size: "md", radius: "md" }),
-          "flex w-full items-center gap-2 border-default cursor-pointer hover:bg-default transition-colors sm:gap-6 md:w-1/2",
+          buttonVariants({ variant: "outline", size: "lg" }),
+          "flex w-full items-center gap-2 cursor-pointer py-10 sm:gap-6 md:w-1/2",
           prev ? "justify-end" : "justify-between",
         ]}
         aria-label="Go to next content"
         href={next.slug}
       >
         <div>
-          <p class="text-sm font-bold text-secondary-500">Next</p>
-          <Text variant="body1">{next.title}</Text>
+          <p class="text-sm font-bold">Next</p>
+          <Text variant="body1" className="text-wrap">
+            {next.title}
+          </Text>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
