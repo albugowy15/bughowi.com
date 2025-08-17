@@ -60,7 +60,7 @@ const snippetUrl = new URL(`/snippets/${post.slug}`, Astro.site);
     <Heading1>{post.data.title}</Heading1>
     <Text variant="body1" className="mt-2">{post.data.description}</Text>
     <article class="mt-5 w-full">
-      <section id="content-space" class="prose dark:prose-invert max-w-none">
+      <section id="content-space" class="prose prose-invert max-w-none">
         <Content />
       </section>
     </article>
