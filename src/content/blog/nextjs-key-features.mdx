@@ -8,17 +8,17 @@ categories:
 thumbnail: https://user-images.githubusercontent.com/49820990/182567373-faa399fb-f45e-440a-ad02-d94fffde2e71.png
 ---
 
-We're going to learn all the key features that make up Next.js. How it pre-renders pages, helps us with search engine optimization, implement data fetching, work with api routes, and many many other important features.
+We're going to learn all the key features that make up Next.js: how it pre-renders pages, helps with search engine optimization, implements data fetching, works with API routes, and many other important features.
 
-Let's start with the most important question first, what exactly is Next.js and why do we need it?
+Let's start with the most important question first: what exactly is Next.js and why do we need it?
 
 ## What is Next.js
 
-If we visit official Next.js website, we learn that next js is the React framework. Next.js offers a lot of features that make building large scale ready React apps easier. Let's first of all focus on the framework part. Isn't React itself already a framework or a library? You can use React to build complex user interfaces way easier than it would be with just javascript. Now Next.js is labeled a framework that builds up on React. The difference between a framework and a library is that a framework is bigger. It has more features than a library. It's also giving you clear guidance on how you should write your code, structure your files and so on. And all these are things which Next.js does.
+If we visit the official Next.js website, we learn that Next.js is the React framework. Next.js offers a lot of features that make building large-scale, production-ready React apps easier. Let's first focus on the framework part. Isn't React itself already a framework or a library? You can use React to build complex user interfaces much easier than with just JavaScript. Now Next.js is labeled a framework that builds upon React. The difference between a framework and a library is that a framework is bigger. It has more features than a library. It's also giving you clear guidance on how you should write your code, structure your files, and so on. And all these are things which Next.js does.
 
-Next.js has the goal to make the life easier for you as a React developer. It enhances React by adding many core features which you have to add to React apps. Once you start using Next.js, you don't have to add as many third-party libraries to solve common problems which you need in bigger apps and which you typically need to solve when building real production React apps.
+Next.js has the goal to make life easier for you as a React developer. It enhances React by adding many core features which you have to add to React apps. Once you start using Next.js, you don't have to add as many third-party libraries to solve common problems which you need in bigger apps and which you typically need to solve when building real production React apps.
 
-You still write React code, build react components, but it's a framework for production because it adds all those missing features which you typically add to React apps to really prepare them for production.
+You still write React code and build React components, but it's a framework for production because it adds all those missing features which you typically add to React apps to really prepare them for production.
 
 ## Key Features
 
@@ -26,13 +26,13 @@ Let's now take a closer look at the actual features added by Next.js.
 
 ### Server-side Rendering
 
-I would say the most important key feature Next.js adds is the built-in Server-side rendering support. Server-side rendering is all about preparing the content of a page on the server instead on the client. If that page would be pre-rendered on the server and data fetching somehow could be done on the server too, when the request hits that server and then the finished page would be served to users and to the search engine crawlers. Then users would not have flickering loading state and search engines would see our page content.
+I would say the most important key feature Next.js adds is built-in server-side rendering support. Server-side rendering is all about preparing the content of a page on the server instead of on the client. If that page is pre-rendered on the server and data fetching can be done on the server too, when the request hits the server, the finished page is served to users and search engine crawlers. Users won't have flickering loading states and search engines will see our page content.
 
-React actually has built-in features that allow you to add server-side rendering, but it can be tricky to get that right and it requires extra setup. With Nextjs that becomes way easier.
+React actually has built-in features that allow you to add server-side rendering, but it can be tricky to get right and requires extra setup. With Next.js, that becomes much easier.
 
-### File Based Routing
+### File-based Routing
 
-Another very nice feature added by Next.js is file based routing. With Next.js, you define pages and routes with files and folders. You have a special pages folder in Next.js, then your structure in that folder defines the routes and paths your page supports. Next.js still supports all the features we might want like nested routes or dynamic routes with dynamic parameters
+Another very nice feature added by Next.js is file-based routing. With Next.js, you define pages and routes with files and folders. You have a special pages folder in Next.js, and your structure in that folder defines the routes and paths your page supports. Next.js still supports all the features we might want like nested routes or dynamic routes with dynamic parameters.
 
 ### Built-in Backend API Routes
 
@@ -40,57 +40,57 @@ Here is the feature which is most important for me labeling Next.js a full stack
 
 ## Create Next.js Project
 
-Let's get started and create a first Next.js project. For this we just need to run one simple command :
+Let's get started and create a first Next.js project. For this we just need to run one simple command:
 
 ```shell
 npx create-next-app <project-name>
 ```
 
-The three important folders here are pages, public, and styles. Pages is the most important one. Styles holds some css style files. And public simply holds public resources that our page might use likes images.
+The three important folders here are pages, public, and styles. Pages is the most important one. Styles holds some CSS style files. And public simply holds public resources that our page might use like images.
 
-Pages folder will be the most important folder because that is where we set up file based routing. This folder is important for us to define different pages that should make up our application.
+The pages folder will be the most important folder because that is where we set up file-based routing. This folder is important for us to define different pages that should make up our application.
 
 ## File Routing
 
-Open index.js file inside pages folder, you will see a standard react component. The index.js file will be root page. So if a request reaches our `https://yourdomain.com/`, then index.js will be loaded. So if you want to make url path for example `https://yourdomain.com/news`, then you need to create a news folder. Inside news folder, create index.js and write your react component code that you want to display when a request comes to `https://yourdomain.com/news`. The folder structure will be likes `pages/news/index.js`. Or you can create a new file called `news.js` and place it inside pages folder. In `pages/index.js`.
+Open the index.js file inside the pages folder; you will see a standard React component. The index.js file will be the root page. So if a request reaches our `https://yourdomain.com/`, then index.js will be loaded. So if you want to make a URL path for example `https://yourdomain.com/news`, then you need to create a news folder. Inside the news folder, create index.js and write your React component code that you want to display when a request comes to `https://yourdomain.com/news`. The folder structure will be like `pages/news/index.js`. Or you can create a new file called `news.js` and place it inside the pages folder.
 
-We can start the development server with `npm run dev`. Then you can visit `localhost:3000` through browser.
+We can start the development server with `npm run dev`. Then you can visit `localhost:3000` through your browser.
 
-But how if we want to implement dynamic routes in Next.js?. For that, we change the file name to `[dynamicPath].js` if it's a file, or `[dynamicPath]` if it's a folder. You can replace `dynamicPath` with any identifier that you want for your dynamic routing. This tells Next.js that this will be a dynamic page so that should be loaded for different values in your path.
+But what if we want to implement dynamic routes in Next.js? For that, we change the file name to `[dynamicPath].js` if it's a file, or `[dynamicPath]` if it's a folder. You can replace `dynamicPath` with any identifier that you want for your dynamic routing. This tells Next.js that this will be a dynamic page that should be loaded for different values in your path.
 
-When a user visits this page, to extract the concrete value entered in the url when this page is loaded, Next.js gives us a special hook. You can import `useRouter` from `next-router`. We can call this hook inside of the page simply like this.
+When a user visits this page, to extract the concrete value entered in the URL when this page is loaded, Next.js gives us a special hook. You can import `useRouter` from `next/router`. We can call this hook inside of the page simply like this.
 
 ```js title="pages/[news].js"
-import useRouter from "next-router";
+import { useRouter } from "next/router";
 
 export default function NewsDetail() {
   const router = useRouter();
 
-  return <div>Your react component</div>;
+  return <div>Your React component</div>;
 }
 ```
 
-If we do that we get access to our router object. On that router object we get certain pieces of data and certain methods which we can call. For example we got `query` property which gives us access to a nested object. On that query object, we then have the identifier which we chose between the `[]` as a property name.
+If we do that we get access to our router object. On that router object we get certain pieces of data and certain methods which we can call. For example, we have a `query` property which gives us access to a nested object. On that query object, we then have the identifier which we chose between the `[]` as a property name.
 
 ```js title="pages/[news].js"
-import useRouter from "next-router";
+import { useRouter } from "next/router";
 
 export default function NewsDetail() {
   const router = useRouter();
   const path = router.query.news; // get value for visited dynamic path
   console.log(path);
 
-  return <div>Your react component</div>;
+  return <div>Your React component</div>;
 }
 ```
 
 ## Link Component
 
-So basically, Next.js gives us a Link component. This Link component allows us to route between pages. The Link component is only used to navigate for client-side transitions. And when I say client side, I mean literally using the HTML5 push state browser, and it's navigating purely on the client side, there's no request to the server. So if you're trying to get that SPA-like fast navigation behavior, you use the Link component.
+Basically, Next.js gives us a Link component. This Link component allows us to route between pages. The Link component is only used to navigate for client-side transitions. And when I say client-side, I mean literally using the HTML5 push state in the browser, and it's navigating purely on the client side—there's no request to the server. So if you're trying to get that SPA-like fast navigation behavior, you use the Link component.
 
-And let's just talk about it a little bit. So it's a little different than what you might have used before. So the first thing is that it has `href` prop, which is very similar to an href on anchor tag, except it actually doesn't take an href. So you're not gonna put a full URL here. Remember, this is client-side routing, so everything's gonna be pretty much relative here. It's relative to the pages directory.
+And let's just talk about it a little bit. So it's a little different than what you might have used before. The first thing is that it has an `href` prop, which is very similar to an href on an anchor tag, except it actually doesn't take a full URL. So you're not going to put a full URL here. Remember, this is client-side routing, so everything's going to be pretty much relative here. It's relative to the pages directory.
 
-For example I want to navigate to news page from home page. Then inside Home page, call Link component and pass "/news" to href props.
+For example, if I want to navigate to the news page from the home page, then inside the Home page, I call the Link component and pass "/news" to the href prop.
 
 ```js
 import Link from "next/link";
@@ -217,17 +217,18 @@ Adding head elements to our Next.js pages is very simple. To do that we can impo
 import Head from "next/head";
 
 export default function NewsDetail() {
-  return;
-  <div>
-    <Head>
-      <title>My Page Title</title>
-      <meta
-        name="description"
-        content="This is my page description for My Page Title"
-      />
-    </Head>
-    <p>Hello World!</p>
-  </div>;
+  return (
+    <div>
+      <Head>
+        <title>My Page Title</title>
+        <meta
+          name="description"
+          content="This is my page description for My Page Title"
+        />
+      </Head>
+      <p>Hello World!</p>
+    </div>
+  );
 }
 ```
 

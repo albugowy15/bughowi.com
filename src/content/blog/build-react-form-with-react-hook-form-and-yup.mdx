@@ -26,10 +26,7 @@ To get started with React Hook Form, you will first need to install it in your p
 npm install react-hook-form
 ```
 
-Then, you can import the `useForm` hook from the react-hook-form
-library and use it to create a form component. The `useForm` hook returns several
-functions that you can use to register input fields, handle form submission, and
-access errors. For example:
+Then, you can import the `useForm` hook from the react-hook-form library and use it to create a form component. The `useForm` hook returns several functions that you can use to register input fields, handle form submission, and access errors. For example:
 
 ```tsx title="Form.tsx"
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -68,9 +65,7 @@ To add Yup validation to this form, you will need to install the Yup library:
 npm install @hookform/resolvers yup
 ```
 
-Then, you can use the `validationSchema` option
-of the useForm hook to specify a Yup validation schema for your form. The validation
-schema is an object that defines the rules for each field in your form. For example:
+Then, you can use the `resolver` option of the useForm hook to specify a Yup validation schema for your form. The validation schema is an object that defines the rules for each field in your form. For example:
 
 ```tsx title="Form.tsx"
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -83,39 +78,40 @@ interface FormInput {
 }
 
 const validationSchema = yup.object().shape({
-	firstName: yup.string().required("First name is required"),
-	lastName: yup.string().required("Last name is required"),
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
 });
 
 export default function MyForm() {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm <
-	FormInput >
-	{
-		resolver: yupResolver(validationSchema),
-	};
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInput>({
+    resolver: yupResolver(validationSchema),
+  });
 
-	const onSubmit: SubmitHandler<FormInput> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormInput> = (data) => console.log(data);
 
-	return (
-		<form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-			<div style={{ display: "flex", flexDirection: "row", gap: 3 }}>
-				<label>firstName</label>
-				<input {...register("firstName")} />
-				{errors.firstName && <span>This field is required</span>}
-			</div>
-			<div style={{ display: "flex", flexDirection: "row", gap: 3 }}>
-				<label>lastName</label>
-				<input {...register("lastName")} />
-				{errors.lastName && <span>This field is required</span>}
-			</div>
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      style={{ display: "flex", flexDirection: "column", gap: 4 }}
+    >
+      <div style={{ display: "flex", flexDirection: "row", gap: 3 }}>
+        <label>firstName</label>
+        <input {...register("firstName")} />
+        {errors.firstName && <span>This field is required</span>}
+      </div>
+      <div style={{ display: "flex", flexDirection: "row", gap: 3 }}>
+        <label>lastName</label>
+        <input {...register("lastName")} />
+        {errors.lastName && <span>This field is required</span>}
+      </div>
 
-			<input type='submit' />
-		</form>
-	);
+      <input type="submit" />
+    </form>
+  );
 }
 ```
 
@@ -144,7 +140,7 @@ const validationSchema = yup.object().shape({
 
 In this example, we are using the `min` function to specify that the first name and last name fields must be at least 2 characters long. If the user tries to submit the form with shorter values in these fields, the corresponding error messages will be displayed.
 
-## Using Async/await with Yup and React Hook Form
+## Using Async/Await with Yup and React Hook Form
 
 Sometimes, you may need to perform asynchronous validation with Yup. For example, you may want to check if a username is already taken when a user is trying to sign up for your app. To do this, you can use the `test` function in your Yup validation schema, and use the `await` keyword to perform asynchronous validation. Here is an example of how to do this:
 
@@ -164,7 +160,7 @@ const validationSchema = yup.object().shape({
 });
 ```
 
-In this example, the `checkUsernameAvailability` function is an async function that checks if a given username is available. If the username is already taken, the test function will return an error with the message **_"This username is already taken"_**.
+In this example, the `checkUsernameAvailability` function is an async function that checks if a given username is available. If the username is already taken, the test function will return an error with the message "This username is already taken".
 
 ## Managing arrays of fields with useFieldArray
 

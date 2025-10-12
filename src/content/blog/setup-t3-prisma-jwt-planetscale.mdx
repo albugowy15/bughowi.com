@@ -15,35 +15,35 @@ thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/setup-t
 
 import { Image } from "astro:assets";
 
-The T3 Stack is a web development stack that focuses on simplicity, modularity, and full-stack type safety. It is made up of the following technologies:
+The T3 Stack is a web development stack that focuses on simplicity, modularity, and full-stack type safety. It consists of the following technologies:
 
 - **Next.js:** A React framework that makes it easy to build server-rendered and static web pages.
-- **TypeScript:** A typed superset of JavaScript that helps to prevent errors and improve code quality.
+- **TypeScript:** A typed superset of JavaScript that helps prevent errors and improve code quality.
 - **Tailwind CSS:** A utility-first CSS framework that makes it easy to style your web applications.
 - **Prisma:** An ORM that makes it easy to interact with your database.
 - **tRPC:** tRPC stands for TypeScript Remote Procedure Call. It is a lightweight, type-safe RPC framework for TypeScript. tRPC allows you to easily build and consume APIs without the need for schemas or code generation.
 
 There are many reasons to use the T3 Stack for your next web development project. Here are a few of the most compelling reasons:
 
-- **Full-stack type safety:** The T3 Stack uses TypeScript, which provides full-stack type safety. This means that you can catch errors at compile time, which helps to improve code quality and prevent bugs.
-- **Modularity:** The T3 Stack is modular, which means that you can choose the technologies that are right for your project. This makes it easy to scale your application and add new features.
-- **Maintainability:** The T3 Stack is easy to maintain. The use of TypeScript helps to prevent errors and improve code quality. The modularity of the stack makes it easy to add new features and scale your application.
+- **Full-stack type safety:** The T3 Stack uses TypeScript, which provides full-stack type safety. This means you can catch errors at compile time, which helps improve code quality and prevent bugs.
+- **Modularity:** The T3 Stack is modular, which means you can choose the technologies that are right for your project. This makes it easy to scale your application and add new features.
+- **Maintainability:** The T3 Stack is easy to maintain. The use of TypeScript helps prevent errors and improve code quality. The modularity of the stack makes it easy to add new features and scale your application.
 
-[PlanetScale](https://planetscale.com/) is a serverless database designed to be scalable, secure, and user-friendly. It is built upon [Vitess](https://vitess.io/), an open-source database technology originally developed by YouTube. PlanetScale offers an excellent free plan, allowing you to have one MySQL database with a maximum of **_1 billion row reads_** and **_10 million row writes_** each month. It's an excellent choice if you are seeking a database service for your personal project.
+[PlanetScale](https://planetscale.com/) is a serverless database designed to be scalable, secure, and user-friendly. It is built upon [Vitess](https://vitess.io/), an open-source database technology originally developed by YouTube. PlanetScale offers an excellent free plan, allowing you to have one MySQL database with a maximum of **1 billion row reads** and **10 million row writes** each month. It's an excellent choice if you're seeking a database service for your personal project.
 
-For the authentication, we will use NextAuth with JWT strategy. This approach provides a secure and efficient way to manage user authentication for your application. This method simplifies the user authentication by eliminating the need for session management on the server side. JWTs facilitate secure transmission of user information, granting users seamless and authenticated access to protected resources.
+For authentication, we'll use NextAuth with JWT strategy. This approach provides a secure and efficient way to manage user authentication for your application. This method simplifies user authentication by eliminating the need for session management on the server side. JWTs facilitate secure transmission of user information, granting users seamless and authenticated access to protected resources.
 
-Now, let's begin to set up this project.
+Now, let's begin setting up this project.
 
 ## Create a T3 stack project
 
-First, we will initiate our project with T3 stack command.
+First, we'll initialize our project with the T3 stack command.
 
 ```shell
 npm create t3-app@latest
 ```
 
-You have to answer some command prompts. Make sure you choose to use TypeScript and enable `nextAuth`, `prisma`, `tailwind`, and `tRPC` packages.
+You'll need to answer some command prompts. Make sure you choose to use TypeScript and enable `nextAuth`, `prisma`, `tailwind`, and `tRPC` packages.
 
 <Image
   src="https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/blog-create-t3-app-command.png"
@@ -54,18 +54,18 @@ You have to answer some command prompts. Make sure you choose to use TypeScript 
 
 ## Setup Planetscale
 
-To proceed with this guide, you will require a PlanetScale account. Follow these instructions to establish a database:
+To proceed with this guide, you'll need a PlanetScale account. Follow these instructions to create a database:
 
-1. Go to your organization's overview page and click on "New database" > "Create a database.”
+1. Go to your organization's overview page and click on "New database" > "Create a database."
 2. Assign a name to your database using lowercase letters, numbers, or underscores. While you can use dashes, it's better to avoid them due to potential complications with sharded databases.
 3. Choose a region. For optimal performance, select a region close to your location or your application's hosting site.
 4. Select the suitable plan type for your database.
 5. Provide valid credit or debit card details. If you're opting for the Hobby plan, no charges will be applied.
 6. Finally, click the "Create database" button to initiate the deployment of your database.
 
-Your database will be created with a default production branch named "main." This branch will be utilized for implementing schema changes and data insertion. While this is the initial branch provided, you can always generate new development branches (independent replicas of the production schema) based on the production branch for developmental purposes.
+Your database will be created with a default production branch named "main." This branch will be used for implementing schema changes and data insertion. While this is the initial branch provided, you can always generate new development branches (independent replicas of the production schema) based on the production branch for development purposes.
 
-Make sure you first have downloaded and installed the [PlanetScale CLI](https://github.com/planetscale/cli#installation). To authenticate with the PlanetScale CLI, enter the following:
+Make sure you've downloaded and installed the [PlanetScale CLI](https://github.com/planetscale/cli#installation). To authenticate with the PlanetScale CLI, enter the following:
 
 ```shell
 pscale auth login
@@ -73,11 +73,11 @@ pscale auth login
 
 You'll be taken to a screen in the browser where you'll be asked to confirm the code displayed in your terminal. If the confirmation codes match, click the "**Confirm code**" button in your browser.
 
-You should receive the message _"Successfully logged in"_ in your terminal. You can now close the confirmation page in the browser and proceed in the terminal.
+You should receive the message "Successfully logged in" in your terminal. You can now close the confirmation page in the browser and proceed in the terminal.
 
 ## Configure prisma schema
 
-Next, we need to set up our database schema using Prisma. We will create a User model to store the `id`, `username`, `email`, `password`, and `fullname`.
+Next, we need to set up our database schema using Prisma. We'll create a User model to store the `id`, `username`, `email`, `password`, and `fullname`.
 
 ```
 model User {
@@ -89,7 +89,7 @@ model User {
 }
 ```
 
-Then, because we are using planetscale as our database services, inside `datasource db`, set provider to `mysql` and `relationMode` to `prisma`.
+Since we're using PlanetScale as our database service, in the `datasource db` block, set the provider to `mysql` and `relationMode` to `prisma`.
 
 ```
 datasource db {
@@ -133,7 +133,7 @@ Now you should establish a local connection to your PlanetScale database branche
 pscale connect <db-name> <db-branch> --port 3309
 ```
 
-Maintain this connection active. This sets up a safe link to PlanetScale and is active on the designated local port. In the terminal, you will receive a local address. This can be utilized to connect to a MySQL client, if desired.
+Maintain this connection active. This sets up a safe link to PlanetScale and is active on the designated local port. In the terminal, you'll receive a local address. This can be utilized to connect to a MySQL client, if desired.
 
 The next step involves pushing your Prisma schema. Open a new tab in your terminal and execute this command:
 
@@ -141,15 +141,15 @@ The next step involves pushing your Prisma schema. Open a new tab in your termin
 npx prisma db push
 ```
 
-When working with Prisma and PlanetScale, it's advisable to follow the workflow of using `prisma db push` instead of `prisma migrate`. You can find additional information about `[prisma db push` [here](<[https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push)>).
+When working with Prisma and PlanetScale, it's advisable to follow the workflow of using `prisma db push` instead of `prisma migrate`. You can find additional information about `prisma db push` [here](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push).
 
 Upon successful completion, your PlanetScale database schema will align with the Prisma schema you set up in `prisma/schema.prisma`.
 
 ## Configure NextAuth
 
-There are a couple steps to set up our JWT authentication flow within NextAuth.
+There are a couple of steps to set up our JWT authentication flow within NextAuth.
 
-### Define response and session type
+### Define response and session types
 
 ```ts title="src/types/api.ts"
 export type APIResponse<TData> = {
@@ -251,7 +251,7 @@ export const getServerAuthSession = (ctx: {
 
 ## Configure tRPC middleware
 
-Inside `src/server/api/trpc.ts`, you can remove the `prisma` from `createInnerTRPCContext` since you are not using a session strategy that maintains authentication inside the database.
+Inside `src/server/api/trpc.ts`, you can remove the `prisma` from `createInnerTRPCContext` since you're not using a session strategy that maintains authentication inside the database.
 
 ```ts
 const createInnerTRPCContext = (opts: CreateContextOptions) => {
@@ -280,7 +280,7 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
 
 This middleware is applied to TRPC methods to ensure that a user is authenticated before proceeding. It achieves this by checking if the `session` exists and contains a `user` property. If not, it throws a `TRPCError` with the code 'UNAUTHORIZED', indicating that the user lacks proper authentication. If authentication is successful, the middleware allows the method to continue executing and passes along an updated context that ensures the presence of the `session` object with a non-null `user` property. This middleware plays a vital role in enforcing user authentication across TRPC methods, safeguarding routes that require authorized access.
 
-The complete setup for our trpc will looks like this.
+The complete setup for our tRPC will look like this.
 
 ```ts title="src/server/api/trpc.ts"
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
@@ -427,7 +427,7 @@ export default async function handler(
 }
 ```
 
-This `/api/register` route handles user registration by verifying provided details, hashing the password, and creating a new user record in the database. It returns relevant success or error responses based on the outcome of the registration process.
+The `/api/register` route handles user registration by verifying provided details, hashing the password, and creating a new user record in the database. It returns relevant success or error responses based on the outcome of the registration process.
 
 ```ts title="src/pages/api/register.ts"
 type RegisterResponseData = {
@@ -452,7 +452,7 @@ export default async function handler(
   if (password !== confirmPassword) {
     res.status(400).json({
       status: "error",
-      message: "Confirmation password not match",
+      message: "Confirmation password does not match",
     });
     return;
   }
@@ -469,7 +469,7 @@ export default async function handler(
 
     res.status(201).json({
       status: "success",
-      message: "Accound created successfully",
+      message: "Account created successfully",
       data: {
         id: user.id,
       },
@@ -519,7 +519,7 @@ Querying and mutating data using tRPC is straightforward, akin to using TanStack
 ```ts
 const response = api.common.getAllNews.useQuery({
   category: "sport",
-  author: "Joh Doe",
+  author: "John Doe",
   min_views: 20000,
 });
 ```
@@ -531,7 +531,7 @@ const mutateNews = api.news.createNews.useMutation();
 
 function handleCreateNews(data: NewsData) {
   mutateNews.mutate({
-    title: "t3 Stack is awesome",
+    title: "T3 Stack is awesome",
     desc: "Scaffold your next project with T3 Stack for excellent type safety",
     author: "M. K. Bughowi",
   });

@@ -14,13 +14,13 @@ In this article, we compare the useContext hook in React with the Redux library 
 
 ## useContext
 
-The useContext hook in React is a powerful way to share statebetween compoenents without having to pass props down the component tree manually. It was introuduced in React 16.3 as an alternative to the context API, which has been around since React 16.0.
+The useContext hook in React is a powerful way to share state between components without having to pass props down the component tree manually. It was introduced in React 16.3 as an alternative to the context API, which has been around since React 16.0.
 
-One advantage of using `useContext`over the other state management solutions like Redux is that it is build into React and does not require any additional libraries or dependencies. This can make it easier to set up and maintain in a project.
+One advantage of using `useContext` over other state management solutions like Redux is that it is built into React and does not require any additional libraries or dependencies. This can make it easier to set up and maintain in a project.
 
 ### How To Use
 
-To use `useContext`, you first neet to create a context object using `React.createContext()` and provide a devault value. This default value will be used if a component that consumes the context does not have a matching `Provider` higher up in the tree.
+To use `useContext`, you first need to create a context object using `React.createContext()` and provide a default value. This default value will be used if a component that consumes the context does not have a matching `Provider` higher up in the tree.
 
 #### Case 1: Share theme state
 
@@ -62,13 +62,13 @@ function Content() {
 
 In this example, the `App` component has a state called `theme` which can be either `light` or `dark`. The `App` component wraps the `Content` component with a `ThemeContext.Provider` element, which provides the current value of the `theme` state to the `Content` component.
 
-The `Content` component uses the `useContext` hook to get the current value of the `theme` state from the context object. The `Content` component then uses the value of the `theme` state to set background and text color of a `div` element.
+The `Content` component uses the `useContext` hook to get the current value of the `theme` state from the context object. The `Content` component then uses the value of the `theme` state to set the background and text color of a `div` element.
 
-When the user clicks the `button` element, the `setTheme` function is called to toggle the value of the `theme` state between `light` and `dark`. This cause the `Content` component to re-render and update the background and text color of the `div` element to match the new value of the `theme` state.
+When the user clicks the `button` element, the `setTheme` function is called to toggle the value of the `theme` state between `light` and `dark`. This causes the `Content` component to re-render and update the background and text color of the `div` element to match the new value of the `theme` state.
 
-#### Case 2: Share an user object
+#### Case 2: Share a user object
 
-Using `useContext` is a great way to shate state between components that are not directly related in the component tree. For example, suppose you have a `Sidebar` component and a `MainContent` component that need to share a `user` object. Instead of passing the `user` object down the tree as props, you can create a `UserContext` and use it to provide the `user` object to both the `Sidebar` and `MainContent` components.
+Using `useContext` is a great way to share state between components that are not directly related in the component tree. For example, suppose you have a `Sidebar` component and a `MainContent` component that need to share a `user` object. Instead of passing the `user` object down the tree as props, you can create a `UserContext` and use it to provide the `user` object to both the `Sidebar` and `MainContent` components.
 
 ```js
 import React, { createContext, useContext } from "react";
@@ -99,13 +99,13 @@ function MainContent() {
 }
 ```
 
-In this example, the `App` component has a `user` object with a `name` and `email` properties. The `App` component wraps the `Sidebar` and `MainContent` components with a `UserContext.Provider` element, which provides the current value of the `user` to both the `Sidebar` and `MainContent` components.
+In this example, the `App` component has a `user` object with `name` and `email` properties. The `App` component wraps the `Sidebar` and `MainContent` components with a `UserContext.Provider` element, which provides the current value of the `user` to both the `Sidebar` and `MainContent` components.
 
-The `Sidebar` and `MainContent` components use the `useContext` hook to get the current value of the `user` object from context object. `Sidebar` component displays user's name, and `MainContent` component displays user's email.
+The `Sidebar` and `MainContent` components use the `useContext` hook to get the current value of the `user` object from the context object. The `Sidebar` component displays the user's name, and the `MainContent` component displays the user's email.
 
 ### Limitation
 
-One limitation uf using `useContext` is that it only allows you to share state between components that are siblings or ancestors in the component tree. If you need to share state between components that are not related in the tree, you may want to consider using a solution like Redux, which allows you to manage global state in a centralized store.
+One limitation of using `useContext` is that it only allows you to share state between components that are siblings or ancestors in the component tree. If you need to share state between components that are not related in the tree, you may want to consider using a solution like Redux, which allows you to manage global state in a centralized store.
 
 ## Redux
 
@@ -113,14 +113,14 @@ Redux is a popular library for managing state in React applications. It uses a s
 
 ### How To Use
 
-To use Redux in a React application, you need to install the `redux` and `react-redux` libraries and create a store using the `createStore` function from `redux` library. You can then use the `Provider` component from the `react-redux` library to wrap your application and provide the store to all of your components.
+To use Redux in a React application, you need to install the `redux` and `react-redux` libraries and create a store using the `createStore` function from the `redux` library. You can then use the `Provider` component from the `react-redux` library to wrap your application and provide the store to all of your components.
 
-Here is an example of how to use Redux to manage the terms of a user interface.
+Here is an example of how to use Redux to manage the theme of a user interface.
 
 ```js
 import React from "react";
 import { createStore } from "redux";
-import { Provider } from "react-redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -143,19 +143,19 @@ function App() {
 }
 
 function ThemeToggler() {
-  const [state, dispatch] = useRedux(store);
+  const theme = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
   const toggleTheme = () =>
     dispatch({
       type: "SET_THEME",
-      theme: state.theme === "light" ? "dark" : "light",
+      theme: theme === "light" ? "dark" : "light",
     });
 
   return <button onClick={toggleTheme}>Toggle theme</button>;
 }
 
 function Content() {
-  const [state] = useRedux(store);
-  const theme = state.theme;
+  const theme = useSelector((state) => state.theme);
 
   return (
     <div
@@ -170,9 +170,9 @@ function Content() {
 }
 ```
 
-In this example, `ThemeToggler` component uses `useRedux` hook from `react-redux` library to get current state of the store and the dispatch function, which is used to dispatch actions to the store. The `toggleTheme` function is called when user clicks the button element, and it dispatches an action with `SET_THEME` type and new value of the `theme` state.
+In this example, the `ThemeToggler` component uses `useSelector` and `useDispatch` hooks from the `react-redux` library to get the current state of the store and the dispatch function, which is used to dispatch actions to the store. The `toggleTheme` function is called when the user clicks the button element, and it dispatches an action with `SET_THEME` type and the new value of the `theme` state.
 
-The `Content` component uses `useRedux` hook to get the current state of the store, and it uses the value of the `theme` state to set the background and text color of a `div` element.
+The `Content` component uses the `useSelector` hook to get the current state of the store, and it uses the value of the `theme` state to set the background and text color of a `div` element.
 
 ### Limitations
 

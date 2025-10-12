@@ -1,7 +1,7 @@
 ---
 title: Build Blog Newsletter with Sendinblue and Next.js
 date: 2023-01-23
-description: Building an email newsletter for your Next.js blog can be a great way to keep your viewers informed about your business and articles. By integrating Next.js with an email marketing platform like Sendinblue, you can easily create and send newsletters to a large number of recipients.
+description: Integrate Sendinblue with your Next.js blog to build an email newsletter that keeps readers updated on your latest articles and business developments. This guide walks through creating and sending newsletters to a large audience.
 categories:
   - nextjs
   - newsletter
@@ -12,11 +12,11 @@ thumbnail: https://user-images.githubusercontent.com/49820990/213977382-3c5904ed
 
 import { Image } from "astro:assets";
 
-Building an email newsletter for your Next.js blog can be a great way to keep your viewers informed about your business and articles. By integrating Next.js with an email marketing platform like Sendinblue, you can easily create and send newsletters to a large number of recipients.
+Integrating Sendinblue with your Next.js blog allows you to build an email newsletter that keeps readers updated on your latest articles and business developments. This guide walks through creating and sending newsletters to a large audience.
 
 ## Introduction to Sendinblue
 
-Sendinblue is an all-in-one marketing platform that offers a variety of tools for businesses to connect with their customers and grow their business. These tools include email marketing, SMS marketing, chat and CRM, and automation. With Sendinblue, you can create and send email campaigns, automate your email marketing, segment your contacts, and track the performance of your campaigns. The platform also offers a drag-and-drop editor to design professional-looking emails, and a variety of templates to choose from. Additionally, it provides a robust set of APIs that allow you to integrate with other platforms like Next.js and other websites, or even with your own software.
+Sendinblue is a comprehensive marketing platform offering tools for customer engagement and business growth, including email marketing, SMS, chat, CRM, and automation. With Sendinblue, you can create and send email campaigns, automate your email marketing, segment your contacts, and track the performance of your campaigns. The platform also offers a drag-and-drop editor to design professional-looking emails, and a variety of templates to choose from. Additionally, it provides robust APIs for seamless integration with platforms like Next.js, websites, or custom software.
 
 ## Create Sendinblue Account
 
@@ -29,13 +29,13 @@ Creating a Sendinblue account is a simple process. Here are the steps to follow:
 3. Fill in your personal information, such as your name, email address, and password. Or you can simply Sign Up with Google or Apple account.
 4. Verify your email address by clicking on the link sent to your email
 5. Once you have verified your email, you will be prompted to log in to your account.
-6. Once you have logged in, you will be taken to your account dashboard, where you can start creating campaigns, designing your templates, and managing your contacts.
+6. Once logged in, you'll access your dashboard to start creating campaigns, designing templates, and managing contacts.
 
 ## Creating the form
 
-Now, let's create a simple form that takes your viewers email.
+Now, let's create a simple form to collect your readers' email addresses.
 
-First, create a new component called `NewsletterForm.tsx`. Start creating your own newsletter form component, or you can simply copy this code.
+Create a new component named `NewsletterForm.tsx`. You can build your own or use the following code as a starting point.
 
 ```tsx title="./components/NewsletterForm.tsx"
 const NewsletterForm = () => {
@@ -71,7 +71,7 @@ const NewsletterForm = () => {
 export default NewsletterForm;
 ```
 
-Now, our Newsletter Form will looks like this
+The newsletter form will look like this:
 
 <Image
   src="https://user-images.githubusercontent.com/49820990/213977560-3891bdbf-46de-4a31-b066-9f339ffa039e.png"
@@ -82,7 +82,7 @@ Now, our Newsletter Form will looks like this
 
 ## Creating the custom hook
 
-We need to create a custom hook for handling the form. By abstracting it with a custom hook is a great way to keep your code organized and reusable. Here's an example of how you might create a custom hook for handling the newsletter form.
+We'll create a custom hook to manage the form. Abstracting the logic into a hook promotes code organization and reusability. Here's an example of how you might create a custom hook for handling the newsletter form.
 
 ```ts title="./utils/hooks/useNewsletter.ts" {16}
 import { useRef, useState } from "react";
@@ -104,7 +104,7 @@ export function useNewsletter() {
 }
 ```
 
-The hook also declares a variable called `inputEl` which is initialized with the `useRef` hook. This variable is used to keep track of the email input element in the form.
+The hook imports `useState` and `useRef` from React. `useState` manages the form's state, while `useRef` tracks the email input element.
 
 ```ts title="./utils/hooks/useNewsletter.ts" {17}
 import { useRef, useState } from "react";
@@ -127,11 +127,9 @@ export function useNewsletter() {
 }
 ```
 
-The hook starts by importing the `useState` and `useRef` hooks from the React library. `useState` is used to manage the state of the form, and `useRef` is used to keep track of the input element in the form.
+It declares a `form` state variable initialized with `{ state: Form.Initial }`. The `state` property tracks the form's status (Initial, Loading, Success, or Error), and the optional `message` property displays status-specific feedback.
 
-Then, it declares a state variable called `form` that is initialized with an object that has two properties, `state: Form.Initial` and `message: undefined`. The state property is used to keep track of the status of the form, it can be `Form.Initial`, `Form.Loading`, `Form.Success` or `Form.Error`. The `message` property is used to display the message depending of the status of the form.
-
-Next, the hook exports a function called `subscribe` that handles the form submission. This function takes one parameter e of type `React.FormEvent`, which is the event object that is passed to the function when the form is submitted.
+The hook defines an exported `subscribe` function to handle form submission. It accepts a `React.FormEvent` parameter representing the submission event.
 
 Inside the function, the first thing it does is calling the `preventDefault` method on the event object to prevent the page from refreshing when the form is submitted. Then it changes the state of the form to `Form.Loading`
 
@@ -161,9 +159,9 @@ export function useNewsletter() {
 }
 ```
 
-After that, it uses the fetch API to make a POST request to the endpoint `/api/newsletter` with the email entered in the input field as the body of the request. The headers are set to `Content-Type: application/json.`
+It then uses the Fetch API to send a POST request to `/api/newsletter`, including the email from the input field in the JSON body and setting the `Content-Type` header to `application/json`.
 
-Once the fetch request is complete, it parses the response as json and destructures the object to get the value of the error property. If the error property is not undefined, it means that the request failed, it updates the state of the form to `Form.Error` and sets the message to the error returned.
+After the request completes, it parses the JSON response and checks for an `error` property. If present, it updates the form state to `Form.Error` and sets the message to the returned error.
 
 ```ts title="./utils/hooks/useNewsletter.ts" {23-40}
 import { useRef, useState } from "react";
@@ -211,7 +209,7 @@ export function useNewsletter() {
 }
 ```
 
-If there was no error, it sets the value of the input field to empty string, and updates the state of the form to `Form.Success` and sets the message to _"Success! You've been added to the list!"_
+On success, it clears the input field and updates the form state to `Form.Success` with the message 'Success! You've been added to the list!'
 
 ```ts title="./utils/hooks/useNewsletter.ts" {43-47}
 import { useRef, useState } from "react";
@@ -265,7 +263,7 @@ export function useNewsletter() {
 }
 ```
 
-Finally, the hook returns an object containing the `subscribe` function, the `inputEl` variable and the form state variable. These are the values that are needed by the component that uses this hook to render the form and handle the form submission.
+Finally, the hook returns an object with `subscribe`, `inputEl`, and `form`, providing the component with everything needed to render and manage the form.
 
 ```ts title="./utils/hooks/useNewsletter.ts" {50}
 import { useRef, useState } from "react";
@@ -323,7 +321,7 @@ export function useNewsletter() {
 
 ## Save Sendinblue API key
 
-To make Sendinblue API request, we have to include the Sendinblue API key in the request headers. In order to get your Sendinblue API key, you need to sign in and follow this steps:
+To make Sendinblue API requests, include the API key in the request headers. To obtain your Sendinblue API key, sign in and follow these steps:
 
 1. Click on the "Settings" icon in the top right corner of the page.
 2. In the settings menu, click on the "SMTP & API" tab.
@@ -331,7 +329,7 @@ To make Sendinblue API request, we have to include the Sendinblue API key in the
 4. Click on the "Create a v3 API key" button to generate a new key if you don't have any yet.
 5. You should copy the key and keep it in a safe place, you will use it in your application when you make requests to the Sendinblue API.
 
-Be sure to keep your API key secure and never share it with anyone or include it in your codebase. It's also important to note that you should use environment variables to store the api key and other sensitive information, instead of hardcoding them in your code.
+Keep your API key secure—never share it or commit it to your codebase. Always store sensitive information like API keys in environment variables instead of hardcoding them.
 
 Create `.env` file in root folder of your project. In the .env file, add a new variable called `SENDINBLUE_API_KEY` and set it to your Sendinblue API key. For example:
 
@@ -346,7 +344,7 @@ To handle the form submission from the `useNewsletter` hook, you will need to cr
 
 1. Open or create api folder inside pages directory
 2. Inside the api folder, create a new file called newsletter.ts
-3. In newsletter.ts, you will use the next/api route to define the route that will handle the newsletter subscription. Here's an example of what the code might look like:
+3. In newsletter.ts, you'll use Next.js API routes to define the endpoint that will handle the newsletter subscription. Here's an example of what the code might look like:
 
 ```ts title="./pages/api/newsletter.ts"
 import { NextApiRequest, NextApiResponse } from "next";
@@ -381,16 +379,16 @@ export default async function handler(
 }
 ```
 
-4. In the above code, the handler function is an async function that handles the incoming POST request and is exported as the default export of the file. It first checks if the request body contain email, if not, it sends a 400 Bad Request with response "Email is required".
-5. Next, it uses the fetch API to make a POST request to the Sendinblue API endpoint for creating a new contact, passing in the necessary headers, such as the api-key, content type, and accept. It also send the body request that contains email address, updateEnabled flag and the listIds that the contact should be added to.
-6. After the request is complete, it checks the response status. If the status is not ok, it sends a 500 Internal Server Error status code and the error message returned from the API. If the request was successful, it sends a 201 Created status code with an empty error message.
+4. In the code above, the async `handler` function (exported as default) processes incoming POST requests. It first validates that the request body contains an email; if not, it returns a 400 Bad Request with the message 'Email is required'.
+5. Next, it sends a POST request to Sendinblue's contact creation endpoint using the Fetch API, including headers like the API key, content type, and accept type. The request body includes the email address, an `updateEnabled` flag, and the target list IDs.
+6. After the request, it checks the response status. On failure, it returns a 500 Internal Server Error with the API's error message. On success, it returns 201 Created with an empty error field.
 
 ## Sending the data to Sendinblue
 
 Let's get back to NewsletterForm component and add the useNewsletter hooks to handle the form submission.
 
 ```tsx title="./components/NewsletterForm.tsx"
-import { useNewsletter, Form } from "@utils/hooks";
+import { useNewsletter, Form } from "../utils/hooks/useNewsletter";
 
 const NewsletterForm = () => {
   const { form, subscribe, inputEl } = useNewsletter();
@@ -432,7 +430,7 @@ const NewsletterForm = () => {
         {form.state === Form.Success ? (
           <div className="mt-4">
             <span className="font-bold text-green-600">
-              <span>&#128522;</span> Thank you for subscribing my newsletters
+              ✅ Thank you for subscribing to my newsletter!
             </span>
           </div>
         ) : (
@@ -448,10 +446,10 @@ export default NewsletterForm;
 
 ## Conclusion
 
-Creating an email newsletter with Sendinblue and Next.js is a great way to keep in touch with your users and keep them informed about your business or project. The process of setting up a newsletter with these technologies involves several steps, such as creating a Sendinblue account, setting up a Next.js project, creating a form for email subscriptions, handling form submissions with a custom hook, and creating an API route to handle the form submissions and interact with the Sendinblue API.
+Building an email newsletter with Sendinblue and Next.js is an excellent way to maintain user engagement and share updates about your business or projects. The setup involves creating a Sendinblue account, building a subscription form in Next.js, managing submissions with a custom hook, and implementing an API route to communicate with Sendinblue.
 
-One of the main benefits of using Next.js for this task is its ability to handle server-side rendering and its built-in support for API routes, which makes it easy to handle form submissions and interact with external APIs.
+Next.js excels here due to its server-side rendering capabilities and built-in API routes, simplifying form handling and external API interactions.
 
-It's important to keep in mind that when working with API keys and personal data, you should use environment variables to store the api key and other sensitive information, instead of hardcoding them in your code. Additionally, you should handle the errors that may occur during the interaction with the api, and also have a proper unsubscription process in place.
+Remember to secure API keys and personal data using environment variables. Also, implement proper error handling for API interactions and provide an unsubscribe mechanism.
 
-Overall, creating an email newsletter with Sendinblue and Next.js is a powerful way to keep in touch with your users.
+In summary, integrating Sendinblue with Next.js empowers you to maintain meaningful connections with your audience through targeted newsletters.

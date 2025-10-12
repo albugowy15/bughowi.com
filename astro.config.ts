@@ -23,10 +23,13 @@ export default defineConfig({
       },
     ],
   },
+
   output: "static",
+
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },
+
   image: {
     domains: [
       "user-images.githubusercontent.com",
@@ -36,14 +39,18 @@ export default defineConfig({
       "res.cloudinary.com",
     ],
   },
+
   redirects: {
     "/blog": "/blog/page/1",
     "/projects": "/projects/page/1",
   },
+
   site: "https://www.bughowi.com",
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   integrations: [
     astroExpressiveCode({
       themes: ["aurora-x"],

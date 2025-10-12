@@ -9,17 +9,17 @@ thumbnail: https://user-images.githubusercontent.com/49820990/181875756-693e8d6f
 
 import { Image } from "astro:assets";
 
-So originally I was resistant to even learn TypeScript because I wasn't comfortable with strong typed languages and I really tried to avoid writing any more code that I have to. But this is the situation where writing a little more code upfront will pay big devidends as your project grows.
+Originally, I was resistant to learning TypeScript because I wasn't comfortable with strongly typed languages and I really tried to avoid writing any more code than I had to. But this is the situation where writing a little more code upfront will pay big dividends as your project grows.
 
-## Benefit
+## Benefits
 
-The biggest benefit is actually just tooling that you get in your IDE like vs code. When you use type annotation or work with strong typed library, your code will be documented in the IDE so you really have to refer back to online documentation for the libraries that you use. In addition the compiler that can catch bugs in advance which is a far more efficient way to refactor code.
+The biggest benefit is actually the tooling you get in your IDE like VS Code. When you use type annotations or work with strongly typed libraries, your code will be documented in the IDE so you really don't have to refer back to online documentation for the libraries that you use. In addition, the compiler can catch bugs in advance, which is a far more efficient way to refactor code.
 
-Another cool benefit of typescript is that there's virtually no learning curve if you know JavaScript. That's because it's a superset of JavaScript. So any valid JS code is also valid in TypeScript. You can learn it incrementally as you go. And it also allows us to write code with future JavaScript features without having to worry about whether or not this code will be supported in our environment because we can transpile it to multiple JavaScript flavors.
+Another cool benefit of TypeScript is that there's virtually no learning curve if you know JavaScript. That's because it's a superset of JavaScript. So any valid JS code is also valid in TypeScript. You can learn it incrementally as you go. And it also allows us to write code with future JavaScript features without having to worry about whether or not this code will be supported in our environment because we can transpile it to multiple JavaScript flavors.
 
 ## Install TypeScript
 
-Now that you know TypeScript is awesome, let's go ahead and started. The first you want to do is install TypeScript globally with NPM. Doing this will give you access to the `tsc` command which will run the typescript compiler.
+Now that you know TypeScript is awesome, let's go ahead and get started. The first thing you want to do is install TypeScript globally with NPM. Doing this will give you access to the `tsc` command which will run the TypeScript compiler.
 
 ```shell
 npm i -g typescript
@@ -27,7 +27,7 @@ npm i -g typescript
 
 ## Compile TypeScript to JavaScript
 
-So the first we'll do is create an `index.ts` file and TypeScript on it's own can't run anywhere. It won't work in the browser or Node.js or anything like that. What we do is use the TypeScript compiler to convert TypeScript code to vanilla JavaScript.
+The first thing we'll do is create an `index.ts` file. TypeScript on its own can't run anywhere. It won't work in the browser or Node.js or anything like that. What we do is use the TypeScript compiler to convert TypeScript code to vanilla JavaScript.
 
 Let's start by writing some plain JavaScript in our TypeScript file and then compile it.
 
@@ -35,15 +35,15 @@ Let's start by writing some plain JavaScript in our TypeScript file and then com
 console.log("hello world");
 ```
 
-Go down to command line and run `tsc index.ts`.
+Go to the command line and run `tsc index.ts`.
 
-You'll notice it creates an index.js file that's our actual JavaScript code which we can run in the browser or node. And because we just wrote plain JavaScript, the code is identical to what's in the `index.ts` file.
+You'll notice it creates an index.js file that's our actual JavaScript code which we can run in the browser or Node. And because we just wrote plain JavaScript, the code is identical to what's in the `index.ts` file.
 
 ```js title="index.js"
 console.log("hello world");
 ```
 
-By default, TypeScript will compile to ES3 which dosn't support for async await. So let's see what's happen when we write an async function in our `.ts` file and the compile it.
+By default, TypeScript will compile to ES3 which doesn't support async/await. So let's see what happens when we write an async function in our `.ts` file and then compile it.
 
 ```ts title="index.ts"
 async function hello() {
@@ -51,7 +51,7 @@ async function hello() {
 }
 ```
 
-You'll notice here that our code gets transpiled to this creazy looking JavaScript so we can use async await in our main TypeScript code.
+You'll notice here that our code gets transpiled to this crazy-looking JavaScript so we can use async/await in our main TypeScript code.
 
 ```js title="index.js"
 var __awaiter =
@@ -93,13 +93,13 @@ var __awaiter =
 
 ## Compiler
 
-The compiler is basically very sophisticated. There's a ton of different options that you can pass to customize it's behavior. You could pass the options from the command line but the standart to do it is to create a `tsconfig.json` which will automatically get picked up when you run `tsc` command.
+The compiler is basically very sophisticated. There's a ton of different options that you can pass to customize its behavior. You could pass the options from the command line but the standard way to do it is to create a `tsconfig.json` which will automatically get picked up when you run the `tsc` command.
 
-The `tsconfig.json` can be be pretty overwhelming at first but there is usually only this options that you have to think about for the most part.
+The `tsconfig.json` can be pretty overwhelming at first but there are usually only a few options that you have to think about for the most part.
 
 ### target
 
-The first one target and this is the flavor of JavaScript that your code will compiled to. So if we set target to `esnext` and then run tsc, you'll see that it compiles our code with async await natively. It's targeting the latest verison of JavaScript which supports that syntax.
+The first one is `target`, and this is the flavor of JavaScript that your code will be compiled to. So if we set target to `esnext` and then run tsc, you'll see that it compiles our code with async/await natively. It's targeting the latest version of JavaScript which supports that syntax.
 
 ```json title="tsconfig.json"
 {
@@ -111,7 +111,7 @@ The first one target and this is the flavor of JavaScript that your code will co
 
 ### watch
 
-Another option that we want to set right away is `"watch": true` which will just recompile our code every time we save the file. It will just save us from rerunning the `tsc` command after every change.
+Another option that we want to set right away is `"watch": true` which will just recompile our code every time we save the file. It will save us from rerunning the `tsc` command after every change.
 
 ```json title="tsconfig.json"
 {
@@ -124,7 +124,7 @@ Another option that we want to set right away is `"watch": true` which will just
 
 ### lib
 
-The next option we will look at is lib which allows us to automatically include typings for certain environtments such as the `DOM` or `ES 2017`. So if you're building a web application you'd want to include that **DOM** library which allows TypeScript to compile your code with all the native DOM classes without any compilation error.
+The next option we will look at is `lib` which allows us to automatically include typings for certain environments such as the `DOM` or `ES2017`. So if you're building a web application you'd want to include that **DOM** library which allows TypeScript to compile your code with all the native DOM classes without any compilation error.
 
 ```json title="tsconfig.json"
 {
@@ -136,7 +136,7 @@ The next option we will look at is lib which allows us to automatically include 
 }
 ```
 
-For example if we go back to our code, we can use URL class which is part of the DOM and we'll got autocomplete and intellisense on this class. So this is where the incredible tooling of TypeScript starts to come in. If we hover over the class we have intergrated documentation as well as an error message telling us exactly why this code won't run.
+For example, if we go back to our code, we can use the URL class which is part of the DOM and we'll get autocomplete and IntelliSense on this class. So this is where the incredible tooling of TypeScript starts to come in. If we hover over the class we have integrated documentation as well as an error message telling us exactly why this code won't run.
 
 <Image
   src="https://user-images.githubusercontent.com/49820990/181878992-0a10db8d-c981-40eb-9f87-6d7b12618321.png"
@@ -147,11 +147,11 @@ For example if we go back to our code, we can use URL class which is part of the
 
 ## Type
 
-Now we know how the TypeScript compiler works, let's go ahead and write some code that uses type annotations. There are two ways you can strong type your code implicitly or explicitly.
+Now that we know how the TypeScript compiler works, let's go ahead and write some code that uses type annotations. There are two ways you can strongly type your code: implicitly or explicitly.
 
 ### Implicit Type
 
-Let's say we have a variable that should be a number. If we assign the value to this variable when it's declared. it's type will automatically be inferred.
+Let's say we have a variable that should be a number. If we assign the value to this variable when it's declared, its type will automatically be inferred.
 
 ```ts title="index.ts"
 let lucky = 23; // lucky will have number type
@@ -164,29 +164,29 @@ let lucky = 23; // lucky will have number type
 lucky = "23"; // error because we can't assign string value to number variable
 ```
 
-Unlike languages like C# or Java, we can actually opt out the type system annotating our variable with `any`.
+Unlike languages like C# or Java, we can actually opt out of the type system by annotating our variable with `any`.
 
 ```ts title="index.ts"
 let lucky: any = 23; // lucky will accept all types of value
 lucky = "23"; // including string
 ```
 
-This just means that this variable can be assigned any value and the compiler won't type check it. Ideally you want to avoid doing things like this when possible but it does give TypeScript a ton of flexibilty.
+This just means that this variable can be assigned any value and the compiler won't type check it. Ideally you want to avoid doing things like this when possible, but it does give TypeScript a ton of flexibility.
 
 ### Explicit Type
 
-In above example we gave our variable an impicit number type, but what if we don't have a value to assigned to it upfront. If we don't add any type annotations, it's going to be infered as an `any` type, so we can assign both a string and number to it. If we want to annotate it with a type, we can just write colon followed by `number` which is one of the built-in primitive types in JavaScript. When we do that, we get an error under the string value because we can't assign it as that type.
+In the above example we gave our variable an implicit number type, but what if we don't have a value to assign to it upfront? If we don't add any type annotations, it's going to be inferred as an `any` type, so we can assign both a string and number to it. If we want to annotate it with a type, we can just write a colon followed by `number` which is one of the built-in primitive types in JavaScript. When we do that, we get an error under the string value because we can't assign it as that type.
 
 ```ts title="index.ts"
 let lucky: number; // lucky type will be number
 
-lucky = "23"; // error assign string value
+lucky = "23"; // error assigning string value
 lucky = 23; // no error
 ```
 
 ### Define Custom Types
 
-So we've looked at some of the built-in types in JavaScript. But you can also create your own types. First you'll give the type a name which is typically in Pascal case.
+So we've looked at some of the built-in types in JavaScript. But you can also create your own types. First you'll give the type a name which is typically in PascalCase.
 
 ```ts
 type Style = string;
@@ -199,7 +199,7 @@ type Style = string;
 let font: Style;
 ```
 
-Let's say our style type can be only be bold or italic. We can create a union type by separating theme with a pipe. And now we can only assign this variable to this two specific values. And we're not limited to just string, we could even extend this custom type with a number.
+Let's say our style type can only be bold or italic. We can create a union type by separating them with a pipe. And now we can only assign this variable to these two specific values. And we're not limited to just strings; we could even extend this custom type with a number.
 
 ```ts
 type Style = "bold" | "italic" | 23;
@@ -208,7 +208,7 @@ let font: Style;
 
 ### Interface
 
-So that's pretty cool but more often, you'll be strong typing object that have multiple property with different multiple types. Let's imagine we have two objects and we want to enforce that this object shape has a first and last name with string types.
+So that's pretty cool, but more often, you'll be strongly typing objects that have multiple properties with different types. Let's imagine we have two objects and we want to enforce that this object shape has a first and last name with string types.
 
 ```ts
 const person1 = {
@@ -223,7 +223,7 @@ const person2 = {
 };
 ```
 
-Composing objects or class instances that don't have the correct shape is an easy way to create bugs. But with TypeScript we can enforce the shape of an object with an interface. If we know the shape of object would be the same, then we can define an interface that defines the type of each property.
+Composing objects or class instances that don't have the correct shape is an easy way to create bugs. But with TypeScript we can enforce the shape of an object with an interface. If we know the shape of an object would be the same, then we can define an interface that defines the type of each property.
 
 ```ts
 interface Person {
@@ -232,7 +232,7 @@ interface Person {
 }
 ```
 
-Now we can use this interface to strong type this object directly or we could use it as the return value from a function, argument, or anywhere else in our code.
+Now we can use this interface to strongly type this object directly or we could use it as the return value from a function, argument, or anywhere else in our code.
 
 ```ts
 interface Person {
@@ -252,7 +252,7 @@ const person2 = {
 };
 ```
 
-Now sometimes an interface like this can be too restrictive. You can maintain the required properties and then add additional properties by creating a key with a type of `string` with a value type of any. So now a first and last name will be required, but you also can add any additional property that you want to this object.
+Now sometimes an interface like this can be too restrictive. You can maintain the required properties and then add additional properties by creating a key with a type of `string` with a value type of `any`. So now a first and last name will be required, but you can also add any additional property that you want to this object.
 
 ```ts
 interface Person {
@@ -275,7 +275,7 @@ const person2 = {
 
 ### Function
 
-Now let's go ahead and switch to function. Strong typing in a function can be a little more complex because you have types for arguments and also the return value. Here we just have plain JavaScript function without any types.
+Now let's go ahead and switch to functions. Strong typing in a function can be a little more complex because you have types for arguments and also the return value. Here we just have a plain JavaScript function without any types.
 
 ```ts
 function pow(x, y) {
@@ -283,7 +283,7 @@ function pow(x, y) {
 }
 ```
 
-Then we could add string values as the arguments and we wouldn't any error from the compiler. Bu obviously this function is going to fail if we try to pass it any non-number value.
+Then we could add string values as the arguments and we wouldn't get any error from the compiler. But obviously this function is going to fail if we try to pass it any non-number value.
 
 ```ts
 function pow(x, y) {
@@ -293,7 +293,7 @@ function pow(x, y) {
 pow("23", "foo");
 ```
 
-You can annotate arguments the same way we do with variables. That will sure only numbers can be passed to this function.
+You can annotate arguments the same way we do with variables. That will ensure only numbers can be passed to this function.
 
 ```ts
 function pow(x: number, y: number) {
@@ -303,7 +303,7 @@ function pow(x: number, y: number) {
 pow(5, 10);
 ```
 
-So the function implicitly has a number return value because we're using the native math JavaScript library, but we can annotate a specific return value type after the parentheses and before the bracket. So if we set that type to a string you'll see it's underlined in red because it's returning a number. To implement this function correctly we can call `toString()` method.
+So the function implicitly has a number return value because we're using the native Math JavaScript library, but we can annotate a specific return value type after the parentheses and before the bracket. So if we set that type to a string you'll see it's underlined in red because it's returning a number. To implement this function correctly we can call the `toString()` method.
 
 ```ts
 function pow(x: number, y: number): string {
@@ -315,7 +315,7 @@ pow(5, 10);
 
 In many cases you might have functions that don't return a value or create some kind of side effect, in that case you can type your function return value to `void`.
 
-The next thing we'll look at is how to strong type an array so we'll start by creating an empty array then pushing a different values to it with different types.
+The next thing we'll look at is how to strongly type an array. We'll start by creating an empty array then pushing different values to it with different types.
 
 ```ts
 const arr = [];
@@ -325,7 +325,7 @@ arr.push("23");
 arr.push(false);
 ```
 
-We can force this array to only have number types by doing a number type followed by bracket, signifying that it's an array. Now you can see we get an error every time to push a value that's not a number.
+We can force this array to only have number types by using a number type followed by brackets, signifying that it's an array. Now you can see we get an error every time we try to push a value that's not a number.
 
 ```ts
 const arr: number[] = [];
@@ -335,9 +335,9 @@ arr.push("23"); // error
 arr.push(false); // error
 ```
 
-This is especially useful when you're working with an array of objects and you want to get some intellisense as you're iterating over those objects.
+This is especially useful when you're working with an array of objects and you want to get some IntelliSense as you're iterating over those objects.
 
-TypeScript also opens the door to a new data structure called a tuple. Basically this is just a fixed length array where each item in that array has it's own type.
+TypeScript also opens the door to a new data structure called a tuple. Basically this is just a fixed-length array where each item in that array has its own type.
 
 ```ts
 type MyList = [number, string, boolean];
@@ -349,7 +349,7 @@ arr.push("23");
 arr.push(false);
 ```
 
-You can each items values optional by putting a question mark after the type. You also can use this question mark syntax in other places.
+You can make each item's value optional by putting a question mark after the type. You can also use this question mark syntax in other places.
 
 ```ts
 type MyList = [number?, string?, boolean];
@@ -357,7 +357,7 @@ type MyList = [number?, string?, boolean];
 
 ### Generic
 
-The last thing is TypeScript generics. You may run into situation where you want to use type internally inside of a class or function. For example here I have Observable class that has an internal value that you can observe.
+The last thing is TypeScript generics. You may run into situations where you want to use a type internally inside of a class or function. For example, here I have an Observable class that has an internal value that you can observe.
 
 ```ts
 class Observable<T> {
@@ -365,7 +365,7 @@ class Observable<T> {
 }
 ```
 
-The `T` represents a variable type that we can pass in to strong type this Observable internal value. This allows us to specify the internal type at some point in our code. For example we have an Observable of a number or person interface likes below. Or we can also do this implicitly if we create a new Observable of a number, it's going to implicitly have that internal number type.
+The `T` represents a variable type that we can pass in to strongly type this Observable's internal value. This allows us to specify the internal type at some point in our code. For example, we have an Observable of a number or Person interface like below. Or we can also do this implicitly if we create a new Observable of a number, it's going to implicitly have that internal number type.
 
 ```ts
 class Observable<T> {
@@ -377,6 +377,6 @@ let y: Observable<Person>;
 let a = new Observable(23);
 ```
 
-More often than not, you'll be using generics rather than creating them. But it's definitely important thing to know.
+More often than not, you'll be using generics rather than creating them. But it's definitely an important thing to know.
 
-I'm gonna go ahead and wrap thing up there. Hopefully this article give you an idea of why TypeScript is so powerful but we really only scratched the surface here. Don't forget to check the official documentation to learn more about [TypeScript](https://www.typescriptlang.org/docs/) features.
+I'm gonna go ahead and wrap things up there. Hopefully this article gives you an idea of why TypeScript is so powerful, but we really only scratched the surface here. Don't forget to check the official documentation to learn more about [TypeScript](https://www.typescriptlang.org/docs/) features.
