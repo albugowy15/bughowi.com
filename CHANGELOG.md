@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.0](https://github.com/albugowy15/bughowi.com/compare/v3.4.1...v3.5.0) (2025-11-03)
+
+
+### Features
+
+* update some blog content ([84a9e1d](https://github.com/albugowy15/bughowi.com/commit/84a9e1d49106c22ce67a2d040dfbe93df57909b7))
+
 ## [3.4.1](https://github.com/albugowy15/bughowi.com/compare/v3.4.0...v3.4.1) (2025-08-17)
 
 
