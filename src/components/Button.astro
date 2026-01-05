@@ -25,8 +25,7 @@ export const buttonCva = cva("button", {
 });
 
 export interface Props
-  extends HTMLAttributes<"button">,
-    VariantProps<typeof buttonCva> {}
+  extends HTMLAttributes<"button">, VariantProps<typeof buttonCva> {}
 
 const {
   class: className,

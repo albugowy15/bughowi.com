@@ -25,8 +25,7 @@ const chip = cva("chip", {
 });
 
 export interface Props
-  extends Omit<HTMLAttributes<"div">, "color">,
-    VariantProps<typeof chip> {}
+  extends Omit<HTMLAttributes<"div">, "color">, VariantProps<typeof chip> {}
 
 const {
   class: className,
