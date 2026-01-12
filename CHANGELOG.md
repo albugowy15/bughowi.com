@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.5.0](https://github.com/albugowy15/bughowi.com/compare/v3.4.1...v3.5.0) (2026-01-12)
+
+
+### Features
+
+* add umami analytics ([d7b2f38](https://github.com/albugowy15/bughowi.com/commit/d7b2f38d007be2083833a96f30bf4c7e1dcdd846))
+* **content:** add new blog content ([0bfb20d](https://github.com/albugowy15/bughowi.com/commit/0bfb20d8cb7b158e94119f5966ac3abb2aca22a6))
+* update footer year 2026 ([d79b2d4](https://github.com/albugowy15/bughowi.com/commit/d79b2d4d1716a369ee93e98a533d197c054c2771))
+* update some blog content ([84a9e1d](https://github.com/albugowy15/bughowi.com/commit/84a9e1d49106c22ce67a2d040dfbe93df57909b7))
+
+
+### Bug Fixes
+
+* anchor link tag ([8303b47](https://github.com/albugowy15/bughowi.com/commit/8303b4760cf1098103064d742b8f6f658871df81))
+
 ## [3.4.1](https://github.com/albugowy15/bughowi.com/compare/v3.4.0...v3.4.1) (2025-08-17)
 
 
