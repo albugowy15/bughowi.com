@@ -1,0 +1,337 @@
+---
+title: "My Journey Self-Hosting Multiple Apps on a Single VPS with Dokploy"
+date: 2026-01-13
+description: "A complete walkthrough of setting up a production-ready VPS from scratch. Learn how to harden SSH security, configure Cloudflare DNS, install Dokploy, and deploy your first application with HTTPS. Includes firewall setup and real-world deployment examples of running multiple self-hosted services on one VPS."
+categories:
+  - vps
+  - docker
+  - dokploy
+  - security
+thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1768240904/selfhost-vps-with-docker_oudjhm.png
+---
+
+import { Image } from "astro:assets";
+
+It's been far too long since I last published anything on this blog. Life got busy, priorities shifted, and writing took a backseat. But with 2026 here, I've made a commitment to myself to be more active in sharing what I'm learning and building. This blog has always been a space for me to document my journey as a developer, and I want to get back to that.
+
+So here we are, starting fresh with something I've been working on for the past few months—running my personal projects on a self-hosted VPS using Dokploy. It's been an incredible learning experience, and I'm excited to share it with you. In this article, I'll walk you through my entire journey—from setting up a fresh VPS to deploying multiple applications with proper security hardening along the way.
+
+## Why Self-Host?
+
+Before diving in, you might wonder why go through all this trouble when platforms like Vercel or Netlify exist. For me, it was about learning, control, and cost-effectiveness. With a single VPS, I can run multiple applications, databases, and services for a fraction of what multiple managed services would cost. Plus, understanding the infrastructure behind your applications is invaluable as a developer.
+
+## Part 1: Setting Up the VPS
+
+### Getting Started
+
+The first step is choosing a VPS provider. I won't recommend a specific one since pricing and availability change frequently, but popular options include DigitalOcean, Linode, Vultr, and Hetzner. For most personal projects, a VPS with 2GB RAM and 1-2 CPU cores is sufficient to start.
+
+Once you've purchased your VPS, you'll receive:
+
+- An IP address
+- A root username (usually `root`)
+- A temporary password
+
+Connect to your VPS using SSH:
+
+```bash
+ssh root@your_vps_ip
+```
+
+Enter the password when prompted. Congratulations, you're now connected to your server!
+
+## Part 2: Hardening VPS Security
+
+A fresh VPS with only root access and password authentication is a security risk. Let's lock it down properly.
+
+### Creating a New User
+
+Running everything as root is dangerous. Let's create a new user with sudo privileges:
+
+```bash
+adduser yourusername
+```
+
+You'll be prompted to set a password and some optional information. Next, add this user to the sudo group:
+
+```bash
+usermod -aG sudo yourusername
+```
+
+Now exit your current SSH session:
+
+```bash
+exit
+```
+
+### Connecting with Your New User
+
+SSH back into your VPS using the new user:
+
+```bash
+ssh yourusername@your_vps_ip
+```
+
+### Disabling Root Login
+
+Once you've confirmed your new user works, let's disable direct root login. Edit the SSH configuration:
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Find the line `PermitRootLogin` and change it to:
+
+```
+PermitRootLogin no
+```
+
+Don't restart SSH yet—we have more security measures to implement.
+
+### Setting Up SSH Key Authentication
+
+Password authentication is vulnerable to brute-force attacks. Let's switch to SSH key-pair authentication, which is much more secure.
+
+On your local machine (not the VPS), generate an SSH key pair:
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+Follow the prompts. You can accept the default location (`~/.ssh/id_ed25519`) and optionally set a passphrase for extra security.
+
+Now, copy your public key to the VPS:
+
+```bash
+ssh-copy-id yourusername@your_vps_ip
+```
+
+Test the key-based authentication by opening a new terminal and connecting to your VPS. You should be able to log in without entering your password.
+
+### Disabling Password Authentication
+
+Once you've confirmed key-based authentication works, disable password authentication entirely. Edit the SSH config again:
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Find and modify these lines:
+
+```
+PasswordAuthentication no
+PubkeyAuthentication yes
+ChallengeResponseAuthentication no
+```
+
+Restart the SSH service to apply changes:
+
+```bash
+sudo systemctl restart sshd
+```
+
+Your VPS is now significantly more secure. Only someone with your private SSH key can access it.
+
+## Part 3: Domain and Cloudflare Setup
+
+### Purchasing a Domain
+
+Purchase a domain from any domain registrar. I use Cloudflare Registrar for its competitive pricing and seamless integration, but Namecheap, Google Domains, or any other registrar works fine.
+
+### Adding Your Domain to Cloudflare
+
+If you didn't buy directly from Cloudflare, you'll need to add your domain to Cloudflare's DNS management:
+
+1. Create a free Cloudflare account at [Cloudflare](https://cloudflare.com)
+2. Click "Add a Site" and enter your domain name
+3. Choose the Free plan
+4. Cloudflare will scan your existing DNS records
+5. Update your domain's nameservers at your registrar to point to Cloudflare's nameservers (they'll provide you with two nameserver addresses)
+6. Wait for DNS propagation (usually takes a few minutes to a few hours)
+
+Once set up, you'll manage all DNS records through Cloudflare's dashboard.
+
+## Part 4: Installing Dokploy
+
+### What is Dokploy?
+
+Dokploy is an open-source Platform as a Service (PaaS) that simplifies deploying applications on your own infrastructure. Think of it as your personal Heroku or Vercel, but running on your VPS.
+
+### Installation
+
+The installation process is straightforward. Following the official documentation at [Dokploy Docs](https://docs.dokploy.com/docs/core/installation), run the installation command on your VPS:
+
+```bash
+curl -sSL https://dokploy.com/install.sh | sh
+```
+
+The script will install Docker, Docker Compose, and set up Dokploy. This process takes a few minutes. Once complete, you can access Dokploy's dashboard by navigating to:
+
+```
+http://your_vps_ip:3000
+```
+
+### Configuring Domain Access with HTTPS
+
+Accessing Dokploy via IP and port 3000 isn't ideal. Let's set up a proper domain with HTTPS.
+
+First, add an A record in Cloudflare pointing to your VPS:
+
+1. Log into Cloudflare
+2. Select your domain
+3. Go to DNS → Records
+4. Click "Add record"
+5. Type: A
+6. Name: `dokploy` (this creates dokploy.yourdomain.com)
+7. IPv4 address: your VPS IP
+8. Proxy status: Proxied (orange cloud icon)
+9. Save
+
+<Image
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/v1768240528/cloudflare_add_domain_record_b14sgc.png"
+  alt="add new a dns record through cloudflare"
+  width="1260"
+  height="372"
+/>
+
+Now configure Dokploy to use this domain. In the Dokploy dashboard:
+
+1. Go to Settings → Server
+2. Update the "Server Domain" field to `dokploy.yourdomain.com`
+3. Enable "Let's Encrypt SSL" for automatic HTTPS certificate
+
+<Image
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/v1768240527/dokploy_server_domain_joroh0.png"
+  alt="configure dokploy server domain"
+  width="1012"
+  height="479"
+/>
+
+Dokploy will automatically obtain an SSL certificate from Let's Encrypt. After a
+few moments, you can access your Dokploy dashboard at:
+
+```
+https://dokploy.yourdomain.com
+```
+
+No more port numbers, and it's fully secured with HTTPS!
+
+## Part 5: Configuring the Firewall
+
+Security doesn't stop at SSH hardening. Let's configure a firewall to only allow necessary traffic.
+
+We'll use UFW (Uncomplicated Firewall), which is simple and effective:
+
+```bash
+sudo apt install ufw
+```
+
+Set default policies to deny incoming and allow outgoing:
+
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
+
+Allow SSH, HTTP, and HTTPS:
+
+```bash
+sudo ufw allow 22/tcp    # SSH
+sudo ufw allow 80/tcp    # HTTP
+sudo ufw allow 443/tcp   # HTTPS
+```
+
+Enable the firewall:
+
+```bash
+sudo ufw enable
+```
+
+Check the status:
+
+```bash
+sudo ufw status
+```
+
+Your VPS now only accepts connections on these three ports. Everything else is blocked.
+
+## Part 6: Deploying Your First Application
+
+Now for the exciting part—deploying an actual application!
+
+### Deploying My Personal Blog
+
+My personal blog (https://github.com/albugowy15/bughowi.com) is containerized with Docker, and I publish images to GitHub Container Registry (https://github.com/albugowy15/bughowi.com/pkgs/container/bughowi.com). This makes deployment through Dokploy straightforward.
+
+Here's how I deployed it:
+
+1. **Create a new project** in Dokploy dashboard
+   - Click "Create Project"
+   - Give it a name (e.g., "Personal Blog")
+
+2. **Add a service**
+   - Select "Docker" as the service type
+   - Choose "Docker Image"
+   - Enter the image: `ghcr.io/albugowy15/bughowi.com:latest`
+
+3. **Configure the domain**
+   - In the service settings, add a domain
+   - Enter: `blog.bughowi.com`
+   - Enable "HTTPS"
+   - Save the configuration
+
+4. **Update Cloudflare DNS**
+   - Go to Cloudflare DNS management
+   - Add an A record:
+     - Type: A
+     - Name: `blog`
+     - IPv4 address: your VPS IP
+     - Proxy status: Proxied
+     - Save
+
+5. **Deploy the application**
+   - Back in Dokploy, click "Deploy"
+   - Dokploy will pull the image and start the container
+
+After deployment completes, visit `https://blog.bughowi.com` and you should see your blog running! Dokploy automatically handles the SSL certificate and reverse proxy configuration.
+
+**Important note**: Whenever you make changes to domain settings in Dokploy, remember to redeploy your application for the changes to take effect.
+
+## Part 7: Exploring More Possibilities
+
+The beauty of Dokploy is its template marketplace. After successfully deploying my blog, I explored other applications I could self-host:
+
+### Applications I'm Currently Running
+
+**Vaultwarden**: A self-hosted password manager compatible with Bitwarden clients. Having full control over my passwords is reassuring, and it's completely free compared to Bitwarden's premium tier.
+
+**Nextcloud**: My personal cloud storage solution. I use it for file syncing, calendar, and contacts. It's like having my own Dropbox and Google Drive combined.
+
+**Umami**: A privacy-focused, open-source web analytics platform. I use it to track visitor statistics on my websites without compromising user privacy like Google Analytics does.
+
+Each of these services runs in its own Docker container, managed by Dokploy, with its own subdomain and HTTPS certificate. The setup process is similar to what we did with the blog—choose a template, configure the domain, update DNS, and deploy.
+
+## Lessons Learned
+
+This journey taught me several valuable lessons that I wish I'd known from the start. The most important one is that security should never be an afterthought. Taking the time to properly secure your VPS before deploying anything is crucial. Those extra steps with SSH keys and firewall configuration might feel tedious in the moment, but they can save you from a lot of headaches down the road. I've heard too many stories of compromised servers because someone skipped these basics, and I didn't want to become one of them.
+
+Finally, resource monitoring is something I wish I'd paid more attention to from the beginning. Docker containers can accumulate over time, and you might need to clean up old images and volumes periodically. I've had moments where my disk space filled up unexpectedly because I wasn't keeping track of these things. Now I regularly check my VPS resources and do some housekeeping to keep everything running smoothly.
+
+## Helpful Resources
+
+Throughout this journey, I found some excellent tutorials that really helped me understand the concepts better. If you're looking for video walkthroughs or want to see these processes in action, I highly recommend checking out:
+
+- [Dokploy is my absolute favorite way to deploy to a VPS in 2025 by dreamsofcode](https://www.youtube.com/watch?v=ELkPcuO5ebo) - This video introduced me to Dokploy and showed me how powerful it can be for deploying applications to a VPS.
+- [Self Host 101 - Set up and Secure Your Own Server by Syntax](https://www.youtube.com/watch?v=Q1Y_g0wMwww) - A comprehensive walkthrough of securing a VPS that covers many of the security hardening steps I followed in this guide.
+
+These resources complemented the official documentation nicely and helped me troubleshoot when things didn't work as expected.
+
+## Conclusion
+
+Self-hosting with Dokploy has been incredibly rewarding. What started as a simple project to deploy my personal blog has evolved into a complete self-hosted infrastructure running multiple services I use daily.
+
+The initial setup might seem daunting, but once everything is in place, deploying new applications becomes trivial. Dokploy abstracts away the complexity of Docker, reverse proxies, and SSL certificates while still giving you full control over your infrastructure.
+
+If you're comfortable with the command line and want to learn more about infrastructure, hosting, and deployment, I highly recommend giving this setup a try. Start with something simple like a static blog, get comfortable with the workflow, and gradually expand to more complex applications.
+
+The total cost? For me, it's about $5-10 per month for the VPS, significantly less than paying for multiple managed services separately. And the learning experience? Priceless.
