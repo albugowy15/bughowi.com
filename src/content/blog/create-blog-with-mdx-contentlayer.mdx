@@ -43,7 +43,7 @@ Then, converted to HTML, it will look like this:
 <p>Or you can make a <strong>bold</strong> text, <em>italic</em>, or <strong><em>both</strong></em></p>
 ```
 
-And that's MD all about. Basically, MDX is the same as MD but it has more features. MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast.
+And that's what MD is all about. Basically, MDX is the same as MD but it has more features. MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast.
 
 ```mdx
 import { Chart } from "./snowfall.js";
@@ -58,32 +58,20 @@ flood conditions in many of the nearby rivers.
 <Chart year={year} color="#fcb32c" />
 ```
 
-Then, converted to HTML, it will looks like this
+Then, converted to HTML, it will look like this:
 
 ```html
 <h1>This is heading 1</h1>
-<p>This is how we write paragraph in md files.</p>
+<p>This is how we write paragraphs in md files.</p>
 <ul>
-    <li>This is a list</li>
-    <li>List one</li>
-    <li>List two</li>
+  <li>This is a list</li>
+  <li>List one</li>
+  <li>List two</li>
 </ul>
-<p>Or you can make a <strong>bold</strong> text, <em>italic</em>, or <strong><em>both</strong></em></p>
-```
-
-And that's MD all about. Basically, MDX is same as MD but it has more features. MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast.
-
-```mdx
-import { Chart } from "./snowfall.js";
-export const year = 2018;
-
-# Last year’s snowfall
-
-In {year}, the snowfall was above average.
-It was followed by a warm spring which caused
-flood conditions in many of the nearby rivers.
-
-<Chart year={year} color="#fcb32c" />
+<p>
+  Or you can make a <strong>bold</strong> text, <em>italic</em>, or
+  <strong><em>both</em></strong>
+</p>
 ```
 
 ## Contentlayer

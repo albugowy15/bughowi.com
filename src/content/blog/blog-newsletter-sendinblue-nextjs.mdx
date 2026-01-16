@@ -28,7 +28,7 @@ Creating a Sendinblue account is a simple process. Here are the steps to follow:
 2. Click on the **Sign Up Free** button on the top right corner of the page
 3. Fill in your personal information, such as your name, email address, and password. Or you can simply Sign Up with Google or Apple account.
 4. Verify your email address by clicking on the link sent to your email
-5. Once you have verified your email, you will be prompted to log in to your account.
+5. After verifying your email, you can log in to your account.
 6. Once logged in, you'll access your dashboard to start creating campaigns, designing templates, and managing contacts.
 
 ## Creating the form
@@ -131,7 +131,7 @@ It declares a `form` state variable initialized with `{ state: Form.Initial }`. 
 
 The hook defines an exported `subscribe` function to handle form submission. It accepts a `React.FormEvent` parameter representing the submission event.
 
-Inside the function, the first thing it does is calling the `preventDefault` method on the event object to prevent the page from refreshing when the form is submitted. Then it changes the state of the form to `Form.Loading`
+Inside the function, the first thing it does is call the `preventDefault` method on the event object to prevent the page from refreshing when the form is submitted. Then it changes the state of the form to `Form.Loading`
 
 ```ts title="./utils/hooks/useNewsletter.ts" {19-22}
 import { useRef, useState } from "react";
