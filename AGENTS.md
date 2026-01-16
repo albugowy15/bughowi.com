@@ -15,32 +15,32 @@ This document provides guidelines for AI agents working on the bughowi.com codeb
 ### Development
 
 ```bash
-npm run dev          # Start development server
-npm run dev:host     # Start dev server with host binding
+pnpm dev          # Start development server
+pnpm dev:host     # Start dev server with host binding
 ```
 
 ### Build & Deployment
 
 ```bash
-npm run build        # Build for production (includes type checking)
-npm run preview      # Preview production build locally
+pnpm build        # Build for production (includes type checking)
+pnpm preview      # Preview production build locally
 ```
 
 ### Code Quality & Type Checking
 
 ```bash
-npm run check        # Astro type checking
-npm run typecheck    # TypeScript type checking (no emit)
-npm run lint         # ESLint check
-npm run lint:fix     # ESLint auto-fix
-npm run format       # Prettier format all files
-npm run format:check # Prettier check formatting
+pnpm check        # Astro type checking
+pnpm typecheck    # TypeScript type checking (no emit)
+pnpm lint         # ESLint check
+pnpm lint:fix     # ESLint auto-fix
+pnpm format       # Prettier format all files
+pnpm format:check # Prettier check formatting
 ```
 
 ### Utilities
 
 ```bash
-npm run sync         # Astro sync (update type definitions)
+pnpm sync         # Astro sync (update type definitions)
 ```
 
 ## Code Style Guidelines
@@ -201,15 +201,19 @@ This project currently doesn't have a test framework configured. When adding tes
 ## Environment & Dependencies
 
 - **Node.js**: Version specified in `.nvmrc` or package.json engines
-- **PNPM**: Use `pnpm install` for dependency management
+- **Package Manager**: **pnpm** is the primary package manager for this project
+  - Use `pnpm install` for dependency management
+  - Use `pnpm add <package>` to add dependencies
+  - Use `pnpm remove <package>` to remove dependencies
+  - Use `pnpm` instead of `npm` for all script commands
 - **Sharp**: Native dependency for image processing
 - **TypeScript**: 5.9+ with strict configuration
 
 ## Agent Workflow
 
-1. **Before starting**: Run `npm run typecheck` and `npm run lint` to understand current state
-2. **During development**: Use `npm run dev` for live preview
-3. **Before committing**: Run `npm run build`, `npm run typecheck`, `npm run lint`, `npm run format:check`
+1. **Before starting**: Run `pnpm typecheck` and `pnpm lint` to understand current state
+2. **During development**: Use `pnpm dev` for live preview
+3. **Before committing**: Run `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm format:check`
 4. **After changes**: Ensure all commands pass before considering work complete
 
 ## Common Patterns
@@ -221,7 +225,7 @@ This project currently doesn't have a test framework configured. When adding tes
 
 ## Troubleshooting
 
-- If TypeScript errors appear after adding dependencies, run `npm run sync`
+- If TypeScript errors appear after adding dependencies, run `pnpm sync`
 - If styles aren't applying, check Tailwind class conflicts with `cn()`
 - If build fails, check for missing dependencies or type errors
 - Use `astro check` for Astro-specific validation
