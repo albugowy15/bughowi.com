@@ -1,7 +1,7 @@
 ---
 title: Zod Optional Empty Field
 date: 2023-12-11
-description: Make a string field become optional when it's an empty string
+description: Make a string field optional when it's an empty string
 categories:
   - typescript
   - zod
@@ -17,7 +17,7 @@ export function asOptionalField<T extends z.ZodTypeAny>(schema: T) {
 }
 ```
 
-The `emptyStringToUndefined` uses `z.literal("")` schema to represent a literal empty string. The `transform` method is the used to convert the empty string to `undefined`.
+The `emptyStringToUndefined` variable uses `z.literal("")` schema to represent a literal empty string. The `transform` method is used to convert the empty string to `undefined`.
 
 The function `asOptionalField` takes a zod schema as its parameter. It then makes use of the zod `optional` method to make the field optional, and it combines this with the `or` method to include the `emptyStringToUndefined` transform. This means that the resulting schema will accept either the original value, or an empty string (which will be transformed to `undefined`).
 
