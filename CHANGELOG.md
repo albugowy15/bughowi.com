@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.5.1](https://github.com/albugowy15/bughowi.com/compare/v3.5.0...v3.5.1) (2026-01-16)
+
+
+### Bug Fixes
+
+* **content:** correct grammar and typos in blog posts ([7fc2340](https://github.com/albugowy15/bughowi.com/commit/7fc2340f10f6dea05abbbd9eae561ec00979924f))
+* **content:** correct grammar and typos in projects and snippets ([0db6e7b](https://github.com/albugowy15/bughowi.com/commit/0db6e7b55e17494d1528c313c61796bb718b61a6))
+* text overflow on recent blog post ([fefea33](https://github.com/albugowy15/bughowi.com/commit/fefea33a92659826dab14a442962c8d56ab13bb4))
+
 ## [3.5.0](https://github.com/albugowy15/bughowi.com/compare/v3.4.1...v3.5.0) (2026-01-12)
 
 
