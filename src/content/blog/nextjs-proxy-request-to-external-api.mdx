@@ -1,7 +1,7 @@
 ---
 title: "How to Use Next.js to Proxy HTTP Requests to External APIs"
 date: 2026-02-11
-description: "A technical deep dive into two approaches for proxying HTTP requests in Next.js, covering Route Handlers and Middleware with full code implementation, trade-offs, and practical use cases."
+description: "A technical deep dive into two approaches for proxying HTTP requests in Next.js, covering Route Handlers and the new Proxy feature introduced in Next.js 16 with full code implementation, trade-offs, and practical use cases."
 categories:
   - next.js
   - typescript
@@ -11,7 +11,7 @@ thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1770793602/ne
 
 When building modern web applications, you often need to call external APIs from the browser. But doing so directly introduces a whole class of problems: CORS errors, exposed API keys in client-side code, inability to set HTTP-only cookies, and no control over request/response transformations. The solution? Proxy the requests through your own server.
 
-In this article, I'll walk you through how to build an HTTP proxy in Next.js using two different approaches: **Route Handlers** and **Middleware**. I built a project called [next-proxy](https://github.com/albugowy15/next-proxy) that demonstrates both patterns using the PokéAPI as a target API. Let's break down the implementation, explore the trade-offs, and understand when to use each approach.
+In this article, I'll walk you through how to build an HTTP proxy in Next.js using two different approaches: **Route Handlers** and **Proxy**. Next.js 16 introduced Proxy (via the `proxy.ts` file) as a replacement for the old `middleware.ts` file, making the app's network boundary explicit and running on the Node.js runtime instead of the Edge Runtime. I built a project called [next-proxy](https://github.com/albugowy15/next-proxy) that demonstrates both patterns using the PokéAPI as a target API. Let's break down the implementation, explore the trade-offs, and understand when to use each approach.
 
 ## Why Proxy Requests Through Next.js?
 
@@ -192,9 +192,11 @@ export async function GET(request: NextRequest) {
 }
 ```
 
-## Approach 2: Middleware
+## Approach 2: Proxy
 
-The Middleware approach intercepts requests at a layer above route handlers, before they even reach the routing system.
+Starting from [Next.js 16](https://nextjs.org/blog/next-16), Proxy replaces the old Middleware as the recommended way to intercept requests at the network boundary. The key difference is that Proxy runs on the **Node.js runtime** instead of the Edge Runtime, giving you access to the full Node.js API. The old `middleware.ts` is deprecated and will be removed in a future version.
+
+To use this approach, you simply create a `proxy.ts` file at the root of your `src/` directory (or project root) and export a default `proxy` function.
 
 ```ts title="src/proxy.ts"
 import { NextRequest, NextResponse } from "next/server";
@@ -213,49 +215,38 @@ export const config = { matcher: "/proxy/:path*" };
 
 ### How It Works
 
-This file exports a `proxy` function that is designed to be imported and called from your root `middleware.ts` file:
-
-```ts title="middleware.ts"
-import { proxy } from "./src/proxy";
-import { NextRequest } from "next/server";
-
-export function middleware(request: NextRequest) {
-  return proxy(request);
-}
-
-export const config = { matcher: "/proxy/:path*" };
-```
-
-The `config.matcher` tells Next.js to only invoke the middleware for paths matching `/proxy/*`. When a request hits `/proxy/pokemon/pikachu`, the middleware intercepts it, calls `proxyRequest` with `/proxy` as the prefix, and the function rewrites the path to `/api/v2/pokemon/pikachu` before fetching from the target API.
+The `config.matcher` tells Next.js to only invoke the proxy function for paths matching `/proxy/*`. When a request hits `/proxy/pokemon/pikachu`, Next.js calls the `proxy` function before the request reaches any route handler. The function then delegates to `proxyRequest` with `/proxy` as the prefix, which rewrites the path to `/api/v2/pokemon/pikachu` before fetching from the target API.
 
 The request flow:
 
 ```
 Browser: GET /proxy/pokemon/pikachu
-  → Next.js Middleware intercepts (before routing)
+  → Next.js proxy.ts intercepts (before routing)
     → proxy() checks pathname
       → proxyRequest() rewrites path
         → undici fetch: GET https://pokeapi.co/api/v2/pokemon/pikachu
           → Response flows back to browser
 ```
 
-Notice the proxy path is `/proxy` instead of `/api/proxy`. The middleware approach doesn't need to live under the `/api` namespace since it intercepts requests before routing.
+Notice the proxy path is `/proxy` instead of `/api/proxy`. The Proxy approach doesn't need to live under the `/api` namespace since it intercepts requests before routing.
 
-### Composing with Other Middleware
+If you're migrating from the old `middleware.ts`, the change is straightforward: rename `middleware.ts` to `proxy.ts` and rename the exported function from `middleware` to `proxy`. Your existing logic stays the same.
 
-A real-world middleware file often handles multiple concerns. You can compose the proxy with other middleware logic:
+### Composing with Other Logic
 
-```ts title="middleware.ts"
-import { proxy } from "./src/proxy";
+A real-world `proxy.ts` file often handles multiple concerns. You can compose the proxy forwarding with other request interception logic like authentication and redirects:
+
+```ts title="proxy.ts"
 import { NextRequest, NextResponse } from "next/server";
+import { proxyRequest } from "./lib/proxy";
 
-export function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   // Handle proxy routes
   if (request.nextUrl.pathname.startsWith("/proxy")) {
-    return proxy(request);
+    return proxyRequest(request, "/proxy");
   }
 
-  // Handle other middleware logic (auth, redirects, etc.)
+  // Handle other logic (auth, redirects, etc.)
   const token = request.cookies.get("auth-token");
   if (!token && request.nextUrl.pathname.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/login", request.url));
@@ -275,7 +266,7 @@ Now that we've seen both approaches in action, let's compare them.
 
 - **Explicit and discoverable.** Each proxy endpoint is a file in your `app/api/` directory. New developers can immediately see what proxy routes exist by browsing the folder structure.
 - **Per-method control.** You export individual functions for each HTTP method, making it easy to handle `GET` differently from `POST`. For example, you can cache GET responses while validating POST bodies.
-- **Access to the full Node.js runtime.** Route Handlers run in the Node.js runtime by default, giving you access to Node.js APIs, file system, database connections, and heavy computation.
+- **Access to the full Node.js runtime.** Route Handlers run in the Node.js runtime by default, giving you access to file system, database connections, and heavy computation. (Note that Proxy in Next.js 16 also runs on Node.js, so this is no longer a differentiator between the two approaches.)
 - **Easier to test.** You can test route handlers as regular async functions. No special middleware test harness needed.
 - **Built-in Next.js features.** Route Handlers integrate naturally with Next.js caching, revalidation, and streaming responses.
 
@@ -285,21 +276,22 @@ Now that we've seen both approaches in action, let's compare them.
 - **URL namespace.** Your proxy routes must live under `/api/`, which may feel less clean if you want URLs like `/external-service/...`.
 - **One route per proxy target.** If you proxy to multiple external services, you need multiple catch-all routes (e.g., `/api/service-a/[...all]`, `/api/service-b/[...all]`).
 
-### Middleware
+### Proxy
 
 **Pros:**
 
-- **Runs before routing.** Middleware intercepts requests before they hit the route handler layer, making it ideal for cross-cutting concerns.
-- **Edge Runtime compatible.** On platforms like Vercel, middleware runs at the Edge, which means it executes closer to the user geographically, resulting in lower latency for the proxy hop.
+- **Runs before routing.** Proxy intercepts requests before they hit the route handler layer, making it ideal for cross-cutting concerns.
+- **Full Node.js runtime.** Unlike the old Middleware which ran on the Edge Runtime, Proxy runs on Node.js. This means you have access to `fs`, native database drivers, and any Node.js library without restrictions.
 - **Clean URL paths.** Your proxy can live at any path (e.g., `/proxy/...`) without being forced under the `/api/` namespace.
-- **Centralized request interception.** All proxy logic lives in a single middleware file, making it easy to apply consistent behavior across multiple proxy paths.
+- **Centralized request interception.** All proxy logic lives in a single file, making it easy to apply consistent behavior across multiple proxy paths.
+- **Clear network boundary.** The naming makes the intent explicit: this file handles the network boundary of your application.
 
 **Cons:**
 
-- **Limited runtime APIs.** Middleware runs in a restricted environment (Edge Runtime). You cannot use Node.js-specific APIs like `fs`, `child_process`, or native database drivers. This also means libraries that depend on Node.js APIs won't work.
-- **Single file constraint.** All middleware logic lives in one `middleware.ts` file at the project root. As your middleware grows with authentication, redirects, logging, and multiple proxy targets, this file can become complex and harder to maintain.
-- **Harder to debug.** Middleware errors can be less straightforward to trace since they run outside the normal routing flow.
+- **Single file constraint.** All interception logic lives in one `proxy.ts` file. As it grows with authentication, redirects, logging, and multiple proxy targets, this file can become complex and harder to maintain.
+- **Harder to debug.** Errors in `proxy.ts` can be less straightforward to trace since it runs outside the normal routing flow.
 - **No per-method granularity by default.** You receive the raw `NextRequest` and must check `request.method` yourself if you want method-specific behavior.
+- **No Edge Runtime.** If you specifically need edge execution for lower latency on platforms like Vercel, Proxy does not support it since it runs exclusively on Node.js. The deprecated `middleware.ts` still supports Edge Runtime for now, but it will be removed in a future version.
 
 ## When to Use Which?
 
@@ -307,25 +299,24 @@ Here's my rule of thumb:
 
 **Use Route Handlers when:**
 
-- You need access to Node.js APIs (database queries, file system, etc.)
 - You want per-route, per-method logic with clear separation
 - You're building a BFF (Backend for Frontend) where each proxy route has distinct business logic
 - Testing and maintainability are priorities
 
-**Use Middleware when:**
+**Use Proxy when:**
 
-- You want the lowest possible latency (Edge Runtime on Vercel)
 - Your proxy is a simple pass-through with minimal transformation
 - You need to intercept requests before they reach the routing layer
-- You're combining proxying with other middleware concerns (auth, redirects, rate limiting)
+- You're combining proxying with other request interception concerns (auth, redirects, rate limiting)
+- You want a clear, centralized network boundary for your application
 
-In practice, the Route Handler approach is the safer default for most applications. It's more explicit, easier to maintain, and gives you the full power of Node.js. The Middleware approach shines when you specifically need edge execution or when the proxy is part of a broader middleware pipeline.
+In practice, the Route Handler approach is the safer default for most applications. It's more explicit, easier to test, and keeps proxy logic neatly scoped per endpoint. The Proxy approach shines when you need centralized request interception or when the proxy is part of a broader request pipeline that includes authentication, redirects, and other cross-cutting concerns.
 
 ## Conclusion
 
-Proxying HTTP requests through Next.js is a powerful pattern that solves real problems: CORS issues, credential exposure, and lack of server-side control over external API calls. Both Route Handlers and Middleware give you a clean way to implement this, each with distinct trade-offs.
+Proxying HTTP requests through Next.js is a powerful pattern that solves real problems: CORS issues, credential exposure, and lack of server-side control over external API calls. Both Route Handlers and Proxy give you a clean way to implement this, each with distinct trade-offs.
 
-The Route Handler approach offers explicitness, full Node.js runtime access, and per-method control, making it ideal for most use cases. The Middleware approach provides edge execution, clean URL paths, and centralized request interception, making it best for simple pass-through proxies or when combined with other middleware logic.
+The Route Handler approach offers explicitness, per-method control, and easy testability, making it ideal for most use cases. The Proxy approach, introduced in Next.js 16 as a replacement for Middleware, provides centralized request interception with full Node.js runtime access, making it best for simple pass-through proxies or when combined with other cross-cutting logic like authentication and redirects.
 
 Both approaches share the same core proxy function, which handles URL rewriting, header filtering, and body forwarding. This shared logic pattern keeps things DRY and makes it easy to switch between approaches or even use both simultaneously in the same project.
 
