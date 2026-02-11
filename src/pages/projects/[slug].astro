@@ -8,7 +8,7 @@ import Heading1 from "@/components/typography/Heading1.astro";
 import Text from "@/components/typography/Text.astro";
 import Layout from "@/layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
-import { compareDesc } from "date-fns";
+import { compareDesc } from "@/utils/date";
 
 interface Props {
   post: CollectionEntry<"projects">;
@@ -30,15 +30,15 @@ export const getStaticPaths = (async () => {
       nextPost:
         idx !== totalPost - 1
           ? {
-              title: sortedProjectCollection[idx + 1].data.title,
-              slug: `/projects/${sortedProjectCollection[idx + 1].slug}`,
+              title: sortedProjectCollection[idx + 1]?.data.title,
+              slug: `/projects/${sortedProjectCollection[idx + 1]?.slug}`,
             }
           : null,
       prevPost:
         idx !== 0
           ? {
-              title: sortedProjectCollection[idx - 1].data.title,
-              slug: `/projects/${sortedProjectCollection[idx - 1].slug}`,
+              title: sortedProjectCollection[idx - 1]?.data.title,
+              slug: `/projects/${sortedProjectCollection[idx - 1]?.slug}`,
             }
           : null,
       post,

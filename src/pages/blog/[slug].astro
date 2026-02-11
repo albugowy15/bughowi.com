@@ -8,9 +8,8 @@ import Heading1 from "@/components/typography/Heading1.astro";
 import Heading4 from "@/components/typography/Heading4.astro";
 import Text from "@/components/typography/Text.astro";
 import Layout from "@/layouts/Layout.astro";
-import { formatDate } from "@/utils/date";
+import { formatDate, compareDesc } from "@/utils/date";
 import type { GetStaticPaths } from "astro";
-import { compareDesc } from "date-fns";
 import { GITHUB_PROFILE_URL, X_USERNAME } from "@/lib/constant";
 import { buttonVariants } from "@/components/Button";
 
@@ -34,15 +33,15 @@ export const getStaticPaths = (async () => {
       nextPost:
         idx !== totalPost - 1
           ? {
-              title: sortedBlogCollection[idx + 1].data.title,
-              slug: `/blog/${sortedBlogCollection[idx + 1].slug}`,
+              title: sortedBlogCollection[idx + 1]?.data.title,
+              slug: `/blog/${sortedBlogCollection[idx + 1]?.slug}`,
             }
           : null,
       prevPost:
         idx !== 0
           ? {
-              title: sortedBlogCollection[idx - 1].data.title,
-              slug: `/blog/${sortedBlogCollection[idx - 1].slug}`,
+              title: sortedBlogCollection[idx - 1]?.data.title,
+              slug: `/blog/${sortedBlogCollection[idx - 1]?.slug}`,
             }
           : null,
       post,

@@ -1,10 +1,11 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/strictest",
   "exclude": ["dist"],
-  "include": [".astro/types.d.ts", "**/*.ts", "**/*.tsx", "**/*.astro"],
+  "include": [".astro/types.d.ts", "**/*"],
   "compilerOptions": {
     "baseUrl": ".",
     "strictNullChecks": true,
+    "verbatimModuleSyntax": true,
     "allowJs": true,
     "plugins": [
       {
