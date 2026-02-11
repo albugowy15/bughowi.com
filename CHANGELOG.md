@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.5.0](https://github.com/albugowy15/bughowi.com/compare/v3.4.1...v3.5.0) (2026-02-11)
+
+
+### Features
+
+* new blog content ([b46b935](https://github.com/albugowy15/bughowi.com/commit/b46b935c686498923fd4c3ee37f729f0c249291d))
+* update some blog content ([84a9e1d](https://github.com/albugowy15/bughowi.com/commit/84a9e1d49106c22ce67a2d040dfbe93df57909b7))
+
+
+### Bug Fixes
+
+* adjust next.js proxy content middleware approach ([5926360](https://github.com/albugowy15/bughowi.com/commit/5926360f97d951cfd65f937a62f7ee1e07e81a15))
+
 ## [3.4.1](https://github.com/albugowy15/bughowi.com/compare/v3.4.0...v3.4.1) (2025-08-17)
 
 
