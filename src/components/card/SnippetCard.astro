@@ -9,13 +9,16 @@ interface Props {
 const { snippet } = Astro.props;
 ---
 
-<div
+<a
   class="group flex flex-col p-4 gap-3 rounded-sm cursor-pointer border hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
+  href={`/snippets/${snippet.slug}`}
+  title={snippet.data.title}
+  aria-label={snippet.data.title}
 >
   <h3
     class="text-lg font-bold hover:text-primary transition-colors line-clamp-2"
   >
-    <a href={`/snippets/${snippet.slug}`}>{snippet.data.title}</a>
+    {snippet.data.title}
   </h3>
   <div class="flex flex-wrap gap-1">
     {
@@ -27,4 +30,4 @@ const { snippet } = Astro.props;
     }
   </div>
   <p class="line-clamp-3 text-foreground/70">{snippet.data.description}</p>
-</div>
+</a>

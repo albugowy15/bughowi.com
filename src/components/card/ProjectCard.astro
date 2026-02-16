@@ -9,13 +9,16 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<div
+<a
   class="group flex flex-col justify-between p-4 gap-3 rounded-sm cursor-pointer border hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
+  href={`/projects/${project.slug}`}
+  title={project.data.title}
+  aria-label={project.data.title}
 >
   <h3
     class="text-lg font-bold hover:text-primary transition-colors line-clamp-2"
   >
-    <a href={`/projects/${project.slug}`}>{project.data.title}</a>
+    {project.data.title}
   </h3>
 
   <p class="line-clamp-3 text-foreground/70">{project.data.description}</p>
@@ -28,4 +31,4 @@ const { project } = Astro.props;
       ))
     }
   </div>
-</div>
+</a>

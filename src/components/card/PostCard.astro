@@ -11,8 +11,11 @@ const { post } = Astro.props;
 const { remarkPluginFrontmatter } = await post.render();
 ---
 
-<div
+<a
   class="group flex flex-col border hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
+  title={post.data.title}
+  aria-label={post.data.title}
+  href={`/blog/${post.slug}`}
 >
   <div
     class="relative flex flex-col justify-between p-4 gap-3 rounded-sm cursor-pointer h-full"
@@ -29,7 +32,7 @@ const { remarkPluginFrontmatter } = await post.render();
     <h3
       class="text-lg font-bold hover:text-primary transition-colors line-clamp-2"
     >
-      <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+      {post.data.title}
     </h3>
     <p class="line-clamp-3 text-foreground/70">{post.data.description}</p>
     <div class="py-4"></div>
@@ -44,4 +47,4 @@ const { remarkPluginFrontmatter } = await post.render();
       </p>
     </div>
   </div>
-</div>
+</a>
