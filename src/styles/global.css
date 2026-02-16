@@ -83,7 +83,4 @@
   body {
     @apply bg-background text-foreground font-primary;
   }
-  html {
-    @apply relative min-h-full scroll-smooth;
-  }
 }

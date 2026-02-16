@@ -18,8 +18,6 @@ export default defineConfig({
         styles: ["normal", "italic"],
         subsets: ["latin"],
         fallbacks: ["sans-serif"],
-        display: "swap",
-        optimizedFallbacks: true,
       },
     ],
   },
