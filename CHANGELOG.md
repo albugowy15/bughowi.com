@@ -1,5 +1,22 @@
 # Changelog
 
+## [3.5.0](https://github.com/albugowy15/bughowi.com/compare/v3.4.1...v3.5.0) (2026-02-25)
+
+
+### Features
+
+* add umami analytics ([01af39c](https://github.com/albugowy15/bughowi.com/commit/01af39cdc3ad93c736859b7dce99bb76e7d81607))
+* new blog content ([b46b935](https://github.com/albugowy15/bughowi.com/commit/b46b935c686498923fd4c3ee37f729f0c249291d))
+* update some blog content ([84a9e1d](https://github.com/albugowy15/bughowi.com/commit/84a9e1d49106c22ce67a2d040dfbe93df57909b7))
+
+
+### Bug Fixes
+
+* adjust next.js proxy content middleware approach ([e08c35c](https://github.com/albugowy15/bughowi.com/commit/e08c35cc11416efacc5002742067dbd13a447fb9))
+* **content:** text link overflow ([d6b8b6a](https://github.com/albugowy15/bughowi.com/commit/d6b8b6aa3f55c2eccc48d5fda7cc98de673ead42))
+* redirected github profile url image ([40974c0](https://github.com/albugowy15/bughowi.com/commit/40974c0905ae5b7ea9a838ae7fe643d838bcbd75))
+* restore card accesibility and ux with achor wrappers ([3123406](https://github.com/albugowy15/bughowi.com/commit/312340633ae6d2214f24f30f6d46ce9deac35105))
+
 ## [3.4.1](https://github.com/albugowy15/bughowi.com/compare/v3.4.0...v3.4.1) (2025-08-17)
 
 
