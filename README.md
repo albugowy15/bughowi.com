@@ -26,4 +26,4 @@ MDX allows me to use JSX in my markdown content. I can import components, such a
 
 ## Deployment
 
-I deploy this project in Vercel. You can check it here : [https://bughowi.com](https://bughowi.com)
+I deploy this project with Cloudflare Pages. You can check it here : [https://bughowi.com](https://bughowi.com)
