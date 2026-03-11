@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import ContentPagination, {
   type ContentNavigator,
 } from "@/components/pagination/ContentPagination.astro";
@@ -24,21 +24,21 @@ export const getStaticPaths = (async () => {
   const totalPost = sortedProjectCollection.length;
   return sortedProjectCollection.flatMap((post, idx) => ({
     params: {
-      slug: post.slug,
+      slug: post.id,
     },
     props: {
       nextPost:
         idx !== totalPost - 1
           ? {
               title: sortedProjectCollection[idx + 1]?.data.title,
-              slug: `/projects/${sortedProjectCollection[idx + 1]?.slug}`,
+              slug: `/projects/${sortedProjectCollection[idx + 1]?.id}`,
             }
           : null,
       prevPost:
         idx !== 0
           ? {
               title: sortedProjectCollection[idx - 1]?.data.title,
-              slug: `/projects/${sortedProjectCollection[idx - 1]?.slug}`,
+              slug: `/projects/${sortedProjectCollection[idx - 1]?.id}`,
             }
           : null,
       post,
@@ -47,8 +47,8 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post, nextPost, prevPost } = Astro.props;
-const { Content } = await post.render();
-const url = new URL(`/projects/${post.slug}`, Astro.site);
+const { Content } = await render(post);
+const url = new URL(`/projects/${post.id}`, Astro.site);
 ---
 
 <Layout

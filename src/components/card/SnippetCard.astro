@@ -11,7 +11,7 @@ const { snippet } = Astro.props;
 
 <a
   class="group flex flex-col p-4 gap-3 rounded-sm cursor-pointer border hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
-  href={`/snippets/${snippet.slug}`}
+  href={`/snippets/${snippet.id}`}
   title={snippet.data.title}
   aria-label={snippet.data.title}
 >

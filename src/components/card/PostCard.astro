@@ -2,20 +2,21 @@
 import type { CollectionEntry } from "astro:content";
 import Chip from "@/components/Chip.astro";
 import { formatDate } from "@/utils/date";
+import { render } from "astro:content";
 
 interface Props {
   post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
-const { remarkPluginFrontmatter } = await post.render();
+const { remarkPluginFrontmatter } = await render(post);
 ---
 
 <a
   class="group flex flex-col border hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
   title={post.data.title}
   aria-label={post.data.title}
-  href={`/blog/${post.slug}`}
+  href={`/blog/${post?.id}`}
 >
   <div
     class="relative flex flex-col justify-between p-4 gap-3 rounded-sm cursor-pointer h-full"

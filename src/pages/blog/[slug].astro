@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import Chip from "@/components/Chip.astro";
 import ContentPagination from "@/components/pagination/ContentPagination.astro";
@@ -27,21 +27,21 @@ export const getStaticPaths = (async () => {
   const totalPost = sortedBlogCollection.length;
   return sortedBlogCollection.flatMap((post, idx) => ({
     params: {
-      slug: post.slug,
+      slug: post.id,
     },
     props: {
       nextPost:
         idx !== totalPost - 1
           ? {
               title: sortedBlogCollection[idx + 1]?.data.title,
-              slug: `/blog/${sortedBlogCollection[idx + 1]?.slug}`,
+              slug: `/blog/${sortedBlogCollection[idx + 1]?.id}`,
             }
           : null,
       prevPost:
         idx !== 0
           ? {
               title: sortedBlogCollection[idx - 1]?.data.title,
-              slug: `/blog/${sortedBlogCollection[idx - 1]?.slug}`,
+              slug: `/blog/${sortedBlogCollection[idx - 1]?.id}`,
             }
           : null,
       post,
@@ -50,10 +50,10 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post, nextPost, prevPost } = Astro.props;
-const { Content, remarkPluginFrontmatter, headings } = await post.render();
-const editUrl = `${GITHUB_PROFILE_URL}/bughowi.com/blob/main/src/content/blog/${post.slug}.mdx`;
-const tweetUrl = `https://x.com/intent/tweet?text=${post.data.title}&url=${Astro.site}/blog/${post.slug}&via=${X_USERNAME}`;
-const postUrl = new URL(`/blog/${post.slug}`, Astro.site);
+const { Content, remarkPluginFrontmatter, headings } = await render(post);
+const editUrl = `${GITHUB_PROFILE_URL}/bughowi.com/blob/main/src/content/blog/${post.id}.mdx`;
+const tweetUrl = `https://x.com/intent/tweet?text=${post.data.title}&url=${Astro.site}/blog/${post.id}&via=${X_USERNAME}`;
+const postUrl = new URL(`/blog/${post.id}`, Astro.site);
 ---
 
 <Layout

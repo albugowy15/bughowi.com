@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import type { ContentNavigator } from "@/components/pagination/ContentPagination.astro";
 import ContentPagination from "@/components/pagination/ContentPagination.astro";
 import Heading1 from "@/components/typography/Heading1.astro";
@@ -22,21 +22,21 @@ export const getStaticPaths = (async () => {
   const totalSnippet = sortedSnippetCollection.length;
   return sortedSnippetCollection.flatMap((post, idx) => ({
     params: {
-      slug: post.slug,
+      slug: post.id,
     },
     props: {
       nextPost:
         idx !== totalSnippet - 1
           ? {
               title: sortedSnippetCollection[idx + 1]?.data.title,
-              slug: `/snippets/${sortedSnippetCollection[idx + 1]?.slug}`,
+              slug: `/snippets/${sortedSnippetCollection[idx + 1]?.id}`,
             }
           : null,
       prevPost:
         idx !== 0
           ? {
               title: sortedSnippetCollection[idx - 1]?.data.title,
-              slug: `/snippets/${sortedSnippetCollection[idx - 1]?.slug}`,
+              slug: `/snippets/${sortedSnippetCollection[idx - 1]?.id}`,
             }
           : null,
       post,
@@ -45,8 +45,8 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post, nextPost, prevPost } = Astro.props;
-const { Content } = await post.render();
-const snippetUrl = new URL(`/snippets/${post.slug}`, Astro.site);
+const { Content } = await render(post);
+const snippetUrl = new URL(`/snippets/${post.id}`, Astro.site);
 ---
 
 <Layout
