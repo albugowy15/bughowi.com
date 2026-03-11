@@ -48,4 +48,7 @@ export default defineConfig({
     sitemap(),
     react(),
   ],
+  experimental: {
+    rustCompiler: true,
+  },
 });
