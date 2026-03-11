@@ -8,19 +8,17 @@ import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.fontsource(),
-        name: "Roboto Flex",
-        cssVariable: "--font-roboto",
-        weights: [400, 500, 600, 700],
-        styles: ["normal", "italic"],
-        subsets: ["latin"],
-        fallbacks: ["sans-serif"],
-      },
-    ],
-  },
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "Roboto Flex",
+      cssVariable: "--font-roboto",
+      weights: [400, 500, 600, 700],
+      styles: ["normal", "italic"],
+      subsets: ["latin"],
+      fallbacks: ["sans-serif"],
+    },
+  ],
   output: "static",
   markdown: {
     remarkPlugins: [remarkReadingTime],
