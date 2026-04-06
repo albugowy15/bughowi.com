@@ -1,0 +1,113 @@
+---
+title: Enable HTTPS with Nginx
+date: 2026-04-06
+description: Set up free SSL/TLS certificates with Let's Encrypt and configure Nginx to serve traffic over HTTPS on a VPS
+categories:
+  - vps
+  - nginx
+  - https
+---
+
+Serving your site over HTTPS is essential — browsers flag plain HTTP as "Not Secure", and search engines penalize it. This snippet walks through obtaining a free SSL certificate from Let's Encrypt using Certbot and configuring Nginx to handle HTTPS traffic with automatic HTTP-to-HTTPS redirection.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+1. A VPS with a public IP address (Ubuntu/Debian-based examples below)
+2. Nginx installed and running (`sudo systemctl status nginx`)
+3. A domain name with DNS A record pointing to your server's IP
+4. Port 80 and 443 open in your firewall
+
+## Install Certbot
+
+Certbot is the official Let's Encrypt client that automates certificate issuance and renewal. Install it along with the Nginx plugin:
+
+```sh
+sudo apt update
+sudo apt install certbot python3-certbot-nginx
+```
+
+The `python3-certbot-nginx` plugin allows Certbot to automatically configure Nginx for you, but we will use the `certonly` mode so we have full control over the Nginx configuration.
+
+## Obtain the SSL Certificate
+
+Run Certbot in standalone or Nginx mode to get your certificate:
+
+```sh
+sudo certbot certonly --nginx -d mydomain.com -d www.mydomain.com
+```
+
+Certbot will verify domain ownership, then store the certificate files under `/etc/letsencrypt/live/mydomain.com/`. The two important files are:
+
+- `fullchain.pem` — the full certificate chain (your cert + intermediate certs)
+- `privkey.pem` — your private key
+
+Certificates from Let's Encrypt are valid for 90 days. Certbot installs a systemd timer that handles automatic renewal. You can verify it with:
+
+```sh
+sudo certbot renew --dry-run
+```
+
+## Configure Nginx
+
+Now update your Nginx config to listen on port 443 with SSL enabled, and redirect all HTTP (port 80) traffic to HTTPS. Replace `mydomain.com` with your actual domain.
+
+```nginx
+# Redirect all HTTP traffic to HTTPS
+server {
+    listen 80;
+    server_name mydomain.com www.mydomain.com;
+    return 301 https://$host$request_uri;
+}
+
+# HTTPS server
+server {
+    listen 443 ssl;
+    server_name mydomain.com www.mydomain.com;
+
+    ssl_certificate     /etc/letsencrypt/live/mydomain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/mydomain.com/privkey.pem;
+
+    ssl_protocols       TLSv1.2 TLSv1.3;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+
+    # Proxy to your backend API
+    location /api/ {
+        proxy_pass http://localhost:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Proxy to your frontend app
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+A few things to note in this configuration:
+
+- The first `server` block listens on port 80 and issues a **301 redirect** to the HTTPS version of any requested URL. This ensures all visitors end up on a secure connection.
+- `ssl_protocols TLSv1.2 TLSv1.3` disables older, insecure protocol versions (TLS 1.0 and 1.1).
+- `ssl_ciphers HIGH:!aNULL:!MD5` restricts the cipher suites to strong ones, excluding null authentication and MD5-based ciphers.
+- The `proxy_set_header` directives forward the original client information to your upstream apps, which is important for logging and any IP-based logic.
+
+## Apply the Configuration
+
+Test and reload Nginx to apply the changes:
+
+```sh
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+The `nginx -t` command validates your configuration syntax before reloading, so you won't accidentally take down your server with a typo.
+
+Visit `https://mydomain.com` in your browser — you should see the padlock icon confirming a valid HTTPS connection.
