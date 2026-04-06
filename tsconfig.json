@@ -3,7 +3,6 @@
   "exclude": ["dist"],
   "include": [".astro/types.d.ts", "**/*"],
   "compilerOptions": {
-    "baseUrl": ".",
     "strictNullChecks": true,
     "verbatimModuleSyntax": true,
     "allowJs": true,
