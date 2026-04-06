@@ -70,10 +70,10 @@ const url = new URL(`/projects/${post.id}`, Astro.site);
           <Image
             src={post.data.thumbnail}
             alt={post.data.title}
-            height={1080}
-            width={720}
+            width={1280}
+            height={720}
             loading="eager"
-            class="rounded-lg"
+            class="rounded-lg object-contain"
           />
         )
       }
