@@ -1,60 +1,31 @@
 # About Me
 
-Hey there! 👋 I'm Mohamad Kholid Bughowi, a passionate software engineer with a knack for turning complex problems into elegant solutions. I believe in the power of technology to create meaningful impact, and I'm constantly exploring new ways to push the boundaries of what's possible in software development.
+Hey there! I'm Mohamad Kholid Bughowi, but feel free to call me **Ghowi**. I'm a software engineer with a passion for turning complex problems into elegant solutions. I believe in the power of technology to create meaningful impact, and I'm constantly exploring new ways to push the boundaries of what's possible in software development.
 
 ## My Journey
 
-My path in technology began at [Institut Teknologi Sepuluh Nopember (ITS)](https://www.its.ac.id/), where I earned my Bachelor's degree in Informatics. But my real education never stops - I'm a firm believer in continuous learning and staying ahead of the technology curve. From my early days coding simple applications to now architecting complex systems, every challenge has been a stepping stone to growth.
+I studied **Computer Science**, and from that foundation I've never stopped learning. From early days writing simple applications to now working on production-grade systems, every challenge has been a stepping stone. I believe that growing as an engineer goes beyond learning new technologies. How you think about problems matters just as much as the tools you use to solve them.
 
 ## What I Do
 
-I specialize in full-stack development with a particular focus on creating scalable, maintainable applications. My approach combines technical expertise with a deep understanding of user needs, ensuring that every solution I build not only works flawlessly but also delivers real value.
+I'm currently working as a **Frontend Developer** at [Astra International](https://www.astra.co.id/en), but my passion for software engineering goes far beyond the frontend. I actively explore and build across backend development, DevOps, infrastructure, and software architecture. A lot of that curiosity spills into my writing, and I think my blog reflects that better than anything else I could say here.
 
-### Technical Philosophy
+One of the things I've been most excited about lately is getting hands-on with infrastructure. I wrote about [setting up a self-hosted VPS from scratch using Dokploy](https://bughowi.com/blog/self-hosting-multiple-apps-on-a-single-vps-with-dokploy), walking through the entire process from hardening SSH and configuring Cloudflare DNS to deploying multiple applications with proper SSL. What started as curiosity quickly turned into a fully self-hosted personal infrastructure running several services I now use daily. It's the kind of work that made me realize how much I enjoy thinking beyond the application layer and understanding the systems underneath.
 
-My tech stack choices are driven by three core principles:
+Then there's a more personal piece I wrote about [how stepping outside of frontend work reignited my love for programming](https://bughowi.com/blog/how-i-escaped-frontend-monotony-and-rediscoverd-my-love-for-programming). It's honest about the feeling of monotony that can creep in when you're confined to a single domain, and how exploring other areas like backend, tooling, and systems gave me back that spark. If you've ever felt stuck in a lane and wondered whether there's more out there, that post is for you.
 
-- **Type Safety**: TypeScript is my go-to language for web development, as I believe strong typing leads to more reliable and maintainable code
-- **Performance**: Go has become my trusted companion for building efficient backend services that can scale
-- **System Reliability**: Rust represents my commitment to writing secure, high-performance systems when requirements demand it
+And if you want to see just how deep the rabbit hole goes, there's [my journey of abandoning VSCode for Neovim](https://bughowi.com/blog/from-vscode-to-nvim-hilarious-journey). What started as mild curiosity turned into learning Lua, building an entire editor config from scratch, and eventually becoming the kind of person who genuinely enjoys crafting their own development environment. It sounds like a small thing, but it says a lot about how I approach the craft. I'd rather deeply understand my tools than just use them.
 
-## Professional Journey
+## My Engineering Philosophy
 
-Currently, I'm working as a **Frontend Developer** at [Astra International](https://www.astra.co.id/), where I'm contributing to projects that push the boundaries of what's possible in web development. My career path has been marked by diverse experiences across different domains:
+I'm not attached to any specific tech stack. I see tools — languages, frameworks, platforms — as exactly that: tools. What matters far more is the ability to **understand the problem deeply** and reason through multiple possible solutions using whatever is best suited for the job at hand.
 
-### Industry Experience Highlights
+The right stack depends on context, constraints, and trade-offs. I'd rather pick the right tool for the problem than be loyal to a particular ecosystem.
 
-- **Social Media Integration**: At [Teepee](https://www.teepee.app/), I led the migration of backend services from Strapi to Go, significantly improving system performance and user experience in a creator-business connection platform
-- **Healthcare Technology**: During my time at [Hash](https://www.hash.id/), I contributed to modernizing healthcare information systems using TypeScript and GraphQL
-- **Government Digital Transformation**: At [Dinkominfo Surabaya](https://dinkominfo.surabaya.go.id/), I played a key role in developing an API Gateway that unified digital services across the city
-- **EdTech Innovation**: My work at [Torche Education](https://torche.app/) involved revamping their digital presence and modernizing their tech stack
+## Let's Connect
 
-## Beyond the Code
+I'm always open to collaborating on interesting projects, discussing ideas, or just geeking out about software. If you have something in mind or just want to say hi, reach out! I'd love to hear from you.
 
-While coding is my profession, my passion extends beyond just writing code. I'm deeply interested in:
-
-- **Software Architecture**: Designing systems that are not just functional, but sustainable and scalable
-- **Developer Experience**: Creating tools and processes that make development more efficient and enjoyable
-- **Open Source**: Contributing to and learning from the open source community
-- **Tech Community**: Sharing knowledge and experiences with fellow developers
-
-## Let's Connect!
-
-I'm always excited to connect with fellow tech enthusiasts, potential collaborators, or anyone interested in discussing software development. Whether you have a project in mind, want to discuss the latest tech trends, or just want to say hi, feel free to reach out!
-
-You can find me at:
-
-- 📧 Email: kholidbughowi@gmail.com
-- 💼 LinkedIn: [Mohamad Kholid Bughowi](https://linkedin.com/in/bughowi)
-- 🐦 Twitter: [@bughowy](https://twitter.com/bughowy)
-
-## Current Focus
-
-I'm currently exploring advanced patterns in frontend architecture and diving deeper into distributed systems. I'm particularly interested in:
-
-- Micro-frontend architectures
-- Performance optimization techniques
-- Cloud-native development patterns
-- Event-driven architectures
-
-Whether you're a potential employer, collaborator, or just someone passionate about technology, I'd love to connect and explore how we might work together to create something amazing!
+- Email: [kholidbughowi@gmail.com](mailto:kholidbughowi@gmail.com)
+- Twitter: [bughowy](https://twitter.com/bughowy)
+- Github: [albugowy15](https://github.com/albugowy15)
