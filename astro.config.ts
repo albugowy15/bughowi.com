@@ -37,7 +37,7 @@ export default defineConfig({
     "/blog": "/blog/page/1",
     "/projects": "/projects/page/1",
   },
-  site: "https://www.bughowi.com",
+  site: "https://bughowi.com",
   vite: {
     plugins: [tailwindcss()],
   },
