@@ -17,6 +17,7 @@
     "lint:fix": "eslint \"src/**/*.{js,ts,jsx,tsx,astro}\" --fix"
   },
   "dependencies": {
+    "@astrojs/partytown": "^2.1.7",
     "@astrojs/react": "^5.0.4",
     "@expressive-code/plugin-line-numbers": "^0.41.7",
     "@fontsource/roboto-flex": "^5.2.8",
