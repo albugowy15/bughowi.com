@@ -1,0 +1,75 @@
+---
+title: Pakpos
+description: A fast, lightweight native desktop HTTP client written in Rust. No account, no Electron.
+thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1778001187/2026-05-06-001111_hyprshot_dnsnjt.png
+date: 2026-05-06
+tech:
+  - rust
+  - tokio
+  - reqwest
+  - desktop
+---
+
+import { Image } from "astro:assets";
+
+## Description
+
+A native desktop HTTP client written in Rust. I built this because Postman has gotten bloated and requires an account now, and I wanted something fast and simple that just works. The goal was never to replace Postman feature-for-feature — it was to cover the 90% of daily API testing work with a tool that gets out of my way.
+
+**What it does:**
+
+- GET, POST, PUT, DELETE, PATCH, HEAD requests
+- Custom headers and query parameters support
+- JSON editor with syntax highlighting for request and response bodies
+- Auto-formats JSON responses
+- Smart indentation and bracket matching in the editor
+- Loading state and visual feedback for pending requests
+
+**A few things worth calling out:**
+
+- **Under 50MB.** Postman is ~500MB. Insomnia is ~200MB. Pakpos is a single binary you can throw in your PATH and forget about.
+- **Actually native.** Built with Iced, not Electron or any webview wrapper. It starts fast, uses minimal memory, and doesn't spin up a browser engine just to render a text field.
+- **No account required.** Open it, use it. Nothing to sign in to, no telemetry, no paywalled features.
+
+## Screenshots
+
+<Image
+  alt="Pakpos Demo 1"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/v1778001187/2026-05-06-001111_hyprshot_dnsnjt.png"
+  width="1920"
+  height="1200"
+/>
+<Image
+  alt="Pakpos Demo 2"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/v1778001187/2026-05-06-001132_hyprshot_s1m9au.png"
+  width="1920"
+  height="1200"
+/>
+<Image
+  alt="Pakpos Demo 3"
+  src="https://res.cloudinary.com/bughowi-assets/image/upload/v1778001187/2026-05-06-001054_hyprshot_sugdhn.png"
+  width="1920"
+  height="1200"
+/>
+
+## Tech Stack
+
+### Rust
+
+Rust is the language the entire project is written in. The choice wasn't just for performance — it was about reliability. Rust's ownership model and strict compile-time checks mean a large class of bugs (null pointer dereferences, data races, use-after-free) simply can't exist at runtime. For a tool that makes network requests and handles concurrent I/O, that guarantee matters. The resulting binary is small, self-contained, and has no runtime dependency to install. It ships as a single executable that just works.
+
+### Iced
+
+Iced is a cross-platform GUI framework for Rust, inspired by Elm's architecture. It follows a purely functional, message-passing model: UI state is updated in response to explicit messages, making the data flow easy to reason about and test. Crucially, Iced renders using the GPU via `wgpu` — there is no webview, no browser engine, no Electron shell. This is what keeps Pakpos feeling instant to open and light on memory even while managing editor state and live response rendering. It's also what makes it a truly native application rather than a web app dressed up as a desktop one.
+
+### Tokio
+
+Tokio is Rust's de-facto asynchronous runtime. HTTP requests are inherently I/O-bound — the application needs to fire off a request and wait for the response without freezing the UI. Tokio makes this possible by running async tasks on a thread pool, so the interface remains responsive while a request is in-flight. It's what powers the loading state and the cancellation-safe request lifecycle in Pakpos.
+
+### Reqwest
+
+Reqwest is an ergonomic, async-first HTTP client library for Rust built on top of Tokio. It handles the low-level details of constructing HTTP requests — serializing headers, encoding the body, managing redirects, and parsing responses — so the application code can focus on the user-facing logic. It supports all the methods Pakpos exposes (GET, POST, PUT, DELETE, PATCH, HEAD) and integrates cleanly with Tokio's async ecosystem, making it a natural fit for the stack.
+
+## Repository
+
+View the repository here: [https://github.com/albugowy15/pakpos](https://github.com/albugowy15/pakpos)
