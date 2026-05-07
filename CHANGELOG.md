@@ -1,5 +1,25 @@
 # Changelog
 
+## [3.6.0](https://github.com/albugowy15/bughowi.com/compare/v3.5.0...v3.6.0) (2026-05-07)
+
+
+### Features
+
+* change site url ([425a2ae](https://github.com/albugowy15/bughowi.com/commit/425a2ae79bdf293ec600dfbe593581450b482a44))
+* **content:** add pakpos project ([23308fd](https://github.com/albugowy15/bughowi.com/commit/23308fda45b19c060ebebd730f2a180dd9f372fa))
+* **content:** add share-your-local-dev-server-publicly-with-cloudflare-tunnel blog content ([9d76d5f](https://github.com/albugowy15/bughowi.com/commit/9d76d5f8abba6d0f21763b618002e85b1507aeff))
+* **content:** add why-i-stopped-reaching-for-nextjs blog content ([e44a917](https://github.com/albugowy15/bughowi.com/commit/e44a91797815f4a02e2ec58cff6cfdd056678413))
+* **content:** update about ([5d305f9](https://github.com/albugowy15/bughowi.com/commit/5d305f941eb19169fac37d06c8fefed977d5ebf1))
+* **content:** vps-grafana-monitoring ([68084b1](https://github.com/albugowy15/bughowi.com/commit/68084b1477f77aee4f675b05851e06df2bface18))
+* load external script using partytown ([20edc4c](https://github.com/albugowy15/bughowi.com/commit/20edc4cb25f5588b5de80501bd30378a057592e9))
+
+
+### Bug Fixes
+
+* remove unused css variable and ui component ([b21271f](https://github.com/albugowy15/bughowi.com/commit/b21271fcc667025d79073061f995fdda53d5c4c4))
+* undefined rss post url ([60f063e](https://github.com/albugowy15/bughowi.com/commit/60f063e6cb68915a775fbbfc55eb545bcefe358b))
+* undo load giscus with partytown ([d2a1e4e](https://github.com/albugowy15/bughowi.com/commit/d2a1e4e749a0aa636fd3fd50c39545555549a9f6))
+
 ## [3.5.0](https://github.com/albugowy15/bughowi.com/compare/v3.4.1...v3.5.0) (2026-04-12)
 
 
