@@ -1,0 +1,101 @@
+---
+title: "Why I Stopped Reaching for Next.js"
+date: 2026-05-07
+description: "It's 2026 and the frontend ecosystem has evolved far beyond what Next.js can comfortably offer. Here's why I'm moving on and what I'm moving to."
+categories:
+  - frontend
+  - web development
+thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1778140274/why-i-stopped-reaching-for-nextjs.jpg
+---
+
+It's 2026. I've been building on [Next.js](https://nextjs.org/) for years, and for a long time, it felt like the obvious choice and safe bet. React Server Components, file-based routing, seamless Vercel deployment. It had everything you needed in one box.
+
+But the ecosystem has matured. A lot. And that box is starting to feel more like a cage.
+
+This post is my personal take on why I think Next.js is no longer the default answer for modern web development and where I think we should be looking instead.
+
+## The Problem With "One Framework to Rule Them All"
+
+Next.js was built on a compelling premise: take React, add a convention-over-configuration philosophy, and give developers a full-stack framework with zero setup. For its time, that was genuinely revolutionary.
+
+But here's the thing about "batteries included" frameworks. They tend to carry a lot of dead weight. And in 2026, we're paying for it in very tangible ways: slow build times, massive memory consumption, a bundler ecosystem that's behind modern tooling, and an increasingly tight coupling to Vercel's infrastructure.
+
+To be fair, Next.js is still actively evolving. The team ships frequently and they're clearly not standing still. But rapid iteration doesn't automatically mean the right iteration. The framework keeps growing in scope, and that growth comes with a cost that not every project should have to pay.
+
+## The Bundler Problem
+
+Let's talk about the elephant in the room: **the bundler**.
+
+Turbopack is now stable and ships as the default bundler in Next.js, it's meaningfully faster than Webpack was. But even with Turbopack, Next.js projects can still chew through memory in ways that feel hard to justify. On mid-to-large projects, cold starts and build memory usage remain a real operational concern. And there's a more fundamental issue worth naming: **Turbopack is not a general-purpose tool**. It's an internal implementation detail of Next.js. You can't bring it to other projects, other frameworks, or other toolchains. You're not gaining a transferable capability; you're just getting a faster version of something you're already locked into.
+
+**[Vite](https://vite.dev/)**, by contrast, is a fully standalone bundler you can use with anything. React, Vue, Svelte, Solid, vanilla JavaScript, it doesn't matter. It has an incredibly healthy plugin ecosystem, and its architecture is lean by design. Native ES modules during development for near-instant HMR. And as of the latest release, **Rolldown** for production builds. A Rust-powered bundler that replaces Rollup entirely and brings serious performance gains. Vite is a tool you own across your entire stack, not one that comes bundled with a framework and disappears if you ever leave it.
+
+That portability matters. When you build your mental model and your workflow around Vite, that knowledge transfers to every project you touch. When you build it around Turbopack, it stays behind Next.js's walls.
+
+## The React Alternatives
+
+If you're committed to the React ecosystem but want to escape the Next.js gravity well, the good news is that the alternatives have never been better.
+
+**[TanStack Router](https://tanstack.com/router/latest)** is, in my opinion, the most exciting thing to happen to React routing in years. It was built with type safety as a first principle, not bolted on afterward. Every route, every param, every search param, every loader return value is fully inferred by TypeScript. You get autocomplete on your route paths. You get type errors when a loader's return shape doesn't match what a component expects. It sounds like a quality-of-life detail until you've used it on a real codebase, and then you can't go back.
+
+**[TanStack Start](https://tanstack.com/start/latest)**, built on top of TanStack Router, extends this into a full-stack framework with server functions, SSR, and streaming. All with that same type-safe foundation. It's Vite-native, so the development experience is fast by default. And because it's built on TanStack Router's primitives, the routing model feels coherent rather than bolted together.
+
+**[React Router v7](https://reactrouter.com/)** takes a different approach, drawing heavily from the Remix philosophy: nested routes, co-located loaders and actions, and a strong emphasis on progressive enhancement. It's mature, well-documented, and ships with first-class Vite integration. But one of its most underappreciated strengths is its flexibility in how you actually adopt it.
+
+React Router v7 ships with [three distinct modes](https://reactrouter.com/start/modes): **Declarative**, **Data**, and **Framework**. Declarative mode is the classic React Router experience. Pure client-side routing with `<Route>` components, ideal for SPAs that don't need server involvement. Data mode layers in loaders and actions for co-located data fetching, without requiring any framework conventions. Framework mode goes all the way. SSR, file-based routing, server functions, the full Remix-inspired stack. This layered approach means you can adopt React Router at exactly the level your project demands. Starting with a simple SPA? Use Declarative. Scaling into a full-stack app later? Move up to Framework mode without switching tools. That kind of incremental flexibility is something Next.js simply doesn't offer. You're either all-in or you're not.
+
+Both React Router and TanStack Start are excellent choices. The key difference comes down to architecture preference. TanStack Start excels if you want maximal type inference and a more flexible, composable routing model. React Router v7 is the better fit if you value incremental adoption and want a clear path from a simple SPA all the way to a full-stack framework without ever switching tools.
+
+What they share is more important than what separates them: both are Vite-native, both treat TypeScript as a first-class citizen, and neither forces you into a cloud provider's infrastructure to get the best experience.
+
+## Beyond React
+
+Here's a question that doesn't get asked enough. Does your project actually need React?
+
+React is a great library. But it's a heavy one, and it brings with it a lot of assumptions about how UIs should be structured and rendered. When you pick Next.js, you're not just picking a framework. You're picking React, its runtime, its reconciler, its component model, and the entire mental overhead that comes with it.
+
+The broader frontend ecosystem has produced some genuinely outstanding alternatives that are worth knowing about:
+
+**[Svelte](https://svelte.dev/)** compiles your components to vanilla JavaScript at build time. There's no virtual DOM, no runtime library shipped to the browser. The result is incredibly lean, fast bundles and a component model that many developers find more intuitive than React's hook-heavy approach. SvelteKit, its full-stack companion, is polished, Vite-native, and a genuine pleasure to work with.
+
+**[Solid](https://www.solidjs.com/)** takes a different angle. It keeps the JSX syntax that React developers are comfortable with, but replaces the virtual DOM with fine-grained reactivity. Instead of re-rendering components, Solid surgically updates only the exact DOM nodes that changed. The performance characteristics are exceptional. It consistently benchmarks near the top of framework performance comparisons. SolidStart brings this to full-stack applications.
+
+**[Vue](https://vuejs.org/)** remains one of the most approachable and well-rounded frameworks in the ecosystem. It has excellent TypeScript support. A gentle learning curve. And Nuxt, its meta-framework is mature, feature-rich, and a strong choice for teams who want a Next.js-like experience without the Next.js baggage.
+
+All three of these have robust ecosystems, active communities, and production-proven track records. The choice between them is largely a matter of team preference and project requirements, but the point is that React is not the only credible option.
+
+### The Special Case: Astro
+
+If your project is primarily content-driven like a blog, marketing site, documentation portal, personal site, then I'd make a stronger recommendation than just "consider the alternatives." I'd say: **use [Astro](https://astro.build/)**.
+
+Astro is built around a concept called **[Island Architecture](https://docs.astro.build/en/concepts/islands/)**. By default, it ships zero JavaScript to the browser. Every page renders as pure HTML and CSS on the server. When you _do_ need interactivity, you opt specific components "islands" into client-side rendering. And here's the part that makes Astro uniquely powerful. Those islands can be written in _any_ framework. React, Svelte, Solid, Vue. They all work, side by side, in the same Astro project. You're not locked into a single component model.
+
+The performance implications of this approach are dramatic. Astro consistently ranks among the fastest SSR frameworks in real-world benchmarks. Its runtime memory footprint is minimal. Its build times are fast. And for content-heavy sites, its developer experience is excellent. First-class Markdown and MDX support, a clean [content collections API](https://docs.astro.build/en/guides/content-collections/), and a routing model that stays out of your way.
+
+The mental shift that Astro requires is small but important: you start from zero JavaScript and add interactivity only where you need it, rather than starting from a full JavaScript runtime and trying to optimize it away. For content sites, that inversion of defaults is the right call.
+
+## The AI Factor Changes the Equation
+
+There's one more dimension to this conversation that I think gets underappreciated: **AI-assisted development has fundamentally changed the cost of switching frameworks**.
+
+A couple of years ago, the "ecosystem lock-in" argument was powerful. Next.js had the most tutorials, the most Stack Overflow answers, the most community-contributed patterns. Learning a new framework meant paying a steep onboarding tax.
+
+That calculus is different now. AI coding assistants are remarkably good at frontend development. They can scaffold components, translate patterns between frameworks, explain unfamiliar APIs, and handle large swaths of the boilerplate that used to make framework migrations painful. The implementation details or the stuff that used to be locked inside your head or your team's institutional knowledge can now be delegated.
+
+What this means, practically, is that **you should be choosing frameworks based on architectural fit, not ecosystem familiarity**. The switching cost is lower than it's ever been. The right tool for the job is now a more accessible concept than it's ever been.
+
+If Astro fits your project, use it. If TanStack Start's type-safe routing model fits your app, use it. The fear of "my team doesn't know that framework" is less of a blocker than it once was and it's getting less so every month.
+
+## So, What Am I Using?
+
+To be concrete about it:
+
+- **For content-driven sites** (blogs, docs, marketing pages): **Astro**, full stop. Nothing else comes close for this use case.
+- **For full-stack React applications** that need robust routing and end-to-end type safety: **React Router v7** or **TanStack Start**, depending on the complexity of the routing needs.
+- **For anything Vite-adjacent**: the baseline assumption should be Vite, not Webpack. This is table stakes in 2026.
+
+I'm not writing this as a hit piece on Next.js. It served the industry well, and it remains a reasonable choice for teams already deep in it with established Vercel deployments. But if you're starting something new today, I think the burden of proof has shifted. Next.js is no longer the obvious default. It's a deliberate choice, and it should be made deliberately.
+
+The ecosystem has given us better options. We should use them.
+
+Thanks for reading. If you have strong opinions on this especially if you think I'm wrong, I'd genuinely love to hear them.
