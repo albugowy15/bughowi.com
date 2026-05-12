@@ -13,7 +13,7 @@ const { remarkPluginFrontmatter } = await render(post);
 ---
 
 <a
-  class="group flex flex-col border hover:bg-content1 transition-transform ease-in-out hover:scale-[1.02]"
+  class="group flex flex-col border transition-transform ease-in-out hover:scale-[1.02] hover:bg-content1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:scale-100"
   title={post.data.title}
   aria-label={post.data.title}
   href={`/blog/${post?.id}`}

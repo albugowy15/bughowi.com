@@ -12,6 +12,7 @@ thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1776669105/gr
 ---
 
 import { Image } from "astro:assets";
+import Link from "@/components/Link.astro";
 
 This article continues my journey exploring things outside my daily job as a frontend developer — you can read the backstory in [how I escaped frontend monotony](https://bughowi.com/blog/how-i-escaped-frontend-monotony-and-rediscoverd-my-love-for-programming/), and my previous VPS exploration in [self-hosting multiple apps on a single VPS with Dokploy](https://bughowi.com/blog/self-hosting-multiple-apps-on-a-single-vps-with-dokploy/).
 
@@ -224,7 +225,7 @@ Scroll to the bottom and click **Save & Test**. If everything is wired up correc
 
 ## Create Grafana Dashboards
 
-With the data source connected, it's time to set up dashboards. The good news: you don't need to build them from scratch. Grafana has a rich library of community-made dashboards at [grafana.com/grafana/dashboards](https://grafana.com/grafana/dashboards) that you can import with a single ID.
+With the data source connected, it's time to set up dashboards. The good news: you don't need to build them from scratch. Grafana has a rich library of community-made dashboards at <Link href="https://grafana.com/grafana/dashboards" external={true}>grafana.com/grafana/dashboards</Link> that you can import with a single ID.
 
 Since we're using **Node Exporter** and **cAdvisor**, we'll import dashboards designed for those exporters.
 
@@ -260,7 +261,13 @@ All three options lead to the same result — pick whichever fits your workflow.
 ### Recommended Dashboards
 
 **Node Exporter Full** — Dashboard ID: `1860`
-[grafana.com/grafana/dashboards/1860](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
+
+<Link
+  href="https://grafana.com/grafana/dashboards/1860-node-exporter-full/"
+  external={true}
+>
+  grafana.com/grafana/dashboards/1860
+</Link>
 
 <Image
   src="https://res.cloudinary.com/bughowi-assets/image/upload/v1776668917/grafana-node-exporter-dashboard_jhwmco.png"
@@ -272,7 +279,13 @@ All three options lead to the same result — pick whichever fits your workflow.
 This is one of the most popular dashboards in the Grafana library. It gives you a comprehensive view of your host machine: CPU usage and temperature, memory and swap, disk I/O, network throughput, filesystem usage, and much more — all in a single, well-organized dashboard.
 
 **cAdvisor Exporter** — Dashboard ID: `19724`
-[grafana.com/grafana/dashboards/19724](https://grafana.com/grafana/dashboards/19724-y0nei-s-cadvisor-exporter/)
+
+<Link
+  href="https://grafana.com/grafana/dashboards/19724-y0nei-s-cadvisor-exporter/"
+  external={true}
+>
+  grafana.com/grafana/dashboards/19724
+</Link>
 
 <Image
   src="https://res.cloudinary.com/bughowi-assets/image/upload/v1776668917/grafana-cadvisor-dashboard_gixfzf.png"

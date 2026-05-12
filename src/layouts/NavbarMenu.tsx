@@ -4,7 +4,7 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/Dialog";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 interface NavbarLink {
   path: string;
@@ -25,6 +25,8 @@ const socialMediaLinks = [
 ];
 
 const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <>
       <Dialog>
@@ -33,12 +35,11 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
             type="button"
             aria-label="Open Mobile Menu"
             title="Open Mobile Menu"
-            className="md:hidden"
+            className="md:hidden rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Mobile menu"
+              aria-hidden="true"
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -64,14 +65,18 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
               {links.map((link, index) => (
                 <motion.li
                   key={link.path}
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={
+                    shouldReduceMotion
+                      ? { delay: 0, duration: 0 }
+                      : { delay: index * 0.1 }
+                  }
                   className="text-lg"
                 >
                   <a
                     href={link.path}
-                    className="hover:text-primary transition-colors"
+                    className="rounded-sm transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     {link.title}
                   </a>
@@ -84,23 +89,27 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
                 {socialMediaLinks.map((social, index) => (
                   <motion.li
                     key={social.href}
-                    initial={{ opacity: 0, scale: 0.5 }}
+                    initial={
+                      shouldReduceMotion ? false : { opacity: 0, scale: 0.5 }
+                    }
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
+                    transition={
+                      shouldReduceMotion
+                        ? { delay: 0, duration: 0 }
+                        : { delay: 0.3 + index * 0.1 }
+                    }
                   >
                     <a
                       href={social.href}
                       rel="noreferrer"
                       target="_blank"
                       title={social.title}
-                      className="flex items-center gap-1 font-bold transition-colors hover:text-primary"
+                      className="flex items-center gap-1 rounded-sm font-bold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       aria-label={social.title}
                     >
-                      {/* Social icons remain the same */}
                       {social.title === "github" && (
                         <svg
-                          role="img"
-                          aria-label="github"
+                          aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
                           height="20"
@@ -113,8 +122,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
                       )}
                       {social.title === "x" && (
                         <svg
-                          role="img"
-                          aria-label="x"
+                          aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
                           height="20"
@@ -127,8 +135,7 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
                       )}
                       {social.title === "linkedin" && (
                         <svg
-                          role="img"
-                          aria-label="linkedin"
+                          aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
                           height="20"
@@ -150,11 +157,10 @@ const NavbarMenu: React.FC<NavbarProps> = ({ links }) => {
               type="button"
               aria-label="Close Mobile Menu"
               title="Close Mobile Menu"
-              className="p-1 mt-3 rounded-full mx-auto border w-fit shadow-lg"
+              className="p-1 mt-3 rounded-full mx-auto border w-fit shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <svg
-                role="img"
-                aria-label="Close Mobile Menu"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"

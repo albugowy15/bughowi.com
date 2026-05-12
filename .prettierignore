@@ -9,3 +9,6 @@ pnpm-lock.yaml
 .DS_Store
 public
 CHANGELOG.md
+.agents
+.claude
+skills-lock.json

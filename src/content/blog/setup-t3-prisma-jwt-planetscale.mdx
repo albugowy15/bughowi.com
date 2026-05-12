@@ -14,6 +14,7 @@ thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/setup-t
 ---
 
 import { Image } from "astro:assets";
+import Link from "@/components/Link.astro";
 
 The T3 Stack is a web development stack that focuses on simplicity, modularity, and full-stack type safety. It consists of the following technologies:
 
@@ -29,7 +30,19 @@ There are many reasons to use the T3 Stack for your next web development project
 - **Modularity:** The T3 Stack is modular, which means you can choose the technologies that are right for your project. This makes it easy to scale your application and add new features.
 - **Maintainability:** The T3 Stack is easy to maintain. The use of TypeScript helps prevent errors and improve code quality. The modularity of the stack makes it easy to add new features and scale your application.
 
-[PlanetScale](https://planetscale.com/) is a serverless database designed to be scalable, secure, and user-friendly. It is built upon [Vitess](https://vitess.io/), an open-source database technology originally developed by YouTube. PlanetScale offers an excellent free plan, allowing you to have one MySQL database with a maximum of **1 billion row reads** and **10 million row writes** each month. It's an excellent choice if you're seeking a database service for your personal project.
+<Link href="https://planetscale.com/" external={true}>
+  PlanetScale
+</Link>
+is a serverless database designed to be scalable, secure, and user-friendly. It
+is built upon
+<Link href="https://vitess.io/" external={true}>
+  Vitess
+</Link>
+, an open-source database technology originally developed by YouTube.
+PlanetScale offers an excellent free plan, allowing you to have one MySQL
+database with a maximum of **1 billion row reads** and **10 million row writes**
+each month. It's an excellent choice if you're seeking a database service for
+your personal project.
 
 For authentication, we'll use NextAuth with JWT strategy. This approach provides a secure and efficient way to manage user authentication for your application. This method simplifies user authentication by eliminating the need for session management on the server side. JWTs facilitate secure transmission of user information, granting users seamless and authenticated access to protected resources.
 
@@ -65,7 +78,7 @@ To proceed with this guide, you'll need a PlanetScale account. Follow these inst
 
 Your database will be created with a default production branch named "main." This branch will be used for implementing schema changes and data insertion. While this is the initial branch provided, you can always generate new development branches (independent replicas of the production schema) based on the production branch for development purposes.
 
-Make sure you've downloaded and installed the [PlanetScale CLI](https://github.com/planetscale/cli#installation). To authenticate with the PlanetScale CLI, enter the following:
+Make sure you've downloaded and installed the <Link href="https://github.com/planetscale/cli#installation" external={true}>PlanetScale CLI</Link>. To authenticate with the PlanetScale CLI, enter the following:
 
 ```shell
 pscale auth login
@@ -121,7 +134,7 @@ model User {
 }
 ```
 
-Afterwards, you should adjust your environment settings to configure the [Prisma data source](https://www.prisma.io/docs/concepts/components/prisma-schema/data-sources). Locate the `.env` file in your application's main directory and overwrite its current content with this:
+Afterwards, you should adjust your environment settings to configure the <Link href="https://www.prisma.io/docs/concepts/components/prisma-schema/data-sources" external={true}>Prisma data source</Link>. Locate the `.env` file in your application's main directory and overwrite its current content with this:
 
 ```
 DATABASE_URL='mysql://root@127.0.0.1:3309/<DATABASE_NAME>'
@@ -141,7 +154,7 @@ The next step involves pushing your Prisma schema. Open a new tab in your termin
 npx prisma db push
 ```
 
-When working with Prisma and PlanetScale, it's advisable to follow the workflow of using `prisma db push` instead of `prisma migrate`. You can find additional information about `prisma db push` [here](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push).
+When working with Prisma and PlanetScale, it's advisable to follow the workflow of using `prisma db push` instead of `prisma migrate`. You can find additional information about `prisma db push` <Link href="https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push" external={true}>here</Link>.
 
 Upon successful completion, your PlanetScale database schema will align with the Prisma schema you set up in `prisma/schema.prisma`.
 

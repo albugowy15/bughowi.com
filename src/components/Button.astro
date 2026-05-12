@@ -32,9 +32,20 @@ const {
   variant = "solid",
   size = "md",
   radius = "none",
+  ...rest
 } = Astro.props;
 ---
 
-<button class={buttonCva({ variant, size, radius, className })}>
+<button
+  class={buttonCva({
+    variant,
+    size,
+    radius,
+    className:
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
+      (className ?? ""),
+  })}
+  {...rest}
+>
   <slot />
 </button>

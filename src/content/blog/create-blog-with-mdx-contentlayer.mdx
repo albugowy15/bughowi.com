@@ -10,6 +10,8 @@ categories:
 thumbnail: https://user-images.githubusercontent.com/49820990/182565319-c3916848-6adc-4aea-894f-5d585b199407.png
 ---
 
+import Link from "@/components/Link.astro";
+
 A blog is a medium where we can share information, thoughts, or other content. Just like this blog, here I share my thoughts about web development and programming in general. When building a personal blog, there are many ways to store articles and serve them to visitors. We can use a CMS (Content Management System) platform to manage content. Alternatively, we can write content in MDX format, store it in a GitHub repo, and manage it with Contentlayer. Some of you might not be familiar with MDX and Contentlayer. So, in this article, I'll show you what MDX and Contentlayer are and how we can build a personal blog with these two tools.
 
 ## MDX
@@ -88,7 +90,15 @@ flood conditions in many of the nearby rivers.
 
 ## Contentlayer
 
-[Contentlayer](https://www.contentlayer.dev/) is a content preprocessor that validates and transforms your content into type-safe JSON you can easily import into your application. Contentlayer significantly reduces the boilerplate and external tools required to effectively integrate MDX content with the rest of your app. I've been using Contentlayer for this blog and really enjoy it. Without further ado, let's add Contentlayer to generate our MDX content.
+<Link href="https://www.contentlayer.dev/" external={true}>
+  Contentlayer
+</Link>
+is a content preprocessor that validates and transforms your content into
+type-safe JSON you can easily import into your application. Contentlayer
+significantly reduces the boilerplate and external tools required to effectively
+integrate MDX content with the rest of your app. I've been using Contentlayer
+for this blog and really enjoy it. Without further ado, let's add Contentlayer
+to generate our MDX content.
 
 ### Install and Configure Contentlayer
 

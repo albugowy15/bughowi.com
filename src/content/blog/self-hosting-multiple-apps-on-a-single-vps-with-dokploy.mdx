@@ -11,6 +11,7 @@ thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1768240904/se
 ---
 
 import { Image } from "astro:assets";
+import Link from "@/components/Link.astro";
 
 It's been far too long since I last published anything on this blog. Life got busy, priorities shifted, and writing took a backseat. But with 2026 here, I've made a commitment to myself to be more active in sharing what I'm learning and building. This blog has always been a space for me to document my journey as a developer, and I want to get back to that.
 
@@ -142,7 +143,7 @@ Purchase a domain from any domain registrar. I use Cloudflare Registrar for its 
 
 If you didn't buy directly from Cloudflare, you'll need to add your domain to Cloudflare's DNS management:
 
-1. Create a free Cloudflare account at [Cloudflare](https://cloudflare.com)
+1. Create a free Cloudflare account at <Link href="https://cloudflare.com" external={true}>Cloudflare</Link>
 2. Click "Add a Site" and enter your domain name
 3. Choose the Free plan
 4. Cloudflare will scan your existing DNS records
@@ -159,7 +160,7 @@ Dokploy is an open-source Platform as a Service (PaaS) that simplifies deploying
 
 ### Installation
 
-The installation process is straightforward. Following the official documentation at [Dokploy Docs](https://docs.dokploy.com/docs/core/installation), run the installation command on your VPS:
+The installation process is straightforward. Following the official documentation at <Link href="https://docs.dokploy.com/docs/core/installation" external={true}>Dokploy Docs</Link>, run the installation command on your VPS:
 
 ```bash
 curl -sSL https://dokploy.com/install.sh | sh
@@ -321,8 +322,17 @@ Finally, resource monitoring is something I wish I'd paid more attention to from
 
 Throughout this journey, I found some excellent tutorials that really helped me understand the concepts better. If you're looking for video walkthroughs or want to see these processes in action, I highly recommend checking out:
 
-- [Dokploy is my absolute favorite way to deploy to a VPS in 2025 by dreamsofcode](https://www.youtube.com/watch?v=ELkPcuO5ebo) - This video introduced me to Dokploy and showed me how powerful it can be for deploying applications to a VPS.
-- [Self Host 101 - Set up and Secure Your Own Server by Syntax](https://www.youtube.com/watch?v=Q1Y_g0wMwww) - A comprehensive walkthrough of securing a VPS that covers many of the security hardening steps I followed in this guide.
+- <Link href="https://www.youtube.com/watch?v=ELkPcuO5ebo" external={true}>
+    Dokploy is my absolute favorite way to deploy to a VPS in 2025 by
+    dreamsofcode
+  </Link>
+  - This video introduced me to Dokploy and showed me how powerful it can be for
+  deploying applications to a VPS.
+- <Link href="https://www.youtube.com/watch?v=Q1Y_g0wMwww" external={true}>
+    Self Host 101 - Set up and Secure Your Own Server by Syntax
+  </Link>
+  - A comprehensive walkthrough of securing a VPS that covers many of the
+  security hardening steps I followed in this guide.
 
 These resources complemented the official documentation nicely and helped me troubleshoot when things didn't work as expected.
 

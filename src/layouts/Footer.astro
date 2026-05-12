@@ -37,13 +37,15 @@ import Link from "@/components/Link.astro";
     <div class="hidden lg:flex flex-col justify-between">
       <div class="border p-4 rounded-lg">
         <ul class="flex gap-2 items-center justify-between text-foreground/60">
-          <li><Link href="/blog/page/1">Blog</Link></li>
-          <li><Link href="/projects/page/1">Projects</Link></li>
+          <li><Link href="/blog/page/1" external={false}>Blog</Link></li>
           <li>
-            <Link href="/snippets/page/1">Snippets</Link>
+            <Link href="/projects/page/1" external={false}>Projects</Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <Link href="/snippets/page/1" external={false}>Snippets</Link>
+          </li>
+          <li>
+            <Link href="/about" external={false}>About</Link>
           </li>
         </ul>
         <ul class="flex items-center gap-4 justify-end mt-4">
@@ -54,10 +56,11 @@ import Link from "@/components/Link.astro";
               target="_blank"
               title="github"
               aria-label="github"
-              class="flex items-center gap-1 font-bold transition-colors hover:text-primary"
+              class="flex items-center gap-1 rounded-sm font-bold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
                 width="20"
                 height="20"
                 fill="currentColor"
@@ -75,12 +78,13 @@ import Link from "@/components/Link.astro";
               href="https://twitter.com/bughowy"
               rel="noreferrer"
               target="_blank"
-              class="flex items-center gap-1 font-bold transition-colors hover:text-primary"
+              class="flex items-center gap-1 rounded-sm font-bold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               title="x"
               aria-label="x"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
                 width="20"
                 height="20"
                 fill="currentColor"
@@ -98,12 +102,13 @@ import Link from "@/components/Link.astro";
               href="https://linkedin.com/in/bughowi"
               rel="noreferrer"
               target="_blank"
-              class="flex items-center gap-1 font-bold transition-colors hover:text-primary"
+              class="flex items-center gap-1 rounded-sm font-bold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               title="linkedin"
               aria-label="linkedin"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
                 width="17"
                 height="17"
                 fill="currentColor"

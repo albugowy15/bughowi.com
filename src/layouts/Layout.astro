@@ -51,7 +51,7 @@ const {
       href={new URL("rss.xml", Astro.site)}
     />
     <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#090909" />
 
     <meta property="og:url" content={url} />
     <meta property="og:type" content={type} />
@@ -75,6 +75,12 @@ const {
   </head>
   <body>
     <div class="flex min-h-screen w-full flex-col">
+      <a
+        href="#main-content"
+        class="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-3 focus-visible:left-3 focus-visible:z-50 focus-visible:rounded-md focus-visible:bg-background focus-visible:px-4 focus-visible:py-2 focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        Skip to main content
+      </a>
       <header class="sticky top-0 z-30 w-full py-3 lg:py-6">
         <div class="container mx-auto px-3 xl:px-14 2xl:max-w-7xl">
           <nav
@@ -96,7 +102,7 @@ const {
                 links.map((link) => (
                   <a
                     href={link.path}
-                    class="cursor-pointer text-foreground/70 px-1 py-0.5 font-bold transition-colors duration-300 hover:text-primary"
+                    class="cursor-pointer text-foreground/70 px-1 py-0.5 font-bold transition-colors duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     {link.title}
                   </a>
@@ -107,7 +113,10 @@ const {
           </nav>
         </div>
       </header>
-      <main class="container mx-auto flex-1 px-3 xl:px-14 2xl:max-w-7xl">
+      <main
+        id="main-content"
+        class="container mx-auto flex-1 px-3 xl:px-14 2xl:max-w-7xl"
+      >
         <slot />
       </main>
       <div class="py-8"></div>

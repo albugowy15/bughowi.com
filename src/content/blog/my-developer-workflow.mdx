@@ -11,6 +11,7 @@ thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/q_auto/my-ulti
 ---
 
 import { Image } from "astro:assets";
+import Link from "@/components/Link.astro";
 
 ## Introduction
 
@@ -28,7 +29,7 @@ To achieve this, I rely on a set of essential tools that act as my guide through
 
 In today's fast-paced software world, the choice of operating system greatly affects productivity. Linux, with its open-source nature and developer-friendly features, is an excellent pick for optimizing workflow. We can customize our environment easily, thanks to Linux's flexibility, and the command-line interface allows for efficient task automation. Compared to Windows, Linux excels in customization, flexibility, and security, making it a top choice for many developers who value transparency and collaboration.
 
-Several Linux distributions are geared towards developers, providing pre-configured environments and extensive software repositories. Popular options include [Ubuntu](https://ubuntu.com/), [Fedora](https://fedoraproject.org/), [Arch](https://archlinux.org/), and [Debian](https://www.debian.org/), each catering to different preferences and requirements. Among them, Arch Linux stands out for its simplicity and control. It offers a cutting-edge environment for software development, with a rolling release model and access to the Arch User Repository (AUR) for a vast array of software. Arch Linux's flexibility and focus on user control make it suitable for developers who want a tailored and up-to-date system.
+Several Linux distributions are geared towards developers, providing pre-configured environments and extensive software repositories. Popular options include <Link href="https://ubuntu.com/" external={true}>Ubuntu</Link>, <Link href="https://fedoraproject.org/" external={true}>Fedora</Link>, <Link href="https://archlinux.org/" external={true}>Arch</Link>, and <Link href="https://www.debian.org/" external={true}>Debian</Link>, each catering to different preferences and requirements. Among them, Arch Linux stands out for its simplicity and control. It offers a cutting-edge environment for software development, with a rolling release model and access to the Arch User Repository (AUR) for a vast array of software. Arch Linux's flexibility and focus on user control make it suitable for developers who want a tailored and up-to-date system.
 
 Arch Linux's emphasis on simplicity, user control, and an extensive software repository, along with strong community support, distinguishes it from other Linux distributions. Its package management system, Pacman, simplifies software installation and updates, allowing users to maintain a streamlined and efficient development environment.
 
@@ -48,19 +49,19 @@ Arch Linux's emphasis on simplicity, user control, and an extensive software rep
 
 ### Alacritty
 
-As a developer, having a fast and reliable terminal emulator is crucial for my workflow, and Alacritty stands out as a top contender in this realm. [Alacritty](https://alacritty.org/) is a cross-platform, GPU-accelerated terminal emulator that focuses on speed, simplicity, and efficiency. It is designed to be lightweight, responsive, and highly customizable.
+As a developer, having a fast and reliable terminal emulator is crucial for my workflow, and Alacritty stands out as a top contender in this realm. <Link href="https://alacritty.org/" external={true}>Alacritty</Link> is a cross-platform, GPU-accelerated terminal emulator that focuses on speed, simplicity, and efficiency. It is designed to be lightweight, responsive, and highly customizable.
 
 Alacritty stands out from other terminal emulators for several reasons. Firstly, its GPU acceleration ensures smooth rendering and fast performance, even when dealing with large amounts of text or complex graphical interfaces. Additionally, Alacritty is highly customizable, allowing me to configure it to suit my preferences and workflow.
 
 ### Neovim
 
-As a software engineer, my choice of code editor significantly impacts my workflow and productivity. In recent years, [Neovim](https://neovim.io/) has emerged as a powerful and versatile option for developers looking to streamline their coding experience. Neovim is a modern fork of the classic Vim text editor, designed to address limitations and improve extensibility for modern development workflows. It retains Vim's core functionality while introducing new features, enhancements, and a more maintainable codebase. Neovim's strengths lie in its simplicity, speed, and extensibility. It excels in handling large files and complex editing tasks with ease, thanks to its asynchronous architecture and built-in support for plugins and scripting languages. Neovim's modal editing paradigm, inherited from Vim, enables rapid navigation, editing, and manipulation of text without lifting your hands from the keyboard.
+As a software engineer, my choice of code editor significantly impacts my workflow and productivity. In recent years, <Link href="https://neovim.io/" external={true}>Neovim</Link> has emerged as a powerful and versatile option for developers looking to streamline their coding experience. Neovim is a modern fork of the classic Vim text editor, designed to address limitations and improve extensibility for modern development workflows. It retains Vim's core functionality while introducing new features, enhancements, and a more maintainable codebase. Neovim's strengths lie in its simplicity, speed, and extensibility. It excels in handling large files and complex editing tasks with ease, thanks to its asynchronous architecture and built-in support for plugins and scripting languages. Neovim's modal editing paradigm, inherited from Vim, enables rapid navigation, editing, and manipulation of text without lifting your hands from the keyboard.
 
 While Visual Studio Code (VSCode) is widely popular for its rich ecosystem of extensions and integrations, Neovim offers a lightweight, highly customizable, and terminal-based editing experience. While VSCode provides a graphical user interface (GUI) and extensive built-in features, Neovim focuses on efficiency, speed, and minimalism. Transitioning from VSCode to Neovim may pose challenges for some developers accustomed to GUI-based editors. Neovim's steep learning curve, reliance on keyboard shortcuts, and lack of built-in features can initially feel overwhelming. However, with patience, practice, and the right resources, I find that the benefits of Neovim outweigh the initial hurdles.
 
-Central to Neovim's efficiency is its support for Vim keybindings, allowing quick and precise text manipulation through mnemonic keyboard shortcuts. Although mastering these keybindings requires time and effort, they offer unparalleled speed and efficiency once internalized. To help with this, [ThePrimeagen](https://www.youtube.com/@ThePrimeagen) has created a [Vim As Your Editor](https://www.youtube.com/playlist?list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R) playlist that you should watch to master basic Vim motions, enabling you to navigate your editor much faster.
+Central to Neovim's efficiency is its support for Vim keybindings, allowing quick and precise text manipulation through mnemonic keyboard shortcuts. Although mastering these keybindings requires time and effort, they offer unparalleled speed and efficiency once internalized. To help with this, <Link href="https://www.youtube.com/@ThePrimeagen" external={true}>ThePrimeagen</Link> has created a <Link href="https://www.youtube.com/playlist?list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R" external={true}>Vim As Your Editor</Link> playlist that you should watch to master basic Vim motions, enabling you to navigate your editor much faster.
 
-Setting up Neovim to function as a comprehensive IDE can be time-consuming, involving the installation of numerous plugins such as plugin managers, treesitter, LSP, and more. As a result, we opt for popular Neovim starter configurations like [LazyVim](http://www.lazyvim.org/), which comes pre-configured with all the necessary plugins to transform Neovim into a fully-fledged IDE. Here is my [Neovim setup](https://github.com/albugowy15/neovim-config) based on LazyVim. In this configuration, I have disabled some plugins that I never use and have added additional support for certain programming languages.
+Setting up Neovim to function as a comprehensive IDE can be time-consuming, involving the installation of numerous plugins such as plugin managers, treesitter, LSP, and more. As a result, we opt for popular Neovim starter configurations like <Link href="http://www.lazyvim.org/" external={true}>LazyVim</Link>, which comes pre-configured with all the necessary plugins to transform Neovim into a fully-fledged IDE. Here is my <Link href="https://github.com/albugowy15/neovim-config" external={true}>Neovim setup</Link> based on LazyVim. In this configuration, I have disabled some plugins that I never use and have added additional support for certain programming languages.
 
 <Image
   alt="My Neovim Config"
@@ -89,7 +90,20 @@ Setting up Neovim to function as a comprehensive IDE can be time-consuming, invo
 
 ### Tmux
 
-[Tmux](https://github.com/tmux/tmux/wiki), short for "Terminal Multiplexer," is a command-line tool that allows you to manage multiple terminal sessions within a single window. It provides a terminal window manager that enables you to create, organize, and navigate between multiple virtual terminals, or "panes," within a single terminal window. Tmux offers a wide range of features designed to enhance your command-line experience, but one of its standout features is its ability to manage multiple windows and panes. With Tmux, you can create multiple windows, each containing one or more panes, allowing you to work on multiple tasks simultaneously within a single terminal window. This feature is invaluable for organizing your workflow, enabling you to switch between projects, run commands, and monitor processes with ease.
+<Link href="https://github.com/tmux/tmux/wiki" external={true}>
+  Tmux
+</Link>
+, short for "Terminal Multiplexer," is a command-line tool that allows you to
+manage multiple terminal sessions within a single window. It provides a terminal
+window manager that enables you to create, organize, and navigate between
+multiple virtual terminals, or "panes," within a single terminal window. Tmux
+offers a wide range of features designed to enhance your command-line
+experience, but one of its standout features is its ability to manage multiple
+windows and panes. With Tmux, you can create multiple windows, each containing
+one or more panes, allowing you to work on multiple tasks simultaneously within
+a single terminal window. This feature is invaluable for organizing your
+workflow, enabling you to switch between projects, run commands, and monitor
+processes with ease.
 
 <Image
   alt="My alacritty with tmux configuration"
@@ -106,11 +120,24 @@ Setting up Neovim to function as a comprehensive IDE can be time-consuming, invo
 
 ### Oh My Zsh
 
-[Oh My Zsh](https://ohmyz.sh/) is a community-driven framework for managing Zsh configurations. It comes with a vast array of themes, plugins, and features designed to enhance your command-line experience. With Oh My Zsh, you can customize your shell environment to suit your preferences and streamline your workflow with shortcuts, auto-completions, and more. While Bash is the default shell for many Unix-based systems and Fish offers a user-friendly and intuitive interface, Zsh stands out for its powerful features and extensibility. Zsh provides advanced tab completion, syntax highlighting, and spelling correction, making it highly efficient for navigating and manipulating the command line. Additionally, Oh My Zsh builds upon Zsh's capabilities, offering a wealth of plugins and themes to further enhance your shell experience.
+<Link href="https://ohmyz.sh/" external={true}>
+  Oh My Zsh
+</Link>
+is a community-driven framework for managing Zsh configurations. It comes with a
+vast array of themes, plugins, and features designed to enhance your
+command-line experience. With Oh My Zsh, you can customize your shell
+environment to suit your preferences and streamline your workflow with
+shortcuts, auto-completions, and more. While Bash is the default shell for many
+Unix-based systems and Fish offers a user-friendly and intuitive interface, Zsh
+stands out for its powerful features and extensibility. Zsh provides advanced
+tab completion, syntax highlighting, and spelling correction, making it highly
+efficient for navigating and manipulating the command line. Additionally, Oh My
+Zsh builds upon Zsh's capabilities, offering a wealth of plugins and themes to
+further enhance your shell experience.
 
 ### Starship
 
-As software engineers, we spend a significant portion of our time working in the command line. To optimize this experience, tools like Starship come into play. [Starship](https://starship.rs/) is a minimal, fast, and customizable prompt for any shell, offering a sleek and informative command-line interface. It provides context-aware information, including the current directory, version control status, and package version, displayed in a concise and visually appealing manner.
+As software engineers, we spend a significant portion of our time working in the command line. To optimize this experience, tools like Starship come into play. <Link href="https://starship.rs/" external={true}>Starship</Link> is a minimal, fast, and customizable prompt for any shell, offering a sleek and informative command-line interface. It provides context-aware information, including the current directory, version control status, and package version, displayed in a concise and visually appealing manner.
 
 Starship enhances developer productivity by providing at-a-glance information and intuitive customization options. Its minimalistic design reduces clutter and distraction, while its extensive configuration allows us to tailor the prompt to our specific needs and preferences. With Starship, we can quickly navigate directories, track version control status, and stay informed about our development environment, all from within the command line.
 

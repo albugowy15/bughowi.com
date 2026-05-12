@@ -1,7 +1,13 @@
 import dayjs from "dayjs";
 
-export function formatDate(date: string) {
-  return dayjs(date).format("MMMM YYYY, D");
+const dateFormatter = new Intl.DateTimeFormat("en", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+export function formatDate(date: string): string {
+  return dateFormatter.format(new Date(date));
 }
 
 export function compareDesc(a: Date | string, b: Date | string) {

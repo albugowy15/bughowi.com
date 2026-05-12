@@ -11,6 +11,7 @@ thumbnail: https://user-images.githubusercontent.com/49820990/213977382-3c5904ed
 ---
 
 import { Image } from "astro:assets";
+import Link from "@/components/Link.astro";
 
 Integrating Sendinblue with your Next.js blog allows you to build an email newsletter that keeps readers updated on your latest articles and business developments. This guide walks through creating and sending newsletters to a large audience.
 
@@ -24,7 +25,7 @@ The first step in building an email newsletter with Next.js is to set up a Sendi
 
 Creating a Sendinblue account is a simple process. Here are the steps to follow:
 
-1. Go to the [Sendinblue](https://www.sendinblue.com) website
+1. Go to the <Link href="https://www.sendinblue.com" external={true}>Sendinblue</Link> website
 2. Click on the **Sign Up Free** button on the top right corner of the page
 3. Fill in your personal information, such as your name, email address, and password. Or you can simply Sign Up with Google or Apple account.
 4. Verify your email address by clicking on the link sent to your email

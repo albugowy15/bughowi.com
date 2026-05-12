@@ -10,6 +10,7 @@ thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1778065170/sh
 ---
 
 import { Image } from "astro:assets";
+import Link from "@/components/Link.astro";
 
 Ever needed to share your local dev server with a teammate for a quick review, test a webhook from a third-party service, or demo a work-in-progress app without deploying it first? Normally, this is a frustrating exercise. Your machine sits behind a router, a firewall, or a NAT, and there's no straightforward way to reach it from the outside world.
 
@@ -21,14 +22,14 @@ This article walks you through setting it all up from scratch.
 
 Before proceeding, make sure you have the following ready:
 
-1. **A Cloudflare Account** — Sign up for free at [cloudflare.com](https://cloudflare.com) if you don't have one.
-2. **A Custom Domain managed with Cloudflare DNS** — You can purchase a domain from any registrar (Namecheap, GoDaddy, Porkbun, etc.) and then point its nameservers to Cloudflare. Follow [Cloudflare's official guide on changing nameservers](https://developers.cloudflare.com/dns/zone-setups/full-setup/setup/#3-change-your-nameservers) to get this set up. The process typically takes a few minutes to a few hours to propagate.
+1. **A Cloudflare Account** — Sign up for free at <Link href="https://cloudflare.com" external={true}>cloudflare.com</Link> if you don't have one.
+2. **A Custom Domain managed with Cloudflare DNS** — You can purchase a domain from any registrar (Namecheap, GoDaddy, Porkbun, etc.) and then point its nameservers to Cloudflare. Follow <Link href="https://developers.cloudflare.com/dns/zone-setups/full-setup/setup/#3-change-your-nameservers" external={true}>Cloudflare's official guide on changing nameservers</Link> to get this set up. The process typically takes a few minutes to a few hours to propagate.
 
 Once those are in place, you're ready to go.
 
 ## Step 1: Log in to Cloudflare
 
-Head to [dash.cloudflare.com](https://dash.cloudflare.com) and log in to your account.
+Head to <Link href="https://dash.cloudflare.com" external={true}>dash.cloudflare.com</Link> and log in to your account.
 
 ## Step 2: Create a new Tunnel
 
@@ -131,7 +132,7 @@ Configure how `cloudflared` should connect to your local app:
 - **Type:** choose the protocol your local server uses (most commonly `HTTP` or `HTTPS`)
 - **URL:** the address your app is running on locally (e.g., `localhost:3000`)
 
-For example, if you're running a [TanStack Start](https://tanstack.com/start) dev server on port 3000, you'd select `HTTP` as the type and enter `localhost:3000` as the URL.
+For example, if you're running a <Link href="https://tanstack.com/start" external={true}>TanStack Start</Link> dev server on port 3000, you'd select `HTTP` as the type and enter `localhost:3000` as the URL.
 
 <Image
   src="https://res.cloudinary.com/bughowi-assets/image/upload/v1778064550/cloudflare-dashboard-tunnel-route.png"

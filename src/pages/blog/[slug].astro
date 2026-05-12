@@ -109,6 +109,7 @@ const postUrl = new URL(`/blog/${post.id}`, Astro.site);
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
               width="20"
               height="20"
               fill="currentColor"
@@ -130,6 +131,7 @@ const postUrl = new URL(`/blog/${post.id}`, Astro.site);
             aria-label="Tweet this article"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
               width="20"
               height="20"
               fill="currentColor"
@@ -170,9 +172,13 @@ const postUrl = new URL(`/blog/${post.id}`, Astro.site);
     >
       <div class="flex items-center justify-between px-3 py-2">
         <Heading4>Table Of Contents</Heading4>
-        <p id="scroll-top" class="cursor-pointer text-sm text-primary-500">
+        <button
+          id="scroll-top"
+          type="button"
+          class="cursor-pointer rounded-sm text-sm text-primary-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
           Back to top
-        </p>
+        </button>
       </div>
       <ul class="py-2" id="toc-container">
         {

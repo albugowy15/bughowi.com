@@ -2,30 +2,67 @@
 import type { HTMLAttributes } from "astro/types";
 import { type VariantProps, cva } from "class-variance-authority";
 
-const link = cva("a", {
-  variants: {
-    variant: {
-      default: "",
-      underline: "underline",
-      block: "px-1.5 py-1.5 rounded-lg bg-default",
-    },
-    size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
+const link = cva(
+  "transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+  {
+    variants: {
+      variant: {
+        default: "",
+        underline: "underline",
+        block: "px-1.5 py-1.5 rounded-lg bg-default",
+      },
+      size: {
+        sm: "text-sm",
+        md: "text-base",
+        lg: "text-lg",
+      },
     },
   },
-});
-export interface Props extends HTMLAttributes<"a">, VariantProps<typeof link> {}
+);
+export interface Props extends HTMLAttributes<"a">, VariantProps<typeof link> {
+  external?: boolean;
+}
 
 const {
   class: className,
   variant = "default",
   size = "md",
+  external = true,
+  target,
+  rel,
   ...rest
 } = Astro.props;
+
+const targetAttr = external ? "_blank" : target;
+const relAttr = external ? (rel ?? "noreferrer noopener") : rel;
 ---
 
-<a class={link({ variant, size, className })} {...rest}>
+<a
+  class={link({ variant, size, className })}
+  target={targetAttr}
+  rel={relAttr}
+  {...rest}
+>
   <slot />
+  {
+    external && (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-external-link-icon lucide-external-link inline size-4 align-[-0.125em]"
+      >
+        <path d="M15 3h6v6" />
+        <path d="M10 14 21 3" />
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      </svg>
+    )
+  }
 </a>

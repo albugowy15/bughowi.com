@@ -9,9 +9,11 @@ categories:
 thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1770793602/nextjs-proxy-request-to-external-api_lsa0hk.png
 ---
 
+import Link from "@/components/Link.astro";
+
 When building modern web applications, you often need to call external APIs from the browser. But doing so directly introduces a whole class of problems: CORS errors, exposed API keys in client-side code, inability to set HTTP-only cookies, and no control over request/response transformations. The solution? Proxy the requests through your own server.
 
-In this article, I'll walk you through how to build an HTTP proxy in Next.js using two different approaches: **Route Handlers** and **Proxy**. Next.js 16 introduced Proxy (via the `proxy.ts` file) as a replacement for the old `middleware.ts` file, making the app's network boundary explicit and running on the Node.js runtime instead of the Edge Runtime. I built a project called [next-proxy](https://github.com/albugowy15/next-proxy) that demonstrates both patterns using the PokéAPI as a target API. Let's break down the implementation, explore the trade-offs, and understand when to use each approach.
+In this article, I'll walk you through how to build an HTTP proxy in Next.js using two different approaches: **Route Handlers** and **Proxy**. Next.js 16 introduced Proxy (via the `proxy.ts` file) as a replacement for the old `middleware.ts` file, making the app's network boundary explicit and running on the Node.js runtime instead of the Edge Runtime. I built a project called <Link href="https://github.com/albugowy15/next-proxy" external={true}>next-proxy</Link> that demonstrates both patterns using the PokéAPI as a target API. Let's break down the implementation, explore the trade-offs, and understand when to use each approach.
 
 ## Why Proxy Requests Through Next.js?
 
@@ -126,7 +128,7 @@ const response = await fetch(targetUrl, {
 
 The `request.body` in Next.js is a `ReadableStream`. The `duplex: "half"` option tells undici to accept streaming request bodies. This means we can pipe the incoming body directly to the outgoing request without buffering the entire payload in memory first.
 
-The project uses [undici](https://github.com/nodejs/undici) instead of the native `fetch` because it provides better control over HTTP behavior and reliable streaming support.
+The project uses <Link href="https://github.com/nodejs/undici" external={true}>undici</Link> instead of the native `fetch` because it provides better control over HTTP behavior and reliable streaming support.
 
 ## Approach 1: Route Handler
 
@@ -194,7 +196,7 @@ export async function GET(request: NextRequest) {
 
 ## Approach 2: Proxy
 
-Starting from [Next.js 16](https://nextjs.org/blog/next-16), Proxy replaces the old Middleware as the recommended way to intercept requests at the network boundary. The key difference is that Proxy runs on the **Node.js runtime** instead of the Edge Runtime, giving you access to the full Node.js API. The old `middleware.ts` is deprecated and will be removed in a future version.
+Starting from <Link href="https://nextjs.org/blog/next-16" external={true}>Next.js 16</Link>, Proxy replaces the old Middleware as the recommended way to intercept requests at the network boundary. The key difference is that Proxy runs on the **Node.js runtime** instead of the Edge Runtime, giving you access to the full Node.js API. The old `middleware.ts` is deprecated and will be removed in a future version.
 
 To use this approach, you simply create a `proxy.ts` file at the root of your `src/` directory (or project root) and export a default `proxy` function.
 
@@ -320,4 +322,4 @@ The Route Handler approach offers explicitness, per-method control, and easy tes
 
 Both approaches share the same core proxy function, which handles URL rewriting, header filtering, and body forwarding. This shared logic pattern keeps things DRY and makes it easy to switch between approaches or even use both simultaneously in the same project.
 
-If you want to see the full working implementation with an interactive demo UI, check out the [next-proxy](https://github.com/albugowy15/next-proxy) repository on GitHub.
+If you want to see the full working implementation with an interactive demo UI, check out the <Link href="https://github.com/albugowy15/next-proxy" external={true}>next-proxy</Link> repository on GitHub.
