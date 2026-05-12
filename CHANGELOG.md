@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.0](https://github.com/albugowy15/bughowi.com/compare/v3.6.0...v3.7.0) (2026-05-12)
+
+
+### Features
+
+* standardize external link handling ([481745d](https://github.com/albugowy15/bughowi.com/commit/481745de047ff0bdb9640b7aaab50e142c65a564))
+
 ## [3.6.0](https://github.com/albugowy15/bughowi.com/compare/v3.5.0...v3.6.0) (2026-05-07)
 
 
