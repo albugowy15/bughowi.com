@@ -32,7 +32,6 @@ pnpm-debug.log*
 # Docker
 Dockerfile*
 docker-compose*
-.dockerignore
 
 # Documentation
 README.md
