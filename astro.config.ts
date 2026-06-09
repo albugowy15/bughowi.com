@@ -6,6 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 import astroExpressiveCode from "astro-expressive-code";
 import { defineConfig, fontProviders } from "astro/config";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
+import { unified } from "@astrojs/markdown-remark";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,7 +23,9 @@ export default defineConfig({
   ],
   output: "static",
   markdown: {
-    remarkPlugins: [remarkReadingTime],
+    processor: unified({
+      remarkPlugins: [remarkReadingTime],
+    }),
   },
   image: {
     domains: [
