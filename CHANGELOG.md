@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.7.0](https://github.com/albugowy15/bughowi.com/compare/v3.6.0...v3.7.0) (2026-06-09)
+
+
+### Features
+
+* standardize external link handling ([481745d](https://github.com/albugowy15/bughowi.com/commit/481745de047ff0bdb9640b7aaab50e142c65a564))
+* update umami script ([d9b9894](https://github.com/albugowy15/bughowi.com/commit/d9b9894db9e40d8533627cf7b71b6c6b7701b440))
+
 ## [3.6.0](https://github.com/albugowy15/bughowi.com/compare/v3.5.0...v3.6.0) (2026-05-07)
 
 
