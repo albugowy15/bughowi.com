@@ -53,7 +53,4 @@ export default defineConfig({
     react(),
     partytown(),
   ],
-  experimental: {
-    rustCompiler: true,
-  },
 });

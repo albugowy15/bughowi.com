@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "astro/types";
 import { type VariantProps, cva } from "class-variance-authority";
 
 const link = cva(
-  "transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+  "inline-flex items-center gap-1 align-baseline transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background [&_p]:m-0 [&_p]:inline",
   {
     variants: {
       variant: {
