@@ -1,0 +1,334 @@
+---
+title: "I Don't Like Atomic Design as React Architecture"
+date: 2026-07-30
+description: "Atomic design is a useful mental model for design systems, but I don't think it works well as a React component architecture."
+categories:
+  - frontend
+  - react
+  - architecture
+thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1785395949/atomic-design-principles-thumbnail_bndyru.jpg
+---
+
+import Link from "@/components/Link.astro";
+
+During my education, internships, and early professional career, I never knew that <Link href="https://atomicdesign.bradfrost.com/table-of-contents/" external={true}>atomic design</Link> existed.
+
+I only learned about it recently at my current job as a Frontend Developer. Since then, I have seen the pattern used across different projects. The strange part is not that people use it. The strange part is how often people follow it without being able to explain what problem it solves.
+
+Some workmates told me the pattern had already been used for a long time, so they just continued following it. I understand that. Every team inherits conventions. Every codebase has some architecture that nobody fully remembers choosing. At first, I also just accepted it. I put components into `atoms`, `molecules`, and `organisms`, then moved on with my work.
+
+But after living with the pattern for a while, I started to dislike it.
+
+Not because the original idea is stupid. It is not. Atomic design has a beautiful premise. My problem is that it often gets treated as frontend architecture, especially in React projects, when it is really closer to a design-system mental model.
+
+That difference matters.
+
+## What Atomic Design Gets Right
+
+Atomic design describes UI as a hierarchy:
+
+- Atoms
+- Molecules
+- Organisms
+- Templates
+- Pages
+
+The idea is easy to understand. You start with the smallest interface pieces: buttons, labels, inputs, icons, colors, typography. Those pieces combine into slightly larger components, like a search form. Those components combine into larger interface sections, like a header. Eventually, everything forms templates and real pages.
+
+As a way to explain design systems, I think this is useful.
+
+It helps teams stop thinking about pages as isolated drawings. It gives designers and developers a shared language. It reminds us that a small decision, like button styling or input behavior, can affect many places in the product. It also encourages consistency, which is valuable when many people work on the same interface.
+
+Atomic design also makes an important point that I agree with: UI should be understood at multiple levels at the same time. A button matters, but the page also matters. A card matters, but the real content inside the card matters too. We should not design or build everything in isolation and hope it magically works together later.
+
+So my criticism is not "atomic design has no value."
+
+My criticism is more specific:
+
+> Atomic design is useful as a language for thinking about UI systems, but weak as a rule for organizing React code.
+
+## The Problem Starts When Philosophy Becomes Folder Structure
+
+In many frontend codebases, atomic design becomes this:
+
+```txt
+components/
+  atoms/
+  molecules/
+  organisms/
+  templates/
+```
+
+At first, this looks clean. It gives the codebase a sense of order. But very quickly, the structure starts asking the wrong questions.
+
+When I create a component, I now have to ask:
+
+- Is this an atom?
+- Is this a molecule?
+- Is this an organism?
+- Is this molecule too complex?
+- Is this organism reusable enough?
+- If this component contains another organism, is that still allowed?
+
+These questions feel architectural, but most of the time they do not improve the code.
+
+The important questions are different:
+
+- Who owns this component?
+- Where is it used?
+- How often does it change?
+- Does it contain business logic?
+- Is it part of the design system or part of a feature?
+- Can I change it without breaking unrelated screens?
+- Does reusing it actually reduce complexity?
+
+Atomic design does not answer those questions. It tells me the visual size or hierarchy of a component, but visual hierarchy is not the same thing as software boundary.
+
+That is where the pattern starts to fail for me.
+
+## React Components Usually Exist for Two Reasons
+
+In React, I think there are only two practical reasons to create a separate component.
+
+First, the component is truly reusable.
+
+This includes components like `Button`, `Input`, `Dialog`, `Dropdown`, `Checkbox`, `Tabs`, or `DataTable`. These components are used in multiple places. They need stable APIs. They need careful naming. They need variants. They may need tests and documentation. They are part of the shared UI language of the application.
+
+Second, the component is extracted to make a large piece of JSX easier to maintain.
+
+This is the less glamorous case, but it happens every day. A page grows too large. It has a header section, filter section, result list, empty state, dialog, and footer actions. Keeping all of that in one file becomes painful, so we extract some sections into smaller components.
+
+I used to call this a "split component" because I did not know the better term. Now I would probably call it a local component or extracted component.
+
+The important point is this: a local component is not necessarily meant to be reusable. It exists because humans need to read and maintain the code.
+
+Atomic design tends to blur these two categories.
+
+When every component must live inside `atoms`, `molecules`, or `organisms`, even local components start to look like shared abstractions. That creates pressure to generalize components before they deserve it.
+
+## Premature Reusability Makes Code Worse
+
+Frontend developers love reusable components. I understand why. Reuse feels efficient. It feels clean. It feels like engineering.
+
+But reusable code is not free.
+
+A component that is used in one place can be simple. It can make assumptions. It can be tightly aligned with the page that owns it. If the page changes, the component changes with it.
+
+A component that is used in ten places needs to be more careful. It needs a stable API. It needs to handle different states. It needs to avoid leaking assumptions from one feature into another. Changing it becomes riskier because many screens may depend on it.
+
+That is the cost of reuse.
+
+Atomic folder structures can hide this cost. When a component is placed inside `molecules` or `organisms`, it feels like it has already become a reusable design-system asset. But many components are not actually reusable. They are only visually similar.
+
+This is how teams end up with components like this:
+
+```tsx
+<UserCard
+  user={user}
+  showAvatar
+  showRole
+  showCompany={false}
+  variant="compact"
+  mode="admin"
+  source="dashboard"
+  onApprove={handleApprove}
+  onReject={handleReject}
+/>
+```
+
+At some point, this is not a clean reusable component anymore. It is a negotiation between multiple screens with different needs.
+
+The component was probably created with good intentions. But because the team wanted reuse too early, the abstraction became heavier than duplication would have been.
+
+I would rather duplicate a small piece of UI twice than maintain a fake abstraction that nobody wants to touch.
+
+This is where composable components can help.
+
+Instead of creating one component with many props for every possible use case, we can expose smaller pieces and let the consumer compose them. This is the style used by many modern component libraries, including <Link href="https://ui.shadcn.com/" external={true}>shadcn/ui</Link> and <Link href="https://react-aria.adobe.com/" external={true}>React Aria</Link>.
+
+I think these libraries show the better version of component reuse. shadcn/ui gives you components that are meant to be customized, extended, and owned inside your application. React Aria also pushes composition by providing accessible behavior while letting you bring your own styles and compose component parts through slots, render props, and smaller building blocks.
+
+That approach feels more practical than forcing everything into atomic categories. It accepts that a component can provide structure and behavior without pretending to own every possible product use case.
+
+They also prove another point: strong component libraries do not need atomic design taxonomy to be understandable.
+
+In shadcn/ui, components like `Button`, `Accordion`, `Card`, and `NavigationMenu` are organized as components with clear APIs. They are not classified as atoms, molecules, organisms, or templates. A `Button` might be visually smaller than a `NavigationMenu`, but both are still treated as reusable components. The important thing is not their position in a visual hierarchy. The important thing is their API, behavior, accessibility, styling contract, and how easily the application can own or customize them.
+
+React Aria follows a similar lesson from a different direction. Its components are focused on behavior, accessibility, state, slots, and composition. The library does not need to tell us whether a `Button`, `Dialog`, `ComboBox`, or `Calendar` is an atom or organism. It gives us reusable interaction primitives and lets us compose the final UI based on product needs.
+
+That is a stronger model for frontend code. Organize reusable components around their responsibility and contract, not around atomic labels.
+
+For example, instead of making `UserCard` handle every possible variant through props, the API could look more like this:
+
+```tsx
+<UserCard>
+  <UserCard.Header>
+    <UserCard.Avatar user={user} />
+    <UserCard.Identity user={user} />
+  </UserCard.Header>
+  <UserCard.Actions>
+    <ApproveButton onClick={handleApprove} />
+    <RejectButton onClick={handleReject} />
+  </UserCard.Actions>
+</UserCard>
+```
+
+This is better than adding more and more boolean props. The component gives structure, but the page still controls what pieces appear. It keeps the reusable part reusable without forcing every use case into one giant API.
+
+But this technique does not fully solve the problem of premature reuse.
+
+Compound components and composable APIs solve the shape of the abstraction. They do not answer whether the abstraction should exist in the first place.
+
+If three screens genuinely share the same interaction model, a compound component can be a good solution. But if the screens only look similar and have different business rules, composition will not magically make the abstraction good. It may only make the wrong abstraction more flexible.
+
+That is still better than boolean-prop hell, but it is not a free pass to make everything shared.
+
+## Visual Hierarchy Is Not Ownership
+
+One of my biggest problems with atomic design is that it organizes components by visual composition, not by ownership.
+
+That sounds harmless until you work on a real product.
+
+Imagine a dashboard page:
+
+```txt
+dashboard/
+  DashboardPage.tsx
+  RevenueSummary.tsx
+  ActivityFeed.tsx
+  NotificationPanel.tsx
+```
+
+This structure is boring, but it tells the truth. These components belong to the dashboard. If I want to understand the dashboard, I know where to look. If the dashboard changes, I know what files are likely involved.
+
+Now compare that with an atomic structure:
+
+```txt
+components/
+  molecules/
+    RevenueSummary.tsx
+  organisms/
+    ActivityFeed.tsx
+    NotificationPanel.tsx
+pages/
+  DashboardPage.tsx
+```
+
+This looks more systematic, but it removes context. The dashboard is now scattered across generic component folders. To understand one feature, I have to jump across the codebase.
+
+The component may look more "organized" from the top level, but the maintenance experience is worse.
+
+Good architecture should make change easier. If the folder structure makes a common change harder to trace, I do not care how elegant the taxonomy looks.
+
+This is also why I like the idea described in <Link href="https://tkdodo.eu/blog/the-vertical-codebase" external={true}>The Vertical Codebase</Link>. The main point is that code should be grouped by what it does, not only by what type of file it is. Components, hooks, types, utilities, and constants that belong to the same product area should often live close to each other.
+
+That argument fits my problem with atomic design. Atomic design groups UI by visual hierarchy. A vertical codebase groups code by product meaning and change behavior. For maintenance, I care more about the second one.
+
+## Atomic Design Encourages Taxonomy Debates
+
+Another problem is that atomic design creates debates that rarely matter.
+
+I have seen developers spend too much energy deciding whether something is a molecule or an organism. The distinction often depends on personal interpretation. One person thinks a card is a molecule. Another person thinks it is an organism because it contains several smaller parts. Someone else thinks it belongs to templates because it controls layout.
+
+After all that discussion, what improved?
+
+Usually, nothing.
+
+The component still needs a clear API. It still needs good state handling. It still needs to be placed near the code that changes with it. It still needs to avoid unnecessary coupling.
+
+Calling it a molecule does not solve any of those problems.
+
+This is why I think atomic design can give teams a false sense of architecture. It creates the appearance of structure without necessarily improving the important boundaries in the application.
+
+## My Preferred Model
+
+For React projects, I prefer a much simpler distinction:
+
+- Shared reusable components
+- Product-specific components
+
+Shared reusable components are components designed to be used across multiple features or pages. This category includes both low-level UI primitives and reusable composed components.
+
+The low-level examples are things like `Button`, `Input`, `Select`, `Dialog`, `Tooltip`, and `Checkbox`. These components should be generic, stable, and boring. They should know as little as possible about the business domain.
+
+This is where <Link href="https://theodorusclarence.com/blog/fully-reusable-components" external={true}>Theodorus Clarence's article about fully reusable React components</Link> is relevant. A truly reusable component should usually be easy to customize through normal React and DOM patterns: `className`, native element props, event handlers, refs when needed, and proper class merging. That is what makes a shared component pleasant to use instead of frustrating.
+
+But the important part is the word "reusable." That technique should be applied to components that are actually meant to be reused. A `Button` should probably accept button props. An `Input` should probably accept input props. A generic `Card` might need flexible `className` support. But a product-specific `CheckoutSummary` does not need to pretend it is a fully reusable primitive if it only exists for one checkout flow.
+
+The composed examples are things like `SearchBox`, `EmptyState`, `Pagination`, or `UserAvatarMenu`. They are built from smaller primitives, but that does not need a separate architecture category. If multiple features genuinely use the same behavior and shape, they are shared reusable components.
+
+Product-specific components are components that exist because of a specific product feature, page, or workflow. This category includes both feature components and local extracted components.
+
+A `CheckoutSummary`, `ProjectCard`, `BillingHistoryTable`, or `UserPermissionForm` might be reused inside its own feature, but it is still product-specific. It understands the domain. It depends on business meaning. It changes when the product changes.
+
+A local extracted component also belongs here. It may only exist to make one large page easier to read. It may live next to that page. It may only be used once. That is fine. It does not need to become a product-wide abstraction just because it was extracted into its own file.
+
+This model is not as poetic as atoms, molecules, and organisms. But it maps better to the real maintenance questions I face while working with React. The main distinction is not component size. The main distinction is whether the component is a shared reusable abstraction or a product-specific implementation detail.
+
+This also aligns better with vertical code organization. Shared reusable components can live in a shared design-system or UI area. Product-specific components should live near the product area that owns them. That location tells future developers why the component exists and what kind of change it is expected to follow.
+
+## Reuse Should Be Earned
+
+My current rule is simple:
+
+Start local. Promote when necessary.
+
+If a component is only used by one page, keep it near that page. If another page needs something similar, compare the two use cases. If they are genuinely the same, extract a shared component. If they only look similar but behave differently, keep them separate.
+
+This sounds less elegant than building everything from atoms upward, but it avoids one of the most common frontend traps: creating abstractions based on imagined future reuse.
+
+Composable patterns like compound components can make shared components healthier when reuse is already justified. They help avoid massive prop APIs and let each usage declare its own structure.
+
+But they do not replace the rule.
+
+Future reuse is often wrong.
+
+The product changes. Requirements change. Similar-looking screens diverge. A component that looked generic on Monday becomes full of special cases by Friday.
+
+That does not mean we should never abstract. It means abstraction should be a response to evidence, not optimism.
+
+## Where I Still Think Atomic Design Helps
+
+I still think atomic design can be useful in some contexts.
+
+It is useful when building a design system.
+
+It is useful when designers and developers need shared vocabulary.
+
+It is useful when documenting how small UI pieces combine into larger interface patterns.
+
+It is useful when thinking about consistency across a product.
+
+But I do not think it should be blindly copied into the React folder structure. Even Brad Frost describes atomic design as a mental model for constructing UI, not as a strict CSS or JavaScript architecture. That distinction is important.
+
+If a team uses atomic design as a communication tool, fine. If a team uses it as a rigid component taxonomy, I think it starts to hurt more than it helps.
+
+## My Take
+
+Atomic design is philosophically good, but weak from a maintenance standpoint.
+
+It explains composition well. It helps people understand that interfaces are built from smaller parts. It gives teams language for discussing UI systems.
+
+But maintainable frontend code needs more than composition.
+
+It needs ownership.
+
+It needs co-location.
+
+It needs clear abstraction boundaries.
+
+It needs components that are reusable because they have proven reuse, not because they were placed in a reusable-sounding folder.
+
+So when I create React components today, I do not ask, "Is this an atom, molecule, or organism?"
+
+I ask:
+
+> "Is this component a shared reusable abstraction or a product-specific implementation detail?"
+
+And after that:
+
+> "Where should this component live so future changes stay easy?"
+
+Those questions are less fancy, but they are more useful.
+
+That is why I do not like atomic design principles as React component architecture. Not because the idea has no value, but because the value is often applied in the wrong place.
