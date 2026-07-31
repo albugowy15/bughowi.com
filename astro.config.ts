@@ -1,7 +1,6 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import partytown from "@astrojs/partytown";
 import tailwindcss from "@tailwindcss/vite";
 import astroExpressiveCode from "astro-expressive-code";
 import { defineConfig, fontProviders } from "astro/config";
@@ -51,6 +50,5 @@ export default defineConfig({
     mdx(),
     sitemap(),
     react(),
-    partytown(),
   ],
 });
