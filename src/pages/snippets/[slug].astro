@@ -1,9 +1,10 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import ContentDetailHeader from "@/components/ContentDetailHeader.astro";
 import type { ContentNavigator } from "@/components/pagination/ContentPagination.astro";
 import ContentPagination from "@/components/pagination/ContentPagination.astro";
-import Heading1 from "@/components/typography/Heading1.astro";
-import Text from "@/components/typography/Text.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
 import Layout from "@/layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
 import { compareDesc } from "@/utils/date";
@@ -45,7 +46,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post, nextPost, prevPost } = Astro.props;
-const { Content } = await render(post);
+const { Content, remarkPluginFrontmatter, headings } = await render(post);
 const snippetUrl = new URL(`/snippets/${post.id}`, Astro.site);
 ---
 
@@ -55,34 +56,61 @@ const snippetUrl = new URL(`/snippets/${post.id}`, Astro.site);
   description={post.data.description}
   url={snippetUrl.href}
 >
-  <div class="py-4"></div>
-  <div class="mx-auto max-w-3xl">
-    <Heading1>{post.data.title}</Heading1>
-    <Text variant="body1" className="mt-2">{post.data.description}</Text>
-    <article class="mt-5 w-full">
-      <section id="content-space" class="prose prose-invert max-w-none">
-        <Content />
+  <div
+    class:list={[
+      "mx-auto grid w-full gap-10 xl:items-start",
+      headings.length > 0 ? "xl:grid-cols-[minmax(0,1fr)_18rem]" : "max-w-4xl",
+    ]}
+  >
+    <div class="min-w-0">
+      <div class="space-y-4">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Snippets", href: "/snippets/page/1" },
+            { label: post.data.title },
+          ]}
+        />
+        <ContentDetailHeader
+          heading={post.data.title}
+          description={post.data.description}
+          publishedAt={post.data.date}
+          readingTime={String(remarkPluginFrontmatter.minutesRead)}
+          tags={post.data.categories}
+          tagsLabel="Topics"
+          tagsAriaLabel="Snippet topics"
+        />
+      </div>
+      <article class="mt-8 w-full">
+        <section
+          id="content-space"
+          class="prose prose-invert max-w-none prose-headings:scroll-mt-28"
+        >
+          <Content />
+        </section>
+      </article>
+      <ContentPagination next={nextPost} prev={prevPost} />
+      <section class="mt-12">
+        <!-- Giscus comment -->
+        <script
+          is:inline
+          data-loading="lazy"
+          src="https://giscus.app/client.js"
+          data-repo="albugowy15/bughowi.com"
+          data-repo-id="R_kgDOHqneBQ"
+          data-category="Announcements"
+          data-category-id="DIC_kwDOHqneBc4CQdnP"
+          data-mapping="url"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="dark"
+          data-lang="en"
+          crossorigin="anonymous"
+          async></script>
       </section>
-    </article>
-    <div class="py-4"></div>
-    <ContentPagination next={nextPost} prev={prevPost} />
-    <!-- Giscus comment -->
-    <script
-      is:inline
-      data-loading="lazy"
-      src="https://giscus.app/client.js"
-      data-repo="albugowy15/bughowi.com"
-      data-repo-id="R_kgDOHqneBQ"
-      data-category="Announcements"
-      data-category-id="DIC_kwDOHqneBc4CQdnP"
-      data-mapping="url"
-      data-strict="0"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="bottom"
-      data-theme="dark"
-      data-lang="en"
-      crossorigin="anonymous"
-      async></script>
+    </div>
+    <TableOfContents headings={headings} />
   </div>
 </Layout>

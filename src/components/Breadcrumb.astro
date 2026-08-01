@@ -1,0 +1,66 @@
+---
+export interface BreadcrumbItem {
+  href?: string;
+  label: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class:list={["min-w-0", className]}>
+  <ol class="flex min-w-0 items-center gap-1 text-sm text-foreground/70">
+    {
+      items.map((item, index) => {
+        const isCurrentPage = index === items.length - 1;
+
+        return (
+          <li
+            class:list={[
+              "flex items-center gap-1",
+              isCurrentPage ? "min-w-0" : "shrink-0",
+            ]}
+          >
+            {index > 0 && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                class="size-4 shrink-0 text-foreground/40"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m7.5 5 5 5-5 5"
+                />
+              </svg>
+            )}
+
+            {isCurrentPage || !item.href ? (
+              <span
+                aria-current={isCurrentPage ? "page" : undefined}
+                class="block min-w-0 truncate font-medium text-foreground"
+              >
+                {item.label}
+              </span>
+            ) : (
+              <a
+                href={item.href}
+                class="-my-2 inline-flex min-h-11 items-center rounded-sm px-1 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                {item.label}
+              </a>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>

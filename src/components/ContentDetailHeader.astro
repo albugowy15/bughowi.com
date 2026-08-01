@@ -1,0 +1,130 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import Chip from "@/components/Chip.astro";
+import { formatDate } from "@/utils/date";
+
+export interface ContentDetailHeaderProps extends HTMLAttributes<"header"> {
+  /** Main detail-page heading. */
+  heading: string;
+  /** Supporting summary shown directly below the heading. */
+  description: string;
+  /** Publication date rendered as a semantic time element. */
+  publishedAt: Date;
+  /** Precomputed human-readable reading duration. */
+  readingTime: string;
+  /** Categories or technologies associated with the content. */
+  tags: string[];
+  /** Visible label for the tag group. */
+  tagsLabel: string;
+  /** Accessible label that describes the tag list. */
+  tagsAriaLabel: string;
+}
+
+type Props = ContentDetailHeaderProps;
+
+const {
+  heading,
+  description,
+  publishedAt,
+  readingTime,
+  tags,
+  tagsLabel,
+  tagsAriaLabel,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const publishedAtIso = publishedAt.toISOString();
+---
+
+<header class={className} {...rest}>
+  <h1
+    class="max-w-4xl text-3xl leading-tight font-bold tracking-tight text-pretty sm:text-4xl"
+  >
+    {heading}
+  </h1>
+  <p class="mt-3 max-w-2xl leading-relaxed text-pretty text-foreground/70">
+    {description}
+  </p>
+
+  <div
+    class:list={[
+      "mt-4 border-y",
+      tags.length > 0 && "sm:flex sm:items-stretch",
+    ]}
+  >
+    <dl
+      class:list={[
+        "flex flex-wrap items-center gap-x-5 gap-y-2 py-3",
+        tags.length > 0 && "sm:shrink-0 sm:pr-4",
+      ]}
+    >
+      <div class="flex items-center gap-1.5">
+        <dt class="sr-only">Published</dt>
+        <dd
+          class="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-4 shrink-0 text-foreground/60"
+          >
+            <path d="M8 2v4M16 2v4M3 10h18"></path>
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+          </svg>
+          <time datetime={publishedAtIso}>{formatDate(publishedAtIso)}</time>
+        </dd>
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        <dt class="sr-only">Reading time</dt>
+        <dd
+          class="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-4 shrink-0 text-foreground/60"
+          >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 2"></path>
+          </svg>
+          {readingTime}
+        </dd>
+      </div>
+    </dl>
+
+    {
+      tags.length > 0 && (
+        <div class="border-t py-3 sm:flex sm:items-center sm:border-t-0 sm:border-l sm:pl-4">
+          <p class="sr-only">{tagsLabel}</p>
+          <ul
+            class="flex flex-wrap items-center gap-1.5"
+            aria-label={tagsAriaLabel}
+          >
+            {tags.map((tag) => (
+              <li>
+                <Chip variant="bordered" size="sm">
+                  # {tag}
+                </Chip>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </div>
+</header>

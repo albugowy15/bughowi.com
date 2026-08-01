@@ -31,16 +31,24 @@ const someSnippetPosts = snippetCollections
   description="Software architect and engineer with a passion for building comprehensive solutions. From initial concept to production deployment, I create robust systems that drive business value and user satisfaction."
 >
   <section
-    class="min-h-screen gap-2 lg:gap-4 flex flex-col justify-center items-center -mt-14"
+    class="mx-auto flex min-h-[calc(100svh-10rem)] max-w-5xl flex-col items-center justify-center py-16 text-center sm:py-20"
   >
-    <h1 class="text-2xl font-bold lg:text-5xl">Mohamad Kholid Bughowi</h1>
-    <h2 class="text-lg lg:text-3xl font-semibold">Software Engineer</h2>
-    <p class="text-foreground/80 text-base lg:text-xl text-center max-w-4xl">
+    <h1
+      class="max-w-5xl text-balance text-5xl leading-[0.92] font-bold tracking-tight sm:text-6xl lg:text-7xl"
+    >
+      Mohamad Kholid Bughowi
+    </h1>
+    <h2 class="mt-5 text-lg font-semibold tracking-wide sm:text-xl lg:text-2xl">
+      Software Engineer
+    </h2>
+    <p
+      class="mt-5 max-w-2xl text-pretty text-base text-foreground/80 lg:text-xl"
+    >
       Software architect and engineer with a passion for building comprehensive
       solutions. From initial concept to production deployment, I create robust
       systems that drive business value and user satisfaction.
     </p>
-    <div class="mt-5 flex items-center justify-center gap-4 md:justify-start">
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
       <a
         class:list={[
           buttonVariants({ variant: "default", size: "lg" }),
@@ -77,45 +85,45 @@ const someSnippetPosts = snippetCollections
       </a>
     </div>
   </section>
-  <!-- start - Recent Post -->
-  <section id="recent-posts" class="scroll-my-16">
-    <a
-      href="/blog/page/1"
-      class="w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-primary"
-    >
-      Recent Posts
-    </a>
-    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {someBlogPosts.map((post) => <PostCard post={post} />)}
-    </div>
-    <!-- end - Recent Post -->
-    <div class="py-4"></div>
-  </section>
-  <!-- start - Personal Project -->
-  <section id="personal-projects" class="my-8">
-    <a
-      href="/projects/page/1"
-      class="w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-primary"
-    >
-      Personal Projects
-    </a>
-    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {someProjectPosts.map((project) => <ProjectCard project={project} />)}
-    </div>
-  </section>
-  <!-- end - Personal Project -->
-
-  <!-- start - Snippet -->
-  <section id="snippets" class="my-8">
-    <a
-      href="/snippets/page/1"
-      class="w-fit text-3xl font-bold transition-colors hover:cursor-pointer hover:text-primary"
-    >
-      Snippets
-    </a>
-    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {someSnippetPosts.map((snippet) => <SnippetCard snippet={snippet} />)}
-    </div>
-  </section>
-  <!-- end - Snippet -->
+  <div class="space-y-14 sm:space-y-18 lg:space-y-20">
+    <section id="recent-posts" class="scroll-mt-28 pt-7 sm:pt-8">
+      <h2>
+        <a
+          href="/blog/page/1"
+          class="inline-flex text-3xl font-bold text-pretty transition-colors hover:cursor-pointer hover:text-primary sm:text-4xl"
+        >
+          Recent Posts
+        </a>
+      </h2>
+      <div class="mt-5 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {someBlogPosts.map((post) => <PostCard post={post} />)}
+      </div>
+    </section>
+    <section id="personal-projects" class="scroll-mt-28 pt-7 sm:pt-8">
+      <h2>
+        <a
+          href="/projects/page/1"
+          class="inline-flex text-3xl font-bold text-pretty transition-colors hover:cursor-pointer hover:text-primary sm:text-4xl"
+        >
+          Personal Projects
+        </a>
+      </h2>
+      <div class="mt-5 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {someProjectPosts.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+    <section id="snippets" class="scroll-mt-28 pt-7 sm:pt-8">
+      <h2>
+        <a
+          href="/snippets/page/1"
+          class="inline-flex text-3xl font-bold text-pretty transition-colors hover:cursor-pointer hover:text-primary sm:text-4xl"
+        >
+          Snippets
+        </a>
+      </h2>
+      <div class="mt-5 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {someSnippetPosts.map((snippet) => <SnippetCard snippet={snippet} />)}
+      </div>
+    </section>
+  </div>
 </Layout>

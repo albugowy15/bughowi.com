@@ -1,0 +1,76 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import { cn } from "@/lib/utils";
+
+export interface TableOfContentsHeading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+export interface TableOfContentsProps extends HTMLAttributes<"aside"> {
+  /** Rendered content headings in document order. */
+  headings: TableOfContentsHeading[];
+}
+
+type Props = TableOfContentsProps;
+
+const { headings, class: className, ...rest } = Astro.props;
+---
+
+{
+  headings.length > 0 && (
+    <aside
+      class={cn(
+        "sticky top-28 hidden max-h-[calc(100svh-8rem)] overflow-y-auto rounded-lg border xl:block",
+        className,
+      )}
+      {...rest}
+    >
+      <div class="flex items-center justify-between gap-2 border-b px-3">
+        <h2 id="table-of-contents-title" class="text-sm font-bold">
+          On this page
+        </h2>
+        <button
+          type="button"
+          data-scroll-top
+          class="inline-flex min-h-11 items-center rounded-sm px-1 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          Back to top
+        </button>
+      </div>
+      <nav aria-labelledby="table-of-contents-title">
+        <ul class="py-2">
+          {headings.map((heading) => (
+            <li>
+              <a
+                href={`#${heading.slug}`}
+                class:list={[
+                  "flex min-h-11 items-center px-3 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                  {
+                    "pl-3": heading.depth === 2,
+                    "pl-6": heading.depth === 3,
+                    "pl-8": heading.depth === 4,
+                    "pl-10": heading.depth === 5,
+                    "pl-12": heading.depth === 6,
+                  },
+                ]}
+              >
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  )
+}
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-scroll-top]")
+    .forEach((button) => {
+      button.addEventListener("click", () => window.scrollTo(0, 0));
+    });
+</script>

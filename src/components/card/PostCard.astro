@@ -13,15 +13,13 @@ const { remarkPluginFrontmatter } = await render(post);
 ---
 
 <a
-  class="group flex flex-col border transition-transform ease-in-out hover:scale-[1.02] hover:bg-content1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:scale-100"
+  class="group flex h-full flex-col rounded-sm border bg-secondary/10 p-5 transition-[transform,border-color,background-color] duration-200 ease-out hover:-translate-y-1 hover:border-foreground/40 hover:bg-secondary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:translate-y-0"
   title={post.data.title}
   aria-label={post.data.title}
   href={`/blog/${post?.id}`}
 >
-  <div
-    class="relative flex flex-col justify-between p-4 gap-3 rounded-sm cursor-pointer h-full"
-  >
-    <div class="flex flex-wrap gap-2">
+  <div class="flex h-full flex-col gap-5">
+    <div class="flex flex-wrap gap-1.5">
       {
         post.data.categories?.map((category) => (
           <Chip variant="bordered" radius="sm" size="sm">
@@ -30,15 +28,16 @@ const { remarkPluginFrontmatter } = await render(post);
         ))
       }
     </div>
-    <h3
-      class="text-lg font-bold hover:text-primary transition-colors line-clamp-2"
-    >
-      {post.data.title}
-    </h3>
-    <p class="line-clamp-3 text-foreground/70">{post.data.description}</p>
-    <div class="py-4"></div>
+    <div class="space-y-3">
+      <h3
+        class="line-clamp-2 text-xl leading-tight font-bold text-pretty transition-colors group-hover:text-primary"
+      >
+        {post.data.title}
+      </h3>
+      <p class="line-clamp-3 text-foreground/70">{post.data.description}</p>
+    </div>
     <div
-      class="flex items-center justify-between text-sm absolute bottom-0 right-0 left-0 p-4"
+      class="mt-auto flex items-center justify-between border-t pt-3 text-sm"
     >
       <p class="text-foreground/50">
         {formatDate(post.data.date.toISOString())}

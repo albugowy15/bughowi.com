@@ -2,8 +2,7 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import ProjectCard from "@/components/card/ProjectCard.astro";
 import PagePagination from "@/components/pagination/PagePagination.astro";
-import Heading2 from "@/components/typography/Heading2.astro";
-import Text from "@/components/typography/Text.astro";
+import PageIntro from "@/components/PageIntro.astro";
 import Layout from "@/layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
 import type { Page } from "astro";
@@ -30,14 +29,16 @@ const url = new URL(`/projects/page/${page.currentPage}`, Astro.site);
   url={url.href}
   description="Showcase of the projects I've work on"
 >
-  <div class="py-4"></div>
-  <Heading2 classNames="text-center">Projects</Heading2>
-  <Text variant="body1" className="text-center text-foreground/70">
-    Showcase of the projects I've work on
-  </Text>
-  <div class="py-5"></div>
-  <section class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-    {page.data.map((project) => <ProjectCard project={project} />)}
-  </section>
-  <PagePagination page={page} />
+  <div class="space-y-10 sm:space-y-12">
+    <PageIntro
+      title="Projects"
+      description="Showcase of the projects I've work on"
+    />
+    <section
+      class="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+    >
+      {page.data.map((project) => <ProjectCard project={project} />)}
+    </section>
+    <PagePagination page={page} />
+  </div>
 </Layout>
