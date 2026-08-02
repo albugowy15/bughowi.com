@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.7.0](https://github.com/albugowy15/bughowi.com/compare/v3.6.0...v3.7.0) (2026-08-02)
+
+
+### Features
+
+* add umami analytic ([7ac5944](https://github.com/albugowy15/bughowi.com/commit/7ac5944cc8ed66aab96165fb0176d4cf0809e856))
+* **content:** add atomic-design-is-not-react-architecture blog content ([f8f4df0](https://github.com/albugowy15/bughowi.com/commit/f8f4df0b823baa08a4093d5e7b801d6a3121f185))
+* new header section design ([cf6cebf](https://github.com/albugowy15/bughowi.com/commit/cf6cebfb369773baf3d6d2483195a92d7d28b77b))
+* remove partytown ([a87601d](https://github.com/albugowy15/bughowi.com/commit/a87601dca8b18810c77dd4d2688d04d426b79ac5))
+* some style and content improvement ([8b8cffd](https://github.com/albugowy15/bughowi.com/commit/8b8cffd01e85f20fc025639d8a67fdf0bf4999db))
+* standardize external link handling ([481745d](https://github.com/albugowy15/bughowi.com/commit/481745de047ff0bdb9640b7aaab50e142c65a564))
+* update umami script ([d9b9894](https://github.com/albugowy15/bughowi.com/commit/d9b9894db9e40d8533627cf7b71b6c6b7701b440))
+
+
+### Bug Fixes
+
+* temporary disable umami and cv short url ([582da47](https://github.com/albugowy15/bughowi.com/commit/582da4798c10b19a74190649258ead93adee2b7e))
+
 ## [3.6.0](https://github.com/albugowy15/bughowi.com/compare/v3.5.0...v3.6.0) (2026-05-07)
 
 
