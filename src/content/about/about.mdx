@@ -1,4 +1,5 @@
 import Link from "@/components/Link.astro";
+import { SOCIAL_MEDIA } from "@/lib/constant";
 
 # About Me
 
@@ -34,6 +35,6 @@ This site is where I write about things I learn, build, break, and fix. Some pos
 I'm open to discussing frontend roles, collaboration, or technical ideas. If you think my experience fits what you are building, feel free to reach out.
 
 - Email: [kholidbughowi@gmail.com](mailto:kholidbughowi@gmail.com)
-- Twitter: <Link href="https://twitter.com/bughowy" external={true}>bughowy</Link>
-- Github: <Link href="https://github.com/albugowy15" external={true}>albugowy15</Link>
-- Linkedin: <Link href="https://www.linkedin.com/in/bughowi/" external={true}>Mohamad Kholid Bughowi</Link>
+- X: <Link href={SOCIAL_MEDIA.x.href} external={true}>{SOCIAL_MEDIA.x.username}</Link>
+- Github: <Link href={SOCIAL_MEDIA.github.href} external={true}>{SOCIAL_MEDIA.github.username}</Link>
+- Linkedin: <Link href={SOCIAL_MEDIA.linkedin.href} external={true}>{SOCIAL_MEDIA.linkedin.username}</Link>
