@@ -32,192 +32,179 @@ const someSnippetPosts = snippetCollections
 >
   <section
     aria-labelledby="intro-heading"
-    class="relative isolate mx-auto max-w-6xl overflow-hidden border-y bg-secondary/10"
+    class="grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(19rem,0.8fr)] lg:gap-12 pb-10"
   >
-    <div
-      aria-hidden="true"
-      class="absolute inset-y-0 left-[64%] hidden w-px bg-border lg:block"
-    >
-    </div>
-    <div
-      class="grid gap-10 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[minmax(0,1.6fr)_minmax(19rem,0.8fr)] lg:gap-12 lg:px-12 lg:py-16"
-    >
-      <div class="flex flex-col items-start">
-        <h1
-          id="intro-heading"
-          class="max-w-4xl text-balance text-4xl leading-[0.95] font-bold tracking-[-0.03em] sm:text-6xl lg:text-7xl"
-        >
-          Mohamad Kholid <span class="text-foreground/55">Bughowi.</span>
-        </h1>
-        <p class="mt-4 text-xl font-semibold text-foreground sm:text-2xl">
-          Most people call me Ghowi.
-        </p>
-        <p
-          class="mt-7 max-w-2xl text-pretty text-base leading-relaxed text-foreground/75 sm:text-lg"
-        >
-          I’m an Indonesia-based software developer building reliable,
-          maintainable web applications. I care about clear UI behavior,
-          readable code, performance, accessibility, and the systems that keep
-          software dependable after it ships.
-        </p>
-        <p
-          class="mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base"
-        >
-          Beyond frontend work, I explore backend development, infrastructure,
-          developer tooling, and system design—and write about what I learn,
-          build, break, and fix.
-        </p>
-        <div class="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-          <a
-            class:list={[
-              buttonVariants({ variant: "default", size: "lg" }),
-              "min-h-11 w-full !font-bold sm:w-auto",
-            ]}
-            href="/about"
-          >
-            More about me
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.75"
-              stroke="currentColor"
-              class="size-4"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M5 12h14m-6-6 6 6-6 6"></path>
-            </svg>
-          </a>
-          <a
-            class:list={[
-              buttonVariants({ variant: "outline", size: "lg" }),
-              "min-h-11 w-full !font-bold sm:w-auto",
-            ]}
-            aria-label="View my résumé (opens in a new tab)"
-            href={CV_DOCUMENT_URL}
-            rel="noreferrer"
-            target="_blank"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.75"
-              stroke="currentColor"
-              class="size-4"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6.75 2.25h7.5L19.5 7.5v14.25H6.75V2.25zm7.5 0V7.5h5.25M9.75 12h6m-6 3.75h6"
-              ></path>
-            </svg>
-            View résumé
-          </a>
-        </div>
-      </div>
-
-      <aside
-        class="flex flex-col border-t pt-8 lg:block lg:border-t-0 lg:pt-0 lg:pl-1"
+    <div class="flex flex-col items-start">
+      <h1
+        id="intro-heading"
+        class="text-balance text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl"
       >
-        <dl class="order-1 divide-y lg:order-none">
-          <div class="pb-7">
-            <dt class="text-sm font-medium text-muted-foreground">
-              Current role
-            </dt>
-            <dd class="mt-2 text-xl font-bold text-foreground">
-              Frontend Developer
-            </dd>
-            <dd
-              class="mt-1 flex flex-wrap items-baseline gap-x-1 text-sm text-foreground/70"
+        Mohamad Kholid <span class="text-foreground/55">Bughowi</span>
+      </h1>
+      <p class="mt-4 text-xl font-semibold text-foreground sm:text-2xl">
+        Most people call me Ghowi
+      </p>
+      <p class="mt-7 leading-relaxed text-foreground/75 sm:text-lg">
+        I’m an Indonesia-based software developer building reliable,
+        maintainable web applications. I care about clear UI behavior, readable
+        code, performance, accessibility, and the systems that keep software
+        dependable after it ships.
+      </p>
+      <p
+        class="mt-4 text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base"
+      >
+        Beyond frontend work, I explore backend development, infrastructure,
+        developer tooling, and system design—and write about what I learn,
+        build, break, and fix.
+      </p>
+      <div class="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+        <a
+          class:list={[
+            buttonVariants({ variant: "default", size: "lg" }),
+            "min-h-11 w-full !font-bold sm:w-auto",
+          ]}
+          href="/about"
+        >
+          More about me
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.75"
+            stroke="currentColor"
+            class="size-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 12h14m-6-6 6 6-6 6"></path>
+          </svg>
+        </a>
+        <a
+          class:list={[
+            buttonVariants({ variant: "outline", size: "lg" }),
+            "min-h-11 w-full !font-bold sm:w-auto",
+          ]}
+          aria-label="View my résumé (opens in a new tab)"
+          href={CV_DOCUMENT_URL}
+          rel="noreferrer"
+          target="_blank"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.75"
+            stroke="currentColor"
+            class="size-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 2.25h7.5L19.5 7.5v14.25H6.75V2.25zm7.5 0V7.5h5.25M9.75 12h6m-6 3.75h6"
+            ></path>
+          </svg>
+          View résumé
+        </a>
+      </div>
+    </div>
+
+    <aside
+      class="flex flex-col border-t pt-8 lg:block lg:border-t-0 lg:pt-0 lg:pl-1"
+    >
+      <dl class="order-1 divide-y lg:order-none">
+        <div class="pb-7">
+          <dt class="text-sm font-medium text-muted-foreground">
+            Current role
+          </dt>
+          <dd class="mt-2 text-xl font-bold text-foreground">
+            Frontend Developer
+          </dd>
+          <dd
+            class="mt-1 flex flex-wrap items-baseline gap-x-1 text-sm text-foreground/70"
+          >
+            <span>at</span>
+            <a
+              class="font-semibold text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
+              href="https://www.astra.co.id/en"
+              rel="noreferrer"
+              target="_blank"
+              >Astra International<span class="sr-only">
+                (opens in a new tab)</span
+              ></a
             >
-              <span>at</span>
-              <a
-                class="font-semibold text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
-                href="https://www.astra.co.id/en"
-                rel="noreferrer"
-                target="_blank"
-                >Astra International<span class="sr-only">
-                  (opens in a new tab)</span
-                ></a
-              >
-            </dd>
-          </div>
-          <div class="pt-7">
-            <dt class="text-sm font-medium text-muted-foreground">
-              Interested in future roles
-            </dt>
-            <dd class="mt-3">
-              <ul class="flex flex-wrap gap-2">
-                {
-                  [
-                    "Full-stack development",
-                    "Backend engineering",
-                    "DevOps",
-                  ].map((role) => (
-                    <li class="rounded-sm border bg-background px-3 py-1.5 text-sm font-medium text-foreground/85">
+          </dd>
+        </div>
+        <div class="pt-7">
+          <dt class="text-sm font-medium text-muted-foreground">
+            Interested in future roles
+          </dt>
+          <dd class="mt-3">
+            <ul class="flex flex-wrap gap-2">
+              {
+                ["Full-stack development", "Backend engineering", "DevOps"].map(
+                  (role) => (
+                    <li class="rounded-sm border px-3 py-1.5 text-sm font-medium bg-secondary/10">
                       {role}
                     </li>
-                  ))
-                }
-              </ul>
-            </dd>
-            <dd class="mt-5 border-t pt-4">
-              <p class="text-xs font-medium text-muted-foreground">
-                Connect with me
-              </p>
-              <ul class="mt-3 flex flex-wrap gap-2">
-                {
-                  SOCIAL_MEDIA_LINKS.map((socialLink) => (
-                    <li>
-                      <a
-                        class="group flex min-h-11 items-center gap-2 rounded-sm border bg-background px-3 py-2 transition-[color,background-color,border-color] hover:border-foreground/30 hover:bg-secondary/40"
-                        href={socialLink.href}
-                        rel="noreferrer noopener"
-                        target="_blank"
-                        aria-label={`${socialLink.label}: ${socialLink.username} (opens in a new tab)`}
+                  ),
+                )
+              }
+            </ul>
+          </dd>
+          <dd class="mt-5 border-t pt-4">
+            <p class="text-xs font-medium text-muted-foreground">
+              Connect with me
+            </p>
+            <ul class="mt-3 flex flex-wrap gap-2">
+              {
+                SOCIAL_MEDIA_LINKS.map((socialLink) => (
+                  <li>
+                    <a
+                      class="group flex min-h-11 items-center gap-2 rounded-sm border bg-secondary/10 px-3 py-2 transition-[color,background-color,border-color] hover:border-foreground/30 hover:bg-secondary/40"
+                      href={socialLink.href}
+                      rel="noreferrer noopener"
+                      target="_blank"
+                      aria-label={`${socialLink.label}: ${socialLink.username} (opens in a new tab)`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          aria-hidden="true"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          class="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
-                        >
-                          <path d={socialLink.iconPath} />
-                        </svg>
-                        <span class="text-sm font-semibold text-foreground">
-                          {socialLink.username}
-                        </span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          aria-hidden="true"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.75"
-                          stroke="currentColor"
-                          class="size-3.5 shrink-0 text-muted-foreground transition-[color,transform] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground motion-reduce:transform-none"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M7 17 17 7m-8 0h8v8"
-                          />
-                        </svg>
-                      </a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </dd>
-          </div>
-        </dl>
-      </aside>
-    </div>
+                        <path d={socialLink.iconPath} />
+                      </svg>
+                      <span class="text-sm font-semibold text-foreground">
+                        {socialLink.username}
+                      </span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.75"
+                        stroke="currentColor"
+                        class="size-3.5 shrink-0 text-muted-foreground transition-[color,transform] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground motion-reduce:transform-none"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M7 17 17 7m-8 0h8v8"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </dd>
+        </div>
+      </dl>
+    </aside>
   </section>
   <div class="space-y-14 sm:space-y-18 lg:space-y-20">
     <section id="recent-posts" class="scroll-mt-28 pt-7 sm:pt-8">
