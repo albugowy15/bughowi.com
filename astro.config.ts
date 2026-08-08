@@ -45,7 +45,7 @@ export default defineConfig({
   },
   integrations: [
     astroExpressiveCode({
-      themes: ["aurora-x"],
+      themes: ["vesper"],
     }),
     mdx(),
     sitemap(),
