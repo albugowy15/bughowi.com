@@ -1,0 +1,471 @@
+---
+title: "Automate PostgreSQL Backups on a VPS with Cloudflare R2"
+date: 2026-08-10
+description: "A practical guide to backing up PostgreSQL on a single VPS with pg_dump, Docker, rclone, Cloudflare R2, systemd timers, and flock."
+categories:
+  - vps
+  - docker
+  - postgresql
+  - backup
+  - cloudflare
+thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1786348628/automate-postgresql-backups-on-a-vps-with-cloudflare-r2_kgj0ka.jpg
+---
+
+import Link from "@/components/Link.astro";
+
+Running PostgreSQL on a single VPS is convenient until you realize that the database and its Docker volume live on that same machine. A failed disk, an accidental `docker compose down -v`, or one bad deployment can take the data with it.
+
+I wanted a PostgreSQL backup process that was simple enough to understand without introducing another backup platform. The result uses familiar Linux tools:
+
+- **Cloudflare R2** as off-site, S3-compatible object storage
+- **rclone** to upload and manage backup files in R2
+- a **systemd service** to define the backup job
+- a **systemd timer** to schedule the job
+- **flock** to prevent two copies of the job from running at once
+
+This article walks through the setup I use for PostgreSQL running in Docker. It creates a transaction-consistent logical dump plus an additional archive of the Docker volume, then uploads both files to Cloudflare R2.
+
+## The Backup Flow
+
+Each scheduled run follows the same sequence:
+
+1. systemd starts a one-shot service.
+2. `flock` acquires a lock or exits if the previous run is still active.
+3. A shell script creates the backup in a temporary directory.
+4. The script validates the generated dump and volume archive.
+5. rclone uploads it to a private R2 bucket.
+6. Old remote backups are pruned only after the new upload succeeds.
+7. The temporary directory is removed, even if the script fails.
+
+The VPS only holds the temporary working copy. R2 holds the retained backups under a dedicated `postgres/` prefix.
+
+## Before You Start
+
+This guide assumes that:
+
+- Docker and Docker Compose are already installed
+- your containers and volumes are already running
+- the VPS uses systemd
+- you can run commands with `sudo`
+
+Install rclone and `flock` on Debian or Ubuntu. `flock` is provided by the `util-linux` package and is normally already installed.
+
+```bash title="VPS terminal"
+sudo apt update
+sudo apt install rclone util-linux
+```
+
+Inspect the exact data source before writing a backup script. For a Compose project, start with:
+
+```bash title="VPS terminal"
+docker compose config
+docker volume ls
+docker inspect your-container
+```
+
+Do not guess a named volume from the short name in `compose.yaml`. Compose normally prefixes it with the project name. For example, `postgres_data` may become `your_project_postgres_data`.
+
+## Set Up Cloudflare R2 and rclone
+
+Create a private R2 bucket in the Cloudflare dashboard. I store PostgreSQL backups under a dedicated prefix:
+
+```text frame="none"
+your-r2-bucket/
+└── postgres/
+```
+
+Then create an R2 API token with **Object Read & Write** permission, scoped to that bucket. Read permission is needed for listing and restore operations, while write permission is needed for uploads and pruning. Keep the Access Key ID and Secret Access Key safe. Cloudflare only shows the secret once.
+
+Because the systemd service in this guide runs as root, configure rclone as root too:
+
+```bash title="VPS terminal"
+sudo rclone config
+```
+
+Create a new remote called `r2`, select the S3 storage type, choose Cloudflare as the provider, then enter the access key, secret, and endpoint:
+
+```text frame="none"
+https://<ACCOUNT_ID>.r2.cloudflarestorage.com
+```
+
+If the token has object-level permissions for a specific bucket, set `no_check_bucket = true` in the remote configuration. This prevents rclone from performing bucket-level checks that the scoped token cannot authorize.
+
+You can compare your setup with the <Link href="https://developers.cloudflare.com/r2/examples/rclone/" external={true}>official Cloudflare rclone guide</Link>. Test the remote before building any automation:
+
+```bash title="VPS terminal"
+sudo rclone lsf r2:your-r2-bucket
+```
+
+Object storage does not require you to create the `postgres/` prefix in advance. It appears when the first backup is uploaded.
+
+Keep R2 credentials in rclone's protected configuration instead of repeating them in every service environment file. To see which file root uses, run:
+
+```bash title="VPS terminal"
+sudo rclone config file
+```
+
+## Backup File Structure
+
+Keep the backup configuration beside the PostgreSQL Compose project. The working example uses this structure:
+
+```text title="postgres/"
+postgres/
+├── backup-postgres.sh
+├── docker-compose.yml
+├── postgres-backup.env.example
+├── postgres-backup.service
+└── postgres-backup.timer
+```
+
+## Example PostgreSQL Docker Compose Setup
+
+If PostgreSQL is not running yet, create `docker-compose.yml` inside the `postgres/` directory. Treat this as a starting point rather than a configuration you must copy exactly: choose the PostgreSQL version, database name, user, networks, and resource settings that fit your application.
+
+```yaml title="docker-compose.yml" {3,6,8,16}
+services:
+  db:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: replace_with_database_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_DB: replace_with_database_name
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    secrets:
+      - postgres_password
+
+secrets:
+  postgres_password:
+    file: ./secrets/postgres_password.txt
+
+volumes:
+  postgres_data:
+```
+
+This template uses the official PostgreSQL 18 image, persists its data in a named volume, reads the password from a Compose secret, and adds a health check. Replace the placeholder user and database name before starting it. If you choose a different PostgreSQL major version, check that version's image documentation for the correct data mount path.
+
+Create the password file before starting PostgreSQL:
+
+```bash title="VPS terminal"
+mkdir -p secrets
+openssl rand -base64 32 > secrets/postgres_password.txt
+chmod 600 secrets/postgres_password.txt
+```
+
+Start the container and wait until its health status is `healthy`:
+
+```bash title="VPS terminal"
+docker compose up -d
+docker compose ps
+```
+
+This example does not publish port `5432` to the host. Services declared in the same Compose file can connect to PostgreSQL with the hostname `db`. For services in another Compose project, attach both services to a shared Docker network. If a host process needs database access, add an explicit port mapping bound to a private or loopback address rather than exposing PostgreSQL publicly.
+
+Before configuring the backup script, retrieve the actual container and volume names:
+
+```bash title="VPS terminal"
+docker compose ps
+docker volume ls --filter name=postgres_data
+```
+
+Use the values from your final Compose configuration and command output as follows:
+
+- `POSTGRES_CONTAINER` is the container name shown by `docker compose ps`.
+- `POSTGRES_USER` is the `POSTGRES_USER` value.
+- `POSTGRES_DB` is the `POSTGRES_DB` value.
+- `VOLUME_NAME` is the complete name shown by `docker volume ls`, including the Compose project prefix.
+
+## Create the PostgreSQL Backup Script
+
+PostgreSQL needs more care. A `tar.gz` of a live PostgreSQL data directory is **not guaranteed to be transaction-consistent**, even if Docker mounts the volume read-only for the backup container.
+
+I create two complementary files:
+
+- a `pg_dump` in PostgreSQL's custom format, which is the primary, consistent database backup
+- a compressed archive of the complete Docker volume, which is an additional best-effort copy
+
+The database container remains online during both operations.
+
+Create `backup-postgres.sh` and adjust the first four values for your environment:
+
+```bash title="backup-postgres.sh" {8-11}
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# Full-volume and logical backup for PostgreSQL.
+# The container remains running while both backups are created.
+# Configure the Rclone destination in /etc/postgres-backup.env.
+
+readonly VOLUME_NAME="REPLACE_WITH_DOCKER_VOLUME_NAME"
+readonly POSTGRES_CONTAINER="REPLACE_WITH_POSTGRES_CONTAINER_NAME"
+readonly POSTGRES_USER="REPLACE_WITH_POSTGRES_USER"
+readonly POSTGRES_DB="REPLACE_WITH_POSTGRES_DATABASE"
+readonly CONFIG_FILE="${POSTGRES_BACKUP_CONFIG:-/etc/postgres-backup.env}"
+readonly RETENTION_COUNT=3
+
+if [[ ! -r "${CONFIG_FILE}" ]]; then
+  echo "Missing backup configuration: ${CONFIG_FILE}" >&2
+  exit 1
+fi
+
+# shellcheck source=/dev/null
+source "${CONFIG_FILE}"
+
+: "${RCLONE_DEST:?Set RCLONE_DEST, for example r2:my-bucket/postgres}"
+
+if [[ -n "${RCLONE_CONFIG:-}" ]]; then
+  export RCLONE_CONFIG
+fi
+
+readonly REMOTE_DIR="${RCLONE_DEST%/}"
+readonly STAGING_DIR="$(mktemp -d /tmp/postgres-backup.XXXXXX)"
+readonly TIMESTAMP="$(date -u +%Y-%m-%dT%H-%M-%SZ)"
+readonly ARCHIVE_NAME="postgres-${TIMESTAMP}.tar.gz"
+readonly ARCHIVE_PATH="${STAGING_DIR}/${ARCHIVE_NAME}"
+readonly DUMP_NAME="postgres-${POSTGRES_DB}-${TIMESTAMP}.dump"
+readonly DUMP_PATH="${STAGING_DIR}/${DUMP_NAME}"
+
+cleanup() {
+  rm -rf "${STAGING_DIR}"
+}
+trap cleanup EXIT
+
+if ! docker volume inspect "${VOLUME_NAME}" >/dev/null; then
+  echo "PostgreSQL volume does not exist: ${VOLUME_NAME}" >&2
+  exit 1
+fi
+
+# pg_dump creates a transaction-consistent logical backup while PostgreSQL is
+# online. The custom format is compressed and supports selective restoration.
+docker exec "${POSTGRES_CONTAINER}" \
+  pg_dump \
+  --username="${POSTGRES_USER}" \
+  --dbname="${POSTGRES_DB}" \
+  --format=custom >"${DUMP_PATH}"
+
+# Confirm that pg_restore can read the completed archive before uploading it.
+docker exec -i "${POSTGRES_CONTAINER}" pg_restore --list \
+  <"${DUMP_PATH}" >/dev/null
+
+# Use a temporary container so the archive contains the mounted volume contents
+# rather than the PostgreSQL container filesystem.
+docker run --rm \
+  --mount "type=volume,source=${VOLUME_NAME},target=/data,readonly" \
+  --mount "type=bind,source=${STAGING_DIR},target=/backup" \
+  alpine:3.20 \
+  tar czf "/backup/${ARCHIVE_NAME}" -C /data .
+
+tar -tzf "${ARCHIVE_PATH}" >/dev/null
+
+# Upload must succeed before any old remote backup is deleted.
+rclone copyto "${ARCHIVE_PATH}" "${REMOTE_DIR}/${ARCHIVE_NAME}" \
+  --checksum \
+  --retries 3 \
+  --low-level-retries 10
+
+rclone copyto "${DUMP_PATH}" "${REMOTE_DIR}/${DUMP_NAME}" \
+  --checksum \
+  --retries 3 \
+  --low-level-retries 10
+
+prune_backups() {
+  local include_pattern="$1"
+  local -a backups
+
+  mapfile -t backups < <(
+    rclone lsf "${REMOTE_DIR}" \
+      --files-only \
+      --include "${include_pattern}" | sort -r
+  )
+
+  if (( ${#backups[@]} > RETENTION_COUNT )); then
+    for old_backup in "${backups[@]:RETENTION_COUNT}"; do
+      [[ -n "${old_backup}" ]] || continue
+      rclone deletefile "${REMOTE_DIR}/${old_backup}"
+    done
+  fi
+}
+
+# Keep exactly the three newest copies of each backup type.
+prune_backups 'postgres-*.tar.gz'
+prune_backups "postgres-${POSTGRES_DB}-*.dump"
+
+echo "Uploaded ${ARCHIVE_NAME} and ${DUMP_NAME} to ${REMOTE_DIR}; retained ${RETENTION_COUNT} of each."
+```
+
+The database user needs enough permission to dump the selected database. This example does not pass a password because `docker exec` runs `pg_dump` inside the already configured PostgreSQL container.
+
+## Create the Environment File Template
+
+Create `postgres-backup.env.example` in the same directory:
+
+```ini title="postgres-backup.env.example" {3,7}
+# Rclone remote and bucket/prefix. The remote must already be configured.
+# Example: r2:my-r2-bucket/postgres
+RCLONE_DEST="r2:REPLACE_WITH_YOUR_BUCKET/postgres"
+
+# If the systemd job runs as root and the Rclone config is not in root's
+# default location, uncomment and set this to the config file used by root.
+# RCLONE_CONFIG="/etc/rclone/rclone.conf"
+```
+
+## Create the systemd Service
+
+A systemd service describes how to run the job. Create `postgres-backup.service` beside the script:
+
+```ini title="postgres-backup.service" {11}
+[Unit]
+Description=Back up PostgreSQL volume and database to R2
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+ExecStart=/usr/bin/flock -n /var/lock/postgres-backup.lock /usr/local/sbin/backup-postgres
+TimeoutStartSec=6h
+```
+
+`Type=oneshot` means the command runs to completion instead of staying alive as a daemon. `flock -n` tries to acquire the lock without waiting. If a previous backup still holds it, the new run exits immediately instead of uploading two backups concurrently.
+
+The job runs as root because it needs access to Docker and root's rclone configuration.
+
+## Create the systemd Timer
+
+Create `postgres-backup.timer` beside the service:
+
+```ini title="postgres-backup.timer" {5}
+[Unit]
+Description=Daily PostgreSQL R2 backup timer
+
+[Timer]
+OnCalendar=*-*-* 03:00:00 UTC
+Persistent=true
+Unit=postgres-backup.service
+
+[Install]
+WantedBy=timers.target
+```
+
+`Persistent=true` tells systemd to catch up after boot if the VPS was off at the scheduled time.
+
+## Configure the Backup
+
+After configuring the `r2` remote, copy the environment template into `/etc`, edit its destination, and restrict its permissions:
+
+```bash title="VPS terminal"
+sudo cp postgres-backup.env.example /etc/postgres-backup.env
+sudoedit /etc/postgres-backup.env
+sudo chmod 600 /etc/postgres-backup.env
+```
+
+Set the R2 destination in `/etc/postgres-backup.env`:
+
+```ini title="/etc/postgres-backup.env" {1}
+RCLONE_DEST="r2:your-r2-bucket/postgres"
+```
+
+If root's rclone configuration is stored somewhere other than its default location, add:
+
+```ini title="/etc/postgres-backup.env" {1}
+RCLONE_CONFIG="/etc/rclone/rclone.conf"
+```
+
+Do not store R2 secrets in this environment file. Keep them in rclone's protected configuration.
+
+## Install the systemd Job
+
+Install the script, service, and timer from the `postgres/` directory:
+
+```bash title="VPS terminal"
+sudo install -m 0750 backup-postgres.sh /usr/local/sbin/backup-postgres
+sudo install -m 0644 \
+  postgres-backup.service \
+  postgres-backup.timer \
+  /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now postgres-backup.timer
+```
+
+The `install` commands copy the files to their runtime locations and apply their required modes. The timer gives this cron-like workflow clear service dependencies, centralized logs in the journal, missed-run handling, and easy manual execution.
+
+## Run and Inspect a Backup
+
+Do not wait until 03:00 to learn that the volume name or R2 path is wrong. Start the service manually:
+
+```bash title="VPS terminal"
+sudo systemctl start postgres-backup.service
+```
+
+Check the timer and logs:
+
+```bash title="VPS terminal"
+sudo systemctl status postgres-backup.timer
+sudo journalctl -u postgres-backup.service
+```
+
+Finally, confirm that the expected objects exist in R2:
+
+```bash title="VPS terminal"
+sudo rclone lsf r2:your-r2-bucket/postgres
+```
+
+A successful PostgreSQL run uploads two files with the same UTC timestamp:
+
+```text title="R2 objects"
+postgres-2026-08-10T03-00-00Z.tar.gz
+postgres-your_database-2026-08-10T03-00-00Z.dump
+```
+
+## Restore
+
+A backup is only useful if it can be restored. Download a PostgreSQL dump to a safe test machine or staging server:
+
+```bash title="VPS terminal"
+rclone copyto \
+  r2:your-r2-bucket/postgres/postgres-your_database-TIMESTAMP.dump \
+  ./postgres.dump
+```
+
+After creating an empty test database, restore the dump:
+
+```bash title="VPS terminal"
+docker exec -i your_postgres_container pg_restore \
+  --username=your_postgres_user \
+  --dbname=your_restore_test_database \
+  --clean \
+  --if-exists \
+  < postgres.dump
+```
+
+Verify important tables, record counts, and application behavior. Do not test a restore over your production database.
+
+Restoring a raw PostgreSQL volume is more sensitive: stop PostgreSQL, restore into an empty volume, and use the same PostgreSQL major version that created the archive. The logical dump should remain the preferred restore source.
+
+## Improvements Worth Adding
+
+This setup intentionally stays small, but a production backup plan should also consider:
+
+- monitoring failed systemd services and missing recent R2 objects
+- keeping more than three backups or using daily, weekly, and monthly retention
+- configuring an R2 lifecycle rule instead of pruning in the script
+- encrypting sensitive backups with rclone crypt before upload
+- creating a separate backup in another provider or account
+- documenting and rehearsing the full restore procedure
+
+Three copies of a broken archive are still broken. Local validation catches obvious corruption, but only a real restore test proves that the data is usable.
+
+## Wrapping Up
+
+This approach has very few moving parts: a script knows how to produce and validate one backup, rclone moves it off the VPS, systemd schedules and logs the job, and `flock` prevents overlap.
+
+The most important lesson is that a database needs a database-aware backup. For PostgreSQL, that means treating the verified `pg_dump` as the reliable recovery artifact and the live Docker volume archive only as an additional copy.
