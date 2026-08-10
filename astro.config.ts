@@ -2,6 +2,7 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import mermaid from "astro-mermaid";
 import astroExpressiveCode from "astro-expressive-code";
 import { defineConfig, fontProviders } from "astro/config";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
@@ -44,6 +45,11 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
+    mermaid({
+      theme: "dark",
+      autoTheme: false,
+      enableLog: false,
+    }),
     astroExpressiveCode({
       themes: ["vesper"],
     }),
