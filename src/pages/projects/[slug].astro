@@ -84,7 +84,13 @@ const url = new URL(`/projects/${post.id}`, Astro.site);
           tagsAriaLabel="Project technologies"
         />
       </div>
-      <article class="mt-8 w-full space-y-8">
+      <TableOfContents headings={headings} variant="mobile" class="mt-5" />
+      <article
+        class:list={[
+          "w-full space-y-8",
+          headings.length > 0 ? "xl:mt-8" : "mt-8",
+        ]}
+      >
         {
           post.data.thumbnail && (
             <Image
@@ -100,7 +106,7 @@ const url = new URL(`/projects/${post.id}`, Astro.site);
         }
         <section
           id="content-space"
-          class="prose prose-invert max-w-none prose-headings:scroll-mt-28"
+          class="prose prose-invert max-w-none prose-headings:scroll-mt-24 md:prose-headings:scroll-mt-40 lg:prose-headings:scroll-mt-48 xl:prose-headings:scroll-mt-28"
         >
           <Content />
         </section>
@@ -127,6 +133,6 @@ const url = new URL(`/projects/${post.id}`, Astro.site);
           async></script>
       </section>
     </div>
-    <TableOfContents headings={headings} />
+    <TableOfContents headings={headings} variant="desktop" />
   </div>
 </Layout>

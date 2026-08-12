@@ -12,16 +12,64 @@ export interface TableOfContentsHeading {
 export interface TableOfContentsProps extends HTMLAttributes<"aside"> {
   /** Rendered content headings in document order. */
   headings: TableOfContentsHeading[];
+  /** Responsive presentation used at the component's placement. */
+  variant?: "desktop" | "mobile";
 }
 
 type Props = TableOfContentsProps;
 
-const { headings, class: className, ...rest } = Astro.props;
+const {
+  headings,
+  variant = "desktop",
+  class: className,
+  ...rest
+} = Astro.props;
 ---
 
 {
-  headings.length > 0 && (
+  headings.length > 0 && variant === "mobile" && (
     <aside
+      class={cn(
+        "sticky top-0 z-20 -mx-1 bg-background/95 px-1 py-3 backdrop-blur-sm md:top-20 lg:top-28 xl:hidden",
+        className,
+      )}
+      {...rest}
+    >
+      <div class="relative">
+        <select
+          id="mobile-table-of-contents"
+          data-table-of-contents-select
+          aria-label="On this page"
+          class="h-11 w-full appearance-none rounded-lg border bg-background px-3 pr-10 text-sm font-bold text-foreground shadow-sm transition-colors hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          <option value="">Overview</option>
+          {headings.map((heading) => (
+            <option value={`#${heading.slug}`}>
+              {`${"— ".repeat(Math.max(0, heading.depth - 2))}${heading.text}`}
+            </option>
+          ))}
+        </select>
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="pointer-events-none absolute top-1/2 right-3 size-5 -translate-y-1/2 text-foreground/60"
+        >
+          <path d="m6 8 4 4 4-4" />
+        </svg>
+      </div>
+    </aside>
+  )
+}
+
+{
+  headings.length > 0 && variant === "desktop" && (
+    <aside
+      data-table-of-contents-list
       class={cn(
         "sticky top-28 hidden max-h-[calc(100svh-8rem)] overflow-y-auto rounded-lg border xl:block",
         className,
@@ -46,8 +94,9 @@ const { headings, class: className, ...rest } = Astro.props;
             <li>
               <a
                 href={`#${heading.slug}`}
+                data-table-of-contents-link
                 class:list={[
-                  "flex min-h-11 items-center px-3 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                  "flex items-center border-l-2 border-transparent px-3 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring data-[active=true]:border-foreground data-[active=true]:bg-accent data-[active=true]:text-foreground",
                   {
                     "pl-3": heading.depth === 2,
                     "pl-6": heading.depth === 3,
@@ -68,6 +117,114 @@ const { headings, class: className, ...rest } = Astro.props;
 }
 
 <script>
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  );
+
+  document
+    .querySelectorAll<HTMLSelectElement>("[data-table-of-contents-select]")
+    .forEach((select) => {
+      const headingIds = Array.from(select.options)
+        .map((option) => option.value.slice(1))
+        .filter(Boolean);
+      const headingElements = headingIds
+        .map((id) => document.getElementById(id))
+        .filter((heading): heading is HTMLElement => heading !== null);
+
+      const syncSelectedHeading = () => {
+        const selectBottom = select.getBoundingClientRect().bottom;
+        const activeHeading = headingElements.findLast(
+          (heading) => heading.getBoundingClientRect().top <= selectBottom + 8,
+        );
+
+        select.value = activeHeading ? `#${activeHeading.id}` : "";
+      };
+
+      let animationFrame = 0;
+      const requestSelectedHeadingSync = () => {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = window.requestAnimationFrame(syncSelectedHeading);
+      };
+
+      select.addEventListener("change", () => {
+        if (select.value) {
+          window.location.hash = select.value;
+          return;
+        }
+
+        window.history.pushState(
+          null,
+          "",
+          `${window.location.pathname}${window.location.search}`,
+        );
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+        });
+      });
+      window.addEventListener("scroll", requestSelectedHeadingSync, {
+        passive: true,
+      });
+      window.addEventListener("resize", requestSelectedHeadingSync);
+      requestSelectedHeadingSync();
+    });
+
+  document
+    .querySelectorAll<HTMLElement>("[data-table-of-contents-list]")
+    .forEach((tableOfContents) => {
+      const links = Array.from(
+        tableOfContents.querySelectorAll<HTMLAnchorElement>(
+          "[data-table-of-contents-link]",
+        ),
+      );
+      const headingsByLink = links
+        .map((link) => ({
+          heading: document.getElementById(link.hash.slice(1)),
+          link,
+        }))
+        .filter(
+          (
+            item,
+          ): item is {
+            heading: HTMLElement;
+            link: HTMLAnchorElement;
+          } => item.heading !== null,
+        );
+
+      const syncActiveLink = () => {
+        const activationLine =
+          tableOfContents.getBoundingClientRect().top + 100;
+        const activeItem = headingsByLink.findLast(
+          ({ heading }) =>
+            heading.getBoundingClientRect().top <= activationLine,
+        );
+
+        links.forEach((link) => {
+          const isActive = link === activeItem?.link;
+
+          if (isActive) {
+            link.dataset.active = "true";
+            link.setAttribute("aria-current", "location");
+          } else {
+            delete link.dataset.active;
+            link.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      let animationFrame = 0;
+      const requestActiveLinkSync = () => {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = window.requestAnimationFrame(syncActiveLink);
+      };
+
+      window.addEventListener("scroll", requestActiveLinkSync, {
+        passive: true,
+      });
+      window.addEventListener("resize", requestActiveLinkSync);
+      requestActiveLinkSync();
+    });
+
   document
     .querySelectorAll<HTMLButtonElement>("[data-scroll-top]")
     .forEach((button) => {

@@ -83,8 +83,12 @@ const postUrl = new URL(`/blog/${post.id}`, Astro.site);
           tagsAriaLabel="Article topics"
         />
       </div>
+      <TableOfContents headings={headings} variant="mobile" class="mt-5" />
       <article
-        class="prose prose-invert mt-8 max-w-none prose-headings:scroll-mt-28"
+        class:list={[
+          "prose prose-invert max-w-none prose-headings:scroll-mt-24 md:prose-headings:scroll-mt-40 lg:prose-headings:scroll-mt-48 xl:prose-headings:scroll-mt-28",
+          headings.length > 0 ? "xl:mt-8" : "mt-8",
+        ]}
       >
         <section id="content-space">
           <Content />
@@ -111,6 +115,6 @@ const postUrl = new URL(`/blog/${post.id}`, Astro.site);
           async></script>
       </section>
     </div>
-    <TableOfContents headings={headings} />
+    <TableOfContents headings={headings} variant="desktop" />
   </div>
 </Layout>

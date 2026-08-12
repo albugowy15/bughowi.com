@@ -81,10 +81,13 @@ const snippetUrl = new URL(`/snippets/${post.id}`, Astro.site);
           tagsAriaLabel="Snippet topics"
         />
       </div>
-      <article class="mt-8 w-full">
+      <TableOfContents headings={headings} variant="mobile" class="mt-5" />
+      <article
+        class:list={["w-full", headings.length > 0 ? "xl:mt-8" : "mt-8"]}
+      >
         <section
           id="content-space"
-          class="prose prose-invert max-w-none prose-headings:scroll-mt-28"
+          class="prose prose-invert max-w-none prose-headings:scroll-mt-24 md:prose-headings:scroll-mt-40 lg:prose-headings:scroll-mt-48 xl:prose-headings:scroll-mt-28"
         >
           <Content />
         </section>
@@ -111,6 +114,6 @@ const snippetUrl = new URL(`/snippets/${post.id}`, Astro.site);
           async></script>
       </section>
     </div>
-    <TableOfContents headings={headings} />
+    <TableOfContents headings={headings} variant="desktop" />
   </div>
 </Layout>
