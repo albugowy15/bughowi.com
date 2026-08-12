@@ -1,0 +1,153 @@
+---
+interface NavbarLink {
+  path: string;
+  title: string;
+}
+
+interface Props {
+  links: NavbarLink[];
+}
+
+const { links } = Astro.props;
+const currentPath = Astro.url.pathname;
+const centerIndex = Math.ceil(links.length / 2);
+const mobileLinks: NavbarLink[] = [
+  ...links.slice(0, centerIndex),
+  { title: "Home", path: "/" },
+  ...links.slice(centerIndex),
+];
+
+const isActive = (path: string): boolean => {
+  if (path === "/") {
+    return currentPath === "/";
+  }
+
+  const sectionPath = `/${path.split("/").filter(Boolean)[0]}`;
+
+  return (
+    currentPath === sectionPath || currentPath.startsWith(`${sectionPath}/`)
+  );
+};
+---
+
+<div class="fixed inset-x-0 bottom-0 z-40 md:hidden">
+  <nav
+    aria-label="Mobile navigation"
+    class="grid grid-cols-5 rounded-t-2xl border-t bg-background/70 px-2 pt-1 pb-[calc(0.25rem+env(safe-area-inset-bottom))] shadow-[0_-4px_16px_rgb(0_0_0_/_0.2)] backdrop-blur-xl"
+  >
+    {
+      mobileLinks.map((link) => {
+        const active = isActive(link.path);
+        const isHome = link.path === "/";
+
+        return (
+          <a
+            href={link.path}
+            aria-current={active ? "page" : undefined}
+            class:list={[
+              "group flex min-h-12 flex-col items-center justify-center px-1 text-xs font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+              active || isHome
+                ? "text-foreground"
+                : "text-foreground/60 hover:text-foreground",
+            ]}
+          >
+            <span
+              class:list={[
+                "flex items-center justify-center rounded-full motion-reduce:transition-none",
+                isHome
+                  ? "-mt-2 size-10 min-w-10 border border-primary/20 bg-primary text-primary-foreground shadow-md transition-transform group-hover:scale-105 motion-reduce:group-hover:scale-100"
+                  : "h-6 min-w-12 transition-colors",
+                !isHome && active && "bg-accent text-primary",
+                !isHome && !active && "group-hover:bg-accent/60",
+                isHome &&
+                  active &&
+                  "ring-2 ring-ring ring-offset-2 ring-offset-background",
+              ]}
+            >
+              {link.title === "Home" && (
+                <svg
+                  aria-hidden="true"
+                  class="size-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m3 11 9-8 9 8" />
+                  <path d="M5 10v10h14V10" />
+                  <path d="M9 20v-6h6v6" />
+                </svg>
+              )}
+              {link.title === "Blog" && (
+                <svg
+                  aria-hidden="true"
+                  class="size-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                  <path d="M14 2v6h6" />
+                  <path d="M8 13h8" />
+                  <path d="M8 17h8" />
+                </svg>
+              )}
+              {link.title === "Projects" && (
+                <svg
+                  aria-hidden="true"
+                  class="size-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 9a2 2 0 0 1 2-2h3l2-3h6l2 3h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z" />
+                  <path d="M8 12h8" />
+                </svg>
+              )}
+              {link.title === "Snippets" && (
+                <svg
+                  aria-hidden="true"
+                  class="size-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m8 9-3 3 3 3" />
+                  <path d="m16 9 3 3-3 3" />
+                  <path d="m14 5-4 14" />
+                </svg>
+              )}
+              {link.title === "About" && (
+                <svg
+                  aria-hidden="true"
+                  class="size-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 22a8 8 0 0 1 16 0" />
+                </svg>
+              )}
+            </span>
+            <span>{link.title}</span>
+          </a>
+        );
+      })
+    }
+  </nav>
+</div>

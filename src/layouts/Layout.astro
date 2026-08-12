@@ -1,7 +1,7 @@
 ---
 import "@/styles/global.css";
 import Footer from "@/layouts/Footer.astro";
-import { NavbarMenu } from "./NavbarMenu.tsx";
+import NavbarMenu from "./NavbarMenu.astro";
 import { Font } from "astro:assets";
 import profile_pic from "@/assets/profile.png";
 import { Image } from "astro:assets";
@@ -86,7 +86,7 @@ const {
       >
         Skip to main content
       </a>
-      <header class="sticky top-0 z-30 w-full py-3 lg:py-6">
+      <header class="sticky top-0 z-30 hidden w-full py-3 md:block lg:py-6">
         <div class="container mx-auto px-3 xl:px-14 2xl:max-w-7xl">
           <nav
             class="flex justify-between items-center px-4 py-3 lg:px-5 lg:py-4 rounded-full backdrop-blur-md text-sm sm:text-base bg-background/60 border"
@@ -114,13 +114,13 @@ const {
                 ))
               }
             </div>
-            <NavbarMenu client:media="(max-width: 48rem)" links={links} />
           </nav>
         </div>
       </header>
+      <NavbarMenu links={links} />
       <main
         id="main-content"
-        class="container mx-auto flex-1 px-3 py-8 sm:py-10 lg:py-12 xl:px-14 2xl:max-w-7xl"
+        class="container mx-auto flex-1 px-3 pt-8 pb-28 sm:pt-10 md:pb-10 lg:py-12 xl:px-14 2xl:max-w-7xl"
       >
         <slot />
       </main>
