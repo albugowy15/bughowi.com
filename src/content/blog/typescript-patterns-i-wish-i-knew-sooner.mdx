@@ -1,0 +1,440 @@
+---
+title: "TypeScript Patterns I Wish I Knew Sooner"
+date: 2026-08-16
+description: "TypeScript patterns that changed how I write React: discriminated unions, branded types, and React's own utility types you should be using every day."
+categories:
+  - typescript
+  - react
+thumbnail: https://res.cloudinary.com/bughowi-assets/image/upload/v1786814695/typescript-patterns-i-wish-i-knew-sooner.jpg
+---
+
+import Link from "@/components/Link.astro";
+
+I wrote about <Link href="/blog/typescript-fundamentals">TypeScript fundamentals</Link> back in 2022. Types, interfaces, generics, the basics. Four years later, I've learned that knowing the syntax is one thing. Knowing which patterns actually make your code safer and your refactors faster is another.
+
+These are the patterns I reach for constantly. The ones that prevent bugs I used to ship, simplify PR reviews, and make me enjoy writing React again.
+
+## Discriminated Unions
+
+This is the pattern. The one I wish I'd learned on day one.
+
+The problem: you have a piece of state that can be in several mutually exclusive shapes. The naive approach uses optional fields:
+
+```ts
+type State = {
+  loading: boolean;
+  data: Data | null;
+  error: Error | null;
+};
+```
+
+This type allows impossible states. `loading: true` and `error: new Error(...)` can coexist. Every component that consumes this state has to do defensive checks in the wrong order. You ship a bug where the error message flashes for one frame before the loading spinner renders.
+
+The fix is a discriminated union, a shared literal field that tells TypeScript exactly which shape you're in:
+
+```ts
+type State =
+  | { status: "idle" }
+  | { status: "loading" }
+  | { status: "success"; data: Data }
+  | { status: "error"; error: Error };
+```
+
+Now TypeScript enforces the right checks. You cannot access `data` without first narrowing on `status`:
+
+```tsx title="PostView.tsx"
+function PostView({ state }: { state: State }) {
+  switch (state.status) {
+    case "idle":
+      return <p>Nothing yet.</p>;
+    case "loading":
+      return <Spinner />;
+    case "success":
+      return <Post data={state.data} />; // data is narrowed
+    case "error":
+      return <ErrorBanner error={state.error} />; // error is narrowed
+  }
+}
+```
+
+### useReducer Actions
+
+The same idea applies to `useReducer`. Instead of a loose `action: { type: string; payload?: any }`, define each action as a member of a union:
+
+```ts title="reducer.ts"
+type Action =
+  | { type: "FETCH_START" }
+  | { type: "FETCH_SUCCESS"; posts: Post[] }
+  | { type: "FETCH_ERROR"; error: Error }
+  | { type: "DELETE_POST"; id: string };
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "FETCH_START":
+      return { status: "loading" };
+    case "FETCH_SUCCESS":
+      return { status: "success", data: action.posts };
+    case "FETCH_ERROR":
+      return { status: "error", error: action.error };
+    case "DELETE_POST":
+      // TypeScript knows action.id exists here
+      return { ...state, data: state.data.filter((p) => p.id !== action.id) };
+  }
+}
+```
+
+The compiler catches typos in action types, missing payloads, and wrong payload types. No more runtime errors from `action.payload.posts` when the reducer expected `action.payload.post`.
+
+### Variant Component Props
+
+Discriminated unions also clean up components that behave differently based on a prop:
+
+```tsx title="Button.tsx"
+type ButtonProps =
+  | { variant: "primary"; size?: never; onClick: () => void }
+  | { variant: "link"; href: string; onClick?: never }
+  | {
+      variant: "icon";
+      icon: ReactNode;
+      ariaLabel: string;
+      onClick: () => void;
+    };
+
+function Button(props: ButtonProps) {
+  if (props.variant === "link") {
+    return <a href={props.href}>...</a>; // href exists, onClick doesn't
+  }
+  if (props.variant === "icon") {
+    return <button aria-label={props.ariaLabel}>{props.icon}</button>;
+  }
+  return <button onClick={props.onClick}>...</button>;
+}
+
+// TypeScript catches misuse at the call site:
+<Button variant="link" onClick={() => {}} />; // error: onClick doesn't exist on link
+<Button variant="link" href="/about" />; // ok
+```
+
+This is the closest TypeScript gets to <Link href="/blog/understanding-rust-borrow-and-ownership-concept">Rust's enums</Link> with pattern matching. Once you start modeling state and props this way, you stop shipping "impossible state" bugs entirely.
+
+## The `satisfies` Operator
+
+`satisfies` validates that a value matches a type without widening it. That distinction matters more than it sounds.
+
+Without `satisfies`, annotating a variable with a type erases the literal information:
+
+```ts
+type Route = { path: string; title: string };
+
+const routes: Route[] = [
+  { path: "/dashboard", title: "Dashboard" },
+  { path: "/settings", title: "Settings" },
+];
+
+routes[0].path; // type is string, not "/dashboard"
+```
+
+With `satisfies`, you get validation and preservation:
+
+```ts {4,6}
+const routes = [
+  { path: "/dashboard", title: "Dashboard" },
+  { path: "/settings", title: "Settings" },
+] as const satisfies Route[];
+
+routes[0].path; // type is "/dashboard"
+```
+
+### Real Example: Form Field Definitions
+
+I use this constantly with form libraries. Define your field config once, validate it matches your schema, and still get literal field names for type-safe access:
+
+```ts title="form-fields.ts" {5,7}
+const fields = [
+  { name: "email", label: "Email", type: "email" },
+  { name: "password", label: "Password", type: "password" },
+  { name: "age", label: "Age", type: "number" },
+] as const satisfies { name: string; label: string; type: string }[];
+
+type FieldName = (typeof fields)[number]["name"]; // "email" | "password" | "age"
+```
+
+You now have a single source of truth. Change the fields array and your types update automatically. No stale type declarations floating around.
+
+## `as const` + `typeof` Combo
+
+The `as const` assertion tells TypeScript to infer the narrowest possible type. Combined with `typeof`, you can derive types from runtime values instead of declaring them separately.
+
+```ts title="statuses.ts"
+const STATUSES = ["draft", "published", "archived"] as const;
+type Status = (typeof STATUSES)[number]; // "draft" | "published" | "archived"
+```
+
+Now your runtime array and your type stay in sync forever:
+
+```tsx title="StatusBadge.tsx" {2}
+function StatusBadge({ status }: { status: Status }) {
+  const colors: Record<Status, string> = {
+    draft: "bg-gray-100 text-gray-700",
+    published: "bg-green-100 text-green-700",
+    archived: "bg-yellow-100 text-yellow-700",
+  };
+
+  return <span className={colors[status]}>{status}</span>;
+}
+```
+
+If you add `"deleted"` to `STATUSES`, TypeScript immediately flags the missing entry in `colors`. No runtime "undefined is not a function" because you forgot to update a map somewhere.
+
+### Filter and Tab Options
+
+The same pattern works for anything that needs a list of options in the UI and a corresponding union type:
+
+```ts title="TodoFilters.tsx" {1-2}
+const FILTERS = ["all", "active", "completed"] as const;
+type Filter = (typeof FILTERS)[number];
+
+function TodoFilters({
+  current,
+  onChange,
+}: {
+  current: Filter;
+  onChange: (f: Filter) => void;
+}) {
+  return (
+    <nav>
+      {FILTERS.map((f) => (
+        <button key={f} aria-pressed={f === current} onClick={() => onChange(f)}>
+          {f}
+        </button>
+      ))}
+    </nav>
+  );
+}
+```
+
+## React's Built-in Utility Types
+
+React ships with utility types that most developers don't discover until they've written a lot of unnecessary boilerplate. Here are the ones I use constantly.
+
+### `ComponentProps`
+
+Extract props from a component without exporting the type manually:
+
+```tsx {3,9}
+import type { ComponentProps } from "react";
+
+function SubmitButton({ children, ...props }: ComponentProps<"button">) {
+  return <button {...props}>{children}</button>;
+}
+
+// Works with custom components too:
+import { Button } from "@/components/ui/button";
+type ButtonVariants = ComponentProps<typeof Button>["variant"];
+```
+
+This is especially useful when wrapping third-party components. You don't need the library to export its prop types.
+
+### `ElementRef`
+
+Type a ref to a DOM element or a component that uses `forwardRef`:
+
+```tsx
+import { useRef, type ElementRef } from "react";
+
+function AutoFocusInput() {
+  const ref = useRef<ElementRef<"input">>(null);
+
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+
+  return <input ref={ref} />;
+}
+```
+
+### `forwardRef`
+
+Typing `forwardRef` correctly used to be a mess. React 19 cleaned it up. You no longer need `forwardRef` for regular components, but when you do, the types are straightforward:
+
+```tsx
+import { forwardRef } from "react";
+
+interface InputProps extends ComponentProps<"input"> {
+  label: string;
+  error?: string;
+}
+
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, error, ...props }, ref) => (
+    <label>
+      <span>{label}</span>
+      <input ref={ref} {...props} />
+      {error && <p role="alert">{error}</p>}
+    </label>
+  ),
+);
+```
+
+### `Awaited<ReturnType<>>`
+
+For async functions, server actions, data fetchers, route loaders, you often need the resolved type:
+
+```ts {6}
+async function getUser(id: string) {
+  const res = await fetch(`/api/users/${id}`);
+  return res.json() as Promise<{ id: string; name: string; email: string }>;
+}
+
+type User = Awaited<ReturnType<typeof getUser>>;
+// { id: string; name: string; email: string }
+```
+
+This avoids duplicating return types between the implementation and the type declaration.
+
+### `Parameters<>`
+
+When a callback's parameter types are complex and you want to reuse them:
+
+```ts
+function SearchInput({
+  onChange,
+}: {
+  onChange: ComponentProps<"input">["onChange"];
+}) {
+  // ...
+}
+
+// Or extract the first parameter:
+type ChangeEvent = Parameters<
+  NonNullable<ComponentProps<"input">["onChange"]>
+>[0];
+```
+
+### Event Handler Types
+
+React exports typed event handlers so you don't have to write `(e: any) => void`:
+
+```tsx
+import type {
+  ChangeEventHandler,
+  FormEventHandler,
+  MouseEventHandler,
+} from "react";
+
+interface FormProps {
+  onSubmit: FormEventHandler<HTMLFormElement>;
+  onNameChange: ChangeEventHandler<HTMLInputElement>;
+  onCancel: MouseEventHandler<HTMLButtonElement>;
+}
+```
+
+These are simple, but using them consistently means one less place where `any` creeps into your codebase.
+
+## Branded (Opaque) Types
+
+How many times have you passed a `userId` where a `postId` was expected? Both are strings. TypeScript can't help.
+
+Branded types fix this with zero runtime cost. It's just a type-level trick:
+
+```ts {1}
+type Brand<T, B> = T & { __brand: B };
+
+type UserId = Brand<string, "UserId">;
+type PostId = Brand<string, "PostId">;
+```
+
+Now create and consume them through typed factory functions:
+
+```ts
+function createUserId(id: string): UserId {
+  return id as UserId;
+}
+
+function createPostId(id: string): PostId {
+  return id as PostId;
+}
+
+function fetchPost(id: PostId) {
+  /* ... */
+}
+function fetchUser(id: UserId) {
+  /* ... */
+}
+
+const userId = createUserId("abc123");
+const postId = createPostId("abc123");
+
+fetchPost(userId); // TypeScript error: UserId is not assignable to PostId
+fetchPost(postId); // ok
+```
+
+The same string value, but the types prevent you from mixing them up. I use this for IDs, email addresses, API keys, and any primitive that carries semantic meaning beyond its runtime type.
+
+```ts
+type Email = Brand<string, "Email">;
+type ApiKey = Brand<string, "ApiKey">;
+type Slug = Brand<string, "Slug">;
+```
+
+Component props become self-documenting. `<PostView postId={postId} authorId={userId} />`. The types alone tell you which ID goes where.
+
+## Type Predicates + `never` Exhaustiveness
+
+### Custom Type Guards
+
+Type predicates let you write functions that narrow types. The return type `value is SomeType` tells TypeScript what the function proved:
+
+```ts
+function isSuccess(state: State): state is { status: "success"; data: Data } {
+  return state.status === "success";
+}
+```
+
+The real power is in array filtering. Without a type predicate, `.filter()` doesn't narrow:
+
+```tsx title="PostList.tsx" {2}
+function PostList({ states }: { states: State[] }) {
+  const successStates = states.filter(isSuccess); // type is { status: "success"; data: Data }[]
+
+  const posts = useMemo(
+    () => successStates.map((s) => s.data),
+    [successStates],
+  );
+
+  return posts.map((post) => <PostCard key={post.id} data={post} />);
+}
+```
+
+Without the predicate, you'd need an inline type assertion or a redundant check inside the map. The predicate makes the filter chain type-safe end to end.
+
+### Exhaustiveness Checks
+
+The `never` type is the bottom type. Nothing is assignable to it. This lets you write compile-time checks that a switch statement covers every case:
+
+```ts {9-12}
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "FETCH_START":
+      return { status: "loading" };
+    case "FETCH_SUCCESS":
+      return { status: "success", data: action.posts };
+    case "FETCH_ERROR":
+      return { status: "error", error: action.error };
+    default: {
+      const _exhaustive: never = action;
+      return _exhaustive;
+    }
+  }
+}
+```
+
+If you add a new action type, say `"FETCH_CANCEL"`, and forget to handle it in the reducer, TypeScript produces a compile error on the `default` branch. `action` is no longer `never`; it's the unhandled variant. This turns a runtime bug (action silently ignored) into a build failure.
+
+Combined with discriminated unions from pattern #1, this gives you a reducer that TypeScript guarantees handles every case.
+
+These patterns share a common thread: they move errors from runtime to compile time. Discriminated unions eliminate impossible states. `satisfies` and `as const` keep types and values in sync. React's utility types cut boilerplate. Branded types prevent wrong-ID bugs. Type predicates and exhaustiveness checks make sure you handle every branch.
+
+TypeScript's type system is deeper than most people give it credit for. The patterns above are what I've found actually move the needle in day-to-day React work. Not clever type puzzles for the sake of it. Patterns that catch real bugs before they reach production.
+
+If you haven't read it yet, the <Link href="/blog/typescript-fundamentals">TypeScript fundamentals post</Link> covers the building blocks these patterns rely on. And if discriminated unions clicked for you, <Link href="/blog/understanding-rust-borrow-and-ownership-concept">Rust's ownership model</Link> and <Link href="/blog/rust-error-handling-and-null-value">its Option/Result enums</Link> take the same idea further.
