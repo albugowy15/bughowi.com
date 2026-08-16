@@ -19,12 +19,12 @@ This project is less about hosting a single application and more about owning th
 
 ## Architecture
 
-Tailscale is the private network layer. Traefik listens on the VPS's Tailscale address instead of every network interface, then routes HTTPS traffic to containers through a shared Docker network. A Cloudflare Tunnel also joins that network for services that need a controlled public path without directly exposing the host.
+Tailscale is the private network layer. Traefik listens on the VPS's Tailscale address instead of every network interface, then routes HTTPS traffic to containers through a shared Docker network. Cloudflared also runs on that network to serve Umami publicly without exposing the host directly.
 
 The stack is split into two main Docker networks:
 
 - `traefik-network` connects Traefik to web applications that need HTTP routing.
-- `postgres-network` connects PostgreSQL only to services that need database access.
+- `postgres-network` connects PostgreSQL to Umami, the only service that needs database access.
 
 Monitoring has its own internal network. Grafana can reach Prometheus, while Prometheus collects container metrics from cAdvisor and host metrics from Node Exporter. Only the Grafana interface joins the routing network.
 
@@ -33,48 +33,34 @@ In simplified form, requests, metrics, and backups move through the VPS like thi
 ```mermaid
 flowchart TB
   accTitle: Yawilab VPS architecture
-  accDescr: Private devices and controlled public traffic enter a Debian VPS through Tailscale and Cloudflare Tunnel. Traefik routes requests to applications, while monitoring services observe the host and scheduled backups are stored in Cloudflare R2.
+  accDescr: Private devices reach the VPS through Tailscale. Traefik listens on the Tailscale IP and routes to applications. Umami is the only service with public access, served directly by Cloudflared. Only Umami talks to PostgreSQL, and only PostgreSQL and Vaultwarden are backed up to Cloudflare R2.
 
   private[Private devices] --> tailscale[Tailscale]
-  public[Controlled public access] --> tunnel[Cloudflare Tunnel]
+  tailscale --> traefik[Traefik<br/>listens on Tailscale IP]
 
-  subgraph vps[Debian 13 VPS]
-    direction TB
-    tailscale --> traefik[Traefik]
-    tunnel --> traefik
+  public[Public access] ==> cloudflared[Cloudflared]
+  cloudflared == "http://umami:3000" ==> umami[Umami]
 
-    subgraph web[traefik-network]
-      direction LR
-      vaultwarden[Vaultwarden]
-      stirling[Stirling PDF]
-      umami[Umami]
-      grafana[Grafana]
-    end
+  traefik --> vaultwarden[Vaultwarden]
+  traefik --> stirling[Stirling PDF]
+  traefik --> umami
+  traefik --> grafana[Grafana]
 
-    traefik --> vaultwarden
-    traefik --> stirling
-    traefik --> umami
-    traefik --> grafana
+  umami --> postgres[(PostgreSQL)]
 
-    subgraph data[postgres-network]
-      postgres[(PostgreSQL)]
-    end
+  grafana -- "queries" --> prometheus[Prometheus]
+  prometheus -- "scrapes" --> cadvisor[cAdvisor]
+  prometheus -- "scrapes" --> exporter[Node Exporter]
 
-    umami --> postgres
+  postgres -. backup .-> r2[(Cloudflare R2)]
+  vaultwarden -. backup .-> r2
 
-    subgraph monitoring[monitoring network]
-      prometheus[Prometheus]
-      cadvisor[cAdvisor]
-      exporter[Node Exporter]
-    end
-
-    grafana --> prometheus
-    prometheus --> cadvisor
-    prometheus --> exporter
+  subgraph Legend
+    direction LR
+    L1(( )) == "public" ==> L2(( ))
+    L3(( )) -- "private" --> L4(( ))
+    L5(( )) -. "backup" .-> L6(( ))
   end
-
-  postgres -. scheduled backup .-> r2[(Cloudflare R2)]
-  vaultwarden -. scheduled backup .-> r2
 ```
 
 ## Applications
@@ -89,7 +75,7 @@ Stirling PDF gives me a private toolbox for common PDF tasks, including conversi
 
 ### Umami
 
-Umami provides privacy-focused analytics for my websites. It uses the VPS's PostgreSQL instance and is the main application that bridges the web-routing and database networks.
+Umami provides privacy-focused analytics for my websites. It uses the VPS's PostgreSQL instance and is the only application that bridges the web-routing and database networks.
 
 ### Grafana and Prometheus
 
