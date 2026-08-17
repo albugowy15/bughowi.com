@@ -30,7 +30,7 @@ const {
   headings.length > 0 && variant === "mobile" && (
     <aside
       class={cn(
-        "sticky top-0 z-20 -mx-1 bg-background/95 px-1 py-3 backdrop-blur-sm md:top-20 lg:top-28 xl:hidden",
+        "sticky top-0 z-20 -mx-1 bg-background/95 px-1 py-3 backdrop-blur-sm lg:hidden",
         className,
       )}
       {...rest}
@@ -71,7 +71,7 @@ const {
     <aside
       data-table-of-contents-list
       class={cn(
-        "sticky top-28 hidden max-h-[calc(100svh-8rem)] overflow-y-auto rounded-lg border xl:block",
+        "sticky top-28 hidden max-h-[calc(100svh-8rem)] overflow-y-auto rounded-lg border lg:block",
         className,
       )}
       {...rest}
@@ -134,7 +134,8 @@ const {
       const syncSelectedHeading = () => {
         const selectBottom = select.getBoundingClientRect().bottom;
         const activeHeading = headingElements.findLast(
-          (heading) => heading.getBoundingClientRect().top <= selectBottom + 8,
+          (heading) =>
+            heading.getBoundingClientRect().top <= selectBottom + 100,
         );
 
         select.value = activeHeading ? `#${activeHeading.id}` : "";

@@ -58,8 +58,8 @@ const snippetUrl = new URL(`/snippets/${post.id}`, Astro.site);
 >
   <div
     class:list={[
-      "mx-auto grid w-full gap-10 xl:items-start",
-      headings.length > 0 ? "xl:grid-cols-[minmax(0,1fr)_18rem]" : "max-w-4xl",
+      "mx-auto grid w-full gap-10 lg:items-start",
+      headings.length > 0 ? "lg:grid-cols-[minmax(0,1fr)_18rem]" : "max-w-4xl",
     ]}
   >
     <div class="min-w-0">
@@ -83,11 +83,11 @@ const snippetUrl = new URL(`/snippets/${post.id}`, Astro.site);
       </div>
       <TableOfContents headings={headings} variant="mobile" class="mt-5" />
       <article
-        class:list={["w-full", headings.length > 0 ? "xl:mt-8" : "mt-8"]}
+        class:list={["w-full", headings.length > 0 ? "lg:mt-8" : "mt-8"]}
       >
         <section
           id="content-space"
-          class="prose prose-invert max-w-none prose-headings:scroll-mt-24 md:prose-headings:scroll-mt-40 lg:prose-headings:scroll-mt-48 xl:prose-headings:scroll-mt-28"
+          class="prose prose-invert max-w-none prose-headings:scroll-mt-24 md:prose-headings:scroll-mt-40 lg:prose-headings:scroll-mt-48"
         >
           <Content />
         </section>
