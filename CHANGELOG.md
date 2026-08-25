@@ -1,5 +1,25 @@
 # Changelog
 
+## [3.8.0](https://github.com/albugowy15/bughowi.com/compare/v3.7.0...v3.8.0) (2026-08-25)
+
+
+### Features
+
+* add light mode support via prefers-color-scheme ([9b786ec](https://github.com/albugowy15/bughowi.com/commit/9b786ec1b1ccf36730ddf9ce43f318a2356f1d74))
+* add mobile table of contents ([58a5987](https://github.com/albugowy15/bughowi.com/commit/58a59876bf233430ec66d08bc4666be211e454a5))
+* change expressive code theme ([36d0404](https://github.com/albugowy15/bughowi.com/commit/36d0404e2c1d358c2d69f07525ed79bab22502dc))
+* **content:** new blog content ([17fe5da](https://github.com/albugowy15/bughowi.com/commit/17fe5daa538ede8e50641aed696e70cb61ce9573))
+* **content:** new blog content typescript-patterns-i-wish-i-knew-sooner ([55f77f8](https://github.com/albugowy15/bughowi.com/commit/55f77f80d595f793833820324eb17deaa5fa09d2))
+* **content:** new project post ([313a616](https://github.com/albugowy15/bughowi.com/commit/313a616da56210d5fc58a31f95e4a1e98c0a16eb))
+* refine mobile nav ([c41d1d0](https://github.com/albugowy15/bughowi.com/commit/c41d1d0c0285cc3fe8599645fddc570dd2498f5a))
+* update main thumbnail ([f2740c0](https://github.com/albugowy15/bughowi.com/commit/f2740c0aec792960a2fef9cd13d2fef5534dd30f))
+
+
+### Bug Fixes
+
+* adjust table of contents and navbar responsive breakpoint ([a5a8d9a](https://github.com/albugowy15/bughowi.com/commit/a5a8d9a9cbec9d7729adb57bc300001e833679d3))
+* **content:** update yawilab vps diagram ([51854f4](https://github.com/albugowy15/bughowi.com/commit/51854f4bfb114dd4a1337d3307adb7ffe01c2222))
+
 ## [3.7.0](https://github.com/albugowy15/bughowi.com/compare/v3.6.0...v3.7.0) (2026-08-02)
 
 
