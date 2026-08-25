@@ -86,7 +86,7 @@ const postUrl = new URL(`/blog/${post.id}`, Astro.site);
       <TableOfContents headings={headings} variant="mobile" class="mt-5" />
       <article
         class:list={[
-          "prose prose-invert max-w-none prose-headings:scroll-mt-24 md:prose-headings:scroll-mt-40 lg:prose-headings:scroll-mt-48",
+          "prose dark:prose-invert max-w-none prose-headings:scroll-mt-24 md:prose-headings:scroll-mt-40 lg:prose-headings:scroll-mt-48",
           headings.length > 0 ? "lg:mt-8" : "mt-8",
         ]}
       >
@@ -109,7 +109,7 @@ const postUrl = new URL(`/blog/${post.id}`, Astro.site);
           data-strict="0"
           data-reactions-enabled="1"
           data-input-position="bottom"
-          data-theme="dark"
+          data-theme="preferred_color_scheme"
           data-lang="en"
           crossorigin="anonymous"
           async></script>

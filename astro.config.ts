@@ -45,12 +45,12 @@ export default defineConfig({
   },
   integrations: [
     mermaid({
-      theme: "dark",
-      autoTheme: false,
+      theme: "neutral",
+      autoTheme: true,
       enableLog: false,
     }),
     astroExpressiveCode({
-      themes: ["vesper"],
+      themes: ["material-theme-lighter", "vesper"],
     }),
     mdx(),
     sitemap(),
