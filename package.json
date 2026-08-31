@@ -24,7 +24,7 @@
     "astro-mermaid": "^2.1.0",
     "clsx": "2.1.1",
     "dayjs": "1.11.23",
-    "mermaid": "^11.17.0",
+    "mermaid": "^11.17.2",
     "tailwind-merge": "3.6.0"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "@typescript-eslint/eslint-plugin": "8.67.0",
     "@typescript-eslint/parser": "8.67.0",
     "class-variance-authority": "0.7.1",
-    "eslint": "^10.9.0",
+    "eslint": "^10.9.1",
     "eslint-plugin-astro": "3.1.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "mdast-util-to-string": "4.0.0",
