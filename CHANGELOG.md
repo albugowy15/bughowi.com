@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.9.0](https://github.com/albugowy15/bughowi.com/compare/v3.8.0...v3.9.0) (2026-09-03)
+
+
+### Features
+
+* increase pagination page size ([fc36334](https://github.com/albugowy15/bughowi.com/commit/fc36334ec11254db4955a7f95387f9b9dbe005e3))
+
 ## [3.8.0](https://github.com/albugowy15/bughowi.com/compare/v3.7.0...v3.8.0) (2026-08-25)
 
 
