@@ -13,7 +13,7 @@ export const getStaticPaths = (async ({ paginate }) => {
   const sortedProjects = allProjects.sort((a, b) =>
     compareDesc(a.data.date, b.data.date),
   );
-  return paginate(sortedProjects, { pageSize: 6 });
+  return paginate(sortedProjects, { pageSize: 9 });
 }) as GetStaticPaths;
 
 interface Props {

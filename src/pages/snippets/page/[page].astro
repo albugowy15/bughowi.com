@@ -13,7 +13,7 @@ export const getStaticPaths = (async ({ paginate }) => {
   const sortedSnippets = allSnippets.sort((a, b) =>
     compareDesc(a.data.date, b.data.date),
   );
-  return paginate(sortedSnippets, { pageSize: 6 });
+  return paginate(sortedSnippets, { pageSize: 9 });
 }) satisfies GetStaticPaths;
 
 interface Props {
