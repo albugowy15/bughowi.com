@@ -40,7 +40,7 @@
     "@typescript-eslint/eslint-plugin": "8.69.0",
     "@typescript-eslint/parser": "8.69.0",
     "class-variance-authority": "0.7.1",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "eslint-plugin-astro": "3.1.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "mdast-util-to-string": "4.0.0",
