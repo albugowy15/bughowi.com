@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.9.0](https://github.com/albugowy15/bughowi.com/compare/v3.8.0...v3.9.0) (2026-10-23)
+
+
+### Features
+
+* increase pagination page size ([fc36334](https://github.com/albugowy15/bughowi.com/commit/fc36334ec11254db4955a7f95387f9b9dbe005e3))
+
+
+### Bug Fixes
+
+* **content/blog:** incorrect rust enum article link ([617e05c](https://github.com/albugowy15/bughowi.com/commit/617e05c6adfe559172db73f723e9c18e4ab0e3db))
+* remove italic font style ([b7f3c87](https://github.com/albugowy15/bughowi.com/commit/b7f3c874567e93f560387bc0f47ccad6364a8529))
+
 ## [3.8.0](https://github.com/albugowy15/bughowi.com/compare/v3.7.0...v3.8.0) (2026-08-25)
 
 
