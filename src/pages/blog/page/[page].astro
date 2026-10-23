@@ -34,10 +34,10 @@ const url = new URL(`/blog/page/${page.currentPage}`, Astro.site);
       title="Blog"
       description="Welcome to my Blog. Here I share my thoughts related to Fullstack development topics and programming in general. I've always been a fan of writing, and I hope you can find something here that could help you in your developer career."
     />
-    <section
-      class="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
-    >
-      {page.data.map((post) => <PostCard post={post} />)}
+    <section class="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {page.data.map((post) => (
+        <PostCard post={post} />
+      ))}
     </section>
     <PagePagination page={page} />
   </div>

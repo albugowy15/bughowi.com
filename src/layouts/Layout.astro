@@ -80,12 +80,14 @@ const {
       defer
       is:inline
       src="https://umami.yawilab.com/script.js"
-      data-website-id="d29eddf8-7b6d-455a-96d3-29d42c0cd906"></script>
+      data-website-id="d29eddf8-7b6d-455a-96d3-29d42c0cd906"
+    ></script>
     <script
       defer
       is:inline
       src="https://umami.yawilab.com/recorder.js"
-      data-website-id="d29eddf8-7b6d-455a-96d3-29d42c0cd906"></script>
+      data-website-id="d29eddf8-7b6d-455a-96d3-29d42c0cd906"
+    ></script>
   </head>
   <body>
     <div class="flex min-h-screen w-full flex-col">
@@ -97,9 +99,7 @@ const {
       </a>
       <header class="sticky top-0 z-30 hidden w-full py-3 lg:block lg:py-6">
         <div class="container mx-auto px-3 xl:px-14 2xl:max-w-7xl">
-          <nav
-            class="flex justify-between items-center px-4 py-3 lg:px-5 lg:py-4 rounded-full backdrop-blur-md text-sm sm:text-base bg-background/60 border"
-          >
+          <nav class="flex justify-between items-center px-4 py-3 lg:px-5 lg:py-4 rounded-full backdrop-blur-md text-sm sm:text-base bg-background/60 border">
             <a href="/" title="Homepage" aria-label="Homepage">
               <Image
                 src={profile_pic}
@@ -112,16 +112,14 @@ const {
               />
             </a>
             <div class="hidden lg:flex items-center gap-2">
-              {
-                links.map((link) => (
-                  <a
-                    href={link.path}
-                    class="cursor-pointer text-foreground/70 px-1 py-0.5 font-bold transition-colors duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  >
-                    {link.title}
-                  </a>
-                ))
-              }
+              {links.map((link) => (
+                <a
+                  href={link.path}
+                  class="cursor-pointer text-foreground/70 px-1 py-0.5 font-bold transition-colors duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  {link.title}
+                </a>
+              ))}
             </div>
           </nav>
         </div>

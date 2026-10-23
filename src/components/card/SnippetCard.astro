@@ -16,20 +16,16 @@ const { snippet } = Astro.props;
   aria-label={snippet.data.title}
 >
   <div class="space-y-3">
-    <h3
-      class="line-clamp-2 text-xl leading-tight font-bold text-pretty transition-colors group-hover:text-primary"
-    >
+    <h3 class="line-clamp-2 text-xl leading-tight font-bold text-pretty transition-colors group-hover:text-primary">
       {snippet.data.title}
     </h3>
     <p class="line-clamp-3 text-foreground/70">{snippet.data.description}</p>
   </div>
   <div class="mt-auto flex flex-wrap gap-1.5 border-t pt-3">
-    {
-      snippet.data.categories.map((category) => (
-        <Chip variant="bordered" radius="sm" size="sm">
-          # {category}
-        </Chip>
-      ))
-    }
+    {snippet.data.categories.map((category) => (
+      <Chip variant="bordered" radius="sm" size="sm">
+        # {category}
+      </Chip>
+    ))}
   </div>
 </a>

@@ -91,19 +91,17 @@ const url = new URL(`/projects/${post.id}`, Astro.site);
           headings.length > 0 ? "lg:mt-8" : "mt-8",
         ]}
       >
-        {
-          post.data.thumbnail && (
-            <Image
-              src={post.data.thumbnail}
-              alt={post.data.title}
-              width={1280}
-              height={720}
-              loading="eager"
-              priority
-              class="rounded-lg object-contain"
-            />
-          )
-        }
+        {post.data.thumbnail && (
+          <Image
+            src={post.data.thumbnail}
+            alt={post.data.title}
+            width={1280}
+            height={720}
+            loading="eager"
+            priority
+            class="rounded-lg object-contain"
+          />
+        )}
         <section
           id="content-space"
           class="prose dark:prose-invert max-w-none prose-headings:scroll-mt-24 md:prose-headings:scroll-mt-40 lg:prose-headings:scroll-mt-48"
@@ -130,7 +128,8 @@ const url = new URL(`/projects/${post.id}`, Astro.site);
           data-theme="preferred_color_scheme"
           data-lang="en"
           crossorigin="anonymous"
-          async></script>
+          async
+        ></script>
       </section>
     </div>
     <TableOfContents headings={headings} variant="desktop" />

@@ -39,9 +39,7 @@ const publishedAtIso = publishedAt.toISOString();
 ---
 
 <header class={className} {...rest}>
-  <h1
-    class="max-w-4xl text-3xl leading-tight font-bold tracking-tight text-pretty sm:text-4xl"
-  >
+  <h1 class="max-w-4xl text-3xl leading-tight font-bold tracking-tight text-pretty sm:text-4xl">
     {heading}
   </h1>
   <p class="mt-3 max-w-2xl leading-relaxed text-pretty text-foreground/70">
@@ -62,9 +60,7 @@ const publishedAtIso = publishedAt.toISOString();
     >
       <div class="flex items-center gap-1.5">
         <dt class="sr-only">Published</dt>
-        <dd
-          class="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap"
-        >
+        <dd class="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
@@ -85,9 +81,7 @@ const publishedAtIso = publishedAt.toISOString();
 
       <div class="flex items-center gap-1.5">
         <dt class="sr-only">Reading time</dt>
-        <dd
-          class="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap"
-        >
+        <dd class="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
@@ -107,24 +101,22 @@ const publishedAtIso = publishedAt.toISOString();
       </div>
     </dl>
 
-    {
-      tags.length > 0 && (
-        <div class="border-t py-3 sm:flex sm:items-center sm:border-t-0 sm:border-l sm:pl-4">
-          <p class="sr-only">{tagsLabel}</p>
-          <ul
-            class="flex flex-wrap items-center gap-1.5"
-            aria-label={tagsAriaLabel}
-          >
-            {tags.map((tag) => (
-              <li>
-                <Chip variant="bordered" size="sm">
-                  # {tag}
-                </Chip>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )
-    }
+    {tags.length > 0 && (
+      <div class="border-t py-3 sm:flex sm:items-center sm:border-t-0 sm:border-l sm:pl-4">
+        <p class="sr-only">{tagsLabel}</p>
+        <ul
+          class="flex flex-wrap items-center gap-1.5"
+          aria-label={tagsAriaLabel}
+        >
+          {tags.map((tag) => (
+            <li>
+              <Chip variant="bordered" size="sm">
+                # {tag}
+              </Chip>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </div>
 </header>

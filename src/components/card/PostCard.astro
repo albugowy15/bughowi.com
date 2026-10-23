@@ -20,31 +20,23 @@ const { remarkPluginFrontmatter } = await render(post);
 >
   <div class="flex h-full flex-col gap-5">
     <div class="flex flex-wrap gap-1.5">
-      {
-        post.data.categories?.map((category) => (
-          <Chip variant="bordered" radius="sm" size="sm">
-            # {category}
-          </Chip>
-        ))
-      }
+      {post.data.categories?.map((category) => (
+        <Chip variant="bordered" radius="sm" size="sm">
+          # {category}
+        </Chip>
+      ))}
     </div>
     <div class="space-y-3">
-      <h3
-        class="line-clamp-2 text-xl leading-tight font-bold text-pretty transition-colors group-hover:text-primary"
-      >
+      <h3 class="line-clamp-2 text-xl leading-tight font-bold text-pretty transition-colors group-hover:text-primary">
         {post.data.title}
       </h3>
       <p class="line-clamp-3 text-foreground/70">{post.data.description}</p>
     </div>
-    <div
-      class="mt-auto flex items-center justify-between border-t pt-3 text-sm"
-    >
+    <div class="mt-auto flex items-center justify-between border-t pt-3 text-sm">
       <p class="text-foreground/50">
         {formatDate(post.data.date.toISOString())}
       </p>
-      <p class="text-foreground/50">
-        {remarkPluginFrontmatter.minutesRead}
-      </p>
+      <p class="text-foreground/50">{remarkPluginFrontmatter.minutesRead}</p>
     </div>
   </div>
 </a>

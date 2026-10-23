@@ -16,20 +16,16 @@ const { project } = Astro.props;
   aria-label={project.data.title}
 >
   <div class="space-y-3">
-    <h3
-      class="line-clamp-2 text-xl leading-tight font-bold text-pretty transition-colors group-hover:text-primary"
-    >
+    <h3 class="line-clamp-2 text-xl leading-tight font-bold text-pretty transition-colors group-hover:text-primary">
       {project.data.title}
     </h3>
     <p class="line-clamp-3 text-foreground/70">{project.data.description}</p>
   </div>
   <div class="mt-auto flex flex-wrap gap-1.5 border-t pt-3">
-    {
-      project.data.tech?.map((tech) => (
-        <Chip variant="bordered" radius="sm" size="sm">
-          {tech}
-        </Chip>
-      ))
-    }
+    {project.data.tech?.map((tech) => (
+      <Chip variant="bordered" radius="sm" size="sm">
+        {tech}
+      </Chip>
+    ))}
   </div>
 </a>
