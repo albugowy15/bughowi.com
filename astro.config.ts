@@ -15,7 +15,7 @@ export default defineConfig({
       name: "Roboto Flex",
       cssVariable: "--font-roboto",
       weights: [400, 500, 600, 700],
-      styles: ["normal", "italic"],
+      styles: ["normal"],
       subsets: ["latin"],
       fallbacks: ["sans-serif"],
     },
