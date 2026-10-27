@@ -21,7 +21,7 @@
     "@fontsource/roboto-flex": "5.3.0",
     "astro": "7.4.2",
     "astro-expressive-code": "0.44.3",
-    "astro-mermaid": "^2.1.0",
+    "astro-mermaid": "^2.2.0",
     "clsx": "2.1.1",
     "dayjs": "1.11.23",
     "mermaid": "^12.2.0",
