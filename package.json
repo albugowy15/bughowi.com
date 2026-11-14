@@ -19,7 +19,7 @@
   "dependencies": {
     "@expressive-code/plugin-line-numbers": "0.44.3",
     "@fontsource/roboto-flex": "5.3.0",
-    "astro": "7.4.2",
+    "astro": "7.4.12",
     "astro-expressive-code": "0.44.3",
     "astro-mermaid": "^2.1.0",
     "clsx": "2.1.1",
