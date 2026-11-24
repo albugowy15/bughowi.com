@@ -5,3 +5,6 @@ allowBuilds:
 # Delay newly published package versions to reduce exposure to npm supply-chain compromises.
 # Value is in minutes; 1440 minutes = 24 hours.
 minimumReleaseAge: 1440
+
+overrides:
+  "@emnapi/runtime": "1.11.3"
